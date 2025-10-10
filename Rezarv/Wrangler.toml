@@ -3,7 +3,7 @@ compatibility_date = "2025-10-10"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "mine-db"  # نام D1 bucketت
+database_name = "mq5-db"  # نام D1 bucketت
 database_id = "uuid-db-id"  # از داشبورد D1 کپی کن
 
 [[kv_namespaces]]
