@@ -2,7 +2,7 @@ name: Deploy to Cloudflare Workers
 
 on:
   push:
-    branches: [main]  # وقتی به branch main push می‌کنید، اجرا شود
+    branches: [main]
 
 jobs:
   deploy-en:
@@ -10,21 +10,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Deploy English Worker
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@3  # Use v3 for latest compatibility
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: workers/en  # فولدر Worker انگلیسی
-          command: deploy
+          workingDirectory: workers/en
+          command: deploy  # No need for path if wrangler.toml defines 'main'
 
   deploy-fa:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Deploy Persian Worker
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: workers/fa  # فولدر Worker فارسی
+          workingDirectory: workers/fa
           command: deploy
