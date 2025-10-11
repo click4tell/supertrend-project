@@ -1,7 +1,7 @@
 {
-  "name": "supertrend-en",  // نام Worker
-  "main": "worker.js",   // مسیر دقیق فایل JS (نسبت به فولدر en/)
-  "compatibility_date": "2025-10-11"  // تاریخ امروز
+  "name": "supertrend-en",  // نام Worker (بدون تغییر)
+  "main": "worker.js",   // مسیر فایل JS
+  "compatibility_date": "2025-10-11",  // کاما اضافه شد اینجا!
 
   // vars (placeholderها – واقعی‌ها رو در dashboard بگذار)
   "vars": {
@@ -12,11 +12,11 @@
     "TRONSCAN_API_KEY": ""
   },
 
-  // bindings برای D1 و KV (از کدت)
+  // bindings برای D1 و KV (اگر نیاز نداری، حذف کن)
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "your-db-name",  // نام DB در dashboard
+      "database_name": "your-db-name",  // نام واقعی DBت رو بگذار
       "database_id": "your-db-id"
     }
   ],
