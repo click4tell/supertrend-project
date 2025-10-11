@@ -1,19 +1,18 @@
-name = "mine"
-compatibility_date = "2025-10-10"
+name = "supertrend-en"  # نام Worker شما در Cloudflare (مثلاً supertrend-en.workers.dev)
+main = "worker_en.js"   # نام فایل اصلی JS
+compatibility_date = "2023-01-01"  # تاریخ سازگاری (به روز کنید اگر لازم)
+usage_model = "bundled"  # مدل استفاده (bundled یا unbound)
 
-[[d1_databases]]
-binding = "DB"
-database_name = "mq5-data"  # نام D1 bucketت
-database_id = "bc64c25a-6dab-42b7-a26b-94324c38b5de"  # از داشبورد D1 کپی کن
-
-[[kv_namespaces]]
-binding = "ORDERS"
-id = "b9f703b38a9544f79aafdb44487a8aee"  # از داشبورد KV کپی کن
-preview_id = "uuid-preview"  # اختیاری برای preview
-
-[env.production.vars]
-TELEGRAM_TOKEN = "8457892715:AAHc2eIrud1jnrjWVK3Q1Izx9KpYmGs696E"
-ADMIN_CHAT_ID = "38501235"
-RESEND_API_KEY = "re_NAxQVi54_MWBNcprjDeCb233oUfczY5Wa"
+[vars]
+# محیط‌های متغیر (این‌ها را در داشبورد Cloudflare تنظیم کنید، اینجا فقط placeholder)
+TELEGRAM_TOKEN = ""  # جای خالی بگذارید، واقعی را در Cloudflare بگذارید
+ADMIN_CHAT_ID = ""
+RESEND_API_KEY = ""
 ADMIN_PASSWORD = "adminpass2025"
-TRONSCAN_API_KEY = "910d9cb6-7cbd-4301-898c-089361c69661"
+TRONSCAN_API_KEY = ""
+
+[d1_databases]
+DB = { binding = "DB", database_name = "mq5_data", database_id = "bc64c25a-6dab-42b7-a26b-94324c38b5de" }  # اگر از D1 استفاده می‌کنید
+
+[kv_namespaces]
+KV_ORDERS = { binding = "KV_ORDERS", id = "b9f703b38a9544f79aafdb44487a8aee" }  # اگر از KV استفاده می‌کنید
