@@ -1,0 +1,19 @@
+name = "mine"
+compatibility_date = "2025-10-10"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mq5-data"  # نام D1 bucketت
+database_id = "bc64c25a-6dab-42b7-a26b-94324c38b5de"  # از داشبورد D1 کپی کن
+
+[[kv_namespaces]]
+binding = "ORDERS"
+id = "b9f703b38a9544f79aafdb44487a8aee"  # از داشبورد KV کپی کن
+preview_id = "uuid-preview"  # اختیاری برای preview
+
+[env.production.vars]
+TELEGRAM_TOKEN = "8457892715:AAHc2eIrud1jnrjWVK3Q1Izx9KpYmGs696E"
+ADMIN_CHAT_ID = "38501235"
+RESEND_API_KEY = "re_NAxQVi54_MWBNcprjDeCb233oUfczY5Wa"
+ADMIN_PASSWORD = "adminpass2025"
+TRONSCAN_API_KEY = "910d9cb6-7cbd-4301-898c-089361c69661"
