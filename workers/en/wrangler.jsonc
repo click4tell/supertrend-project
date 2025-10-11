@@ -16,7 +16,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "your-db-name",  // نام واقعی DBت رو بگذار
+      "database_name": "mq5_data",  // نام واقعی DBت رو بگذار
       "database_id": "bc64c25a-6dab-42b7-a26b-94324c38b5de"
     }
   ],
