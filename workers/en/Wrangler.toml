@@ -1,5 +1,5 @@
 name = "supertrend-en"  # نام Worker شما در Cloudflare (مثلاً supertrend-en.workers.dev)
-main = "/workers/en/worker.js"   # نام فایل اصلی JS
+main = "worker.js"   # نام فایل اصلی JS
 compatibility_date = "2023-01-01"  # تاریخ سازگاری (به روز کنید اگر لازم)
 usage_model = "bundled"  # مدل استفاده (bundled یا unbound)
 
