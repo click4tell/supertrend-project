@@ -2,7 +2,7 @@
   "name": "supertrend-en",  // نام Worker (بدون تغییر)
   "main": "worker.js",   // مسیر فایل JS
   "compatibility_date": "2025-10-11",  // کاما اضافه شد اینجا!
-const webhookUrl = 'https://supertrend-en.click4tell.workers.dev/webhook';
+
   // vars (placeholderها – واقعی‌ها رو در dashboard بگذار)
   "vars": {
     "TELEGRAM_TOKEN": "",
