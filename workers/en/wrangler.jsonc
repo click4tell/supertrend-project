@@ -1,0 +1,29 @@
+{
+  "name": "supertrend-en",  // نام Worker
+  "main": "worker.js",   // مسیر دقیق فایل JS (نسبت به فولدر en/)
+  "compatibility_date": "2025-10-11"  // تاریخ امروز
+
+  // vars (placeholderها – واقعی‌ها رو در dashboard بگذار)
+  "vars": {
+    "TELEGRAM_TOKEN": "",
+    "ADMIN_CHAT_ID": "",
+    "RESEND_API_KEY": "",
+    "ADMIN_PASSWORD": "adminpass2025",
+    "TRONSCAN_API_KEY": ""
+  },
+
+  // bindings برای D1 و KV (از کدت)
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "your-db-name",  // نام DB در dashboard
+      "database_id": "your-db-id"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV_ORDERS",
+      "id": "your-kv-id"
+    }
+  ]
+}
