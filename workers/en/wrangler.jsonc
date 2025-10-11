@@ -17,13 +17,13 @@
     {
       "binding": "DB",
       "database_name": "your-db-name",  // نام واقعی DBت رو بگذار
-      "database_id": "your-db-id"
+      "database_id": "bc64c25a-6dab-42b7-a26b-94324c38b5de"
     }
   ],
   "kv_namespaces": [
     {
       "binding": "KV_ORDERS",
-      "id": "your-kv-id"
+      "id": "b9f703b38a9544f79aafdb44487a8aee"
     }
   ]
 }
