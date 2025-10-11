@@ -8,21 +8,21 @@ jobs:
   deploy-en:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4  # بروزرسانی به v4
       - name: Deploy English Worker
-        uses: cloudflare/wrangler-action@3  # Use v3 for latest compatibility
+        uses: cloudflare/wrangler-action@v3  # v3 برای Wrangler v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: workers/en
-          command: deploy  # No need for path if wrangler.toml defines 'main'
+          workingDirectory: workers/en  # فولدر دقیق
+          command: deploy  # Wrangler.toml خودش main رو مدیریت می‌کنه
 
   deploy-fa:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Deploy Persian Worker
-        uses: cloudflare/wrangler-action@3
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
