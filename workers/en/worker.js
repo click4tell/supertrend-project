@@ -738,7 +738,8 @@ ${code ? `Code: ${code}` : ''}
           const webhookCheck = await fetch(`${url.origin}/checkwebhook`);
           if (webhookCheck.ok) {
             const webhookInfo = await webhookCheck.json();
-            if (webhookInfo.url === 'https://supertrend.click4tell.workers.dev/webhook') {
+            const webhookUrl = 'https://supertrend-en.click4tell.workers.dev/webhook';
+            if (webhookInfo.url === 'https://supertrend_en.click4tell.workers.dev/webhook') {
               webhookHtml = `<div class="webhook-status">Telegram Webhook: Active ✅</div>`;
             } else {
               webhookHtml = `<div class="webhook-status webhook-error">Telegram Webhook: Inactive ❌ <a href="/setwebhook">Set Now</a></div>`;
@@ -988,3 +989,4 @@ ${code ? `Code: ${code}` : ''}
     return new Response('404 Not Found', { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
   },
 };
+
