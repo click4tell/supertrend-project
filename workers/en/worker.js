@@ -469,7 +469,7 @@ ${code ? `Code: ${code}` : ''}
                   Product: ${state.product}<br>
                   Account: ${text}<br>
                   Waiting for email and TxHash.<br>
-                  <a href="https://supertrend.click4tell.workers.dev/admin">Admin Panel</a>
+                  <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                 `;
                 await sendEmail(ADMIN_EMAIL, 'New Telegram Request - Account Received', adminHtml);
                 await sendToTelegram(chatId, 'Account received. Please send your email address.');
@@ -501,7 +501,7 @@ ${code ? `Code: ${code}` : ''}
                   Account: ${state.account}<br>
                   Email: ${text}<br>
                   TxHash: Pending<br>
-                  <a href="https://supertrend.click4tell.workers.dev/admin">Admin Panel</a>
+                  <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                 `;
                 await sendEmail(ADMIN_EMAIL, 'New Telegram Request - Email Received', adminHtml2);
                 await sendToTelegram(chatId, `Email received. Please send the TxHash of your payment to: ${TRON_ADDRESS}`);
@@ -546,7 +546,7 @@ ${code ? `Code: ${code}` : ''}
                     Email: ${state.email || 'N/A'}<br>
                     TxHash: ${text}<br>
                     Code: ${code}<br>
-                    <a href="https://supertrend.click4tell.workers.dev/admin">Admin Panel</a>
+                    <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                   `;
                   await sendEmail(ADMIN_EMAIL, 'Telegram Tx Confirmed - Code Generated', adminHtml3);
                   // Notify admin Telegram
@@ -668,7 +668,7 @@ ${code ? `Code: ${code}` : ''}
 
     // Set webhook endpoint (call once to activate)
     if (path === '/setwebhook' && request.method === 'GET') {
-      const webhookUrl = 'https://supertrend.click4tell.workers.dev/webhook';
+      const webhookUrl = 'https://supertrend_en.click4tell.workers.dev/webhook';
       try {
         const response = await fetch(`${TELEGRAM_API}/setWebhook?url=${webhookUrl}`);
         const result = await response.json();
@@ -955,7 +955,7 @@ ${code ? `Code: ${code}` : ''}
             Email: ${email}<br>
             TxHash: ${txHash}<br>
             Code: ${code}<br>
-            <a href="https://supertrend.click4tell.workers.dev/admin">Admin Panel</a>
+            <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
           `;
           await sendEmail(ADMIN_EMAIL, 'Site Tx Confirmed - Code Generated', adminHtml);
           await sendToAdminTelegram({ firstName: 'Site', username: 'User', product, account, email }, txHash, code);
@@ -972,7 +972,7 @@ ${code ? `Code: ${code}` : ''}
             Account: ${account}<br>
             Email: ${email}<br>
             TxHash: ${txHash}<br>
-            <a href="https://supertrend.click4tell.workers.dev/admin">Admin Panel</a>
+            <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
           `;
           await sendEmail(ADMIN_EMAIL, 'New Site Request - Pending', adminHtml);
           return new Response('<p style="color: orange;">Request registered. Waiting for admin confirmation.</p>', {
@@ -989,4 +989,3 @@ ${code ? `Code: ${code}` : ''}
     return new Response('404 Not Found', { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
   },
 };
-
