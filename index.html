@@ -328,10 +328,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .images-container {
+        .images-container, .videos-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* فاصله زیبا بین دو تصویر */
+            gap: 20px; /* فاصله زیبا بین دو آیتم */
             flex-wrap: wrap;
         }
 
@@ -443,21 +443,42 @@
         <div id="result"></div>
 
        
-        <h2>عملکرد محصولات</h2>
+        <h2>نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر </h2>
        
         <!-- تصاویر در دو کادر کنار هم -->
         <div class="images-container">
             <div>
                 <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
-                <p class="caption">بکتست اکسپرت ها</p>
+                <p class="caption">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</p>
             </div>
             <div>
                 <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
-                <p class="caption">نمایش اندیکاتور در پلتفرم متاتریدر</p>
+                <p class="caption">چارت بالا عملکرد اندیکاتور SuperTrend را در تایم‌فریم‌های مختلف نشان می‌دهد</p>
             </div>
         </div>
 
-        
+        <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
+        <div class="container">
+            <h2>نمایش ویدیوهای محصولات</h2>
+            <div class="videos-container">
+                <div>
+                    <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
+                        مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                    </video>
+                    <p class="caption">اندیکاتور سوپرترند</p>
+                </div>
+                <div>
+                    <video src="/supertrend_EA.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
+                        مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                    </video>
+                    <p class="caption">اکسپرت سوپرترند</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>نمایش اندیکاتور</h2>
+        <p>چارت زیر عملکرد اندیکاتور SuperTrend را در تایم‌فریم‌های مختلف نشان می‌دهد.</p>
+
         <h2>دانلود فایل‌ها</h2>
     <div class="container">
         <a href="/SuperTrend.ex5" download class="download-button">Indicator Super Trend</a>
@@ -468,28 +489,6 @@
 <div class="container">
 
     <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')">ورود به لینک تلگرام برای خرید</button>
-        </div>
-
-        <!-- بخش ویدیوهای پیش‌نمایش در پایین صفحه -->
-        <div class="container">
-            <h2>نمایش ویدیوهای محصولات</h2>
-            <div class="video-container">
-               
-                <div>
-                    <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
-                        مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                    </video>
-                    <h3 class="caption">اندیکاتور سوپرترند</h3>
-                </div>
-          
-           
-                <div>
-                    <video src="/supertrend_EA.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
-                        مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                    </video>
-                    <h3 class="caption">اکسپرت سوپرترند</h3>
-                </div>
-            </div>
         </div>
 
         <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
