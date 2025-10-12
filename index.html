@@ -293,411 +293,20 @@
         .download-button:hover {
             background-color: #1e40af;
         }
-    </style>
-</head>
-<body>
-    <header>
-        <h1 class="relative-right">METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR</h1>
-       >
-        <p class="margin-left">فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی</p>
-     
-    </header>
-    <div class="container">
-        <h1>محصولات ما</h1>
 
-<button onclick="window.open('/info.pdf', '_blank')">info SUPERTREND</button>
-<button onclick="window.open('/ForexFuryPro.pdf', '_blank')">info FOREXFURY</button>
-<button onclick="window.open('/ReportTester.pdf', '_blank')">Riport FOREXFURY</button>
-        </div>
-
-        <div class="product">
-            <h3>اندیکاتور SuperTrend</h3>
-            <p>توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.</p>
-            <p>قیمت: 15 TRX ترون  روی شبکه TRC_20 </p>
-            <h3>اکسپرت SuperTrend EA</h3>
-            <p>قیمت: 200 TRX ترون  روی شبکه TRC_20 </p>
-            <p>توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.</p>
-            <h3>اکسپرت ForexFury EA </h3>
-            <p>توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار</p>
-            <p>قیمت: 500 TRX ترون  روی شبکه TRC_20 </p>
-            <button onclick="selectProduct('Indicator_Supertrend')">فرم دریافت اطلاعات برای  پرداخت و خرید محصول</button>
-        </div>
-
-      
-        <form id="paymentForm">
-
- <h3>کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
-        <p id="copyText" onclick="copyToClipboard()">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
-        <script>
-            function copyToClipboard() {
-                var text = document.getElementById('copyText').innerText;
-                navigator.clipboard.writeText(text).then(function() {
-                    alert('متن کپی شد!');
-                }, function(err) {
-                    console.error('خطا در کپی: ', err);
-                });
-            }
-        </script>            <label> هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
-            <input type="text" name="txHash" required><br>
-            <label>محصول:</label>
-            <select name="product" required>
-                <option value="Indicator_Supertrend">اندیکاتور SuperTrend - 15 TRX</option>
-                <option value="EA_SuperTrend">اکسپرت SuperTrend EA - 200 TRX</option>
-                <option value="EA_ForexFury">اکسپرت ForexFury EA  - 500 TRX</option>
-                
-            </select><br>
-            <label>شماره اکانت MT5:</label>
-            <input type="number" name="account" required><br>
-            <label>ایمیل:</label>
-            <input type="email" name="email" required><br>
-            <button type="submit">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
-
-
-        </form>
-        <div id="result"></div>
-
-       
-        <h2>نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر </h2>
-       
-        <img src="/profit_graph.png" alt="Profit Graph">
-
-        <h2>نمایش اندیکاتور</h2>
-        <p>چارت زیر عملکرد اندیکاتور SuperTrend را در تایم‌فریم‌های مختلف نشان می‌دهد.</p>
-        <img src="/indicator_chart.png" alt="Indicator Chart">
-
-        <h2>دانلود فایل‌ها</h2>
-    <div class="container">
-        <a href="/SuperTrend.ex5" download class="download-button">Indicator Super Trend</a>
-        <a href="/SuperTrend_EA.ex5" download class="download-button">Expert Super Trend</a>
-        <a href="/ForexFuryPro.ex5" download class="download-button">Expert Forex Fury</a>
-
-    </div>
-<div class="container">
-
-    <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')">ورود به لینک تلگرام برای خرید</button>
-        </div>
-        <footer>
-        <div class="footer-container">
-            <p>© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#51383f373e11252236323e3d25357f3823"> <span class="__cf_email__" data-cfemail="046d6a626b44707763676b6870602a6d76">[email&#160;protected]</span>  </a> <span </p>
-        </div>
-    </footer>
-    </div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script>
-        // URL Worker واقعی
-        const WORKER_URL = 'https://supertrend.click4tell.workers.dev';
-
-        // متن متحرک title
-        let titleText = "فروش اندیکاتور و اکسپرت SuperTrend";
-        let titleIndex = 0;
-        setInterval(() => {
-            document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
-            titleIndex = (titleIndex + 1) % titleText.length;
-        }, 200);
-
-        function selectProduct(product) {
-            document.querySelector('select[name="product"]').value = product;
-            const paymentForm = document.getElementById('paymentForm');
-            paymentForm.style.display = 'block';
-            paymentForm.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // هندل submit پرداخت
-        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            try {
-                const response = await fetch(`${WORKER_URL}/process`, {
-                    method: 'POST',
-                    body: formData
-                });
-                const result = await response.text();
-                document.getElementById('result').innerHTML = result;
-            } catch (error) {
-                document.getElementById('result').innerHTML = 'خطا: ' + error.message;
-            }
-        });
-
-        // هندل submit ریست
-        document.getElementById('resetForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            try {
-                const response = await fetch(`${WORKER_URL}/reset`, {
-                    method: 'POST',
-                    body: formData
-                });
-                const result = await response.text();
-                alert(result);
-            } catch (error) {
-                alert('خطا: ' + error.message);
-            }
-        });
-    </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-</body>
-
-</html>
-
-به این پیج دو ویدیو به نامهای expert.mp4 , Indicator.mp4 را برای قیمت پایین پیج طوری که با مکس روی پیج سروعله پیش نمایش کند بنویس و به کد اضافه کن و کد کامل را بده        header p {
-            font-size: 1.2em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-            color: #FFC107;
-            margin: 10px 15px;
-        }
-
-        .container {
+        /* استایل برای ویدیوها */
+        .video-container {
             max-width: 100%;
-            margin: 10px auto;
+            margin: 20px auto;
             padding: 10px;
-            background: #FFFFFF;
-            border-radius: 10px;
-            box-sizing: border-box;
             text-align: center;
         }
 
-        .product {
-            background: #f9f9f9;
-            padding: 15px;
-            margin: 10px 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        form {
-            margin: 15px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        #paymentForm, #resetForm {
-            display: none;
-        }
-
-        input, select, button {
-            padding: 10px;
-            margin: 5px 0;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background: #4CAF50;
-            color: white;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-
-        .container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        img {
+        video {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
-            display: block;
-            margin: 10px auto;
-        }
-
-        #result {
-            margin: 10px 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        h2, h3, p, a {
-            text-align: center;
-            margin: 10px auto;
-        }
-
-        h2 {
-            line-height: 1.5;
-        }
-
-        p {
-            line-height: 1.5;
-        }
-
-        a {
-            line-height: 1.8;
-            display: block;
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        #copyText {
-            cursor: pointer;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px auto;
-            border-radius: 5px;
-            width: fit-content;
-        }
-
- footer {
-            background-color: #f9fafb;
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid #e5e7eb;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #374151;
-            margin-top: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            white-space: nowrap; /* جلوگیری از انتقال به خط بعدی */
-        }
-
-        footer p {
-            margin: 0;
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: nowrap; /* اطمینان از یک خط ماندن */
-        }
-
-        footer a {
-            color: #1d4ed8;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #1e40af;
-            text-decoration: underline;
-        }
-
-        .separator {
-            margin: 0 10px;
-            color: #9ca3af;
-        }
-
-        /* تنظیمات برای موبایل */
-        @media (max-width: 600px) {
-            footer {
-                font-size: 12px; /* کاهش اندازه فونت در موبایل */
-                padding: 10px 15px;
-            }
-
-            .footer-container {
-                flex-wrap: nowrap; /* جلوگیری از شکستن خط در موبایل */
-            }
-
-            .separator {
-                margin: 0 5px; /* کاهش فاصله جداکننده‌ها در موبایل */
-            }
-        }        .separator {
-            margin: 0 10px;
-            color: #9ca3af;
-        }
-        /* Remove fixed margins and relative positioning for responsiveness */
-        .margin-right, .margin-left, .relative-right, .relative-left, .transform-right, .transform-left {
-            margin-right: 0;
-            margin-left: 0;
-            position: static;
-            transform: none;
-        }
-
-        /* Media Queries for larger screens */
-        @media (min-width: 768px) {
-            header {
-                height: 300px;
-                padding-top: 120px;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            header p {
-                font-size: 3em;
-            }
-
-            .container {
-                max-width: 750px;
-                padding: 20px;
-            }
-
-            .product {
-                margin: 10px auto;
-                max-width: 600px;
-            }
-
-            form {
-                max-width: 500px;
-                margin: 20px auto;
-            }
-
-            input, select, button {
-                max-width: 300px;
-                font-size: 18px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 1200px;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            header p {
-                font-size: 2em;
-            }
-        }
- .download-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #1d4ed8;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-button:hover {
-            background-color: #1e40af;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -782,6 +391,24 @@
 
     <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')">ورود به لینک تلگرام برای خرید</button>
         </div>
+
+        <!-- بخش ویدیوهای پیش‌نمایش در پایین صفحه -->
+        <div class="container">
+            <h2>پیش‌نمایش ویدیوهای محصولات</h2>
+            <div class="video-container">
+                <h3>پیش‌نمایش اندیکاتور SuperTrend</h3>
+                <video src="/Indicator.mp4" controls autoplay muted loop poster="" style="max-width:100%; height:auto;">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+            </div>
+            <div class="video-container">
+                <h3>پیش‌نمایش اکسپرت SuperTrend</h3>
+                <video src="/expert.mp4" controls autoplay muted loop poster="" style="max-width:100%; height:auto;">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+            </div>
+        </div>
+
         <footer>
         <div class="footer-container">
             <p>© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#51383f373e11252236323e3d25357f3823"> <span class="__cf_email__" data-cfemail="046d6a626b44707763676b6870602a6d76">[email&#160;protected]</span>  </a> <span </p>
@@ -844,5 +471,4 @@
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 
-</html>
-
+            </html>
