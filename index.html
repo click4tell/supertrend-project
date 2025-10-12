@@ -308,6 +308,69 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        /* استایل جدید برای بزرگ کردن ویدیو و تصاویر */
+        .preview {
+            cursor: pointer;
+            max-width: 300px; /* اندازه کوچک برای پیش‌نمایش */
+            margin: 10px;
+        }
+
+        .image-preview {
+            max-height: 200px; /* ارتفاع کوچک برای تصاویر */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-preview {
+            max-height: 200px; /* ارتفاع کوچک برای ویدیوها */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* فاصله زیبا بین دو تصویر */
+            flex-wrap: wrap;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -374,11 +437,14 @@
        
         <h2>نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر </h2>
        
-        <img src="/profit_graph.png" alt="Profit Graph">
+        <!-- تصاویر در دو کادر کنار هم -->
+        <div class="images-container">
+            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
+            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
+        </div>
 
         <h2>نمایش اندیکاتور</h2>
         <p>چارت زیر عملکرد اندیکاتور SuperTrend را در تایم‌فریم‌های مختلف نشان می‌دهد.</p>
-        <img src="/indicator_chart.png" alt="Indicator Chart">
 
         <h2>دانلود فایل‌ها</h2>
     <div class="container">
@@ -397,16 +463,23 @@
             <h2>نمایش ویدیوهای محصولات</h2>
             <div class="video-container">
                 <h3>نمایش اندیکاتور SuperTrend</h3>
-                <video src="/supertrend.webm" controls autoplay muted loop poster="" style="max-width:100%; height:auto;">
+                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
                     مرورگر شما از ویدیو پشتیبانی نمی‌کند.
                 </video>
             </div>
             <div class="video-container">
                 <h3>نمایش اکسپرت SuperTrend</h3>
-                <video src="/supertrend_EA.webm" controls autoplay muted loop poster="" style="max-width:100%; height:auto;">
+                <video src="/supertrend_EA.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
                     مرورگر شما از ویدیو پشتیبانی نمی‌کند.
                 </video>
             </div>
+        </div>
+
+        <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
+        <div id="myModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="imgModal">
+            <video class="modal-content" id="videoModal" controls style="display:none;"></video>
         </div>
 
         <footer>
@@ -467,11 +540,39 @@
                 alert('خطا: ' + error.message);
             }
         });
+
+        // تابع برای بزرگ کردن تصاویر
+        function openModal(src) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("imgModal");
+            var modalVideo = document.getElementById("videoModal");
+            modal.style.display = "block";
+            modalImg.src = src;
+            modalImg.style.display = "block";
+            modalVideo.style.display = "none";
+        }
+
+        // تابع برای بزرگ کردن ویدیوها
+        function openVideoModal(src) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("imgModal");
+            var modalVideo = document.getElementById("videoModal");
+            modal.style.display = "block";
+            modalVideo.src = src;
+            modalVideo.style.display = "block";
+            modalImg.style.display = "none";
+            modalVideo.play();
+        }
+
+        // تابع بستن modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            var modalVideo = document.getElementById("videoModal");
+            modal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        }
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
-
-            </html>
-
-
-
+</html>
