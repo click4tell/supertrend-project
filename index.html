@@ -664,7 +664,7 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         let currentLang = 'fa'; // Default: Persian
-        const WORKER_URL = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
+        const WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
         // Language data
         const translations = {
@@ -686,7 +686,7 @@
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
             // Update WORKER_URL
-            const newWorkerUrl = lang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
+            const newWorkerUrl = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
             // Reassign if needed, but since it's const, we'll use a variable
 
             // Update all elements with data-fa and data-en
@@ -740,7 +740,7 @@
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
             try {
                 const response = await fetch(`${workerUrl}/process`, {
                     method: 'POST',
@@ -757,7 +757,7 @@
         document.getElementById('resetForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
             try {
                 const response = await fetch(`${workerUrl}/reset`, {
                     method: 'POST',
@@ -832,7 +832,7 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             const submitBtn = document.getElementById('submitBtn');
-            const workerUrl = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
             // Show loading toast
             showToast(currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...', 'loading');
