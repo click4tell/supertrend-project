@@ -157,7 +157,7 @@
             width: fit-content;
         }
 
- footer {
+        footer {
             background-color: #f9fafb;
             padding: 15px 20px;
             text-align: center;
@@ -419,6 +419,7 @@
             font-size: 16px;
             background-color: #fff;
             transition: border-color 0.3s ease;
+            direction: rtl; /* پشتیبانی از RTL برای ورودی‌ها */
         }
 
         #contactForm input:focus,
@@ -430,6 +431,7 @@
         #contactForm textarea {
             min-height: 120px;
             resize: vertical;
+            direction: rtl; /* RTL برای متن فارسی */
         }
 
         #contactForm button {
@@ -447,12 +449,19 @@
             background-color: #0052a3;
         }
 
+        #contactForm button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
         #contact-result {
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             text-align: center;
             display: none;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
         }
 
         #contact-result.success {
@@ -465,6 +474,12 @@
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+
+        #contact-result.loading {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
         }
     </style>
 </head>
@@ -593,9 +608,9 @@
                 <input type="email" id="email" name="email" required>
                 
                 <label for="message">پیام:</label>
-                <textarea id="message" name="message" required></textarea>
+                <textarea id="message" name="message" required dir="rtl"></textarea>
                 
-                <button type="submit">ارسال پیام</button>
+                <button type="submit" id="submitBtn">ارسال پیام</button>
             </form>
             <div id="contact-result"></div>
         </div>
@@ -716,7 +731,14 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             const resultDiv = document.getElementById('contact-result');
-            resultDiv.style.display = 'none';  // Reset previous messages
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Reset و نمایش loader
+            resultDiv.style.display = 'none';
+            resultDiv.className = 'loading';
+            resultDiv.textContent = 'در حال ارسال پیام...';
+            resultDiv.style.display = 'block';
+            submitBtn.disabled = true;
 
             try {
                 const response = await fetch(`${WORKER_URL}/send-email`, {
@@ -734,17 +756,18 @@
                 const data = await response.json();  // Assume Worker returns JSON
 
                 if (response.ok && data.success) {
-                    resultDiv.textContent = 'پیام با موفقیت ارسال شد!';
-                    resultDiv.className = 'success';  // Use className to reset
-                    resultDiv.style.display = 'block';
+                    resultDiv.textContent = 'پیام با موفقیت ارسال شد! به زودی پاسخ می‌دهیم.';
+                    resultDiv.className = 'success';
                     document.getElementById('contactForm').reset();
                 } else {
                     throw new Error(data.error || 'خطا در ارسال ایمیل');
                 }
             } catch (error) {
-                resultDiv.textContent = 'خطا در ارسال پیام: ' + error.message;
-                resultDiv.className = 'error';  // Use className to reset
-                resultDiv.style.display = 'block';
+                resultDiv.textContent = 'خطا در ارسال پیام: ' + error.message + '. لطفاً دوباره تلاش کنید.';
+                resultDiv.className = 'error';
+            } finally {
+                // Reset button و loader
+                submitBtn.disabled = false;
             }
         });
     </script>
