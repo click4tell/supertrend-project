@@ -359,24 +359,30 @@
             flex-wrap: wrap;
         }
 
+        /* IMPROVED: Modal CSS - Centered and not full screen */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            padding-top: 60px;
+            background-color: rgba(0,0,0,0.8); /* Darker overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Reduced padding */
         }
 
         .modal-content {
             margin: auto;
             display: block;
-            width: 80%;
+            width: 90%; /* Responsive width */
             max-width: 700px;
+            max-height: 90vh; /* Limit height */
+            object-fit: contain;
         }
 
         .close {
@@ -387,6 +393,7 @@
             font-size: 40px;
             font-weight: bold;
             transition: 0.3s;
+            z-index: 1001;
         }
 
         .close:hover,
@@ -394,6 +401,24 @@
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        /* IMPROVED: Contact Modal - Not full screen */
+        #contactModal.modal {
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #contact-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px; /* Limited width */
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         /* کپشن زیر تصاویر و ویدیوها */
@@ -405,16 +430,6 @@
         }
 
         /* استایل‌های جدید برای فرم تماس با ما - جمع و جورتر */
-        #contact-container {
-            max-width: 400px; /* عرض کمتر */
-            margin: 20px auto;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: right;
-        }
-
         #contact-container h2 {
             color: #4CAF50;
             font-size: 1.5em;
@@ -488,19 +503,22 @@
             cursor: not-allowed;
         }
 
-        /* Toast notification */
+        /* IMPROVED: Toast notification - Better RTL support and visibility */
         .toast {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 20px; /* For RTL: left instead of right */
+            right: auto;
             min-width: 250px;
             padding: 12px 16px;
             border-radius: 5px;
             color: white;
             font-weight: bold;
-            z-index: 1001;
-            transform: translateX(300px);
+            z-index: 1001; /* Increased z-index */
+            transform: translateX(-300px); /* Start off-screen left for RTL */
             transition: transform 0.3s ease;
+            direction: rtl;
+            text-align: right;
         }
 
         .toast.show {
@@ -544,29 +562,7 @@
         <p data-fa="قیمت: 200 TRX ترون  روی شبکه TRC_20" data-en="Price: 200 TRX on TRC_20 network">قیمت: 200 TRX ترون  روی شبکه TRC_20</p>
         <p data-fa="توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک." data-en="Description: Automatic expert based on SuperTrend indicator with risk management.">توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.</p>
         <h3 data-fa="اکسپرت ForexFury EA" data-en="ForexFury EA Expert">اکسپرت ForexFury EA</h3>
-        <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار" data-en="Description: Automatic expert based on Forex Fury technique with very high profit, even $200k/year on $100 deposit">توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار</p>
-        <p data-fa="قیمت: 500 TRX ترون  روی شبکه TRC_20" data-en="Price: 500 TRX on TRC_20 network">قیمت: 500 TRX ترون  روی شبکه TRC_20</p>
-        <button onclick="selectProduct('Indicator_Supertrend')" data-fa="فرم دریافت اطلاعات برای  پرداخت و خرید محصول" data-en="Payment and Purchase Form">فرم دریافت اطلاعات برای  پرداخت و خرید محصول</button>
-    </div>
-
-    <form id="paymentForm">
-        <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
-        <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
-        <script>
-            function copyToClipboard() {
-                var text = document.getElementById('copyText').innerText;
-                navigator.clipboard.writeText(text).then(function() {
-                    alert(document.querySelector('[data-fa*="کپی"]').textContent || 'Copied!');
-                }, function(err) {
-                    console.error('خطا در کپی: ', err);
-                });
-            }
-        </script>
-        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
-        <input type="text" name="txHash" required><br>
-        <label data-fa="محصول:" data-en="Product:">محصول:</label>
-        <select name="product" required>
-            <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+        <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل...(truncated 1984 characters)... TRX">اندیکاتور SuperTrend - 15 TRX</option>
             <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
             <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
         </select><br>
@@ -779,7 +775,7 @@
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("imgModal");
             var modalVideo = document.getElementById("videoModal");
-            modal.style.display = "block";
+            modal.style.display = "flex";
             modalImg.src = src;
             modalImg.style.display = "block";
             modalVideo.style.display = "none";
@@ -790,7 +786,7 @@
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("imgModal");
             var modalVideo = document.getElementById("videoModal");
-            modal.style.display = "block";
+            modal.style.display = "flex";
             modalVideo.src = src;
             modalVideo.style.display = "block";
             modalImg.style.display = "none";
@@ -808,7 +804,7 @@
 
         // تابع باز کردن مدال تماس با ما
         function openContactModal() {
-            document.getElementById('contactModal').style.display = 'block';
+            document.getElementById('contactModal').style.display = 'flex';
         }
 
         // تابع بستن مدال تماس با ما
@@ -816,17 +812,20 @@
             document.getElementById('contactModal').style.display = 'none';
         }
 
-        // Toast function
+        // IMPROVED: Toast function - Better timing and RTL
         function showToast(message, type) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
-            toast.className = `toast ${type} show`;
+            toast.className = `toast ${type}`; // Reset classes
+            setTimeout(() => {
+                toast.classList.add('show'); // Add show after reset
+            }, 100);
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+            }, 4000); // Longer duration for visibility
         }
 
-        // هندل submit فرم تماس با ما
+        // IMPROVED: هندل submit فرم تماس با ما - Better error handling
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value;
@@ -840,6 +839,7 @@
             submitBtn.disabled = true;
 
             try {
+                console.log('Sending contact form:', { name, email, message }); // Browser console debug
                 const response = await fetch(`${workerUrl}/send-email`, {
                     method: 'POST',
                     headers: {
@@ -852,7 +852,9 @@
                     })
                 });
 
+                console.log('Response status:', response.status); // Debug
                 const data = await response.json();
+                console.log('Response data:', data); // Debug
 
                 if (response.ok && data.success) {
                     showToast(currentLang === 'fa' ? 'پیام ارسال شد! به زودی پاسخ می‌دهیم.' : 'Message sent! We\'ll respond soon.', 'success');
@@ -867,11 +869,24 @@
                     throw new Error(data.error || (currentLang === 'fa' ? 'خطا در ارسال' : 'Send error'));
                 }
             } catch (error) {
+                console.error('Contact form error:', error); // Browser console
                 showToast((currentLang === 'fa' ? 'خطا: ' : 'Error: ') + error.message + (currentLang === 'fa' ? '. دوباره تلاش کنید.' : '. Try again.'), 'error');
             } finally {
                 submitBtn.disabled = false;
             }
         });
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            var contactModal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+            if (event.target == contactModal) {
+                closeContactModal();
+            }
+        }
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
