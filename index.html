@@ -20,7 +20,7 @@
             text-align: right;
         }
 
-        /* Language switcher - خیلی کوچک‌تر شده */
+        /* Language switcher - خیلی کوچک‌تر، عرض بر اساس دو کاراکتر */
         .lang-switcher {
             position: fixed;
             top: 10px;
@@ -29,11 +29,12 @@
             background: #4CAF50;
             color: white;
             border: none;
-            padding: 4px 6px; /* کوچک‌تر: قبلاً 5px 8px */
-            border-radius: 10px; /* کوچک‌تر: قبلاً 15px */
+            padding: 3px 5px; /* کوچک‌تر: قبلاً 4px 6px */
+            border-radius: 8px; /* کوچک‌تر */
             cursor: pointer;
-            font-size: 11px; /* کوچک‌تر: قبلاً 12px */
-            min-width: auto; /* عرض خودکار بر اساس متن */
+            font-size: 10px; /* کوچک‌تر: قبلاً 11px */
+            min-width: 40px; /* عرض ثابت برای دو کاراکتر */
+            text-align: center;
         }
 
         .lang-switcher:hover {
@@ -537,211 +538,15 @@
     <div class="product">
         <h3 data-fa="اندیکاتور SuperTrend" data-en="SuperTrend Indicator">اندیکاتور SuperTrend</h3>
         <p data-fa="توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5." data-en="Description: Advanced indicator for trend identification in MT5.">توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.</p>
-        <p data-fa="قیمت: 15 TRX ترون  روی شبکه TRC_20 " data-en="Price: 15 TRX on TRC_20 network">قیمت: 15 TRX ترون  روی شبکه TRC_20 </p>
+        <p data-fa="قیمت: 15 TRX ترون  روی شبکه TRC_20" data-en="Price: 15 TRX on TRC_20 network">قیمت: 15 TRX ترون  روی شبکه TRC_20</p>
         <h3 data-fa="اکسپرت SuperTrend EA" data-en="SuperTrend EA Expert">اکسپرت SuperTrend EA</h3>
-        <p data-fa="قیمت: 200 TRX ترون  روی شبکه TRC_20 " data-en="Price: 200 TRX on TRC_20 network">قیمت: 200 TRX ترون  روی شبکه TRC_20 </p>
+        <p data-fa="قیمت: 200 TRX ترون  روی شبکه TRC_20" data-en="Price: 200 TRX on TRC_20 network">قیمت: 200 TRX ترون  روی شبکه TRC_20</p>
         <p data-fa="توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک." data-en="Description: Automatic expert based on SuperTrend indicator with risk management.">توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.</p>
         <h3 data-fa="اکسپرت ForexFury EA" data-en="ForexFury EA Expert">اکسپرت ForexFury EA</h3>
         <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار" data-en="Description: Automatic expert based on Forex Fury technique with very high profit, even $200k/year on $100 deposit">توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار</p>
-        <p data-fa="قیمت: 500 TRX ترون  روی شبکه TRC_20 " data-en="Price: 500 TRX on TRC_20 network">قیمت: 500 TRX ترون  روی شبکه TRC_20 </p>
+        <p data-fa="قیمت: 500 TRX ترون  روی شبکه TRC_20" data-en="Price: 500 TRX on TRC_20 network">قیمت: 500 TRX ترون  روی شبکه TRC_20</p>
         <button onclick="selectProduct('Indicator_Supertrend')" data-fa="فرم دریافت اطلاعات برای  پرداخت و خرید محصول" data-en="Payment and Purchase Form">فرم دریافت اطلاعات برای  پرداخت و خرید محصول</button>
     </div>
 
     <form id="paymentForm">
-        <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
-        <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
-        <script>
-            function copyToClipboard() {
-                var text = document.getElementById('copyText').innerText;
-                navigator.clipboard.writeText(text).then(function() {
-                    alert(document.querySelector('[data-fa*="کپی"]').textContent || 'Copied!');
-                }, function(err) {
-                    console.error('خطا در کپی: ', err);
-                });
-            }
-        </script>
-        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
-        <input type="text" name="txHash" required><br>
-        <label data-fa="محصول:" data-en="Product:">محصول:</label>
-        <select name="product" required>
-            <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
-            <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
-            <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
-        </select><br>
-        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
-        <input type="number" name="account" required><br>
-        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
-        <input type="email" name="email" required><br>
-        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
-    </form>
-    <div id="result"></div>
-
-    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
-
-    <!-- تصاویر در دو کادر کنار هم -->
-    <div class="images-container">
-        <div>
-            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
-            <p class="caption" data-fa="بکتست اکسپرتها" data-en="Expert Backtests">بکتست اکسپرتها</p>
-        </div>
-        <div>
-            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
-            <p class="caption" data-fa="اندیکاتور سوپرترند در چارت" data-en="SuperTrend Indicator on Chart">اندیکاتور سوپرترند در چارت</p>
-        </div>
-    </div>
-
-    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
-    <div class="container">
-        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
-        <div class="videos-container">
-            <div>
-                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
-                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                </video>
-                <p class="caption" data-fa="اندیکاتور سوپرترند" data-en="SuperTrend Indicator">اندیکاتور سوپرترند</p>
-            </div>
-            <div>
-                <video src="/supertrend_EA.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
-                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                </video>
-                <p class="caption" data-fa="اکسپرت سوپرترند" data-en="SuperTrend Expert">اکسپرت سوپرترند</p>
-            </div>
-        </div>
-    </div>
-
-    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
-    <div class="container">
-        <a href="/SuperTrend.ex5" download class="download-button" data-fa="Indicator Super Trend" data-en="Indicator Super Trend">Indicator Super Trend</a>
-        <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="Expert Super Trend" data-en="Expert Super Trend">Expert Super Trend</a>
-        <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="Expert Forex Fury" data-en="Expert Forex Fury">Expert Forex Fury</a>
-    </div>
-    <div class="container">
-        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">ورود به لینک تلگرام برای خرید</button>
-    </div>
-
-    <div class="container">
-        <button onclick="openContactModal()" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</button>
-    </div>
-
-    <!-- مدال جدید برای تماس با ما -->
-    <div id="contactModal" class="modal">
-        <span class="close" onclick="closeContactModal()">&times;</span>
-        <div id="contact-container">
-            <h2 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h2>
-            <p data-fa="برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: click4tell@gmail.com" data-en="For more info or questions, fill the form below. We'll respond soon. Email: click4tell@gmail.com">برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: click4tell@gmail.com</p>
-            <form id="contactForm">
-                <div class="form-row">
-                    <label for="name" data-fa="نام:" data-en="Name:">نام:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-row">
-                    <label for="email" data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-row">
-                    <label for="message" data-fa="پیام:" data-en="Message:">پیام:</label>
-                    <textarea id="message" name="message" required dir="rtl"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" data-fa="ارسال پیام" data-en="Send Message">ارسال پیام</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="imgModal">
-        <video class="modal-content" id="videoModal" controls style="display:none;"></video>
-    </div>
-
-    <!-- Toast container -->
-    <div id="toast"></div>
-
-    <footer>
-        <div class="footer-container">
-            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#11383f373e11252236323e3d25357f3823"> <span class="__cf_email__" data-cfemail="046d6a626b44707763676b6870602a6d76">[email&#160;protected]</span>  </a> <span></p>
-        </div>
-    </footer>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script>
-        let currentLang = 'fa'; // Default: Persian
-        const WORKER_URL = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
-
-        // Language data
-        const translations = {
-            fa: {
-                title: "فروش اندیکاتور و اکسپرت SuperTrend",
-                // Add more as needed, but since most are data- attributes, handled below
-            },
-            en: {
-                title: "Selling SuperTrend Indicators and Experts",
-            }
-        };
-
-        // Update texts based on language
-        function updateLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
-            document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
-            document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
-
-            // Update WORKER_URL
-            const newWorkerUrl = lang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
-            // Reassign if needed, but since it's const, we'll use a variable
-
-            // Update all elements with data-fa and data-en
-            document.querySelectorAll('[data-fa]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-
-            // Update title
-            document.title = translations[lang].title || document.title;
-
-            // Update lang button
-            document.querySelector('.lang-switcher').textContent = lang === 'fa' ? 'EN' : 'FA';
-            document.querySelector('.lang-switcher').onclick = () => toggleLanguage();
-
-            // Save to localStorage
-            localStorage.setItem('lang', lang);
-
-            // Update select options
-            document.querySelectorAll('option').forEach(opt => {
-                if (opt.hasAttribute(`data-${lang}`)) {
-                    opt.textContent = opt.getAttribute(`data-${lang}`);
-                }
-            });
-        }
-
-        function toggleLanguage() {
-            const newLang = currentLang === 'fa' ? 'en' : 'fa';
-            updateLanguage(newLang);
-        }
-
-        // Load saved language
-        const savedLang = localStorage.getItem('lang') || 'fa';
-        updateLanguage(savedLang);
-
-        // متن متحرک title
-        let titleText = currentLang === 'fa' ? "فروش اندیکاتور و اکسپرت SuperTrend" : "Selling SuperTrend Indicators and Experts";
-        let titleIndex = 0;
-        setInterval(() => {
-            document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
-            titleIndex = (titleIndex + 1) % titleText.length;
-        }, 200);
-
-        function selectProduct(product) {
-            document.querySelector('select[name="product"]').value = product;
-            const paymentForm = document.getElementById('paymentForm');
-            paymentForm.style.display = 'block';
-            paymentForm.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // هندل submit پرداخت
-        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://mq5.click4tell.workers.dev' : 'https://supertrend.click4tell.workers.dev';
-            try {
-                const response = await fetch(`${workerUrl}/process
+        <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy
