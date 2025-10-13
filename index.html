@@ -562,17 +562,29 @@
         <p data-fa="قیمت: 200 TRX ترون  روی شبکه TRC_20" data-en="Price: 200 TRX on TRC_20 network">قیمت: 200 TRX ترون  روی شبکه TRC_20</p>
         <p data-fa="توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک." data-en="Description: Automatic expert based on SuperTrend indicator with risk management.">توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.</p>
         <h3 data-fa="اکسپرت ForexFury EA" data-en="ForexFury EA Expert">اکسپرت ForexFury EA</h3>
-        <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل...(truncated 1984 characters)... TRX">اندیکاتور SuperTrend - 15 TRX</option>
-            <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
-            <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
-        </select><br>
-        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
-        <input type="number" name="account" required><br>
-        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
-        <input type="email" name="email" required><br>
-        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
-    </form>
-    <div id="result"></div>
+        <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل..." data-en="Description: Automatic expert based on Forex Fury technique with very high profit, even 200k USD/year with 100 USD deposit...">توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل...</p>
+        <p data-fa="قیمت: 500 TRX ترون  روی شبکه TRC_20" data-en="Price: 500 TRX on TRC_20 network">قیمت: 500 TRX ترون  روی شبکه TRC_20</p>
+    </div>
+
+    <div class="container">
+        <h2 data-fa="فرم پرداخت" data-en="Payment Form">فرم پرداخت</h2>
+        <form id="paymentForm">
+            <select name="product" required>
+                <option value="" data-fa="انتخاب محصول" data-en="Select Product">انتخاب محصول</option>
+                <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+                <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
+                <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
+            </select><br>
+            <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+            <input type="number" name="account" required><br>
+            <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+            <input type="email" name="email" required><br>
+            <label data-fa="TxHash (تراکنش ترون):" data-en="TxHash (Tron Transaction):">TxHash (تراکنش ترون):</label>
+            <input type="text" name="txHash" required><br>
+            <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+        </form>
+        <div id="result"></div>
+    </div>
 
     <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
 
@@ -663,230 +675,281 @@
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
-        let currentLang = 'fa'; // Default: Persian
-        const WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentLang = 'fa'; // Default: Persian
+            let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
-        // Language data
-        const translations = {
-            fa: {
-                title: "فروش اندیکاتور و اکسپرت SuperTrend",
-                // Add more as needed, but since most are data- attributes, handled below
-            },
-            en: {
-                title: "Selling SuperTrend Indicators and Experts",
-            }
-        };
-
-        // Update texts based on language
-        function updateLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
-            document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
-            document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
-
-            // Update WORKER_URL
-            const newWorkerUrl = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-            // Reassign if needed, but since it's const, we'll use a variable
-
-            // Update all elements with data-fa and data-en
-            document.querySelectorAll('[data-fa]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
-
-            // Update title
-            document.title = translations[lang].title || document.title;
-
-            // Update lang button
-            document.querySelector('.lang-switcher').textContent = lang === 'fa' ? 'EN' : 'FA';
-            document.querySelector('.lang-switcher').onclick = () => toggleLanguage();
-
-            // Save to localStorage
-            localStorage.setItem('lang', lang);
-
-            // Update select options
-            document.querySelectorAll('option').forEach(opt => {
-                if (opt.hasAttribute(`data-${lang}`)) {
-                    opt.textContent = opt.getAttribute(`data-${lang}`);
+            // Language data
+            const translations = {
+                fa: {
+                    title: "فروش اندیکاتور و اکسپرت SuperTrend",
+                    // Add more as needed, but since most are data- attributes, handled below
+                },
+                en: {
+                    title: "Selling SuperTrend Indicators and Experts",
                 }
-            });
-        }
+            };
 
-        function toggleLanguage() {
-            const newLang = currentLang === 'fa' ? 'en' : 'fa';
-            updateLanguage(newLang);
-        }
+            // Update texts based on language
+            function updateLanguage(lang) {
+                currentLang = lang;
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+                document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
+                document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
-        // Load saved language
-        const savedLang = localStorage.getItem('lang') || 'fa';
-        updateLanguage(savedLang);
+                // Update WORKER_URL
+                WORKER_URL = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
-        // متن متحرک title
-        let titleText = currentLang === 'fa' ? "فروش اندیکاتور و اکسپرت SuperTrend" : "Selling SuperTrend Indicators and Experts";
-        let titleIndex = 0;
-        setInterval(() => {
-            document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
-            titleIndex = (titleIndex + 1) % titleText.length;
-        }, 200);
+                // Update all elements with data-fa and data-en
+                document.querySelectorAll('[data-fa]').forEach(el => {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                });
 
-        function selectProduct(product) {
-            document.querySelector('select[name="product"]').value = product;
+                // Update title
+                document.title = translations[lang].title || document.title;
+
+                // Update lang button
+                const langBtn = document.querySelector('.lang-switcher');
+                if (langBtn) {
+                    langBtn.textContent = lang === 'fa' ? 'EN' : 'FA';
+                    langBtn.onclick = () => toggleLanguage();
+                }
+
+                // Save to localStorage
+                localStorage.setItem('lang', lang);
+
+                // Update select options
+                document.querySelectorAll('option').forEach(opt => {
+                    if (opt.hasAttribute(`data-${lang}`)) {
+                        opt.textContent = opt.getAttribute(`data-${lang}`);
+                    }
+                });
+            }
+
+            function toggleLanguage() {
+                const newLang = currentLang === 'fa' ? 'en' : 'fa';
+                updateLanguage(newLang);
+            }
+
+            // Load saved language
+            const savedLang = localStorage.getItem('lang') || 'fa';
+            updateLanguage(savedLang);
+
+            // متن متحرک title
+            let titleText = currentLang === 'fa' ? "فروش اندیکاتور و اکسپرت SuperTrend" : "Selling SuperTrend Indicators and Experts";
+            let titleIndex = 0;
+            setInterval(() => {
+                document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
+                titleIndex = (titleIndex + 1) % titleText.length;
+            }, 200);
+
+            function selectProduct(product) {
+                const select = document.querySelector('select[name="product"]');
+                if (select) select.value = product;
+                const paymentForm = document.getElementById('paymentForm');
+                if (paymentForm) {
+                    paymentForm.style.display = 'block';
+                    paymentForm.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            // هندل submit پرداخت
             const paymentForm = document.getElementById('paymentForm');
-            paymentForm.style.display = 'block';
-            paymentForm.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // هندل submit پرداخت
-        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-            try {
-                const response = await fetch(`${workerUrl}/process`, {
-                    method: 'POST',
-                    body: formData
+            if (paymentForm) {
+                paymentForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target);
+                    try {
+                        const response = await fetch(`${WORKER_URL}/process`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const result = await response.text();
+                        const resultDiv = document.getElementById('result');
+                        if (resultDiv) resultDiv.innerHTML = result;
+                    } catch (error) {
+                        const resultDiv = document.getElementById('result');
+                        if (resultDiv) resultDiv.innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
+                    }
                 });
-                const result = await response.text();
-                document.getElementById('result').innerHTML = result;
-            } catch (error) {
-                document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
             }
-        });
 
-        // هندل submit ریست
-        document.getElementById('resetForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-            try {
-                const response = await fetch(`${workerUrl}/reset`, {
-                    method: 'POST',
-                    body: formData
+            // هندل submit ریست (اگر وجود داشته باشد)
+            const resetForm = document.getElementById('resetForm');
+            if (resetForm) {
+                resetForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target);
+                    try {
+                        const response = await fetch(`${WORKER_URL}/reset`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const result = await response.text();
+                        alert(result);
+                    } catch (error) {
+                        alert(currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message);
+                    }
                 });
-                const result = await response.text();
-                alert(result);
-            } catch (error) {
-                alert(currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message);
             }
-        });
 
-        // تابع برای بزرگ کردن تصاویر
-        function openModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("imgModal");
-            var modalVideo = document.getElementById("videoModal");
-            modal.style.display = "flex";
-            modalImg.src = src;
-            modalImg.style.display = "block";
-            modalVideo.style.display = "none";
-        }
-
-        // تابع برای بزرگ کردن ویدیوها
-        function openVideoModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("imgModal");
-            var modalVideo = document.getElementById("videoModal");
-            modal.style.display = "flex";
-            modalVideo.src = src;
-            modalVideo.style.display = "block";
-            modalImg.style.display = "none";
-            modalVideo.play();
-        }
-
-        // تابع بستن modal
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            var modalVideo = document.getElementById("videoModal");
-            modal.style.display = "none";
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-        }
-
-        // تابع باز کردن مدال تماس با ما
-        function openContactModal() {
-            document.getElementById('contactModal').style.display = 'flex';
-        }
-
-        // تابع بستن مدال تماس با ما
-        function closeContactModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-
-        // IMPROVED: Toast function - Better timing and RTL
-        function showToast(message, type) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = `toast ${type}`; // Reset classes
-            setTimeout(() => {
-                toast.classList.add('show'); // Add show after reset
-            }, 100);
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000); // Longer duration for visibility
-        }
-
-        // IMPROVED: هندل submit فرم تماس با ما - Better error handling
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const submitBtn = document.getElementById('submitBtn');
-            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-
-            // Show loading toast
-            showToast(currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...', 'loading');
-            submitBtn.disabled = true;
-
-            try {
-                console.log('Sending contact form:', { name, email, message }); // Browser console debug
-                const response = await fetch(`${workerUrl}/send-email`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message
-                    })
-                });
-
-                console.log('Response status:', response.status); // Debug
-                const data = await response.json();
-                console.log('Response data:', data); // Debug
-
-                if (response.ok && data.success) {
-                    showToast(currentLang === 'fa' ? 'پیام ارسال شد! به زودی پاسخ می‌دهیم.' : 'Message sent! We\'ll respond soon.', 'success');
-                    document.getElementById('contactForm').reset();
-                    // Close modal after 2 seconds and redirect to main
-                    setTimeout(() => {
-                        closeContactModal();
-                        // Scroll to top or reload if needed
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 2000);
-                } else {
-                    throw new Error(data.error || (currentLang === 'fa' ? 'خطا در ارسال' : 'Send error'));
+            // تابع برای بزرگ کردن تصاویر
+            function openModal(src) {
+                const modal = document.getElementById("myModal");
+                const modalImg = document.getElementById("imgModal");
+                const modalVideo = document.getElementById("videoModal");
+                if (modal && modalImg && modalVideo) {
+                    modal.style.display = "flex";
+                    modalImg.src = src;
+                    modalImg.style.display = "block";
+                    modalVideo.style.display = "none";
                 }
-            } catch (error) {
-                console.error('Contact form error:', error); // Browser console
-                showToast((currentLang === 'fa' ? 'خطا: ' : 'Error: ') + error.message + (currentLang === 'fa' ? '. دوباره تلاش کنید.' : '. Try again.'), 'error');
-            } finally {
-                submitBtn.disabled = false;
             }
-        });
 
-        // Close modals on outside click
-        window.onclick = function(event) {
-            var modal = document.getElementById('myModal');
-            var contactModal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeModal();
+            // تابع برای بزرگ کردن ویدیوها
+            function openVideoModal(src) {
+                const modal = document.getElementById("myModal");
+                const modalImg = document.getElementById("imgModal");
+                const modalVideo = document.getElementById("videoModal");
+                if (modal && modalImg && modalVideo) {
+                    modal.style.display = "flex";
+                    modalVideo.src = src;
+                    modalVideo.style.display = "block";
+                    modalImg.style.display = "none";
+                    modalVideo.play();
+                }
             }
-            if (event.target == contactModal) {
-                closeContactModal();
+
+            // تابع بستن modal
+            function closeModal() {
+                const modal = document.getElementById("myModal");
+                const modalVideo = document.getElementById("videoModal");
+                if (modal) modal.style.display = "none";
+                if (modalVideo) {
+                    modalVideo.pause();
+                    modalVideo.currentTime = 0;
+                }
             }
-        }
+
+            // تابع باز کردن مدال تماس با ما
+            function openContactModal() {
+                const modal = document.getElementById('contactModal');
+                if (modal) modal.style.display = 'flex';
+            }
+
+            // تابع بستن مدال تماس با ما
+            function closeContactModal() {
+                const modal = document.getElementById('contactModal');
+                if (modal) modal.style.display = 'none';
+            }
+
+            // IMPROVED: Toast function - Better timing and RTL
+            function showToast(message, type) {
+                const toast = document.getElementById('toast');
+                if (!toast) return;
+                toast.textContent = message;
+                toast.className = `toast ${type}`; // Reset classes
+                setTimeout(() => {
+                    toast.classList.add('show'); // Add show after reset
+                }, 100);
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000); // Longer duration for visibility
+            }
+
+            // IMPROVED: هندل submit فرم تماس با ما - Better error handling
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const messageInput = document.getElementById('message');
+                    const submitBtn = document.getElementById('submitBtn');
+                    if (!nameInput || !emailInput || !messageInput || !submitBtn) return;
+
+                    const name = nameInput.value;
+                    const email = emailInput.value;
+                    const message = messageInput.value;
+
+                    // Show loading toast
+                    showToast(currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...', 'loading');
+                    submitBtn.disabled = true;
+
+                    try {
+                        console.log('Sending contact form:', { name, email, message }); // Browser console debug
+                        const response = await fetch(`${WORKER_URL}/send-email`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: name,
+                                email: email,
+                                message: message
+                            })
+                        });
+
+                        console.log('Response status:', response.status); // Debug
+                        const data = await response.json();
+                        console.log('Response data:', data); // Debug
+
+                        if (response.ok && data.success) {
+                            showToast(currentLang === 'fa' ? 'پیام ارسال شد! به زودی پاسخ می‌دهیم.' : 'Message sent! We\'ll respond soon.', 'success');
+                            contactForm.reset();
+                            // Close modal after 2 seconds and redirect to main
+                            setTimeout(() => {
+                                closeContactModal();
+                                // Scroll to top or reload if needed
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }, 2000);
+                        } else {
+                            throw new Error(data.error || (currentLang === 'fa' ? 'خطا در ارسال' : 'Send error'));
+                        }
+                    } catch (error) {
+                        console.error('Contact form error:', error); // Browser console
+                        showToast((currentLang === 'fa' ? 'خطا: ' : 'Error: ') + error.message + (currentLang === 'fa' ? '. دوباره تلاش کنید.' : '. Try again.'), 'error');
+                    } finally {
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+
+            // NEW: Prefill contact form from query params and open modal if present
+            function prefillContactFormFromQuery() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const name = urlParams.get('name');
+                const email = urlParams.get('email');
+                const message = urlParams.get('message');
+
+                if (name || email || message) {
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const messageInput = document.getElementById('message');
+                    if (nameInput) nameInput.value = name || '';
+                    if (emailInput) emailInput.value = email || '';
+                    if (messageInput) messageInput.value = message || '';
+                    openContactModal(); // Auto-open if params present
+                    console.log('Prefilled form from query params:', { name, email, message });
+                }
+            }
+
+            // Call prefill after language update
+            prefillContactFormFromQuery();
+
+            // Close modals on outside click
+            window.onclick = function(event) {
+                const modal = document.getElementById('myModal');
+                const contactModal = document.getElementById('contactModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+                if (event.target === contactModal) {
+                    closeContactModal();
+                }
+            };
+        });
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
