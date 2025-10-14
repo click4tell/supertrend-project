@@ -359,6 +359,581 @@
             flex-wrap: wrap;
         }
 
+        /* IMPROVED: Modal CSS - Centered and not full screen */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8); /* Darker overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Reduced padding */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%; /* Responsive width */
+            max-width: 700px;
+            max-height: 90vh; /* Limit height */
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* IMPROVED: Contact Modal - Not full screen */
+        #contactModal.modal {
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #contact-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px; /* Limited width */
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* کپشن زیر تصاویر و ویدیوها */
+        .caption {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* استایل‌های جدید برای فرم تماس با ما - جمع و جورتر */
+        #contact-container h2 {
+            color: #4CAF50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #contactForm label {
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            width: 60px; /* عرض ثابت برای label */
+            text-align: right;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+            direction: rtl;
+            flex: 1;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row textarea {
+            min-height: 80px; /* کوچک‌تر */
+            resize: vertical;
+            direction: rtl;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        #contactForm button {
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: center;
+            width: 100px; /* کوچک‌تر */
+        }
+
+        #contactForm button:hover {
+            background-color: #0052a3;
+        }
+
+        #contactForm button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* IMPROVED: Toast notification - Better RTL support and visibility */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 20px; /* For RTL: left instead of right */
+            right: auto;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1001; /* Increased z-index */
+            transform: translateX(-300px); /* Start off-screen left for RTL */
+            transition: transform 0.3s ease;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.loading {
+            background-color: #FFC107;
+        }
+
+        .toast.success {
+            background-color: #4CAF50;
+        }
+
+        .toast.error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <button class="lang-switcher" onclick="toggleLanguage()">EN</button> <!-- Default: FA, button shows EN to switch -->
+
+    <header>
+        <h1 class="relative-right" data-fa="METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR" data-en="METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR">METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR</h1>
+        <p class="margin-left" data-fa="فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی</p>
+    </header>
+
+    <div class="container">
+        <h1 data-fa="محصولات ما" data-en="Our Products">محصولات ما</h1>
+
+        <button onclick="window.open('/info.pdf', '_blank')" data-fa="info SUPERTREND" data-en="info SUPERTREND">info SUPERTREND</button>
+        <button onclick="window.open('/ForexFuryPro.pdf', '_blank')" data-fa="info FOREXFURY" data-en="info FOREXFURY">info FOREXFURY</button>
+        <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Riport FOREXFURY</button>
+    </div>
+
+    <div class="product">
+        <h3 data-fa="اندیکاتور SuperTrend" data-en="SuperTrend Indicator">اندیکاتور SuperTrend</h3>
+        <p data-fa="توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5." data-en="Description: Advanced indicator for trend identification in MT5.">توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.</p>
+        <p data-fa="قیمت: 15 TRX ترون  روی شبکه TRC_20" data-en="Price: 15 TRX on TRC_20 network">قیمت: 15 TRX ترون  روی شبکه TRC_20</p>
+        <h3 data-fa="اکسپرت SuperTrend EA" data-en="SuperTrend EA Expert">اکسپرت SuperTrend EA</h3>
+        <p data-fa="قیمت: 200 TRX ترون  روی شبکه TRC_20" data-en="Price: 200 TRX on TRC_20 network">قیمت: 200 TRX ترون  روی شبکه TRC_20</p>
+        <p data-fa="توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک." data-en="Description: Automatic expert based on SuperTrend indicator with risk management.">توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.</p>
+        <h3 data-fa="اکسپرت ForexFury EA" data-en="ForexFury EA Expert">اکسپرت ForexFury EA</h3>
+        <p data-fa="توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل..." data-en="Description: Automatic expert based on Forex Fury technique with very high profit, even 200k USD/year with 100 USD deposit...">توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دل...</p>
+        <p data-fa="قیمت: 500 TRX ترون  روی شبکه TRC_20" data-en="Price: 500 TRX on TRC_20 network">قیمت: 500 TRX ترون  روی شبکه TRC_20</p>
+    </div>
+
+    <div class="container">
+        <h2 data-fa="فرم پرداخت" data-en="Payment Form">فرم پرداخت</h2>
+        <form id="paymentForm">
+            <select name="product" required>
+                <option value="" data-fa="انتخاب محصول" data-en="Select Product">انتخاب محصول</option>
+                <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+                <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
+                <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
+            </select><br>
+            <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+            <input type="number" name="account" required><br>
+            <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+            <input type="email" name="email" required><br>
+            <label data-fa="TxHash (تراکنش ترون):" data-en="TxHash (Tron Transaction):">TxHash (تراکنش ترون):</label>
+            <input type="text" name="txHash" required><br>
+            <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
+
+    <!-- تصاویر در دو کادر کنار هم -->
+    <div class="images-container">
+        <div>
+            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
+            <p class="caption" data-fa="بکتست اکسپرتها" data-en="Expert Backtests">بکتست اکسپرتها</p>
+        </div>
+        <div>
+            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
+            <p class="caption" data-fa="اندیکاتور سوپرترند در چارت" data-en="SuperTrend Indicator on Chart">اندیکاتور سوپرترند در چارت</p>
+        </div>
+    </div>
+
+    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
+    <div class="container">
+        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
+        <div class="videos-container">
+            <div>
+                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+                <p class="caption" data-fa="اندیکاتور سوپرترند" data-en="SuperTrend Indicator">اندیکاتور سوپرترند</p>
+              margin: 20px auto;
+            text-align: center;
+        }
+
+        .lang-switcher:hover {
+            background: #45a049;
+        }
+
+        header {
+            background: url('/bull-bear.jpg') no-repeat center center/cover;
+            height: 170px;
+            position: relative;
+            text-align: center;
+            padding-top: 50px;
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0;
+            color: #4CAF50;
+        }
+
+        header p {
+            font-size: 1.2em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            color: #FFC107;
+            margin: 10px 15px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 10px auto;
+            padding: 10px;
+            background: #FFFFFF;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .product {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        form {
+            margin: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #paymentForm, #resetForm {
+            display: none;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin: 10px auto;
+        }
+
+        #result {
+            margin: 10px 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h2, h3, p, a {
+            text-align: center;
+            margin: 10px auto;
+        }
+
+        h2 {
+            line-height: 1.5;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        a {
+            line-height: 1.8;
+            display: block;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #copyText {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+        footer {
+            background-color: #f9fafb;
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            color: #374151;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap; /* جلوگیری از انتقال به خط بعدی */
+        }
+
+        footer p {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: nowrap; /* اطمینان از یک خط ماندن */
+        }
+
+        footer a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #1e40af;
+            text-decoration: underline;
+        }
+
+        .separator {
+            margin: 0 10px;
+            color: #9ca3af;
+        }
+
+        /* تنظیمات برای موبایل */
+        @media (max-width: 600px) {
+            footer {
+                font-size: 12px; /* کاهش اندازه فونت در موبایل */
+                padding: 10px 15px;
+            }
+
+            .footer-container {
+                flex-wrap: nowrap; /* جلوگیری از شکستن خط در موبایل */
+            }
+
+            .separator {
+                margin: 0 5px; /* کاهش فاصله جداکننده‌ها در موبایل */
+            }
+        }        .separator {
+            margin: 0 10px;
+            color: #9ca3af;
+        }
+        /* Remove fixed margins and relative positioning for responsiveness */
+        .margin-right, .margin-left, .relative-right, .relative-left, .transform-right, .transform-left {
+            margin-right: 0;
+            margin-left: 0;
+            position: static;
+            transform: none;
+        }
+
+        /* Media Queries for larger screens */
+        @media (min-width: 768px) {
+            header {
+                height: 300px;
+                padding-top: 120px;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 3em;
+            }
+
+            .container {
+                max-width: 750px;
+                padding: 20px;
+            }
+
+            .product {
+                margin: 10px auto;
+                max-width: 600px;
+            }
+
+            form {
+                max-width: 500px;
+                margin: 20px auto;
+            }
+
+            input, select, button {
+                max-width: 300px;
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 2em;
+            }
+        }
+ .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #1d4ed8;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #1e40af;
+        }
+
+        /* استایل برای ویدیوها */
+        .video-container {
+            max-width: 100%;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* استایل جدید برای بزرگ کردن ویدیو و تصاویر */
+        .preview {
+            cursor: pointer;
+            max-width: 300px; /* اندازه کوچک برای پیش‌نمایش */
+            margin: 10px;
+        }
+
+        .image-preview {
+            max-height: 200px; /* ارتفاع کوچک برای تصاویر */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-preview {
+            max-height: 200px; /* ارتفاع کوچک برای ویدیوها */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .images-container, .videos-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* فاصله زیبا بین دو آیتم */
+            flex-wrap: wrap;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -876,4 +1451,5 @@
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
