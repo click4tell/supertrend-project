@@ -630,7 +630,7 @@
         <span class="close" onclick="closeContactModal()">&times;</span>
         <div id="contact-container">
             <h2 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h2>
-            <p data-fa="برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: click4tell@gmail.com" data-en="For more info or questions, fill the form below. We'll respond soon. Email: click4tell@gmail.com">برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7417181d171f4000111818341319151d185a171b19">[email&#160;protected]</a></p>
+            <p data-fa="برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: click4tell@gmail.com" data-en="For more info or questions, fill the form below. We'll respond soon. Email: click4tell@gmail.com">برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: <a href="mailto:click4tell@gmail.com">click4tell@gmail.com</a></p>
             <form id="contactForm">
                 <div class="form-row">
                     <label for="name" data-fa="نام:" data-en="Name:">نام:</label>
@@ -661,7 +661,7 @@
 
     <footer>
         <div class="footer-container">
-            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#11383f373e11252236323e3d25357f3823"> <span class="__cf_email__" data-cfemail="046d6a626b44707763676b6870602a6d76">[email&#160;protected]</span>  </a> <span></p>
+            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
         </div>
     </footer>
 
@@ -833,14 +833,14 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             const submitBtn = document.getElementById('submitBtn');
-            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+            const workerUrl = 'https://contact.tsgcoltd.ir';  // URL Worker جدید خود را اینجا بگذارید (بدون /send-email، چون Worker root را هندل می‌کند)
 
             // Show loading toast
             showToast(currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...', 'loading');
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch(`${workerUrl}/send-email`, {
+                const response = await fetch(workerUrl, {  // تغییر: بدون /send-email، چون Worker root را هندل می‌کند
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -876,4 +876,3 @@
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
