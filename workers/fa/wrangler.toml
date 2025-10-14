@@ -1,18 +1,24 @@
-name = "supertrend-fa"  # نام Worker شما در Cloudflare (مثلاً supertrend-en.workers.dev)
-main = "worker_fa.js"   # نام فایل اصلی JS
-compatibility_date = "2023-01-01"  # تاریخ سازگاری (به روز کنید اگر لازم)
-usage_model = "bundled"  # مدل استفاده (bundled یا unbound)
+name = "supertrend-worker-fa"
+main = "worker-fa.js"
+compatibility_date = "2025-10-14"  # تاریخ فعلی
 
+format = "modules"  # کلیدی برای ES Module
+
+[[d1_databases]]
+binding = "contact"  # نام binding: env.contact
+database_name = "your-db-name"  # از D1 Dashboard
+database_id = "your-db-id"      # از D1 Dashboard
+
+# KV اگر لازم (برای orders)
+[[kv_namespaces]]
+binding = "KV_ORDERS"
+id = "your-kv-id"  # از KV Dashboard
+preview_id = "your-kv-preview-id"
+
+# Env variables (در Dashboard تنظیم کنید یا secrets.toml)
 [vars]
-# محیط‌های متغیر (این‌ها را در داشبورد Cloudflare تنظیم کنید، اینجا فقط placeholder)
-TELEGRAM_TOKEN = ""  # جای خالی بگذارید، واقعی را در Cloudflare بگذارید
-ADMIN_CHAT_ID = ""
-RESEND_API_KEY = ""
+TELEGRAM_TOKEN = "your-telegram-bot-token"
+ADMIN_CHAT_ID = "your-admin-chat-id"
+RESEND_API_KEY = "your-resend-api-key"
 ADMIN_PASSWORD = "adminpass2025"
-TRONSCAN_API_KEY = ""
-
-[d1_databases]
-DB = { binding = "DB", database_name = "mq5_data", database_id = "bc64c25a-6dab-42b7-a26b-94324c38b5de" }  # اگر از D1 استفاده می‌کنید
-
-[kv_namespaces]
-KV_ORDERS = { binding = "KV_ORDERS", id = "b9f703b38a9544f79aafdb44487a8aee" }  # اگر از KV استفاده می‌کنید
+TRONSCAN_API_KEY = "your-tronscan-api-key"
