@@ -3,151 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="تماس با ما - فروش محصولات SuperTrend برای MT5">
-    <title>تماس با ما - SuperTrend</title>
-    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <title>فرم تماس با ما</title>
     <style>
-        /* Mobile-first CSS */
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #FFFFFF;
+            padding: 20px;
+            background-color: #f8f9fa;
             color: #333;
-            min-height: 100vh;
             direction: rtl;
             text-align: right;
-        }
-
-        /* Language switcher */
-        .lang-switcher {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 5px 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            max-width: 40px;
-            text-align: center;
-        }
-
-        .lang-switcher:hover {
-            background: #45a049;
-        }
-
-        header {
-            background: url('/bull-bear.jpg') no-repeat center center/cover;
-            height: 170px;
-            position: relative;
-            text-align: center;
-            padding-top: 50px;
-            color: #fff;
-        }
-
-        header h1 {
-            font-size: 1.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            margin: 0;
-            color: #4CAF50;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 100%;
-            margin: 10px auto;
-            padding: 10px;
-            background: #FFFFFF;
-            border-radius: 10px;
-            box-sizing: border-box;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+        }
+
+        h1 {
             text-align: center;
-        }
-
-        /* استایل‌های جدید برای فرم تماس با ما - جمع و جورتر */
-        #contact-container {
-            max-width: 400px; /* عرض کمتر */
-            margin: 20px auto;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: right;
-        }
-
-        #contact-container h2 {
             color: #4CAF50;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 300;
         }
 
-        #contactForm {
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        input, select, textarea {
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            width: 100%;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            direction: rtl;
+        }
+
+        .form-row {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        #contactForm label {
-            font-weight: bold;
-            color: #333;
-            display: inline-block;
-            width: 60px; /* عرض ثابت برای label */
-            text-align: right;
-        }
-
-        #contactForm input,
-        #contactForm textarea {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            background-color: #fff;
-            transition: border-color 0.3s ease;
-            direction: rtl;
-            flex: 1;
-        }
-
-        .form-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-row textarea {
-            min-height: 80px; /* کوچک‌تر */
-            resize: vertical;
-            direction: rtl;
-        }
-
-        #contactForm input:focus,
-        #contactForm textarea:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        #contactForm button {
-            padding: 10px;
-            background-color: #0066cc;
+        button[type="submit"] {
+            background: #4CAF50;
             color: white;
-            font-size: 14px;
+            padding: 14px 24px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            align-self: center;
-            width: 100px; /* کوچک‌تر */
+            align-self: flex-start;
         }
 
-        #contactForm button:hover {
-            background-color: #0052a3;
+        button[type="submit"]:hover {
+            background: #45a049;
         }
 
-        #contactForm button:disabled {
-            background-color: #ccc;
+        button[type="submit"]:disabled {
+            background: #ccc;
             cursor: not-allowed;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        #result.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        #result.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         /* Toast notification */
@@ -155,22 +145,19 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            min-width: 250px;
-            padding: 12px 16px;
-            border-radius: 5px;
+            min-width: 300px;
+            padding: 16px 20px;
+            border-radius: 8px;
             color: white;
-            font-weight: bold;
+            font-weight: 500;
             z-index: 1001;
-            transform: translateX(300px);
+            transform: translateX(100%);
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .toast.show {
             transform: translateX(0);
-        }
-
-        .toast.loading {
-            background-color: #FFC107;
         }
 
         .toast.success {
@@ -181,126 +168,83 @@
             background-color: #f44336;
         }
 
-        /* Media Queries */
-        @media (min-width: 768px) {
-            header {
-                height: 300px;
-                padding-top: 120px;
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
             }
 
-            header h1 {
-                font-size: 2.5em;
+            .container {
+                padding: 20px;
+                margin: 10px;
             }
 
-            #contact-container {
-                max-width: 500px;
+            h1 {
+                font-size: 1.5em;
             }
         }
-        footer {
-            background-color: #f9fafb;
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid #e5e7eb;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #374151;
-            margin-top: 20px;
-            width: 100%;
-            box-sizing: border-box;
+
+        /* Language support */
+        [lang="en"] body {
+            direction: ltr;
+            text-align: left;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            white-space: nowrap; /* جلوگیری از انتقال به خط بعدی */
+        [lang="en"] .container {
+            text-align: left;
         }
-
-        footer p {
-            margin: 0;
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: nowrap; /* اطمینان از یک خط ماندن */
-        }
-
-        footer a {
-            color: #1d4ed8;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #1e40af;
-            text-decoration: underline;
-        }
-
-        .separator {
-            margin: 0 10px;
-            color: #9ca3af;
-        }
-
     </style>
 </head>
 <body>
-    <button class="lang-switcher" onclick="toggleLanguage()">FA</button>
-
-    <header>
-        <h1 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h1>
-    </header>
-
     <div class="container">
-        <div id="contact-container">
-            <h2 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h2>
-            <p data-fa="برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: click4tell@gmail.com" 
+        <h1 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h1>
 
-data-en="For more info or questions, fill the form below. We'll respond soon. Email: 
+        <form id="contactform">
+            <div class="form-row">
+                <label for="name" data-fa="نام و نام خانوادگی:" data-en="Full Name:">نام و نام خانوادگی:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
 
-click4tell@gmail.com">برای اطلاعات بیشتر یا سوالات، فرم زیر را پر کنید. ما به زودی پاسخ می‌دهیم. ایمیل ما: <a 
+            <div class="form-row">
+                <label for="product" data-fa="در مورد کدام محصول سوال دارید:" data-en="Which product are you inquiring about:">در مورد کدام محصول سوال دارید:</label>
+                <select id="product" name="product" required>
+                    <option value="" disabled selected data-fa="انتخاب کنید..." data-en="Select...">انتخاب کنید...</option>
+                    <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+                    <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
+                    <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA - 500 TRX</option>
+                </select>
+            </div>
 
-href="mailto:click4tell@gmail.com">click4tell@gmail.com</a></p>
-            <form id="contactForm">
-                <div class="form-row">
-                    <label for="name" data-fa="نام:" data-en="Name:">نام:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-row">
-                    <label for="email" data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-row">
-                    <label for="message" data-fa="پیام:" data-en="Message:">پیام:</label>
-                    <textarea id="message" name="message" required dir="rtl"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" data-fa="ارسال پیام" data-en="Send Message">ارسال 
+            <div class="form-row">
+                <label for="account" data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+                <input type="number" id="account" name="account" required>
+            </div>
 
-پیام</button>
-            </form>
-        </div>
+            <div class="form-row">
+                <label for="email" data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-row">
+                <label for="message" data-fa="پیام:" data-en="Message:">پیام:</label>
+                <textarea id="message" name="message" required placeholder="پیام خود را اینجا بنویسید..."></textarea>
+            </div>
+
+            <button type="submit" data-fa="ارسال پیام" data-en="Send Message">ارسال پیام</button>
+        </form>
+
+        <a href="index.html" class="back-button" data-fa="بازگشت به صفحه اصلی" data-en="Back to Main Page">بازگشت به صفحه اصلی</a>
     </div>
+
+    <div id="result"></div>
 
     <!-- Toast container -->
     <div id="toast"></div>
 
-    <footer>
-        <div class="footer-container">
-            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights 
-
-reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> 
-
-<a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
-        </div>
-    </footer>
-
     <script>
-        let currentLang = localStorage.getItem('lang') || 'fa'; // Load from localStorage to match 
+        let currentLang = localStorage.getItem('lang') || 'fa';
 
-index.html
-
-        // Update texts based on language
+        // Update language on load
         function updateLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
@@ -313,21 +257,66 @@ index.html
                 el.textContent = el.getAttribute(`data-${lang}`);
             });
 
-            // Update lang button
-            document.querySelector('.lang-switcher').textContent = lang === 'fa' ? 'EN' : 'FA';
-            document.querySelector('.lang-switcher').onclick = () => toggleLanguage();
+            // Update placeholders for textarea if needed
+            const textarea = document.getElementById('message');
+            if (lang === 'fa') {
+                textarea.placeholder = 'پیام خود را اینجا بنویسید...';
+            } else {
+                textarea.placeholder = 'Write your message here...';
+            }
 
-            // Save to localStorage
             localStorage.setItem('lang', lang);
         }
 
-        function toggleLanguage() {
-            const newLang = currentLang === 'fa' ? 'en' : 'fa';
-            updateLanguage(newLang);
+        // Set language from query param or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const langFromUrl = urlParams.get('lang');
+        if (langFromUrl) {
+            updateLanguage(langFromUrl);
+        } else {
+            updateLanguage(currentLang);
         }
 
-        // Load saved language
-        updateLanguage(currentLang);
+        // Set product from query param
+        const productFromUrl = urlParams.get('product');
+        if (productFromUrl) {
+            document.querySelector('select[name="product"]').value = productFromUrl;
+        }
+
+        // Submit handler
+        document.getElementById('contactform').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...';
+
+            const formData = new FormData(e.target);
+            const workerUrl = currentLang === 'fa' ? 'https://contact-form-resend.click4tell.workers.dev' : 'https://contact-form-resend-en.click4tell.workers.dev'; // Assuming EN worker if needed
+
+            try {
+                const response = await fetch(`${workerUrl}/process`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.text();
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = result;
+                resultDiv.className = response.ok ? 'success' : 'error';
+
+                // Show toast and redirect
+                showToast(currentLang === 'fa' ? 'عملیات با موفقیت انجام شد! در حال بازگشت...' : 'Operation completed successfully! Returning...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'https://tsgcoltd.ir';
+                }, 3000);
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
+                resultDiv.className = 'error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = currentLang === 'fa' ? 'ارسال پیام' : 'Send Message';
+            }
+        });
 
         // Toast function
         function showToast(message, type) {
@@ -338,58 +327,6 @@ index.html
                 toast.classList.remove('show');
             }, 3000);
         }
-
-        // هندل submit فرم تماس با ما
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const submitBtn = document.getElementById('submitBtn');
-            const workerUrl = 'https://contact.tsgcoltd.ir';
-
-            showToast(currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...', 'loading');
-            submitBtn.disabled = true;
-
-            try {
-                const response = await fetch(workerUrl, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message
-                    })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    showToast(currentLang === 'fa' ? 'پیام ارسال شد! به زودی پاسخ می‌دهیم.' : 'Message sent! We
-
-\'ll respond soon.', 'success');
-                    document.getElementById('contactForm').reset();
-                    // Redirect to index.html after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 2000);
-                } else {
-                    throw new Error(data.error || (currentLang === 'fa' ? 'خطا در ارسال' : 'Send 
-
-error'));
-                }
-            } catch (error) {
-                console.error('Form Submit Error:', error);
-                showToast((currentLang === 'fa' ? 'خطا: ' : 'Error: ') + error.message + (currentLang 
-
-=== 'fa' ? '. دوباره تلاش کنید.' : '. Try again.'), 'error');
-            } finally {
-                submitBtn.disabled = false;
-            }
-        });
     </script>
 </body>
 </html>
