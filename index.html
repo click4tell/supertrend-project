@@ -465,6 +465,33 @@
         <button onclick="selectProduct('Indicator_Supertrend')" data-fa="فرم دریافت اطلاعات برای  پرداخت و خرید محصول" data-en="Payment and Purchase Form">فرم دریافت اطلاعات برای  پرداخت و خرید محصول</button>
     </div>
 
+    <form id="paymentForm">
+        <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
+        <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
+        <script>
+            function copyToClipboard() {
+                var text = document.getElementById('copyText').innerText;
+                navigator.clipboard.writeText(text).then(function() {
+                    alert(document.querySelector('[data-fa*="کپی"]').textContent || 'Copied!');
+                }, function(err) {
+                    console.error('خطا در کپی: ', err);
+                });
+            }
+        </script>
+        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
+        <input type="text" name="txHash" required><br>
+        <label data-fa="محصول:" data-en="Product:">محصول:</label>
+        <select name="product" required>
+            <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+            <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
+            <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
+        </select><br>
+        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+        <input type="number" name="account" required><br>
+        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+        <input type="email" name="email" required><br>
+        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+    </form>
     <div id="result"></div>
 
     <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
@@ -599,10 +626,45 @@
         }, 200);
 
         function selectProduct(product) {
-            // هدایت به صفحه payment.html با پارامتر محصول
-            const lang = localStorage.getItem('lang') || 'fa';
-            window.location.href = `payment.html?product=${product}&lang=${lang}`;
+            document.querySelector('select[name="product"]').value = product;
+            const paymentForm = document.getElementById('paymentForm');
+            paymentForm.style.display = 'block';
+            paymentForm.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // هندل submit پرداخت
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+            try {
+                const response = await fetch(`${workerUrl}/process`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.text();
+                document.getElementById('result').innerHTML = result;
+            } catch (error) {
+                document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
+            }
+        });
+
+        // هندل submit ریست
+        document.getElementById('resetForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+            try {
+                const response = await fetch(`${workerUrl}/reset`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.text();
+                alert(result);
+            } catch (error) {
+                alert(currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message);
+            }
+        });
 
         // تابع برای بزرگ کردن تصاویر
         function openModal(src) {
