@@ -106,7 +106,7 @@
         <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
         <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
         
-        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
+        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:"data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
         <input type="text" name="txHash" required><br>
         
         <label data-fa="محصول:" data-en="Product:">محصول:</label>
@@ -114,7 +114,7 @@
             <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
             <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
             <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
-        </select><br>
+   </select><br>
         
         <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
         <input type="number" name="account" required><br>
@@ -124,7 +124,9 @@
         
         <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
         
-        <a href="index.html" class="back-button" data-fa="بازگشت به صفحه اصلی" data-en="Back to Main Page">بازگشت به صفحه اصلی</a>
+        <a href="index.html" class="back-button" data-fa="بازگشت به صفحه اصلی" 
+
+data-en="Back to Main Page">بازگشت به صفحه اصلی</a>
     </div>
 
     <form id="paymentForm">
@@ -145,11 +147,9 @@
             document.documentElement.lang = lang;
             document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
-            document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
+            document.body.style.textAlign = lang === 'fa' ? 'right' :'left';
 
-            document.querySelectorAll('[data-fa]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${lang}`);
-            });
+            document.querySelectorAll('[data-fa]').forEach(el => {el.textContent = el.getAttribute(`data-${lang}`);});
 
             localStorage.setItem('lang', lang);
         }
@@ -166,7 +166,7 @@
         // Set product from query param
         const productFromUrl = urlParams.get('product');
         if (productFromUrl) {
-            document.querySelector('select[name="product"]').value = productFromUrl;
+            document.querySelector('select[name="product"]').value =productFromUrl;
         }
 
         function copyToClipboard() {
@@ -179,14 +179,14 @@
         }
 
         // Submit handler
-        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+        document.getElementById('paymentForm').addEventListener('submit',async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
             try {
                 const response = await fetch(`${workerUrl}/process`, {
-                    method: 'POST',
-                    body: formData
+            method: 'POST',
+            body: formData
                 });
                 const result = await response.text();
                 document.getElementById('result').innerHTML = result;
@@ -196,7 +196,8 @@
                 setTimeout(() => {
                     window.location.href = 'https://tsgcoltd.ir';
                 }, 3000);
-            } catch (error) {
+            } 
+            catch (error) {
                 document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
             }
         });
