@@ -13,63 +13,63 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             background-color: #f8f9fa;
             color: #333;
             direction: rtl;
             text-align: right;
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 20px;
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9ecef;
         }
 
         h1 {
             text-align: center;
             color: #4CAF50;
-            margin-bottom: 30px;
-            font-size: 2em;
+            margin-bottom: 20px;
+            font-size: 1.6em;
             font-weight: 300;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 500;
             color: #555;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
-        input, select, textarea {
-            padding: 12px 16px;
+        input, textarea {
+            padding: 10px 12px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
             transition: border-color 0.3s ease;
             width: 100%;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: #4CAF50;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 80px;
             resize: vertical;
             direction: rtl;
         }
@@ -77,16 +77,16 @@
         .form-row {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
         button[type="submit"] {
             background: #4CAF50;
             color: white;
-            padding: 14px 24px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -104,13 +104,13 @@
 
         .back-button {
             display: inline-block;
-            padding: 12px 20px;
-            margin-top: 20px;
+            padding: 10px 16px;
+            margin-top: 15px;
             background-color: #0066cc;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
             transition: background-color 0.3s ease;
             text-align: center;
             width: 100%;
@@ -121,9 +121,9 @@
         }
 
         #result {
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 6px;
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 4px;
             text-align: center;
             font-weight: 500;
         }
@@ -145,15 +145,15 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            min-width: 300px;
-            padding: 16px 20px;
-            border-radius: 8px;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 6px;
             color: white;
             font-weight: 500;
             z-index: 1001;
             transform: translateX(100%);
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .toast.show {
@@ -171,16 +171,16 @@
         /* Responsive design */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 5px;
             }
 
             .container {
-                padding: 20px;
-                margin: 10px;
+                padding: 15px;
+                margin: 5px;
             }
 
             h1 {
-                font-size: 1.5em;
+                font-size: 1.3em;
             }
         }
 
@@ -199,17 +199,6 @@
             <div class="form-row">
                 <label for="name" data-fa="نام و نام خانوادگی:" data-en="Full Name:">نام و نام خانوادگی:</label>
                 <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-row">
-                <label for="product" data-fa="محصول مورد نظر:" data-en="Product of Interest:">محصول مورد نظر:</label>
-                <select id="product" name="product" required>
-                    <option value="">انتخاب کنید</option>
-                    <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
-                    <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
-                    <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
- 
-                </select>
             </div>
 
             <div class="form-row">
@@ -274,12 +263,6 @@
             updateLanguage(currentLang);
         }
 
-        // Set product from query param
-        const productFromUrl = urlParams.get('product');
-        if (productFromUrl) {
-            document.querySelector('select[name="product"]').value = productFromUrl;
-        }
-
         // Submit handler
         document.getElementById('contactform').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -288,7 +271,7 @@
             submitBtn.textContent = currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...';
 
             const formData = new FormData(e.target);
-            const workerUrl = `https://contact.tsgcoltd.ir/process?lang=${currentLang}`; // Unified Worker with lang param
+            const workerUrl = `https://contact.tsgcoltd.ir/process?lang=${currentLang}`; // Updated Worker URL
 
             try {
                 const response = await fetch(workerUrl, {
@@ -329,6 +312,3 @@
     </script>
 </body>
 </html>
-
-
-
