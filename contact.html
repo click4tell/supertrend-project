@@ -289,13 +289,13 @@
             submitBtn.textContent = currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...';
 
             const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://contact-fa.click4tell.workers.dev' : 'https://contact-en.click4tell.workers.dev'; // Assuming EN worker if needed
+            const workerUrl = `https://contact.click4tell.workers.dev/process?lang=${currentLang}`; // Unified Worker with lang param
 
             try {
-                const response = await fetch(`${workerUrl}/process`, {
+                const response = await fetch(workerUrl, {
                     method: 'POST',
                     body: formData,
-                    mode: 'no-cors' // Temporary to bypass CORS - remove after fixing Access
+                    mode: 'cors' // Changed to 'cors' for proper response handling
                 });
                 const result = await response.text();
                 const resultDiv = document.getElementById('result');
@@ -330,4 +330,3 @@
     </script>
 </body>
 </html>
-
