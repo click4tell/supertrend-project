@@ -189,15 +189,11 @@
             direction: ltr;
             text-align: left;
         }
-
-        [lang="en"] .container {
-            text-align: left;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 data-fa="تماس با ما" data-en="Contact Us">تماس با ما</h1>
+        <h1 data-fa="فرم تماس با ما" data-en="Contact Us Form">فرم تماس با ما</h1>
 
         <form id="contactform">
             <div class="form-row">
@@ -206,17 +202,19 @@
             </div>
 
             <div class="form-row">
-                <label for="product" data-fa="در مورد کدام محصول سوال دارید:" data-en="Which product are you inquiring about:">در مورد کدام محصول سوال دارید:</label>
+                <label for="product" data-fa="محصول مورد نظر:" data-en="Product of Interest:">محصول مورد نظر:</label>
                 <select id="product" name="product" required>
-                    <option value="" disabled selected data-fa="انتخاب کنید..." data-en="Select...">انتخاب کنید...</option>
-                    <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
-                    <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
-                    <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA - 500 TRX</option>
+                    <option value="">انتخاب کنید</option>
+                    <option value="Expert Advisor">Expert Advisor (EA)</option>
+                    <option value="Indicator">Indicator</option>
+                    <option value="Script">Script</option>
+                    <option value="Panel">Panel</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
 
             <div class="form-row">
-                <label for="account" data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+                <label for="account" data-fa="شماره حساب متاتریدر:" data-en="MetaTrader Account Number:">شماره حساب متاتریدر:</label>
                 <input type="number" id="account" name="account" required>
             </div>
 
@@ -296,7 +294,8 @@
             try {
                 const response = await fetch(`${workerUrl}/process`, {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    mode: 'no-cors' // Temporary to bypass CORS - remove after fixing Access
                 });
                 const result = await response.text();
                 const resultDiv = document.getElementById('result');
@@ -312,6 +311,7 @@
                 const resultDiv = document.getElementById('result');
                 resultDiv.innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
                 resultDiv.className = 'error';
+                showToast(currentLang === 'fa' ? 'خطا در ارسال: ' + error.message : 'Error sending: ' + error.message, 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = currentLang === 'fa' ? 'ارسال پیام' : 'Send Message';
