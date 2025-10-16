@@ -289,7 +289,7 @@
             submitBtn.textContent = currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...';
 
             const formData = new FormData(e.target);
-            const workerUrl = `https://contact.contact.tsgcoltd.ir/process?lang=${currentLang}`; // Unified Worker with lang param
+            const workerUrl = `https://contact.tsgcoltd.ir/process?lang=${currentLang}`; // Unified Worker with lang param
 
             try {
                 const response = await fetch(workerUrl, {
@@ -330,4 +330,5 @@
     </script>
 </body>
 </html>
+
 
