@@ -289,7 +289,7 @@
             submitBtn.textContent = currentLang === 'fa' ? 'در حال ارسال...' : 'Sending...';
 
             const formData = new FormData(e.target);
-            const workerUrl = currentLang === 'fa' ? 'https://contact-form-resend.click4tell.workers.dev' : 'https://contact-form-resend-en.click4tell.workers.dev'; // Assuming EN worker if needed
+            const workerUrl = currentLang === 'fa' ? 'https://contact-fa.click4tell.workers.dev' : 'https://contact-en.click4tell.workers.dev'; // Assuming EN worker if needed
 
             try {
                 const response = await fetch(`${workerUrl}/process`, {
@@ -330,3 +330,4 @@
     </script>
 </body>
 </html>
+
