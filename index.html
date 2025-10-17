@@ -652,7 +652,7 @@
                 const result = await response.text();
                 document.getElementById('result').innerHTML = result;
                 // If success, reset form
-                if (result.includes('Payment confirmed') || result.includes('confirmed')) {
+                if (result.includes('پرداخت تایید شد') || result.includes('confirmed')) {
                     e.target.reset();
                     document.getElementById('paymentForm').style.display = 'none';
                 } else {
