@@ -1,0 +1,13 @@
+﻿-- Drop the old table if it exists and recreate without 'product' column
+DROP TABLE IF EXISTS contacts;
+
+-- Recreate the table with updated schema
+CREATE TABLE contacts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  account INTEGER NOT NULL,
+  email TEXT NOT NULL,
+  message TEXT NOT NULL,
+  lang TEXT NOT NULL DEFAULT 'en',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
