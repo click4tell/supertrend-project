@@ -1,0 +1,216 @@
+<!-- payment.html - صفحه جدید برای فرم پرداخت -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم پرداخت و خرید</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #FFFFFF;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        #copyText {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 5px;
+            width: fit-content;
+            background: #fff;
+        }
+
+        #result {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1001;
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
+        <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
+        
+        <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:"data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
+        <input type="text" name="txHash" required><br>
+        
+        <label data-fa="محصول:" data-en="Product:">محصول:</label>
+        <select name="product" required>
+            <option value="Indicator_Supertrend" data-fa="اندیکاتور SuperTrend - 15 TRX" data-en="SuperTrend Indicator - 15 TRX">اندیکاتور SuperTrend - 15 TRX</option>
+            <option value="EA_SuperTrend" data-fa="اکسپرت SuperTrend EA - 200 TRX" data-en="SuperTrend EA - 200 TRX">اکسپرت SuperTrend EA - 200 TRX</option>
+            <option value="EA_ForexFury" data-fa="اکسپرت ForexFury EA  - 500 TRX" data-en="ForexFury EA - 500 TRX">اکسپرت ForexFury EA  - 500 TRX</option>
+   </select><br>
+        
+        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+        <input type="number" name="account" required><br>
+        
+        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+        <input type="email" name="email" required><br>
+        
+        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+        
+        <a href="index.html" class="back-button" data-fa="بازگشت به صفحه اصلی" 
+
+data-en="Back to Main Page">بازگشت به صفحه اصلی</a>
+    </div>
+
+    <form id="paymentForm">
+        <!-- فرم واقعی برای submit -->
+    </form>
+
+    <div id="result"></div>
+
+    <!-- Toast container -->
+    <div id="toast"></div>
+
+    <script>
+        let currentLang = localStorage.getItem('lang') || 'fa';
+
+        // Update language on load
+        function updateLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.textAlign = lang === 'fa' ? 'right' :'left';
+
+            document.querySelectorAll('[data-fa]').forEach(el => {el.textContent = el.getAttribute(`data-${lang}`);});
+
+            localStorage.setItem('lang', lang);
+        }
+
+        // Set language from query param or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const langFromUrl = urlParams.get('lang');
+        if (langFromUrl) {
+            updateLanguage(langFromUrl);
+        } else {
+            updateLanguage(currentLang);
+        }
+
+        // Set product from query param
+        const productFromUrl = urlParams.get('product');
+        if (productFromUrl) {
+            document.querySelector('select[name="product"]').value =productFromUrl;
+        }
+
+        function copyToClipboard() {
+            var text = document.getElementById('copyText').innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                alert(currentLang === 'fa' ? 'کپی شد!' : 'Copied!');
+            }, function(err) {
+                console.error('خطا در کپی: ', err);
+            });
+        }
+
+        // Submit handler
+        document.getElementById('paymentForm').addEventListener('submit',async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+            try {
+                const response = await fetch(`${workerUrl}/process`, {
+            method: 'POST',
+            body: formData
+                });
+                const result = await response.text();
+                document.getElementById('result').innerHTML = result;
+
+                // نمایش پیام خاتمه و ریدایرکت
+                showToast(currentLang === 'fa' ? 'عملیات با موفقیت انجام شد! در حال بازگشت...' : 'Operation completed successfully! Returning...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'https://tsgcoltd.ir';
+                }, 3000);
+            } 
+            catch (error) {
+                document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
+            }
+        });
+
+        // Toast function
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
