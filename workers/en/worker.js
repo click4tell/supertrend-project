@@ -1,4 +1,4 @@
-﻿// DES implementation for Cloudflare Workers (encryption only)
+// DES implementation for Cloudflare Workers (encryption only)
 // Compatible with CryptEncode(CRYPT_DES) in MT5 with ECB mode and ZeroPadding (for Telegram system compatibility)
 function des(key, message, encrypt, mode, iv, padding) {
   // DES constants
@@ -730,7 +730,7 @@ ${code ? `Code: ${code}` : ''}
         html += '<label>Chat ID (optional):</label><input type="text" name="chat_id">';
         html += '<button type="submit">Generate & Send</button></form>';
         html += '<form method="POST"><input type="hidden" name="action" value="clear_db"><button class="delete-btn" style="width:100%; margin-top:20px;">Clear All DB</button></form>';
-        html += `<p><a href="/setwebhook">Set Telegram Webhook</a> | <a href="https://tsgcoltd.ir/admin">Site Admin</a></p>`;
+        html += `<p><a href="/setwebhook">Set Telegram Webhook</a> | <a href="https://tsgcoltd.ir">Site Admin</a></p>`;
         
         // Add webhook status check
         let webhookHtml = '';
