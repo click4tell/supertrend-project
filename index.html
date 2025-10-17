@@ -632,18 +632,11 @@
             paymentForm.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // هندل submit پرداخت - Modified to handle errors and keep form state
+        // هندل submit پرداخت
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             const workerUrl = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-            // Store form values to preserve on error
-            const formValues = {
-                txHash: formData.get('txHash'),
-                product: formData.get('product'),
-                account: formData.get('account'),
-                email: formData.get('email')
-            };
             try {
                 const response = await fetch(`${workerUrl}/process`, {
                     method: 'POST',
@@ -651,26 +644,8 @@
                 });
                 const result = await response.text();
                 document.getElementById('result').innerHTML = result;
-                // If success, reset form
-                if (result.includes('پرداخت تایید شد') || result.includes('confirmed')) {
-                    e.target.reset();
-                    document.getElementById('paymentForm').style.display = 'none';
-                } else {
-                    // On error, restore form values and focus on txHash
-                    document.querySelector('input[name="txHash"]').value = formValues.txHash || '';
-                    document.querySelector('select[name="product"]').value = formValues.product || '';
-                    document.querySelector('input[name="account"]').value = formValues.account || '';
-                    document.querySelector('input[name="email"]').value = formValues.email || '';
-                    document.querySelector('input[name="txHash"]').focus();
-                }
             } catch (error) {
-                // Preserve form on network error
-                document.querySelector('input[name="txHash"]').value = formValues.txHash || '';
-                document.querySelector('select[name="product"]').value = formValues.product || '';
-                document.querySelector('input[name="account"]').value = formValues.account || '';
-                document.querySelector('input[name="email"]').value = formValues.email || '';
                 document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
-                document.querySelector('input[name="txHash"]').focus();
             }
         });
 
