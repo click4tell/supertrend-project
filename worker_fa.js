@@ -1,4 +1,4 @@
-﻿// DES implementation for Cloudflare Workers (encryption only)
+// DES implementation for Cloudflare Workers (encryption only)
 // Compatible with CryptEncode(CRYPT_DES) in MT5 with ECB mode and ZeroPadding (for Telegram system compatibility)
 function des(key, message, encrypt, mode, iv, padding) {
   // DES constants
@@ -258,26 +258,26 @@ export default {
 
     await initSchema();
 
-    const welcomeMessage = `خوش آمدید! شما برای خرید بهترین اکسپرت‌ها و اندیکاتورهای MetaTrader 5 از ما هستید.
+    const welcomeMessage = `Welcome! You are here to buy the best MetaTrader 5 experts and indicators from us.
 
-1. **اندیکاتور SuperTrend**:
-   - قیمت: ۱۵ TRX (شبکه TRC-20)
-   - توضیح: اندیکاتور SuperTrend یک ابزار محبوب دنبال‌کننده روند است که به معامله‌گران کمک می‌کند تا روندهای بازار و نقاط ورود/خروج بالقوه را شناسایی کنند. این اندیکاتور بر اساس نوسانات بازار، خطی بالای یا زیر قیمت رسم می‌کند و سیگنال‌های خرید یا فروش را نشان می‌دهد.
-   - استفاده: روی MetaTrader 5 نصب کنید، تنظیمات را تنظیم کنید (مثلاً دوره، ضریب)، و سیگنال‌های روند را دنبال کنید.
+1. **SuperTrend Indicator**:
+   - Price: 15 TRX (TRC-20 network)
+   - Description: The SuperTrend Indicator is a popular trend-following tool that helps traders identify market trends and potential entry/exit points. It plots a line above or below the price based on market volatility, signaling buy or sell opportunities.
+   - Usage: Install on MetaTrader 5, adjust settings (e.g., period, multiplier), and follow the trend signals.
 
-2. **اکسپرت SuperTrend EA**:
-   - قیمت: ۲۰۰ TRX (شبکه TRC-20)
-   - توضیح: اکسپرت SuperTrend EA یک ربات معاملاتی خودکار است که از اندیکاتور SuperTrend برای اجرای خودکار معاملات بر اساس قوانین از پیش تعریف شده استفاده می‌کند. ایده‌آل برای معامله‌گرانی که به دنبال معامله بدون دخالت دستی هستند.
-   - استفاده: روی MetaTrader 5 نصب کنید، تنظیمات ریسک را پیکربندی کنید، و معامله خودکار را فعال کنید.
+2. **SuperTrend EA Expert Robot**:
+   - Price: 200 TRX (TRC-20 network)
+   - Description: The SuperTrend EA is an automated trading robot that uses the SuperTrend indicator to execute trades automatically based on predefined rules. Ideal for traders seeking hands-free trading.
+   - Usage: Install on MetaTrader 5, configure risk settings, and enable auto-trading.
 
-3. **اکسپرت ForexFury EA**:
-   - قیمت: ۵۰۰ TRX (شبکه TRC-20)
-   - توضیح: اکسپرت ForexFury EA یک ربات معاملاتی خودکار قدرتمند برای بازارهای فارکس است که از الگوریتم‌های پیشرفته برای معاملات سودآور استفاده می‌کند.
-   - استفاده: روی MetaTrader 5 نصب کنید، تنظیمات را پیکربندی کنید، و معامله خودکار را فعال کنید.
+3. **ForexFury EA Expert Robot**:
+   - Price: 500 TRX (TRC-20 network)
+   - Description: The ForexFury EA is a powerful automated trading robot designed for forex markets, utilizing advanced algorithms for profitable trades.
+   - Usage: Install on MetaTrader 5, configure settings, and enable auto-trading.
 
-برای جزئیات بیشتر و دستورالعمل‌های راه‌اندازی، به: https://tsgcoltd.ir/ مراجعه کنید.
+For more details and setup instructions, visit: https://tsgcoltd.ir/
 
-لطفاً یک محصول را انتخاب کنید.`; 
+Please select a product below.`;
 
     // Send email function
     async function sendEmail(to, subject, html) {
@@ -311,16 +311,15 @@ export default {
         return { success: false, error: error.message };
       }
     }
-
-    // Generate activation code
+ // Generate activation code
     async function generateActivationCode(account, product) {
       let masterKey;
-      if (product.includes('Indicator_Supertrend') || product.includes('اندیکاتور SuperTrend')) {
+      if(product.includes('Indicator_Supertrend') || product.includes('اندیکاتور SuperTrend')) {
         masterKey = "xAI2025"; // exactly 7 chars
-      } else if (product.includes('EA_SuperTrend') || product.includes('اکسپرت SuperTrend EA')) {
+      } else if ( product.includes('EA_SuperTrend') || product.includes('اکسپرت SuperTrend EA')) {
         masterKey = "xAI2026"; // exactly 7 chars
-      } else if (product.includes('EA_ForexFury') || product.includes('اکسپرت ForexFury')) {
-        masterKey = "1404EFU"; // exactly 7 chars
+      } else if (product.includes('EA_ForexFury') || product.includes('اکسپرت ForexFury')) 
+      {  masterKey = "1404EFU"; // exactly 7 chars
       } else {
         throw new Error("Invalid product!");
       }
@@ -379,14 +378,14 @@ export default {
     // Send to admin Telegram
     async function sendToAdminTelegram(state, txHash = '', code = '') {
       const text = `
-درخواست جدید/تأیید شده از تلگرام:
-کاربر: ${state.firstName} (@${state.username || 'N/A'})
-شناسه چت: ${state.chatId}
-محصول: ${state.product}
-حساب: ${state.account}
-ایمیل: ${state.email || 'N/A'}
-TxHash: ${txHash || 'در انتظار'}
-${code ? `کد: ${code}` : ''}
+New/Confirmed Request from Telegram:
+User: ${state.firstName} (@${state.username || 'N/A'})
+Chat ID: ${state.chatId}
+Product: ${state.product}
+Account: ${state.account}
+Email: ${state.email || 'N/A'}
+TxHash: ${txHash || 'Pending'}
+${code ? `Code: ${code}` : ''}
       `;
       await sendToTelegram(ADMIN_CHAT_ID, text);
     }
@@ -435,9 +434,9 @@ ${code ? `کد: ${code}` : ''}
           if (text === '/start') {
             const replyMarkup = {
               inline_keyboard: [
-                [{ text: 'اندیکاتور SuperTrend (۱۵ TRX)', callback_data: 'product_indicator' }],
-                [{ text: 'اکسپرت SuperTrend EA (۲۰۰ TRX)', callback_data: 'product_ea' }],
-                [{ text: 'اکسپرت ForexFury EA (۵۰۰ TRX)', callback_data: 'product_forexfury' }]
+                [{ text: 'SuperTrend Indicator (15 TRX)', callback_data: 'product_indicator' }],
+                [{ text: 'SuperTrend EA (200 TRX)', callback_data: 'product_ea' }],
+                [{ text: 'ForexFury EA (500 TRX)', callback_data: 'product_forexfury' }]
               ]
             };
             await sendToTelegram(chatId, welcomeMessage, replyMarkup);
@@ -453,7 +452,7 @@ ${code ? `کد: ${code}` : ''}
 
           const state = await getUserState(userId);
           if (!state) {
-            await sendToTelegram(chatId, 'لطفاً با /start شروع کنید');
+            await sendToTelegram(chatId, 'Please start with /start');
             return new Response('OK', { status: 200 });
           }
 
@@ -464,20 +463,20 @@ ${code ? `کد: ${code}` : ''}
                 await setUserState(userId, state);
                 // Immediate email to admin about account
                 const adminHtml = `
-                  درخواست جدید تلگرام (حساب دریافت شد):<br>
-                  کاربر: ${state.firstName} (@${state.username})<br>
-                  شناسه چت: ${chatId}<br>
-                  محصول: ${state.product}<br>
-                  حساب: ${text}<br>
-                  در انتظار ایمیل و TxHash.<br>
-                  <a href="https://mq5.click4tell.workers.dev/admin">پنل ادمین</a>
+                  New Telegram request (Account received):<br>
+                  User: ${state.firstName} (@${state.username})<br>
+                  Chat ID: ${chatId}<br>
+                  Product: ${state.product}<br>
+                  Account: ${text}<br>
+                  Waiting for email and TxHash.<br>
+                  <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                 `;
-                await sendEmail(ADMIN_EMAIL, 'درخواست جدید تلگرام - حساب دریافت شد', adminHtml);
-                await sendToTelegram(chatId, 'حساب دریافت شد. لطفاً آدرس ایمیل خود را ارسال کنید.');
+                await sendEmail(ADMIN_EMAIL, 'New Telegram Request - Account Received', adminHtml);
+                await sendToTelegram(chatId, 'Account received. Please send your email address.');
                 state.step = 'waiting_email';
                 await setUserState(userId, state);
               } else {
-                await sendToTelegram(chatId, 'لطفاً دقیقاً شماره حساب ۷ رقمی MT5 را ارسال کنید.');
+                await sendToTelegram(chatId, 'Please send exactly 7-digit MT5 account number.');
               }
               break;
 
@@ -495,21 +494,21 @@ ${code ? `کد: ${code}` : ''}
                 await sendToAdminTelegram(state, dummyTx);
                 // Email to admin
                 const adminHtml2 = `
-                  درخواست جدید تلگرام (ایمیل دریافت شد):<br>
-                  کاربر: ${state.firstName} (@${state.username})<br>
-                  شناسه چت: ${chatId}<br>
-                  محصول: ${state.product}<br>
-                  حساب: ${state.account}<br>
-                  ایمیل: ${text}<br>
-                  TxHash: در انتظار<br>
-                  <a href="https://mq5.click4tell.workers.dev/admin">پنل ادمین</a>
+                  New Telegram request (Email received):<br>
+                  User: ${state.firstName} (@${state.username})<br>
+                  Chat ID: ${chatId}<br>
+                  Product: ${state.product}<br>
+                  Account: ${state.account}<br>
+                  Email: ${text}<br>
+                  TxHash: Pending<br>
+                  <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                 `;
-                await sendEmail(ADMIN_EMAIL, 'درخواست جدید تلگرام - ایمیل دریافت شد', adminHtml2);
-                await sendToTelegram(chatId, `ایمیل دریافت شد. لطفاً TxHash پرداخت خود به آدرس ${TRON_ADDRESS} را ارسال کنید.`);
+                await sendEmail(ADMIN_EMAIL, 'New Telegram Request - Email Received', adminHtml2);
+                await sendToTelegram(chatId, `Email received. Please send the TxHash of your payment to: ${TRON_ADDRESS}`);
                 state.step = 'waiting_tx';
                 await setUserState(userId, state);
               } else {
-                await sendToTelegram(chatId, 'ایمیل نامعتبر. لطفاً دوباره تلاش کنید.');
+                await sendToTelegram(chatId, 'Invalid email. Please try again.');
               }
               break;
 
@@ -532,37 +531,37 @@ ${code ? `کد: ${code}` : ''}
                     'UPDATE users SET txHash = ?, activation_code = ?, status = "confirmed" WHERE txHash = ?'
                   ).bind(text, code, dummyTx).run();
                   // Send to customer Telegram
-                  await sendToTelegram(chatId, `کد فعال‌سازی شما: ${code}`);
+                  await sendToTelegram(chatId, `Your activation code: ${code}`);
                   // Send to email if available
                   if (state.email) {
-                    await sendEmail(state.email, 'کد فعال‌سازی SuperTrend', `<p>کد فعال‌سازی شما: <strong>${code}</strong></p>`);
+                    await sendEmail(state.email, 'SuperTrend Activation Code', `<p>Your activation code: <strong>${code}</strong></p>`);
                   }
                   // Notify admin email
                   const adminHtml3 = `
-                    تراکنش تأیید شد!<br>
-                    کاربر: ${state.firstName} (@${state.username})<br>
-                    شناسه چت: ${chatId}<br>
-                    محصول: ${state.product}<br>
-                    حساب: ${state.account}<br>
-                    ایمیل: ${state.email || 'N/A'}<br>
+                    Transaction confirmed!<br>
+                    User: ${state.firstName} (@${state.username})<br>
+                    Chat ID: ${chatId}<br>
+                    Product: ${state.product}<br>
+                    Account: ${state.account}<br>
+                    Email: ${state.email || 'N/A'}<br>
                     TxHash: ${text}<br>
-                    کد: ${code}<br>
-                    <a href="https://mq5.click4tell.workers.dev/admin">پنل ادمین</a>
+                    Code: ${code}<br>
+                    <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
                   `;
-                  await sendEmail(ADMIN_EMAIL, 'Tx تلگرام تأیید شد - کد تولید شد', adminHtml3);
+                  await sendEmail(ADMIN_EMAIL, 'Telegram Tx Confirmed - Code Generated', adminHtml3);
                   // Notify admin Telegram
                   await sendToAdminTelegram(state, text, code);
                   await clearUserState(userId);
                 } else {
-                  await sendToTelegram(chatId, 'تراکنش نامعتبر (مبلغ یا آدرس اشتباه). لطفاً بررسی کنید و TxHash صحیح را ارسال کنید.');
+                  await sendToTelegram(chatId, 'Invalid transaction (wrong amount or address). Please check and send correct TxHash.');
                 }
               } else {
-                await sendToTelegram(chatId, 'فرمت TxHash نامعتبر. باید با 0x شروع شود و طولانی باشد.');
+                await sendToTelegram(chatId, 'Invalid TxHash format. Must start with 0x and be long.');
               }
               break;
 
             default:
-              await sendToTelegram(chatId, 'حالت نامعتبر. لطفاً /start را دوباره بزنید.');
+              await sendToTelegram(chatId, 'Invalid state. Please /start again.');
           }
         } else if (update.callback_query) {
           const cb = update.callback_query;
@@ -605,7 +604,7 @@ ${code ? `کد: ${code}` : ''}
               await setUserState(userId, state);
               console.log(`State updated for ${userId}:`, state);
               
-              await sendToTelegram(chatId, 'محصول انتخاب شد. لطفاً شماره حساب ۷ رقمی MT5 خود را ارسال کنید.');
+              await sendToTelegram(chatId, 'Product selected. Please send your 7-digit MT5 account number.');
               
               // Answer callback
               const answerRes = await fetch(`${TELEGRAM_API}/answerCallbackQuery`, {
@@ -669,7 +668,7 @@ ${code ? `کد: ${code}` : ''}
 
     // Set webhook endpoint (call once to activate)
     if (path === '/setwebhook' && request.method === 'GET') {
-      const webhookUrl = 'https://mq5.click4tell.workers.dev/webhook';
+      const webhookUrl = 'https://supertrend_en.click4tell.workers.dev/webhook';
       try {
         const response = await fetch(`${TELEGRAM_API}/setWebhook?url=${webhookUrl}`);
         const result = await response.json();
@@ -711,27 +710,27 @@ ${code ? `کد: ${code}` : ''}
             .webhook-error { background: #f8d7da; border-color: #f5c6cb; }
           </style>
           <div class="nav-container">
-            <a href="/admin">به‌روزرسانی</a>
-            <a href="/admin?logout=true">خروج</a>
+            <a href="/admin">Refresh</a>
+            <a href="/admin?logout=true">Logout</a>
           </div>
-          <h2>لیست درخواست‌ها</h2>
-          <table><tr><th>شناسه</th><th>TxHash</th><th>محصول</th><th>حساب</th><th>ایمیل</th><th>شناسه چت</th><th>وضعیت</th><th>کد</th><th>عملیات</th></tr>`;
+          <h2>Requests List</h2>
+          <table><tr><th>ID</th><th>TxHash</th><th>Product</th><th>Account</th><th>Email</th><th>Chat ID</th><th>Status</th><th>Code</th><th>Actions</th></tr>`;
         for (const row of results) {
           html += `<tr><td>${row.id}</td><td>${row.txHash}</td><td>${row.product}</td><td>${row.account}</td><td>${row.email || 'N/A'}</td><td>${row.chat_id || 'N/A'}</td><td>${row.status}</td><td>${row.activation_code || 'N/A'}</td><td>`;
           if (row.status === 'pending') {
-            html += `<form method="POST" style="display:inline;"><input type="hidden" name="action" value="confirm"><input type="hidden" name="id" value="${row.id}"><button>تأیید</button></form>`;
+            html += `<form method="POST" style="display:inline;"><input type="hidden" name="action" value="confirm"><input type="hidden" name="id" value="${row.id}"><button>Confirm</button></form>`;
           }
-          html += `<form method="POST" style="display:inline;"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="${row.id}"><button class="delete-btn">حذف</button></form></td></tr>`;
+          html += `<form method="POST" style="display:inline;"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="${row.id}"><button class="delete-btn">Delete</button></form></td></tr>`;
         }
         html += '</table>';
-        html += '<h2>اضافه کردن کاربر دستی</h2><form method="POST"><input type="hidden" name="action" value="add">';
-        html += '<label>محصول:</label><select name="product"><option>اندیکاتور SuperTrend - ۱۵ TRX</option><option>اکسپرت SuperTrend EA - ۲۰۰ TRX</option><option>اکسپرت ForexFury EA - ۵۰۰ TRX</option></select>';
-        html += '<label>حساب MT5:</label><input type="text" name="account" required>';
-        html += '<label>ایمیل:</label><input type="email" name="email" required>';
-        html += '<label>شناسه چت (اختیاری):</label><input type="text" name="chat_id">';
-        html += '<button type="submit">تولید و ارسال</button></form>';
-        html += '<form method="POST"><input type="hidden" name="action" value="clear_db"><button class="delete-btn" style="width:100%; margin-top:20px;">پاک کردن همه DB</button></form>';
-        html += `<p><a href="/setwebhook">تنظیم وب‌هوک تلگرام</a> | <a href="https://tsgcoltd.ir/admin">ادمین سایت</a></p>`;
+        html += '<h2>Add Manual User</h2><form method="POST"><input type="hidden" name="action" value="add">';
+        html += '<label>Product:</label><select name="product"><option>اندیکاتور SuperTrend - ۱۵ TRX</option><option>اکسپرت SuperTrend EA - ۲۰۰ TRX</option><option>اکسپرت ForexFury EA - ۵۰۰ TRX</option></select>';
+        html += '<label>MT5 Account:</label><input type="text" name="account" required>';
+        html += '<label>Email:</label><input type="email" name="email" required>';
+        html += '<label>Chat ID (optional):</label><input type="text" name="chat_id">';
+        html += '<button type="submit">Generate & Send</button></form>';
+        html += '<form method="POST"><input type="hidden" name="action" value="clear_db"><button class="delete-btn" style="width:100%; margin-top:20px;">Clear All DB</button></form>';
+        html += `<p><a href="/setwebhook">Set Telegram Webhook</a> | <a href="https://tsgcoltd.ir">Site Admin</a></p>`;
         
         // Add webhook status check
         let webhookHtml = '';
@@ -739,23 +738,24 @@ ${code ? `کد: ${code}` : ''}
           const webhookCheck = await fetch(`${url.origin}/checkwebhook`);
           if (webhookCheck.ok) {
             const webhookInfo = await webhookCheck.json();
-            if (webhookInfo.url === 'https://mq5.click4tell.workers.dev/webhook') {
-              webhookHtml = `<div class="webhook-status">وب‌هوک تلگرام: فعال ✅</div>`;
+            const webhookUrl = 'https://supertrend-en.click4tell.workers.dev/webhook';
+            if (webhookInfo.url === 'https://supertrend_en.click4tell.workers.dev/webhook') {
+              webhookHtml = `<div class="webhook-status">Telegram Webhook: Active ✅</div>`;
             } else {
-              webhookHtml = `<div class="webhook-status webhook-error">وب‌هوک تلگرام: غیرفعال ❌ <a href="/setwebhook">حالا تنظیم کنید</a></div>`;
+              webhookHtml = `<div class="webhook-status webhook-error">Telegram Webhook: Inactive ❌ <a href="/setwebhook">Set Now</a></div>`;
             }
           } else {
-            webhookHtml = `<div class="webhook-status webhook-error">بررسی وب‌هوک شکست خورد: <a href="/setwebhook">حالا تنظیم کنید</a></div>`;
+            webhookHtml = `<div class="webhook-status webhook-error">Webhook Check Failed: <a href="/setwebhook">Set Now</a></div>`;
           }
         } catch (e) {
-          webhookHtml = `<div class="webhook-status webhook-error">خطای بررسی وب‌هوک: <a href="/setwebhook">حالا تنظیم کنید</a></div>`;
+          webhookHtml = `<div class="webhook-status webhook-error">Webhook Check Error: <a href="/setwebhook">Set Now</a></div>`;
         }
         html = webhookHtml + html;
 
         return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
       } catch (error) {
         console.error('DB query error:', error);
-        return new Response(`خطا در بارگذاری لیست: ${error.message}<br><a href="/admin">بازگشت</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+        return new Response(`Error loading list: ${error.message}<br><a href="/admin">Back</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
       }
     }
 
@@ -774,7 +774,7 @@ ${code ? `کد: ${code}` : ''}
           'Content-Type': 'text/html; charset=utf-8',
           'Access-Control-Allow-Origin': '*'
         };
-        return new Response('<p style="color: green;">خروج با موفقیت انجام شد</p><a href="/admin">دوباره ورود</a>', { headers });
+        return new Response('<p style="color: green;">Logout successful</p><a href="/admin">Login again</a>', { headers });
       }
 
       // Confirm request (generate code, send to email and Telegram if available)
@@ -789,36 +789,36 @@ ${code ? `کد: ${code}` : ''}
               .bind(code, id).run();
             // Send to email if exists
             if (result.email) {
-              await sendEmail(result.email, 'کد فعال‌سازی SuperTrend', `<p>کد فعال‌سازی شما: <strong>${code}</strong></p>`);
+              await sendEmail(result.email, 'SuperTrend Activation Code', `<p>Your activation code: <strong>${code}</strong></p>`);
             }
             // Send to Telegram if chat_id exists
             if (result.chat_id) {
-              await sendToTelegram(result.chat_id, `کد فعال‌سازی شما: ${code}`);
+              await sendToTelegram(result.chat_id, `Your activation code: ${code}`);
             }
             // Notify admin
             const adminHtml = `
-              تأیید دستی:<br>
-              شناسه: ${id}<br>
-              محصول: ${result.product}<br>
-              حساب: ${result.account}<br>
-              ایمیل: ${result.email || 'N/A'}<br>
-              شناسه چت: ${result.chat_id || 'N/A'}<br>
-              کد: ${code}<br>
-              <a href="/admin">پنل ادمین</a>
+              Manual confirmation:<br>
+              ID: ${id}<br>
+              Product: ${result.product}<br>
+              Account: ${result.account}<br>
+              Email: ${result.email || 'N/A'}<br>
+              Chat ID: ${result.chat_id || 'N/A'}<br>
+              Code: ${code}<br>
+              <a href="/admin">Admin Panel</a>
             `;
-            await sendEmail(ADMIN_EMAIL, 'تأیید دستی - کد تولید شد', adminHtml);
-            await sendToAdminTelegram({ firstName: 'دستی', username: 'ادمین', product: result.product, account: result.account, email: result.email }, result.txHash, code);
-            return new Response(`<p style="color: green;">کد تولید شد: <strong>${code}</strong></p><a href="/admin">بازگشت به پنل</a>`, {
+            await sendEmail(ADMIN_EMAIL, 'Manual Confirmation - Code Generated', adminHtml);
+            await sendToAdminTelegram({ firstName: 'Manual', username: 'Admin', product: result.product, account: result.account, email: result.email }, result.txHash, code);
+            return new Response(`<p style="color: green;">Code generated: <strong>${code}</strong></p><a href="/admin">Back to Panel</a>`, {
               headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
             });
           } else {
-            return new Response('<p style="color: red;">درخواست یافت نشد یا قبلاً تأیید شده است.</p><a href="/admin">بازگشت</a>', {
+            return new Response('<p style="color: red;">Request not found or already confirmed.</p><a href="/admin">Back</a>', {
               headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
             });
           }
         } catch (error) {
           console.error('Confirm error:', error);
-          return new Response(`خطا: ${error.message}<br><a href="/admin">بازگشت</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+          return new Response(`Error: ${error.message}<br><a href="/admin">Back</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
         }
       }
 
@@ -827,12 +827,12 @@ ${code ? `کد: ${code}` : ''}
         const id = params.get('id');
         try {
           await DB.prepare('DELETE FROM users WHERE id = ?').bind(id).run();
-          return new Response('<p style="color: green;">رکورد حذف شد.</p><a href="/admin">بازگشت</a>', {
+          return new Response('<p style="color: green;">Record deleted.</p><a href="/admin">Back</a>', {
             headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
           });
         } catch (error) {
           console.error('Delete error:', error);
-          return new Response(`خطا: ${error.message}<br><a href="/admin">بازگشت</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+          return new Response(`Error: ${error.message}<br><a href="/admin">Back</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
         }
       }
 
@@ -840,12 +840,12 @@ ${code ? `کد: ${code}` : ''}
       if (request.method === 'POST' && params.get('action') === 'clear_db' && isLoggedIn) {
         try {
           await DB.prepare('DELETE FROM users').run();
-          return new Response('<p style="color: green;">DB پاک شد.</p><a href="/admin">بازگشت</a>', {
+          return new Response('<p style="color: green;">DB cleared.</p><a href="/admin">Back</a>', {
             headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
           });
         } catch (error) {
           console.error('Clear DB error:', error);
-          return new Response(`خطا: ${error.message}<br><a href="/admin">بازگشت</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+          return new Response(`Error: ${error.message}<br><a href="/admin">Back</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
         }
       }
 
@@ -856,7 +856,7 @@ ${code ? `کد: ${code}` : ''}
         const email = params.get('email');
         const chatId = params.get('chat_id') || null;
         if (!product || !account || !email) {
-          return new Response('<p style="color: red;">داده‌های ناقص.</p><a href="/admin">بازگشت</a>', { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+          return new Response('<p style="color: red;">Missing data.</p><a href="/admin">Back</a>', { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
         }
         try {
           const code = await generateActivationCode(account, product);
@@ -864,17 +864,17 @@ ${code ? `کد: ${code}` : ''}
           await DB.prepare('INSERT INTO users (txHash, product, account, email, chat_id, status, activation_code, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
             .bind(manualTx, product, account, email, chatId, 'confirmed', code, Date.now()).run();
           // Send to email
-          await sendEmail(email, 'کد فعال‌سازی SuperTrend', `<p>کد فعال‌سازی شما: <strong>${code}</strong></p>`);
+          await sendEmail(email, 'SuperTrend Activation Code', `<p>Your activation code: <strong>${code}</strong></p>`);
           // Send to Telegram if chat_id
           if (chatId) {
-            await sendToTelegram(chatId, `کد فعال‌سازی شما: ${code}`);
+            await sendToTelegram(chatId, `Your activation code: ${code}`);
           }
-          return new Response(`<p style="color: green;">کاربر اضافه شد، کد: <strong>${code}</strong></p><a href="/admin">بازگشت</a>`, {
+          return new Response(`<p style="color: green;">User added, code: <strong>${code}</strong></p><a href="/admin">Back</a>`, {
             headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
           });
         } catch (error) {
           console.error('Add user error:', error);
-          return new Response(`خطا: ${error.message}<br><a href="/admin">بازگشت</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+          return new Response(`Error: ${error.message}<br><a href="/admin">Back</a>`, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
         }
       }
 
@@ -907,7 +907,7 @@ ${code ? `کد: ${code}` : ''}
             button { background: #007bff; color: white; cursor: pointer; }
             button:hover { background: #0056b3; }
           </style>
-          <form method="POST"><label>رمز عبور ادمین:</label><input type="password" name="password" required><br><button type="submit">ورود</button></form>`, {
+          <form method="POST"><label>Admin Password:</label><input type="password" name="password" required><br><button type="submit">Login</button></form>`, {
           headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
         });
       }
@@ -926,15 +926,15 @@ ${code ? `کد: ${code}` : ''}
 
       if (!txHash || !product || !account || !email) {
         console.error('Incomplete data received:', { txHash, product, account, email });
-        return new Response('داده‌های ناقص', { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+        return new Response('Incomplete data', { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
       }
 
       try {
         // Check Tron transaction
         let expectedAmount;
-        if (product.includes('Indicator_Supertrend') || product.includes('اندیکاتور SuperTrend')) {
+        if (product.includes('Indicator_Supertrend')) {
           expectedAmount = 15;
-        } else if (product.includes('EA_ForexFury') || product.includes('اکسپرت ForexFury')) {
+        } else if (product.includes('EA_ForexFury')) {
           expectedAmount = 500;
         } else {
           expectedAmount = 200;
@@ -946,20 +946,20 @@ ${code ? `کد: ${code}` : ''}
           await DB.prepare('INSERT INTO users (txHash, product, account, email, status, activation_code, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(txHash) DO UPDATE SET activation_code = ?, status = "confirmed"')
             .bind(txHash, product, account, email, 'confirmed', code, Date.now(), code).run();
           // Send to email
-          await sendEmail(email, 'کد فعال‌سازی SuperTrend', `<p>کد فعال‌سازی شما: <strong>${code}</strong></p>`);
+          await sendEmail(email, 'SuperTrend Activation Code', `<p>Your activation code: <strong>${code}</strong></p>`);
           // Notify admin
           const adminHtml = `
-            پرداخت سایت تأیید شد!<br>
-            محصول: ${product}<br>
-            حساب: ${account}<br>
-            ایمیل: ${email}<br>
+            Site payment confirmed!<br>
+            Product: ${product}<br>
+            Account: ${account}<br>
+            Email: ${email}<br>
             TxHash: ${txHash}<br>
-            کد: ${code}<br>
-            <a href="https://mq5.click4tell.workers.dev/admin">پنل ادمین</a>
+            Code: ${code}<br>
+            <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
           `;
-          await sendEmail(ADMIN_EMAIL, 'Tx سایت تأیید شد - کد تولید شد', adminHtml);
-          await sendToAdminTelegram({ firstName: 'سایت', username: 'کاربر', product, account, email }, txHash, code);
-          return new Response('<p style="color: green;">پرداخت تأیید شد! کد فعال‌سازی شما: <strong>' + code + '</strong></p>', {
+          await sendEmail(ADMIN_EMAIL, 'Site Tx Confirmed - Code Generated', adminHtml);
+          await sendToAdminTelegram({ firstName: 'Site', username: 'User', product, account, email }, txHash, code);
+          return new Response('<p style="color: green;">Payment confirmed! Your activation code: <strong>' + code + '</strong></p>', {
             headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
           });
         } else {
@@ -967,25 +967,85 @@ ${code ? `کد: ${code}` : ''}
           await DB.prepare('INSERT INTO users (txHash, product, account, email, status, timestamp) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(txHash) DO NOTHING')
             .bind(txHash, product, account, email, 'pending', Date.now()).run();
           const adminHtml = `
-            درخواست جدید سایت (در انتظار):<br>
-            محصول: ${product}<br>
-            حساب: ${account}<br>
-            ایمیل: ${email}<br>
+            New site request (pending):<br>
+            Product: ${product}<br>
+            Account: ${account}<br>
+            Email: ${email}<br>
             TxHash: ${txHash}<br>
-            <a href="https://mq5.click4tell.workers.dev/admin">پنل ادمین</a>
+            <a href="https://supertrend_en.click4tell.workers.dev/admin">Admin Panel</a>
           `;
-          await sendEmail(ADMIN_EMAIL, 'درخواست جدید سایت - در انتظار', adminHtml);
-          return new Response('<p style="color: orange;">درخواست ثبت شد. در انتظار تأیید ادمین.</p>', {
+          await sendEmail(ADMIN_EMAIL, 'New Site Request - Pending', adminHtml);
+          return new Response('<p style="color: orange;">Request registered. Waiting for admin confirmation.</p>', {
             headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
           });
         }
       } catch (error) {
         console.error('DB insert error:', error);
-        return new Response('خطا در ذخیره داده‌ها: ' + error.message, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+        return new Response('Error saving data: ' + error.message, { status: 500, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+      }
+    }
+
+    // IMPROVED: Handle contact form email with debug logs
+    if (request.method === 'POST' && path === '/send-email') {
+      console.log('Received /send-email request'); // Debug log
+      try {
+        const body = await request.json();
+        console.log('Parsed body:', body); // Debug log
+        const { name, email, message } = body;
+        if (!name || !email || !message) {
+          console.error('Missing fields:', { name, email, message });
+          return new Response(JSON.stringify({ success: false, error: 'فیلدهای اجباری ناقص است' }), {
+            status: 400,
+            headers: { 
+              'Content-Type': 'application/json', 
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            }
+          });
+        }
+        const subject = `فرم تماس: ${name}`;
+        const html = `
+          <h3>پیام جدید از فرم تماس</h3>
+          <p><strong>نام:</strong> ${name}</p>
+          <p><strong>ایمیل:</strong> ${email}</p>
+          <p><strong>پیام:</strong> ${message}</p>
+          <hr>
+          <p>سایت: ${url.origin}</p>
+        `;
+        const result = await sendEmail(ADMIN_EMAIL, subject, html);
+        console.log('Send email result:', result); // Debug log
+        if (result.success) {
+          return new Response(JSON.stringify({ success: true }), {
+            headers: { 
+              'Content-Type': 'application/json', 
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            }
+          });
+        } else {
+          return new Response(JSON.stringify({ success: false, error: result.error }), {
+            status: 500,
+            headers: { 
+              'Content-Type': 'application/json', 
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Send email error:', error);
+        return new Response(JSON.stringify({ success: false, error: error.message }), {
+          status: 500,
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS'
+          }
+        });
       }
     }
 
     // 404
-    return new Response('۴۰۴ یافت نشد', { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
+    return new Response('404 Not Found', { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*' } });
   },
 };
