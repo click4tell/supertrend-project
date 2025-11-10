@@ -511,8 +511,6 @@
     </div>
 
     <form id="paymentForm">
-        <label data-fa="انتخاب محصول:" data-en="Select Product:">انتخاب محصول:</label>
-        <select id="productSelect" name="product" required onchange="updateAmounts()"></select><br>
         <div id="trxDetails">
             <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
             <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
@@ -524,8 +522,7 @@
 
         <div id="cardCopySection">
             <h3 data-fa="کادر زیر شماره کارت ما جهت خرید شماست کلیک کنید شماره کپی میشود" data-en="Click below to copy our Bank Card number for purchase">کادر زیر شماره کارت ما جهت خرید شماست کلیک کنید شماره کپی میشود</h3>
-            <p id="copyCardText" onclick="copyCardToClipboard()"></p>
-            <div id="cardInfo"></div>
+            <p id="copyCardText" onclick="copyCardToClipboard()" data-fa="6219861903732864" data-en="6219861903732864">6219861903732864</p>
              <label data-fa="کد پیگیری یا شماره کارت یا شناسه پرداخت که از طریق آن واریزی داشتید وارد کنید" data-en="Enter cart number after transfer:">شماره کارتی که از آن پرداخت داشتید یا شماره تراکنش را اینجا وارد کنید</label>
              <input type="text" name="txHashCard" id="txHashCard"><br>
         </div>
@@ -535,22 +532,67 @@
             <input type="number" name="amountRial" id="amountRial" readonly><br>
         </div>
 
-        <label data-fa="نام حساب MT5:" data-en="MT5 Account Name:">نام حساب MT5:</label>
-        <input type="text" name="account" required><br>
-        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
-        <input type="email" name="email" required><br>
         <label data-fa="روش پرداخت:" data-en="Payment Method:">روش پرداخت:</label>
         <div class="payment-method">
             <label><input type="radio" name="paymentMethod" value="trx" checked onchange="togglePaymentDetails()"> <span data-fa="ترون (TRX)" data-en="Tron (TRX)"></span></label>
-            <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
+            <label><input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
         </div>
-        <button type="submit" data-fa="ارسال درخواست" data-en="Submit Request">ارسال درخواست</button>
-        <div id="result"></div>
-    </form>
 
+        <label data-fa="محصول:" data-en="Product:">محصول:</label>
+        <select name="product" id="productSelect" required onchange="updateAmounts()">
+            <!-- Options will be dynamically loaded -->
+        </select><br>
+        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+        <input type="number" name="account" required><br>
+        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+        <input type="email" name="email" required><br>
+        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+   
+    <div id="result"></div>
+
+ </form>
+    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
+
+    <!-- تصاویر در دو کادر کنار هم -->
+    <div class="images-container">
+        <div>
+            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
+           <p class="caption" data-fa=" بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$"> بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار</p>        </div>
+        <div>
+            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
+           <p class="caption" data-fa="داشبورد  سوپرترند معاملات دستی و اتوماتیک  در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart"> داشبورد  سوپرترند معاملات دستی و اتوماتیک  در چارت </p>
+        </div>
+    </div>
+
+    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
     <div class="container">
-        <a href="/SuperTrend.ex5" download class="download-button" data-fa="اندیکاتور سوپرترند" data-en="Indicator Super Trend">Indicator Super Trend</a>
-        <a href="/SuperTrendEA.ex5" download class="download-button" data-fa="اکسپرت سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
+        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
+        <div class="videos-container">
+ <div>
+                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+               <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex  Fury  Pro Expert">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
+            </div>
+            <div>
+                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+                               <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robat) SuperTrend  Auto Trade">اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند</p>
+            </div>
+            <div>
+                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی معاملات سوپرترند و فوت پرینت " data-en="EA&EM-SuperTrend&Footprint"> ربات اتوماتیک و دستی معاملات سوپرترند و فوت پرینت </p>
+            </div>
+        </div>
+    </div>
+
+    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
+    <div class="container">
+       <a href="/EA&EM-SuperTrend&Footprint.ex5" download class="download-button" data-fa="ربات معاملات دستی و اتوماتیک " data-en="EA&EM-SuperTrend&Footprint">EA&EM-SuperTrend&Footprint</a>
+        <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="ربات سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
         <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="ربات فارکس فیوری" data-en="Expert Forex Fury">Expert Forex Fury</a>
     </div>
     <div class="container">
@@ -573,11 +615,11 @@
 
     <footer>
         <div class="footer-container">
-            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#721b1c141d32060115111d1e06165c1b00"><span class="__cf_email__" data-cfemail="eb82858d84ab9f988c8884879f8fc58299">[email&#160;protected]</span></a></p>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         let currentLang = 'fa'; // Default: Persian
         let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
@@ -586,6 +628,7 @@
         const translations = {
             fa: {
                 title: "فروش اندیکاتور و اکسپرت SuperTrend",
+                // Add more as needed, but since most are data- attributes, handled below
             },
             en: {
                 title: "Selling SuperTrend Indicators and Experts",
@@ -594,6 +637,7 @@
 
         let products = {}; // To store fetched products
         let cardDetails = {}; // To store card details
+		let trxDetails = {}; // To store trx details
 
         // Fetch products and card details from worker
         async function fetchProductsAndCard() {
@@ -625,7 +669,7 @@
                         desc_fa: 'توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.',
                         desc_en: 'Description: Automatic expert based on SuperTrend indicator with risk management.',
                         trx: 200,
-                        rial: 20000000
+                        rial: 200000000
                     },
                     'EA_ForexFury': {
                         name_fa: 'اکسپرت ForexFury EA',
@@ -724,20 +768,18 @@
         function copyToClipboard() {
             var text = document.getElementById('copyText').innerText;
             navigator.clipboard.writeText(text).then(function() {
-                showToast(currentLang === 'fa' ? 'آدرس کپی شد!' : 'Address copied!', 'success');
+                alert(currentLang === 'fa' ? 'آدرس کپی شد!' : 'Address copied!');
             }, function(err) {
                 console.error('خطا در کپی: ', err);
-                showToast('خطا در کپی!', 'error');
             });
         }
 
         function copyCardToClipboard() {
             var text = document.getElementById('copyCardText').innerText;
             navigator.clipboard.writeText(text).then(function() {
-                showToast(currentLang === 'fa' ? 'شماره کارت کپی شد!' : 'Card number copied!', 'success');
+                alert(currentLang === 'fa' ? 'شماره کارت کپی شد!' : 'Card number copied!');
             }, function(err) {
                 console.error('خطا در کپی: ', err);
-                showToast('خطا در کپی!', 'error');
             });
         }
 
@@ -802,7 +844,6 @@
             const formData = new FormData(e.target);
             const method = formData.get('paymentMethod');
             const endpoint = method === 'card' ? '/card-process' : '/process';
-            showToast('در حال پردازش...', 'loading');
             try {
                 const response = await fetch(`${WORKER_URL}${endpoint}`, {
                     method: 'POST',
@@ -810,10 +851,8 @@
                 });
                 const result = await response.text();
                 document.getElementById('result').innerHTML = result;
-                showToast('درخواست ارسال شد!', 'success');
             } catch (error) {
                 document.getElementById('result').innerHTML = currentLang === 'fa' ? 'خطا: ' + error.message : 'Error: ' + error.message;
-                showToast('خطا در ارسال!', 'error');
             }
         });
 
@@ -858,15 +897,7 @@
                 toast.classList.remove('show');
             }, 3000);
         }
-
-        // Close modal on outside click
-        window.onclick = function(event) {
-            var modal = document.getElementById('myModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99c843ca48aa82dc',t:'MTc2MjgwNjE3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
