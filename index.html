@@ -535,94 +535,39 @@
         <label data-fa="روش پرداخت:" data-en="Payment Method:">روش پرداخت:</label>
         <div class="payment-method">
             <label><input type="radio" name="paymentMethod" value="trx" checked onchange="togglePaymentDetails()"> <span data-fa="ترون (TRX)" data-en="Tron (TRX)"></span></label>
-            <label><input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
+            <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
         </div>
-
-        <label data-fa="محصول:" data-en="Product:">محصول:</label>
-        <select name="product" id="productSelect" required onchange="updateAmounts()">
-            <!-- Options will be dynamically loaded -->
-        </select><br>
-        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
-        <input type="number" name="account" required><br>
+        <label data-fa="انتخاب محصول:" data-en="Select Product:">انتخاب محصول:</label>
+        <select id="productSelect" name="product" onchange="updateAmounts()" required></select><br>
+        <label data-fa="شماره حساب متاتریدر:" data-en="MetaTrader Account:">شماره حساب متاتریدر:</label>
+        <input type="text" name="account" required><br>
         <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
         <input type="email" name="email" required><br>
-        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
-   
+        <button type="submit" data-fa="ارسال درخواست" data-en="Submit Request">ارسال درخواست</button>
+    </form>
+
     <div id="result"></div>
 
- </form>
-    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
-
-    <!-- تصاویر در دو کادر کنار هم -->
-    <div class="images-container">
-        <div>
-            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openModal('/profit_graph.png')">
-           <p class="caption" data-fa=" بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$"> بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار</p>        </div>
-        <div>
-            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openModal('/indicator_chart.png')">
-           <p class="caption" data-fa="داشبورد  سوپرترند معاملات دستی و اتوماتیک  در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart"> داشبورد  سوپرترند معاملات دستی و اتوماتیک  در چارت </p>
-        </div>
-    </div>
-
-    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
-    <div class="container">
-        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
-        <div class="videos-container">
- <div>
-                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
-                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                </video>
-               <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex  Fury  Pro Expert">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
-            </div>
-            <div>
-                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')">
-                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                </video>
-                               <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robat) SuperTrend  Auto Trade">اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند</p>
-            </div>
-            <div>
-                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend_EA.webm')">
-                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
-                </video>
-                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی معاملات سوپرترند و فوت پرینت " data-en="EA&EM-SuperTrend&Footprint"> ربات اتوماتیک و دستی معاملات سوپرترند و فوت پرینت </p>
-            </div>
-        </div>
-    </div>
-
-    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
-    <div class="container">
-       <a href="/EA&EM-SuperTrend&Footprint.ex5" download class="download-button" data-fa="ربات معاملات دستی و اتوماتیک " data-en="EA&EM-SuperTrend&Footprint">EA&EM-SuperTrend&Footprint</a>
-        <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="ربات سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
-        <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="ربات فارکس فیوری" data-en="Expert Forex Fury">Expert Forex Fury</a>
-    </div>
-    <div class="container">
-        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">ورود به لینک تلگرام برای خرید</button>
-    </div>
-
-    <div class="container">
-        <a href="contact.html" data-fa="تماس با ما" data-en="Contact Us" style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">تماس با ما</a>
-    </div>
-
-    <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
+    <!-- Modal for images/videos -->
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="imgModal">
-        <video class="modal-content" id="videoModal" controls style="display:none;"></video>
+        <video class="modal-content" id="videoModal" controls></video>
     </div>
 
-    <!-- Toast container -->
-    <div id="toast"></div>
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
 
     <footer>
         <div class="footer-container">
-            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#c1a8afa7ae81b5b2a6a2aeadb5a5efa8b3"><span class="__cf_email__" data-cfemail="3a53545c557a4e495d5955564e5e145348">[email&#160;protected]</span></a></p>
+            <p data-fa="© همه حقوق محفوظ است K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
         </div>
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         let currentLang = 'fa'; // Default: Persian
-        let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+        const WORKER_URL = 'https://supertrend-worker.click4tell.workers.dev'; // Unified Worker URL
 
         // Language data
         const translations = {
@@ -655,9 +600,9 @@
                 console.error('Error fetching data:', error);
                 // Fallback to hardcoded if fetch fails
                 products = {
-                    'EA&EM-SuperTrend&Footprint': {
-                        name_fa: 'اکسپرت EA&EM-SuperTrend&Footprint',
-                        name_en: 'EA&EM-SuperTrend&Footprint',
+                    'Indicator_Supertrend': {
+                        name_fa: 'اندیکاتور SuperTrend',
+                        name_en: 'SuperTrend Indicator',
                         desc_fa: 'توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.',
                         desc_en: 'Description: Advanced indicator for trend identification in MT5.',
                         trx: 15,
@@ -791,9 +736,6 @@
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
-            // Update WORKER_URL
-            WORKER_URL = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
-
             // Update all elements with data-fa and data-en
             document.querySelectorAll('[data-fa]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${lang}`);
@@ -842,6 +784,7 @@
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
+            formData.append('lang', currentLang); // Pass language to worker
             const method = formData.get('paymentMethod');
             const endpoint = method === 'card' ? '/card-process' : '/process';
             try {
