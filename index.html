@@ -378,21 +378,40 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 10000; /* افزایش z-index برای فول‌اسکرین */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            padding-top: 60px;
+            background-color: rgba(0,0,0,0.95); /* تاریک‌تر برای تمرکز */
+            padding: 0; /* حذف padding */
         }
 
         .modal-content {
             margin: auto;
             display: block;
-            width: 80%;
-            max-width: 700px;
+            width: 95%; /* فول‌تر */
+            max-width: 95vw; /* فول ویو */
+            height: 95%; /* فول ارتفاع */
+            max-height: 95vh;
+            object-fit: contain; /* حفظ نسبت */
+            transition: transform 0.3s ease; /* انیمیشن زوم */
+            transform-origin: center center; /* مرکز زوم */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1); /* مرکزیت */
+            cursor: grab; /* cursor برای drag */
+        }
+
+        .modal-content:active {
+            cursor: grabbing;
+        }
+
+        /* استایل برای زوم در modal */
+        .modal-content.zoomed {
+            transform: translate(-50%, -50%) scale(1.5); /* زوم پیش‌فرض */
         }
 
         .close {
@@ -403,6 +422,8 @@
             font-size: 40px;
             font-weight: bold;
             transition: 0.3s;
+            z-index: 10001;
+            cursor: pointer;
         }
 
         .close:hover,
@@ -478,6 +499,43 @@
         #cardDetails {
             display: none;
         }
+
+        /* استایل جدید برای دکمه برگشت در فول‌اسکرین */
+        .fullscreen-back-btn {
+            position: absolute;
+            top: 15px;
+            left: 35px; /* در RTL، سمت چپ برای دکمه برگشت */
+            background: rgba(0, 0, 0, 0.7);
+            color: #f1f1f1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10002;
+            transition: background 0.3s ease;
+        }
+
+        .fullscreen-back-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* استایل‌های اضافی برای فول‌اسکرین */
+        .modal:-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal:-moz-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal:fullscreen {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -537,42 +595,98 @@
             <label><input type="radio" name="paymentMethod" value="trx" checked onchange="togglePaymentDetails()"> <span data-fa="ترون (TRX)" data-en="Tron (TRX)"></span></label>
             <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
         </div>
-        <label data-fa="انتخاب محصول:" data-en="Select Product:">انتخاب محصول:</label>
-        <select id="productSelect" name="product" onchange="updateAmounts()" required></select><br>
-        <label data-fa="شماره حساب متاتریدر:" data-en="MetaTrader Account:">شماره حساب متاتریدر:</label>
-        <input type="text" name="account" required><br>
+
+        <label data-fa="محصول:" data-en="Product:">محصول:</label>
+        <select name="product" id="productSelect" required onchange="updateAmounts()">
+            <!-- Options will be dynamically loaded -->
+        </select><br>
+        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+        <input type="number" name="account" required><br>
         <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
         <input type="email" name="email" required><br>
-        <button type="submit" data-fa="ارسال درخواست" data-en="Submit Request">ارسال درخواست</button>
-    </form>
-
+        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+   
     <div id="result"></div>
 
-    <!-- Modal for images/videos -->
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="imgModal">
-        <video class="modal-content" id="videoModal" controls></video>
+ </form>
+    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
+
+    <!-- تصاویر در دو کادر کنار هم -->
+    <div class="images-container">
+        <div>
+            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openFullScreenModal('/profit_graph.png')" style="cursor: zoom-in;">
+           <p class="caption" data-fa=" بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$"> بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار</p>        </div>
+        <div>
+            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openFullScreenModal('/indicator_chart.png')" style="cursor: zoom-in;">
+           <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart"> داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت </p>
+        </div>
     </div>
 
-    <!-- Toast -->
-    <div id="toast" class="toast"></div>
+    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
+    <div class="container">
+        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
+        <div class="videos-container">
+ <div>
+                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/ForexFuryPro.webm')" style="cursor: zoom-in;">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+               <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex  Fury  Pro Expert">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
+            </div>
+            <div>
+                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')" style="cursor: zoom-in;">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+                               <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robat) SuperTrend  Auto Trade">اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند</p>
+            </div>
+            <div>
+                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/EA&EM-SuperTrend&Footprint.webm')" style="cursor: zoom-in;">
+                    مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی معاملات سوپرترند و فوت پرینت " data-en="EA&EM-SuperTrend&Footprint"> ربات اتوماتیک و دستی معاملات سوپرترند و فوت پرینت </p>
+            </div>
+        </div>
+    </div>
+
+    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
+    <div class="container">
+       <a href="/EA&EM-SuperTrend&Footprint.ex5" download class="download-button" data-fa="ربات معاملات دستی و اتوماتیک " data-en="EA&EM-SuperTrend&Footprint">EA&EM-SuperTrend&Footprint</a>
+        <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="ربات سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
+        <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="ربات فارکس فیوری" data-en="Expert Forex Fury">Expert Forex Fury</a>
+    </div>
+    <div class="container">
+        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">ورود به لینک تلگرام برای خرید</button>
+    </div>
+
+    <div class="container">
+        <a href="contact.html" data-fa="تماس با ما" data-en="Contact Us" style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">تماس با ما</a>
+    </div>
+
+    <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
+    <div id="myModal" class="modal">
+        <button class="fullscreen-back-btn" onclick="exitFullScreenAndClose()">برگشت</button>
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="imgModal">
+        <video class="modal-content" id="videoModal" controls style="display:none;"></video>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toast"></div>
 
     <footer>
         <div class="footer-container">
-            <p data-fa="© همه حقوق محفوظ است K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+            <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 <span class="separator">|</span> <a href="/cdn-cgi/l/email-protection#c1a8afa7ae81b5b2a6a2aeadb5a5efa8b3"><span class="__cf_email__" data-cfemail="3a53545c557a4e495d5955564e5e145348">[email&#160;protected]</span></a></p>
         </div>
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         let currentLang = 'fa'; // Default: Persian
-        const WORKER_URL = 'https://supertrend-worker-en.click4tell.workers.dev'; // Unified Worker URL
+        let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
         // Language data
         const translations = {
             fa: {
-                title: "فروش اندیکاتور و اکسپرت ",
+                title: "فروش اندیکاتور و اکسپرت " ,
                 // Add more as needed, but since most are data- attributes, handled below
             },
             en: {
@@ -600,9 +714,9 @@
                 console.error('Error fetching data:', error);
                 // Fallback to hardcoded if fetch fails
                 products = {
-                    'Indicator_Supertrend': {
-                        name_fa: 'اندیکاتور SuperTrend',
-                        name_en: 'SuperTrend Indicator',
+                    'EA&EM-SuperTrend&Footprint': {
+                        name_fa: 'اکسپرت EA&EM-SuperTrend&Footprint',
+                        name_en: 'EA&EM-SuperTrend&Footprint',
                         desc_fa: 'توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.',
                         desc_en: 'Description: Advanced indicator for trend identification in MT5.',
                         trx: 15,
@@ -736,6 +850,9 @@
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
+            // Update WORKER_URL
+            WORKER_URL = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+
             // Update all elements with data-fa and data-en
             document.querySelectorAll('[data-fa]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${lang}`);
@@ -784,7 +901,6 @@
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            formData.append('lang', currentLang); // Pass language to worker
             const method = formData.get('paymentMethod');
             const endpoint = method === 'card' ? '/card-process' : '/process';
             try {
@@ -799,8 +915,16 @@
             }
         });
 
-        // تابع برای بزرگ کردن تصاویر
-        function openModal(src) {
+        // **اصلاح: زوم اولیه 2x، زوم بیشتر با wheel و دابل‌کلیک**
+        let zoomLevel = 2; // **تغییر: زوم اولیه 2x**
+        let isDragging = false;
+        let startX, startY, translateX = 0, translateY = 0;
+        let currentContent = null;
+        let clickCount = 0;
+        let clickTimer = null;
+
+        // تابع جدید برای باز کردن فول‌اسکرین برای تصاویر خاص
+        function openFullScreenModal(src) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("imgModal");
             var modalVideo = document.getElementById("videoModal");
@@ -808,9 +932,47 @@
             modalImg.src = src;
             modalImg.style.display = "block";
             modalVideo.style.display = "none";
+            currentContent = modalImg;
+            initZoom(modalImg); // **تغییر: init با زوم 2x**
+            attachEventListeners(modalImg);
+            document.body.style.overflow = 'hidden';
+
+            // ورود به حالت فول‌اسکرین
+            enterFullScreen(modal);
         }
 
-        // تابع برای بزرگ کردن ویدیوها
+        // تابع برای ورود به فول‌اسکرین
+        function enterFullScreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        // تابع برای خروج از فول‌اسکرین
+        function exitFullScreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // تابع برای خروج از فول‌اسکرین و بستن مودال
+        function exitFullScreenAndClose() {
+            exitFullScreen();
+            closeModal();
+        }
+
         function openVideoModal(src) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("imgModal");
@@ -820,6 +982,80 @@
             modalVideo.style.display = "block";
             modalImg.style.display = "none";
             modalVideo.play();
+            currentContent = modalVideo;
+            initZoom(modalVideo); // **تغییر: init با زوم 2x**
+            attachEventListeners(modalVideo);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function initZoom(element) {
+            zoomLevel = 2; // **تغییر: زوم اولیه 2x**
+            translateX = 0;
+            translateY = 0;
+            updateTransform(element);
+        }
+
+        function attachEventListeners(element) {
+            // Wheel zoom
+            const handleWheel = (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                zoomLevel *= delta;
+                zoomLevel = Math.min(Math.max(0.1, zoomLevel), 10);
+                updateTransform(element);
+            };
+            element.addEventListener('wheel', handleWheel, { passive: false });
+
+            // **جدید: دابل‌کلیک برای زوم بیشتر (toggle بین 2x و 4x)**
+            const handleClick = (e) => {
+                clearTimeout(clickTimer);
+                clickCount++;
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 300);
+                } else {
+                    clickCount = 0;
+                    clearTimeout(clickTimer);
+                    if (zoomLevel < 2) zoomLevel = 2;
+                    else if (zoomLevel < 4) zoomLevel = 4;
+                    else zoomLevel = 1;
+                    updateTransform(element);
+                }
+            };
+            element.addEventListener('click', handleClick);
+
+            // Drag pan
+            const handleMouseDown = (e) => {
+                if (zoomLevel <= 1) return;
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                element.style.cursor = 'grabbing';
+            };
+
+            const handleMouseMove = (e) => {
+                if (!isDragging) return;
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform(element);
+            };
+
+            const handleMouseUp = () => {
+                isDragging = false;
+                element.style.cursor = 'grab';
+            };
+
+            element.addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+
+            // ذخیره listeners
+            element._listeners = { wheel: handleWheel, click: handleClick, mousedown: handleMouseDown, mousemove: handleMouseMove, mouseup: handleMouseUp };
+        }
+
+        function updateTransform(element) {
+            element.style.transform = `translate(-50%, -50%) scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
         }
 
         // تابع بستن modal
@@ -829,7 +1065,33 @@
             modal.style.display = "none";
             modalVideo.pause();
             modalVideo.currentTime = 0;
+            document.body.style.overflow = 'auto';
+            exitFullScreen(); // خروج از فول‌اسکرین هنگام بستن
+            if (currentContent && currentContent._listeners) {
+                currentContent.removeEventListener('wheel', currentContent._listeners.wheel);
+                currentContent.removeEventListener('click', currentContent._listeners.click);
+                document.removeEventListener('mousemove', currentContent._listeners.mousemove);
+                document.removeEventListener('mouseup', currentContent._listeners.mouseup);
+                currentContent.removeEventListener('mousedown', currentContent._listeners.mousedown);
+                delete currentContent._listeners;
+            }
+            currentContent = null;
+            clickCount = 0;
         }
+
+        // بستن modal با کلیک خارج یا ESC
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
 
         // Toast function
         function showToast(message, type) {
@@ -842,6 +1104,6 @@
         }
     </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cfeb005b5a86c4',t:'MTc2Mjg4NjQyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cfeb005b5a86c4',t:'MTc2Mjg4NjQyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d5269743a1f74898a14eb9858a16d753","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
 </html>
-
