@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +16,11 @@
             background-color: #FFFFFF;
             color: #333;
             min-height: 100vh;
-            direction: rtl;
-            text-align: right;
+            direction: ltr;
+            text-align: left;
         }
 
-        /* Language switcher - خیلی کوچک‌تر، عرض بر اساس دو کاراکتر */
+        /* دکمه تعویض زبان با پرچم و متن زیر آن - کاملاً درست */
         .lang-switcher {
             position: fixed;
             top: 10px;
@@ -29,33 +29,44 @@
             background: #4CAF50;
             color: white;
             border: none;
-            padding: 5px 8px; /* کوچک‌تر: قبلاً 4px 6px */
-            border-radius: 8px; /* کوچک‌تر */
+            padding: 6px 8px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 12px; /* کوچک‌تر: قبلاً 11px */
-            max-width: 40px;
-            margin: 20px auto;
+            font-size: 12px;
+            max-width: 52px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
         }
-
-        .lang-switcher:hover {
-            background: #45a049;
+        .lang-switcher:hover { background: #45a049; transform: scale(1.08); }
+        .lang-switcher img {
+            width: 26px;
+            height: 18px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+        .lang-switcher span {
+            font-weight: bold;
+            font-size: 10px;
         }
 
         header {
             position: relative;
-            height: 200px; /* افزایش ارتفاع برای موبایل به 200px برای نمایش کامل ویدیو */
+            height: 200px;
             overflow: hidden;
-            text-align: center; /* قرار دادن متن در سمت راست */
-            padding-top: 80px; /* تنظیم padding برای موبایل */
+            text-align: center;
+            padding-top: 80px;
             color: #fff;
         }
 
-        /* استایل ویدیو بک‌گراند */
         #bgVideo {
             position: absolute;
             top: 0;
-            right: 0; /* شروع از سمت راست برای RTL */
+            right: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -63,7 +74,7 @@
         }
 
         header h1 {
-            font-size: 1.8em; /* کاهش کمی برای موبایل */
+            font-size: 1.8em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             margin: 0;
             color: #4CAF50;
@@ -72,7 +83,7 @@
         }
 
         header p {
-            font-size: 1.2em; /* کاهش کمی برای موبایل */
+            font-size: 1.2em;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
             color: #FFC107;
             margin: 10px 15px;
@@ -214,14 +225,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            white-space: nowrap; /* جلوگیری از انتقال به خط بعدی */
+            white-space: nowrap;
         }
 
         footer p {
             margin: 0;
             display: inline-flex;
             align-items: center;
-            flex-wrap: nowrap; /* اطمینان از یک خط ماندن */
+            flex-wrap: nowrap;
         }
 
         footer a {
@@ -241,26 +252,24 @@
             color: #9ca3af;
         }
 
-        /* تنظیمات برای موبایل */
         @media (max-width: 600px) {
             footer {
-                font-size: 12px; /* کاهش اندازه فونت در موبایل */
+                font-size: 12px;
                 padding: 10px 15px;
             }
 
             .footer-container {
-                flex-wrap: nowrap; /* جلوگیری از شکستن خط در موبایل */
+                flex-wrap: nowrap;
             }
 
             .separator {
-                margin: 0 5px; /* کاهش فاصله جداکننده‌ها در موبایل */
+                margin: 0 5px;
             }
         }
         .separator {
             margin: 0 10px;
             color: #9ca3af;
         }
-        /* Remove fixed margins and relative positioning for responsiveness */
         .margin-right, .margin-left, .relative-right, .relative-left, .transform-right, .transform-left {
             margin-right: 0;
             margin-left: 0;
@@ -268,7 +277,6 @@
             transform: none;
         }
 
-        /* Media Queries for larger screens */
         @media (min-width: 768px) {
             header {
                 height: 300px;
@@ -334,7 +342,6 @@
             background-color: #1e40af;
         }
 
-        /* استایل برای ویدیوها */
         .video-container {
             max-width: 100%;
             margin: 20px auto;
@@ -349,21 +356,20 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* استایل جدید برای بزرگ کردن ویدیو و تصاویر */
         .preview {
             cursor: pointer;
-            max-width: 300px; /* اندازه کوچک برای پیش‌نمایش */
+            max-width: 300px;
             margin: 10px;
         }
 
         .image-preview {
-            max-height: 200px; /* ارتفاع کوچک برای تصاویر */
+            max-height: 200px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .video-preview {
-            max-height: 200px; /* ارتفاع کوچک برای ویدیوها */
+            max-height: 200px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -371,47 +377,46 @@
         .images-container, .videos-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* فاصله زیبا بین دو آیتم */
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 10000; /* افزایش z-index برای فول‌اسکرین */
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.95); /* تاریک‌تر برای تمرکز */
-            padding: 0; /* حذف padding */
+            background-color: rgba(0,0,0,0.95);
+            padding: 0;
         }
 
         .modal-content {
             margin: auto;
             display: block;
-            width: 95%; /* فول‌تر */
-            max-width: 95vw; /* فول ویو */
-            height: 95%; /* فول ارتفاع */
+            width: 95%;
+            max-width: 95vw;
+            height: 95%;
             max-height: 95vh;
-            object-fit: contain; /* حفظ نسبت */
-            transition: transform 0.3s ease; /* انیمیشن زوم */
-            transform-origin: center center; /* مرکز زوم */
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1); /* مرکزیت */
-            cursor: grab; /* cursor برای drag */
+            transform: translate(-50%, -50%) scale(1);
+            cursor: grab;
         }
 
         .modal-content:active {
             cursor: grabbing;
         }
 
-        /* استایل برای زوم در modal */
         .modal-content.zoomed {
-            transform: translate(-50%, -50%) scale(1.5); /* زوم پیش‌فرض */
+            transform: translate(-50%, -50%) scale(1.5);
         }
 
         .close {
@@ -433,7 +438,6 @@
             cursor: pointer;
         }
 
-        /* کپشن زیر تصاویر و ویدیوها */
         .caption {
             font-size: 14px;
             margin-top: 5px;
@@ -441,7 +445,6 @@
             text-align: center;
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
             top: 20px;
@@ -472,7 +475,6 @@
             background-color: #f44336;
         }
 
-        /* New styles for payment method */
         .payment-method {
             display: flex;
             gap: 10px;
@@ -500,7 +502,6 @@
             display: none;
         }
 
-        /* استایل‌های اضافی برای فول‌اسکرین */
         .modal:-webkit-full-screen {
             width: 100%;
             height: 100%;
@@ -518,7 +519,12 @@
     </style>
 </head>
 <body>
-    <button class="lang-switcher" onclick="toggleLanguage()">EN</button> <!-- Default: FA, button shows EN to switch -->
+    <!-- دکمه تعویض زبان با پرچم - کاملاً صحیح -->
+    <button class="lang-switcher" onclick="toggleLanguage()">
+        <img src="https://flagcdn.com/ir.svg" alt="English" id="flag-gb">
+        <img src="https://flagcdn.com/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
+        <span id="lang-text">فارسی</span>
+    </button>
 
     <header>
         <video autoplay muted loop id="bgVideo">
@@ -526,17 +532,15 @@
             مرورگر شما از ویدیو پشتیبانی نمی‌کند.
         </video>
         <h1 class="relative-right" data-fa="متاتریر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور" data-en="METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR">METATRADER 5 , MQL5 , MQ5 , EXPERT . INDICATOR</h1>
-        <p class="margin-left" data-fa="فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی</p>
+        <p class="margin-left" data-fa="فروش محصولات اکسپرت واندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">Selling Expert and Indicator Products for MT5 Forex with High Profit</p>
     </header>
 
     <div class="container">
-               <h1 id="productsTitle" data-fa="محصولات ما" data-en="Our Products">محصولات ما</h1>
+               <h1 id="productsTitle" data-fa="محصولات ما" data-en="Our Products">Our Products</h1>
 
         <button onclick="window.open('/info.pdf', '_blank')" data-fa="info SUPERTREND" data-en="info SUPERTREND">info SUPERTREND</button>
         <button onclick="window.open('/ForexFuryPro.pdf', '_blank')" data-fa="info FOREXFURY" data-en="info FOREXFURY">info FOREXFURY</button>
-        <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Riport FOREXFURY</button>
-
-      
+        <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Report FOREXFURY</button>
     </div>
 
     <div class="product" id="productContainer">
@@ -544,110 +548,106 @@
     </div>
 
     <div class="container">
-        <button onclick="showPaymentForm()" data-fa="فرم دریافت اطلاعات برای پرداخت و خرید محصول" data-en="Payment and Purchase Form">فرم دریافت اطلاعات برای پرداخت و خرید محصول</button>
+        <button onclick="showPaymentForm()" data-fa="فرم دریافت اطلاعات برای پرداخت و خرید محصول" data-en="Payment and Purchase Form">Payment and Purchase Form</button>
     </div>
 
     <form id="paymentForm">
         <div id="trxDetails">
-            <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود</h3>
+            <h3 data-fa="کادر زیر آدرس ترون ما جهت خرید شماست کلیک کنید آدرس کپی میشود" data-en="Click below to copy our Tron address for purchase">Click below to copy our Tron address for purchase</h3>
             <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
-            <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:</label>
+            <label data-fa="هش تراکنش (txHash) را که پس از انتقال ارز گرفتید اینجا جاگذاری کنید:" data-en="Enter txHash after transfer:">Enter txHash after transfer:</label>
             <input type="text" name="txHashTrx" id="txHashTrx"><br>
-            <label data-fa="مبلغ به تتر:" data-en="Amount in Teter:">مبلغ تتر:</label>
+            <label data-fa="مبلغ به تتر:" data-en="Amount in Teter:">Amount in USDT:</label>
             <input type="number" name="amountTeter" id="amountTeter" readonly><br>
         </div>
 
         <div id="cardCopySection">
-            <h3 data-fa="کادر زیر شماره کارت ما جهت خرید شماست کلیک کنید شماره کپی میشود" data-en="Click below to copy our Bank Card number for purchase">کادر زیر شماره کارت ما جهت خرید شماست کلیک کنید شماره کپی میشود</h3>
+            <h3 data-fa="کادر زیر شماره کارت ما جهت خرید شماست کلیک کنید شماره کپی میشود" data-en="Click below to copy our Bank Card number for purchase">Click below to copy our Bank Card number for purchase</h3>
             <p id="copyCardText" onclick="copyCardToClipboard()" data-fa="6219861903732864" data-en="6219861903732864">6219861903732864</p>
-             <label data-fa="کد پیگیری یا شماره کارت یا شناسه پرداخت که از طریق آن واریزی داشتید وارد کنید" data-en="Enter cart number after transfer:">شماره کارتی که از آن پرداخت داشتید یا شماره تراکنش را اینجا وارد کنید</label>
+             <label data-fa="کد پیگیری یا شماره کارت یا شناسه پرداخت که از طریق آن واریزی داشتید وارد کنید" data-en="Enter cart number after transfer:">Enter the card number or transaction ID used for payment</label>
              <input type="text" name="txHashCard" id="txHashCard"><br>
         </div>
 
         <div id="cardDetails">
-            <label data-fa="مبلغ به ریال:" data-en="Amount in Rial:">مبلغ به ریال:</label>
+            <label data-fa="مبلغ به ریال:" data-en="Amount in Rial:">Amount in IRR:</label>
             <input type="number" name="amountRial" id="amountRial" readonly><br>
         </div>
 
-        <label data-fa="روش پرداخت:" data-en="Payment Method:">روش پرداخت:</label>
+        <label data-fa="روش پرداخت:" data-en="Payment Method:">Payment Method:</label>
         <div class="payment-method">
             <label><input type="radio" name="paymentMethod" value="trx" checked onchange="togglePaymentDetails()"> <span data-fa="ترون (TRX)" data-en="Tron (TRX)"></span></label>
             <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card"></span></label>
         </div>
 
-        <label data-fa="محصول:" data-en="Product:">محصول:</label>
+        <label data-fa="محصول:" data-en="Product:">Product:</label>
         <select name="product" id="productSelect" required onchange="updateAmounts()">
             <!-- Options will be dynamically loaded -->
         </select><br>
-        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">شماره اکانت MT5:</label>
+        <label data-fa="شماره اکانت MT5:" data-en="MT5 Account Number:">MT5 Account Number:</label>
         <input type="number" name="account" required><br>
-        <label data-fa="ایمیل:" data-en="Email:">ایمیل:</label>
+        <label data-fa="ایمیل:" data-en="Email:">Email:</label>
         <input type="email" name="email" required><br>
-        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید</button>
+        <button type="submit" data-fa="پس از پرداخت و انتخاب محصول و وارد کردن شماره اکانت کلیک کنید" data-en="Submit After Payment">Submit After Payment</button>
    
     <div id="result"></div>
 
  </form>
-    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر</h2>
+    <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">Product Performance Charts in MT5 Backtest</h2>
 
-    <!-- تصاویر در دو کادر کنار هم -->
     <div class="images-container">
         <div>
             <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openFullScreenModal('/profit_graph.png')" style="cursor: zoom-in;">
-           <p class="caption" data-fa=" بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$"> بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار</p>        </div>
+           <p class="caption" data-fa=" بکتست اکسپرت فارکس فیوری با سه ملیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$">forex Fury Expert Backtests 100$ to 3.000.000$</p>        </div>
         <div>
             <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openFullScreenModal('/indicator_chart.png')" style="cursor: zoom-in;">
-           <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart"> داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت </p>
+           <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart">Doshboard for Trade Manual & Automatic in Chart</p>
         </div>
     </div>
 
-    <!-- بخش ویدیوهای پیش‌نمایش زیر تصاویر -->
     <div class="container">
-        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
+        <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">Product Video Demos</h2>
         <div class="videos-container">
  <div>
                 <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/ForexFuryPro.webm')" style="cursor: zoom-in;">
                     مرورگر شما از ویدیو پشتیبانی نمی‌کند.
                 </video>
-               <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex  Fury  Pro Expert">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
+               <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex  Fury  Pro Expert">Forex  Fury  Pro Expert</p>
             </div>
             <div>
                 <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/supertrend.webm')" style="cursor: zoom-in;">
                     مرورگر شما از ویدیو پشتیبانی نمی‌کند.
                 </video>
-                               <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robat) SuperTrend  Auto Trade">اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند</p>
+                               <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robat) SuperTrend  Auto Trade">Expert (Robat) SuperTrend  Auto Trade</p>
             </div>
             <div>
                 <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop poster="" onclick="openVideoModal('/EA&EM-SuperTrend&Footprint.webm')" style="cursor: zoom-in;">
                     مرورگر شما از ویدیو پشتیبانی نمی‌کند.
                 </video>
-                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی معاملات سوپرترند و فوت پرینت " data-en="EA&EM-SuperTrend&Footprint"> ربات اتوماتیک و دستی معاملات سوپرترند و فوت پرینت </p>
+                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی معاملات سوپرترند و فوت پرینت " data-en="EA&EM-SuperTrend&Footprint">EA&EM-SuperTrend&Footprint</p>
             </div>
         </div>
     </div>
 
-    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
+    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">Download Files</h2>
     <div class="container">
        <a href="/EA&EM-SuperTrend&Footprint.ex5" download class="download-button" data-fa="ربات معاملات دستی و اتوماتیک " data-en="EA&EM-SuperTrend&Footprint">EA&EM-SuperTrend&Footprint</a>
         <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="ربات سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
         <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="ربات فارکس فیوری" data-en="Expert Forex Fury">Expert Forex Fury</a>
     </div>
     <div class="container">
-        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">ورود به لینک تلگرام برای خرید</button>
+        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">Enter Telegram Link for Purchase</button>
     </div>
 
     <div class="container">
-        <a href="contact.html" data-fa="تماس با ما" data-en="Contact Us" style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">تماس با ما</a>
+        <a href="contact.html" data-fa="تماس با ما" data-en="Contact Us" style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">Contact Us</a>
     </div>
 
-    <!-- Modal برای بزرگ کردن تصاویر و ویدیوها -->
     <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()">×</span>
         <img class="modal-content" id="imgModal">
         <video class="modal-content" id="videoModal" controls style="display:none;"></video>
     </div>
 
-    <!-- Toast container -->
     <div id="toast"></div>
 
     <footer>
@@ -656,27 +656,19 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
-        let currentLang = 'fa'; // Default: Persian
-        let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://admin.mql5expert.ir';
+        let currentLang = 'en'; // پیش‌فرض انگلیسی
 
-        // Language data
+        let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+
         const translations = {
-            fa: {
-                title: "فروش اندیکاتور و اکسپرت " ,
-                // Add more as needed, but since most are data- attributes, handled below
-            },
-            en: {
-                title: "Selling  Indicators and Experts",
-            }
+            fa: { title: "فروش اندیکاتور و اکسپرت " },
+            en: { title: "Selling  Indicators and Experts" },
         };
 
-        let products = {}; // To store fetched products
-        let cardDetails = {}; // To store card details
-		let trxDetails = {}; // To store trx details
+        let products = {};
+        let cardDetails = {};
 
-        // Fetch products and card details from worker
         async function fetchProductsAndCard() {
             try {
                 const response = await fetch(`${WORKER_URL}/products?lang=${currentLang}`);
@@ -684,44 +676,17 @@
                 populateProducts();
                 populateProductSelect();
 
-                // Fetch card details
                 const cardResponse = await fetch(`${WORKER_URL}/card-details?lang=${currentLang}`);
                 cardDetails = await cardResponse.json();
                 updateCardDisplay();
             } catch (error) {
                 console.error('Error fetching data:', error);
-                // Fallback to hardcoded if fetch fails
                 products = {
-                    'EA&EM-SuperTrend&Footprint': {
-                        name_fa: 'اکسپرت EA&EM-SuperTrend&Footprint',
-                        name_en: 'EA&EM-SuperTrend&Footprint',
-                        desc_fa: 'توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.',
-                        desc_en: 'Description: Advanced indicator for trend identification in MT5.',
-                        trx: 15,
-                        rial: 5000000
-                    },
-                    'EA_SuperTrend': {
-                        name_fa: 'اکسپرت SuperTrend EA',
-                        name_en: 'SuperTrend EA Expert',
-                        desc_fa: 'توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.',
-                        desc_en: 'Description: Automatic expert based on SuperTrend indicator with risk management.',
-                        trx: 200,
-                        rial: 60000000
-                    },
-                    'EA_ForexFury': {
-                        name_fa: 'اکسپرت ForexFury EA',
-                        name_en: 'ForexFury EA Expert',
-                        desc_fa: 'توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار',
-                        desc_en: 'Description: Automatic expert based on Forex Fury technique with very high profit, even $200,000/year on $100 deposit',
-                        trx: 500,
-                        rial: 150000000
-                    }
+                    'EA&EM-SuperTrend&Footprint': { name_fa: 'اکسپرت EA&EM-SuperTrend&Footprint', name_en: 'EA&EM-SuperTrend&Footprint', desc_fa: 'توضیح: اندیکاتور پیشرفته برای شناسایی روندها در MT5.', desc_en: 'Description: Advanced indicator for trend identification in MT5.', trx: 15, rial: 5000000 },
+                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', desc_fa: 'توضیح: اکسپرت اتوماتیک بر اساس اندیکاتور SuperTrend با مدیریت ریسک.', desc_en: 'Description: Automatic expert based on SuperTrend indicator with risk management.', trx: 200, rial: 60000000 },
+                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', desc_fa: 'توضیح:اکسپرت اتوماتیک بر اساس تکنیک فارکس فیوری با سود بسیار بالا حتی 200 هزار دلار در سال با دیپوزیت 100 دلار', desc_en: 'Description: Automatic expert based on Forex Fury technique with very high profit, even $200,000/year on $100 deposit', trx: 500, rial: 150000000 }
                 };
-                cardDetails = {
-                    number: '6219861903732864',
-                    name: 'Kamran Mankarsi',
-                    bank: 'Saman Bank'
-                };
+                cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
                 populateProducts();
                 populateProductSelect();
                 updateCardDisplay();
@@ -741,7 +706,7 @@
                 `;
                 container.appendChild(div);
             });
-            updateLanguage(currentLang); // Re-apply lang to new elements
+            updateLanguage(currentLang);
         }
 
         function populateProductSelect() {
@@ -755,10 +720,7 @@
                 option.textContent = currentLang === 'fa' ? prod.name_fa : prod.name_en;
                 select.appendChild(option);
             });
-            select.value = currentValue;
-            if (!select.value && select.options.length > 0) {
-                select.selectedIndex = 0;
-            }
+            select.value = currentValue || Object.keys(products)[0];
             updateAmounts();
         }
 
@@ -766,23 +728,17 @@
             const select = document.getElementById('productSelect');
             const product = select.value;
             if (product && products[product]) {
-                const prod = products[product];
-                document.getElementById('amountTeter').value = prod.trx;
-                document.getElementById('amountRial').value = prod.rial;
+                document.getElementById('amountTeter').value = products[product].trx;
+                document.getElementById('amountRial').value = products[product].rial;
             }
         }
 
         function updateCardDisplay() {
             const copyCardText = document.getElementById('copyCardText');
-            const cardInfo = document.getElementById('cardInfo');
-            if (copyCardText && cardInfo) {
+            if (copyCardText) {
                 copyCardText.textContent = cardDetails.number;
                 copyCardText.setAttribute('data-fa', cardDetails.number);
                 copyCardText.setAttribute('data-en', cardDetails.number);
-                cardInfo.innerHTML = `
-                    <p data-fa="نام صاحب کارت: ${cardDetails.name} | بانک: ${cardDetails.bank}" data-en="Card Holder: ${cardDetails.name} | Bank: ${cardDetails.bank}">${currentLang === 'fa' ? `نام صاحب کارت: ${cardDetails.name} | بانک: ${cardDetails.bank}` : `Card Holder: ${cardDetails.name} | Bank: ${cardDetails.bank}`}</p>
-                `;
-                updateLanguage(currentLang);
             }
         }
 
@@ -791,36 +747,25 @@
             document.getElementById('trxDetails').style.display = method === 'trx' ? 'block' : 'none';
             document.getElementById('cardCopySection').style.display = method === 'card' ? 'block' : 'none';
             document.getElementById('cardDetails').style.display = method === 'card' ? 'block' : 'none';
-            document.getElementById('txHashTrx').required = method === 'trx';
-            document.getElementById('txHashCard').required = method === 'card';
         }
 
         function showPaymentForm() {
             const paymentForm = document.getElementById('paymentForm');
             paymentForm.style.display = 'block';
             paymentForm.scrollIntoView({ behavior: 'smooth' });
-            togglePaymentDetails(); // Initialize display
+            togglePaymentDetails();
         }
 
         function copyToClipboard() {
-            var text = document.getElementById('copyText').innerText;
-            navigator.clipboard.writeText(text).then(function() {
-                alert(currentLang === 'fa' ? 'آدرس کپی شد!' : 'Address copied!');
-            }, function(err) {
-                console.error('خطا در کپی: ', err);
-            });
+            navigator.clipboard.writeText(document.getElementById('copyText').innerText)
+                .then(() => alert(currentLang === 'fa' ? 'آدرس کپی شد!' : 'Address copied!'));
         }
 
         function copyCardToClipboard() {
-            var text = document.getElementById('copyCardText').innerText;
-            navigator.clipboard.writeText(text).then(function() {
-                alert(currentLang === 'fa' ? 'شماره کارت کپی شد!' : 'Card number copied!');
-            }, function(err) {
-                console.error('خطا در کپی: ', err);
-            });
+            navigator.clipboard.writeText(document.getElementById('copyCardText').innerText)
+                .then(() => alert(currentLang === 'fa' ? 'شماره کارت کپی شد!' : 'Card number copied!'));
         }
 
-        // Update texts based on language
         function updateLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
@@ -828,64 +773,45 @@
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
-            // Update WORKER_URL
             WORKER_URL = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
-            // Update all elements with data-fa and data-en
             document.querySelectorAll('[data-fa]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${lang}`);
             });
 
-            // Update title
-            document.title = translations[lang].title || document.title;
+            document.title = translations[lang].title;
 
-            // Update lang button
-            document.querySelector('.lang-switcher').textContent = lang === 'fa' ? 'EN' : 'FA';
-            document.querySelector('.lang-switcher').onclick = () => toggleLanguage();
+            // تعویض پرچم و متن دکمه
+            document.getElementById('flag-gb').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('flag-ir').style.display = lang === 'fa' ? 'block' : 'none';
+            document.getElementById('lang-text').textContent = lang === 'en' ? 'فارسی' : 'English';
 
-            // Save to localStorage
             localStorage.setItem('lang', lang);
-
-            // Update select options
-            populateProductSelect(); // Repopulate with new lang
-            updateCardDisplay();
-
-            // Re-fetch products and card if lang changed
+            populateProductSelect();
             fetchProductsAndCard();
         }
 
         function toggleLanguage() {
-            const newLang = currentLang === 'fa' ? 'en' : 'fa';
-            updateLanguage(newLang);
+            updateLanguage(currentLang === 'en' ? 'fa' : 'en');
         }
 
-        // Load saved language
-        const savedLang = localStorage.getItem('lang') || 'fa';
+        const savedLang = localStorage.getItem('lang') || 'en';
         updateLanguage(savedLang);
 
-        // Initial fetch
-        fetchProductsAndCard();
-
-        // متن متحرک title
-       let titleText = currentLang === 'fa' ? "فروش اندیکاتور و اکسپرت معاملات اتوماتیک فارکس " : "Selling SuperTrend Indicators and Experts";
-       
- let titleIndex = 0;
+        let titleText = currentLang === 'fa' ? "فروش اندیکاتور و اکسپرت معاملات اتوماتیک فارکس " : "Selling SuperTrend Indicators and Experts";
+        let titleIndex = 0;
         setInterval(() => {
             document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
             titleIndex = (titleIndex + 1) % titleText.length;
         }, 200);
 
-        // هندل submit پرداخت
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             const method = formData.get('paymentMethod');
             const endpoint = method === 'card' ? '/card-process' : '/process';
             try {
-                const response = await fetch(`${WORKER_URL}${endpoint}`, {
-                    method: 'POST',
-                    body: formData
-                });
+                const response = await fetch(`${WORKER_URL}${endpoint}`, { method: 'POST', body: formData });
                 const result = await response.text();
                 document.getElementById('result').innerHTML = result;
             } catch (error) {
@@ -893,125 +819,73 @@
             }
         });
 
-        // **اصلاح: زوم اولیه 2x، زوم بیشتر با wheel و کلیک تک (single click)**
-        let zoomLevel = 1; // **تغییر: زوم اولیه 2x**خودم تغییر دادم
+        let zoomLevel = 1;
         let isDragging = false;
         let startX, startY, translateX = 0, translateY = 0;
         let currentContent = null;
 
-        // تابع جدید برای باز کردن فول‌اسکرین برای تصاویر خاص
         function openFullScreenModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("imgModal");
-            var modalVideo = document.getElementById("videoModal");
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("imgModal");
+            const modalVideo = document.getElementById("videoModal");
             modal.style.display = "block";
             modalImg.src = src;
             modalImg.style.display = "block";
             modalVideo.style.display = "none";
             currentContent = modalImg;
-            initZoom(modalImg); // **تغییر: init با زوم 2x**
+            initZoom(modalImg);
             attachEventListeners(modalImg);
             document.body.style.overflow = 'hidden';
-
-            // ورود به حالت فول‌اسکرین
             enterFullScreen(modal);
         }
 
-        // تابع برای ورود به فول‌اسکرین
         function enterFullScreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) { // Firefox
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
-            }
+            if (element.requestFullscreen) element.requestFullscreen();
+            else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
+            else if (element.msRequestFullscreen) element.msRequestFullscreen();
         }
 
-        // تابع برای خروج از فول‌اسکرین
         function exitFullScreen() {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            else if (document.msExitFullscreen) document.msExitFullscreen();
         }
 
         function openVideoModal(src) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("imgModal");
-            var modalVideo = document.getElementById("videoModal");
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("imgModal");
+            const modalVideo = document.getElementById("videoModal");
             modal.style.display = "block";
             modalVideo.src = src;
             modalVideo.style.display = "block";
             modalImg.style.display = "none";
             modalVideo.play();
             currentContent = modalVideo;
-            initZoom(modalVideo); // **تغییر: init با زوم 2x**
+            initZoom(modalVideo);
             attachEventListeners(modalVideo);
             document.body.style.overflow = 'hidden';
         }
 
         function initZoom(element) {
-            zoomLevel = 1; // **تغییر: زوم اولیه 2xخودم تغییر دادم**
+            zoomLevel = 1;
             translateX = 0;
             translateY = 0;
             updateTransform(element);
         }
 
         function attachEventListeners(element) {
-            // Wheel zoom
-            const handleWheel = (e) => {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                zoomLevel *= delta;
-                zoomLevel = Math.min(Math.max(0.1, zoomLevel), 10);
-                updateTransform(element);
-            };
+            const handleWheel = (e) => { e.preventDefault(); const delta = e.deltaY > 0 ? 0.9 : 1.1; zoomLevel *= delta; zoomLevel = Math.min(Math.max(0.1, zoomLevel), 10); updateTransform(element); };
+            const handleClick = () => { zoomLevel = zoomLevel <= 1 ? 2 : (zoomLevel < 4 ? 4 : 1); updateTransform(element); };
+            const handleMouseDown = (e) => { if (zoomLevel <= 1) return; isDragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY; element.style.cursor = 'grabbing'; };
+            const handleMouseMove = (e) => { if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(element); };
+            const handleMouseUp = () => { isDragging = false; element.style.cursor = 'grab'; };
+
             element.addEventListener('wheel', handleWheel, { passive: false });
-
-            // **تغییر: کلیک تک برای زوم بیشتر (cycle: 2 -> 4 -> 1)**
-            const handleClick = (e) => {
-                e.stopPropagation(); // جلوگیری از بسته شدن مودال
-                if (zoomLevel <= 1) zoomLevel = 2; // خودم یک کردم دو بود
-                else if (zoomLevel < 2) zoomLevel = 2;// خودم تغییر دادمکه زیاد بزرگ نشود
-                else zoomLevel = 1;
-                updateTransform(element);
-            };
             element.addEventListener('click', handleClick);
-
-            // Drag pan
-            const handleMouseDown = (e) => {
-                if (zoomLevel <= 1) return;
-                isDragging = true;
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                element.style.cursor = 'grabbing';
-            };
-
-            const handleMouseMove = (e) => {
-                if (!isDragging) return;
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                updateTransform(element);
-            };
-
-            const handleMouseUp = () => {
-                isDragging = false;
-                element.style.cursor = 'grab';
-            };
-
             element.addEventListener('mousedown', handleMouseDown);
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', handleMouseUp);
 
-            // ذخیره listeners
             element._listeners = { wheel: handleWheel, click: handleClick, mousedown: handleMouseDown, mousemove: handleMouseMove, mouseup: handleMouseUp };
         }
 
@@ -1019,52 +893,47 @@
             element.style.transform = `translate(-50%, -50%) scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
         }
 
-        // تابع بستن modal
         function closeModal() {
-            var modal = document.getElementById("myModal");
-            var modalVideo = document.getElementById("videoModal");
+            const modal = document.getElementById("myModal");
+            const modalVideo = document.getElementById("videoModal");
             modal.style.display = "none";
             modalVideo.pause();
             modalVideo.currentTime = 0;
             document.body.style.overflow = 'auto';
-            exitFullScreen(); // خروج از فول‌اسکرین هنگام بستن
+            exitFullScreen();
             if (currentContent && currentContent._listeners) {
                 currentContent.removeEventListener('wheel', currentContent._listeners.wheel);
                 currentContent.removeEventListener('click', currentContent._listeners.click);
                 document.removeEventListener('mousemove', currentContent._listeners.mousemove);
                 document.removeEventListener('mouseup', currentContent._listeners.mouseup);
-                currentContent.removeEventListener('mousedown', currentContent._listeners.mousedown);
+                currentContent.removeEventListener('mousedown', currentContent._Listeners.mousedown);
                 delete currentContent._listeners;
             }
             currentContent = null;
         }
 
-        // بستن modal با کلیک خارج یا ESC
         window.onclick = function(event) {
-            var modal = document.getElementById('myModal');
-            if (event.target == modal) {
-                closeModal();
-            }
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) closeModal();
         };
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+            if (e.key === 'Escape') closeModal();
         });
 
-        // Toast function
         function showToast(message, type) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.className = `toast ${type} show`;
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
+
+        window.addEventListener('load', () => {
+            fetchProductsAndCard();
+        });
     </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98548301dc301ee0',t:'MTc1ODkwODA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e1fc43dd62cff5',t:'MTc2MDM5MTUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cfeb005b5a86c4',t:'MTc2Mjg4NjQyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d5269743a1f74898a14eb9858a16d753","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d5269743a1f74898a14eb9858a16d753","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
-
