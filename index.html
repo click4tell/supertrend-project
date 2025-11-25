@@ -110,6 +110,20 @@
             border: 1px solid #ddd;
         }
 
+        /* کادر جدید قیمت تتر */
+        .tether-price-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 15px auto;
+            border-radius: 12px;
+            max-width: 500px;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
         form {
             margin: 15px;
             padding: 15px;
@@ -537,6 +551,12 @@
 
     <div class="container">
         <h1 id="productsTitle" data-fa="محصولات ما" data-en="Our Products">Our Products</h1>
+
+        <!-- کادر جدید نمایش قیمت تتر به تومان -->
+        <div class="tether-price-box" id="tetherPriceBox">
+            <span data-fa="در حال بارگذاری قیمت تتر..." data-en="Loading Tether price...">در حال بارگذاری قیمت تتر...</span>
+        </div>
+
         <button onclick="window.open('/info.pdf', '_blank')" data-fa="info SUPERTREND" data-en="info SUPERTREND">info SUPERTREND</button>
         <button onclick="window.open('/ForexFuryPro.pdf', '_blank')" data-fa="info FOREXFURY" data-en="info FOREXFURY">info FOREXFURY</button>
         <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Report FOREXFURY</button>
@@ -655,6 +675,26 @@
         let products = {};
         let cardDetails = {};
 
+        // تابع بروزرسانی قیمت تتر در کادر جدید
+        async function updateTetherPriceDisplay() {
+            try {
+                const res = await fetch(TETHER_PRICE_URL + '?' + Date.now());
+                if (!res.ok) throw new Error('Worker error');
+                const data = await res.json();
+                tetherPriceInToman = data.tether_price_toman || 114000;
+
+                const box = document.getElementById('tetherPriceBox');
+                if (currentLang === 'fa') {
+                    box.innerHTML = `قیمت لحظه‌ای تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
+                } else {
+                    box.innerHTML = `Current Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
+                }
+            } catch (err) {
+                document.getElementById('tetherPriceBox').innerHTML = currentLang === 'fa' ? 
+                    'خطا در دریافت قیمت تتر' : 'Failed to load Tether price';
+            }
+        }
+
         async function updateTetherPrice() {
             try {
                 const res = await fetch(TETHER_PRICE_URL + '?' + Date.now());
@@ -664,6 +704,7 @@
             } catch (err) {
                 console.warn('خطا در دریافت قیمت تتر، از مقدار پیش‌فرض استفاده شد');
             }
+            updateTetherPriceDisplay(); // بروزرسانی کادر نمایش
         }
 
         async function fetchProductsAndCard() {
@@ -806,13 +847,14 @@
 
             localStorage.setItem('lang', lang);
             fetchProductsAndCard();
+            updateTetherPriceDisplay(); // بروزرسانی کادر قیمت هنگام تغییر زبان
         }
 
         function toggleLanguage() {
             updateLanguage(currentLang === 'en' ? 'fa' : 'en');
         }
 
-        setInterval(updateTetherPrice, 30000);
+        setInterval(updateTetherPrice, 60000);
 
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -830,6 +872,7 @@
 
         window.addEventListener('load', () => {
             updateLanguage(currentLang);
+            updateTetherPriceDisplay(); // نمایش اولیه قیمت تتر
         });
     </script>
 
