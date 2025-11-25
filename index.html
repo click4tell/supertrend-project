@@ -542,6 +542,8 @@
         <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Report FOREXFURY</button>
     </div>
 
+    <div class="product" id="productContainer"></div>
+
     <div class="container">
         <button onclick="showPaymentForm()" data-fa="فرم دریافت اطلاعات برای پرداخت و خرید محصول" data-en="Payment and Purchase Form">Payment and Purchase Form</button>
     </div>
@@ -721,9 +723,9 @@
 
                 const price = document.createElement('p');
                 if (currentLang === 'fa') {
-                    price.textContent = `قیمت: \( {prod.usdt} تتر (USDT TRC20) | معادل \){prod.toman.toLocaleString('fa-IR')} تومان`;
+                    price.textContent = `قیمت: ${prod.usdt} تتر (USDT TRC20) | معادل ${prod.toman.toLocaleString('fa-IR')} تومان`;
                 } else {
-                    price.textContent = `Price: \( {prod.usdt} USDT (TRC20) | ≈ \){prod.toman.toLocaleString('en-US')} Toman`;
+                    price.textContent = `Price: ${prod.usdt} USDT (TRC20) | ≈ ${prod.toman.toLocaleString('en-US')} Toman`;
                 }
                 div.appendChild(price);
 
@@ -834,4 +836,3 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
-
