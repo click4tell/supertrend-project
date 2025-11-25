@@ -668,7 +668,7 @@
 
     <script>
         let currentLang = localStorage.getItem('lang') || 'en';
-        let WORKER_URL = currentLang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
+        let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
         let TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
         let tetherPriceInToman = 114000;
 
@@ -734,9 +734,9 @@
             } catch (error) {
                 console.error('Error:', error);
                 products = {
-                    'EA&EM-SuperTrend&Footprint': { name_fa: 'اکسپرت EA&EM-SuperTrend&Footprint', name_en: 'EA&EM-SuperTrend&Footprint', usdt: 15, toman: Math.round(15 * tetherPriceInToman) },
-                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: 200, toman: Math.round(200 * tetherPriceInToman) },
-                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: 500, toman: Math.round(500 * tetherPriceInToman) }
+                    'EA_EM_SuperTrend_Footprint': { name_fa: 'EA&EM-SuperTrend&Footprint', name_en: 'EA&EM-SuperTrend&Footprint', usdt: 30, toman: Math.round(30 * tetherPriceInToman) },
+                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: 100, toman: Math.round(100 * tetherPriceInToman) },
+                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: 229.99, toman: Math.round(229.99 * tetherPriceInToman) }
                 };
                 cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
                 populateProducts();
@@ -834,8 +834,6 @@
             document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
-
-            WORKER_URL = lang === 'fa' ? 'https://supertrend-worker-fa.click4tell.workers.dev' : 'https://supertrend-worker-en.click4tell.workers.dev';
 
             document.querySelectorAll('[data-fa]').forEach(el => {
                 el.textContent = el.getAttribute('data-' + lang) || el.getAttribute('data-' + (lang === 'fa' ? 'en' : 'fa'));
