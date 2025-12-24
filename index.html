@@ -413,24 +413,24 @@
             display: block;
             width: 95%;
             max-width: 95vw;
-            height: 95%;
+            height: auto;
             max-height: 95vh;
             object-fit: contain;
             transition: transform 0.3s ease;
-            transform-origin: center center;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(1);
-            cursor: grab;
+            cursor: zoom-in;
+        }
+
+        .modal-content.zoomed {
+            cursor: zoom-out;
+            transform: translate(-50%, -50%) scale(2);
         }
 
         .modal-content:active {
             cursor: grabbing;
-        }
-
-        .modal-content.zoomed {
-            transform: translate(-50%, -50%) scale(1.5);
         }
 
         .close {
@@ -611,14 +611,13 @@
 
     <h2 data-fa="نمودار عملکرد محصولات در محیط بک تست پلتفرم متاتریدر" data-en="Product Performance Charts in MT5 Backtest">Product Performance Charts in MT5 Backtest</h2>
 
-    <!-- بقیه HTML بدون تغییر -->
     <div class="images-container">
         <div>
-            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openFullScreenModal('/profit_graph.png')" style="cursor: zoom-in;">
+            <img src="/profit_graph.png" alt="Profit Graph" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
             <p class="caption" data-fa=" بک‌تست اکسپرت فارکس فیوری با سه میلیون دلار سود از 100 دلار " data-en="forex Fury Expert Backtests 100$ to 3.000.000$ ">forex Fury Expert Backtests 100$ to 3.000.000$</p>
         </div>
         <div>
-            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openFullScreenModal('/indicator_chart.png')" style="cursor: zoom-in;">
+            <img src="/indicator_chart.png" alt="Indicator Chart" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
             <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Doshboard for Trade Manual & Automatic in Chart">Doshboard for Trade Manual & Automatic in Chart</p>
         </div>
     </div>
@@ -627,15 +626,15 @@
         <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">Product Video Demos</h2>
         <div class="videos-container">
             <div>
-                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop onclick="openVideoModal('/ForexFuryPro.webm')" style="cursor: zoom-in;"></video>
+                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa=" اکسپرت معاملات اتوماتیک فارکس فیوری پرو " data-en="Forex Fury Pro Expert">Forex Fury Pro Expert</p>
             </div>
             <div>
-                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop onclick="openVideoModal('/supertrend.webm')" style="cursor: zoom-in;"></video>
+                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robot) SuperTrend Auto Trade">Expert (Robot) SuperTrend Auto Trade</p>
             </div>
             <div>
-                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop onclick="openVideoModal('/EA&EM-SuperTrend&Footprint.webm')" style="cursor: zoom-in;"></video>
+                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت اتوماتیک و دستی  " data-en="EA&EM-PRO">EA&EM-PRO</p>
             </div>
         </div>
@@ -854,6 +853,52 @@
         function toggleLanguage() {
             updateLanguage(currentLang === 'en' ? 'fa' : 'en');
         }
+
+        // توابع مودال اصلاح شده برای زوم با کلیک
+        function openFullScreenModal(src, type) {
+            const modal = document.getElementById('myModal');
+            const img = document.getElementById('imgModal');
+            const video = document.getElementById('videoModal');
+
+            if (type === 'image') {
+                img.src = src;
+                img.style.display = 'block';
+                video.style.display = 'none';
+                video.pause();
+            } else if (type === 'video') {
+                video.src = src;
+                video.style.display = 'block';
+                img.style.display = 'none';
+            }
+
+            modal.style.display = 'block';
+
+            // زوم با کلیک روی محتوا
+            const content = type === 'image' ? img : video;
+            content.onclick = function(e) {
+                e.stopPropagation(); // جلوگیری از بسته شدن مودال
+                content.classList.toggle('zoomed');
+            };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            const img = document.getElementById('imgModal');
+            const video = document.getElementById('videoModal');
+
+            modal.style.display = 'none';
+            img.src = '';
+            video.src = '';
+            video.pause();
+            document.querySelectorAll('.modal-content').forEach(el => el.classList.remove('zoomed'));
+        }
+
+        // بستن مودال با کلیک روی پس‌زمینه
+        document.getElementById('myModal').onclick = function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        };
 
         setInterval(updateTetherPrice, 60000);
 
