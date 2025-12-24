@@ -673,16 +673,15 @@
         let currentLang = localStorage.getItem('lang') || 'en';
         let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
         let TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
-        let tetherPriceInToman = 0; // مقدار اولیه
+        let tetherPriceInToman = 0;
 
         let products = {};
         let cardDetails = {};
 
-        // تابع بروزرسانی قیمت تتر در کادر جدید
         async function fetchTetherPrice() {
             try {
-                const res = await fetch(TETHER_PRICE_URL + '?' + Date.now());
-                if (!res.ok) throw new Error('Worker error');
+                const res = await fetch(TETHER_PRICE_URL + '?t=' + Date.now());
+                if (!res.ok) throw new Error('Network error');
                 const data = await res.json();
                 tetherPriceInToman = data.tether_price_toman || 0;
 
@@ -693,8 +692,9 @@
                     box.innerHTML = `Current Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
                 }
             } catch (err) {
-                document.getElementById('tetherPriceBox').innerHTML = currentLang === 'fa' ? 
-                    'خطا در دریافت قیمت تتر' : 'Failed to load Tether price';
+                console.error('Error loading Tether price:', err);
+                const box = document.getElementById('tetherPriceBox');
+                box.innerHTML = currentLang === 'fa' ? 'خطا در بارگذاری قیمت تتر' : 'Failed to load Tether price';
             }
         }
 
@@ -836,14 +836,13 @@
 
             localStorage.setItem('lang', lang);
             fetchProductsAndCard();
-            fetchTetherPrice(); // بروزرسانی کادر قیمت هنگام تغییر زبان
+            fetchTetherPrice();
         }
 
         function toggleLanguage() {
             updateLanguage(currentLang === 'en' ? 'fa' : 'en');
         }
 
-        // توابع مودال اصلاح شده برای زوم با کلیک
         function openFullScreenModal(src, type) {
             const modal = document.getElementById('myModal');
             const img = document.getElementById('imgModal');
@@ -862,10 +861,9 @@
 
             modal.style.display = 'block';
 
-            // زوم با کلیک روی محتوا
             const content = type === 'image' ? img : video;
             content.onclick = function(e) {
-                e.stopPropagation(); // جلوگیری از بسته شدن مودال
+                e.stopPropagation();
                 content.classList.toggle('zoomed');
             };
         }
@@ -882,7 +880,6 @@
             document.querySelectorAll('.modal-content').forEach(el => el.classList.remove('zoomed'));
         }
 
-        // بستن مودال با کلیک روی پس‌زمینه
         document.getElementById('myModal').onclick = function(e) {
             if (e.target === this) {
                 closeModal();
@@ -907,7 +904,7 @@
 
         window.addEventListener('load', () => {
             updateLanguage(currentLang);
-            fetchTetherPrice(); // نمایش اولیه قیمت تتر
+            fetchTetherPrice();
         });
     </script>
 
