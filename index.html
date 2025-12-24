@@ -673,7 +673,7 @@
         let currentLang = localStorage.getItem('lang') || 'en';
         let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
         let TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
-        let tetherPriceInToman = 1;
+        let tetherPriceInToman = 114000;
 
         let products = {};
         let cardDetails = {};
@@ -684,7 +684,7 @@
                 const res = await fetch(TETHER_PRICE_URL + '?' + Date.now());
                 if (!res.ok) throw new Error('Worker error');
                 const data = await res.json();
-                tetherPriceInToman = data.tether_price_toman ;
+                tetherPriceInToman = data.tether_price_toman || 114000;
 
                 const box = document.getElementById('tetherPriceBox');
                 if (currentLang === 'fa') {
@@ -703,7 +703,7 @@
                 const res = await fetch(TETHER_PRICE_URL + '?' + Date.now());
                 if (!res.ok) throw new Error('Worker error');
                 const data = await res.json();
-                tetherPriceInToman = data.tether_price_toman;
+                tetherPriceInToman = data.tether_price_toman || 114000;
             } catch (err) {
                 console.warn('خطا در دریافت قیمت تتر، از مقدار پیش‌فرض استفاده شد');
             }
