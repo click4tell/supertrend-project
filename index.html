@@ -725,9 +725,9 @@
             } catch (error) {
                 console.error('Error:', error);
                 products = {
-                    'EA&EM-PRO': { name_fa: 'EA&EM-PRO', name_en: 'EA&EM-PRO', usdt: 10000, toman: Math.round(10000 * tetherPriceInToman) },
-                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: 12000, toman: Math.round(12000 * tetherPriceInToman) },
-                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: 14000, toman: Math.round(14000 * tetherPriceInToman) }
+                    'EA&EM-PRO': { name_fa: 'EA&EM-PRO', name_en: 'EA&EM-PRO', usdt: EA_EM_PRO_PRICE, toman: Math.round(EA_EM_PRO_PRICE * tetherPriceInToman) },
+                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: FOREX_FURY_EA_PRICE, toman: Math.round(FOREX_FURY_EA_PRICE * tetherPriceInToman) },
+                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: SUPER_TREND_EA_PRICE, toman: Math.round(SUPER_TREND_EA_PRICE * tetherPriceInToman) }
                 };
                 cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
                 populateProducts();
@@ -911,3 +911,4 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
+
