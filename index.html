@@ -561,7 +561,9 @@
         <button onclick="window.open('/ForexFuryPro.pdf', '_blank')" data-fa="info FOREXFURY" data-en="info FOREXFURY">info FOREXFURY</button>
         <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="Riport FOREXFURY" data-en="Report FOREXFURY">Report FOREXFURY</button>
          <button onclick="window.open('/EA&EM-SuperTrend&Footprint_info.pdf', '_blank')" data-fa="تحلیل EA&EM-SuperTrend&Footprint" data-en="info EA&EM-SuperTrend&Footprint">info EA&EM-SuperTrend&Footprint</button>
-    </div>
+         <button onclick="window.open('/GoldApex_WF.html', '_blank')" data-fa="تحلیل GoldApex_WF" data-en="info GoldApex_WF">info GoldApex_WF</button>
+         
+        </div>
 
 
 
@@ -638,6 +640,10 @@
                 <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت اتوماتیک و دستی  " data-en="EA&EM-PRO">EA&EM-PRO</p>
             </div>
+            <div>
+                <video src="/GoldApex_WF.gif" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
+                <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اکلد آپکس" data-en="Expert (Robot) GoldApex_WF">Expert (Robot) GoldApex_WF</p>
+            </div>
         </div>
     </div>
 
@@ -646,6 +652,7 @@
        <a href="/EA&EM-PRO.ex5" download class="download-button" data-fa="ربات معاملات دستی و اتوماتیک " data-en="EA&EM-PRO">EA&EM-PRO</a>
         <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="ربات سوپرترند" data-en="Expert Super Trend">Expert Super Trend</a>
         <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="ربات فارکس فیوری" data-en="Expert Forex Fury">Expert Forex Fury</a>
+        <a href="/GoldApex_WF.zip" download class="download-button" data-fa="ربات گلد آپکس" data-en="Expert GoldApex_WF">Expert GoldApex_WF</a>
     </div>
     <div class="container">
         <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">Enter Telegram Link for Purchase</button>
@@ -725,9 +732,10 @@
             } catch (error) {
                 console.error('Error:', error);
                 products = {
-                    'EA&EM-PRO': { name_fa: 'EA&EM-PRO', name_en: 'EA&EM-PRO', usdt: 100, toman: Math.round(100 * tetherPriceInToman) },
-                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: 120, toman: Math.round(120 * tetherPriceInToman) },
-                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: 140, toman: Math.round(140 * tetherPriceInToman) }
+                    'EA&EM-PRO': { name_fa: 'EA&EM-PRO', name_en: 'EA&EM-PRO', usdt: 10, toman: Math.round(10 * tetherPriceInToman) },
+                    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA', name_en: 'SuperTrend EA Expert', usdt: 10, toman: Math.round(10 * tetherPriceInToman) },
+                    'EA_ForexFury': { name_fa: 'اکسپرت ForexFury EA', name_en: 'ForexFury EA Expert', usdt: 10, toman: Math.round(10 * tetherPriceInToman) }
+                    'GoldApex_WF': { name_fa: 'اکسپرت گلد آپکس', name_en: 'GoldApex_WF Expert', usdt: 10, toman: Math.round(10 * tetherPriceInToman) }
                 };
                 cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
                 populateProducts();
