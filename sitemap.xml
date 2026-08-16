@@ -22,12 +22,11 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- ⬇️ هر مقاله جدید بلاگ را اینجا اضافه کنید (کامنت را بردارید) ⬇️
+  <!-- مقاله: ربات فارکس چیست -->
   <url>
     <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  -->
 
 </urlset>
