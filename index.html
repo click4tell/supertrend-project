@@ -217,73 +217,113 @@
             width: fit-content;
         }
 
-        footer {
-            background-color: #f9fafb;
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid #e5e7eb;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #374151;
-            margin-top: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
+       footer {
+    background-color: #f9fafb;
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #374151;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            white-space: nowrap;
-        }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;   /* باکس سلب مسئولیت بالا، کپی‌رایت پایین */
+    align-items: center;
+    justify-content: center;
+    white-space: normal;      /* اجازه شکستن خط به متن بلند */
+}
 
-        footer p {
-            margin: 0;
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: nowrap;
-        }
+/* خط کپی‌رایت — فقط این یک‌خطی و افقی بماند */
+.copyright {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
 
-        footer a {
-            color: #1d4ed8;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+footer a {
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
 
-        footer a:hover {
-            color: #1e40af;
-            text-decoration: underline;
-        }
+footer a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
 
-        .separator {
-            margin: 0 10px;
-            color: #9ca3af;
-        }
+.separator {
+    margin: 0 10px;
+    color: #9ca3af;
+}
 
-        @media (max-width: 600px) {
-            footer {
-                font-size: 12px;
-                padding: 10px 15px;
-            }
+/* ═══ باکس سلب مسئولیت ═══ */
+.disclaimer-box {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #f3f4f6;
+    padding: 14px 20px;
+    margin-bottom: 14px;
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-            .footer-container {
-                flex-wrap: nowrap;
-            }
+.disclaimer-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+    margin: 0 0 8px 0;
+}
 
-            .separator {
-                margin: 0 5px;
-            }
-        }
+.disclaimer {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 2;
+    text-align: center;
+    margin: 0;
+    display: block;           /* مهم: برخلاف قانون عمومی footer p */
+    white-space: normal;      /* مهم: اجازه شکستن خط */
+}
 
-        @media (min-width: 768px) {
-            header {
-                height: 300px;
-                padding-top: 120px;
-            }
+/* حالت فارسی: راست‌چین */
+html[lang="fa"] .disclaimer { direction: rtl; text-align: right; }
+html[lang="fa"] .copyright  { direction: rtl; }
+
+@media (max-width: 600px) {
+    footer {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+
+    .footer-container {
+        flex-wrap: nowrap;
+    }
+
+    .separator {
+        margin: 0 5px;
+    }
+
+    .disclaimer-box {
+        padding: 10px 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        height: 300px;
+        padding-top: 120px;
+    }
+}
 
             header h1 {
                 font-size: 2.5em;
