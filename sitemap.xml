@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- صفحه اصلی -->
+  <url>
+    <loc>https://mql5expert.ir/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- صفحه تماس -->
+  <url>
+    <loc>https://mql5expert.ir/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- صفحه تحلیل GoldApex -->
+  <url>
+    <loc>https://mql5expert.ir/GoldApex_WF.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ⬇️ هر مقاله جدید بلاگ را اینجا اضافه کنید (کامنت را بردارید) ⬇️
+  <url>
+    <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  -->
+
+</urlset>

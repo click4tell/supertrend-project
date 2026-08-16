@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  blog-article-template.html — قالب مقاله بلاگ بهینه‌شده برای سئو
+  ═══════════════════════════════════════════════════════════════════
+  نحوه استفاده:
+  1. این فایل را در پوشه blog/ ریپوی گیتهاب کپی کنید (مثلاً blog/what-is-forex-robot.html)
+  2. عنوان، توضیحات، canonical و متن مقاله را عوض کنید
+  3. محتوای مقاله را بنویسید (حداقل 500 تا 800 کلمه)
+  4. لینک مقاله را به sitemap.xml اضافه کنید
+  ═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ═══ این ۳ خط را برای هر مقاله عوض کنید ═══ -->
+    <title>ربات فارکس چیست؟ راهنمای کامل اکسپرت در متاتریدر 5 | MQL5 Expert</title>
+    <meta name="description" content="ربات فارکس چیست؟ در این مقاله کامل یاد می‌گیرید اکسپرت (Expert Advisor) چطور کار می‌کند، چه فرقی با اندیکاتور دارد و چطور آن را در متاتریدر 5 نصب و فعال کنید.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/what-is-forex-robot.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ربات فارکس چیست؟ راهنمای کامل اکسپرت در متاتریدر 5">
+    <meta property="og:description" content="راهنمای کامل ربات فارکس (اکسپرت): طرز کار، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/what-is-forex-robot.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+
+    <!-- Structured Data: مقاله -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "ربات فارکس چیست؟ راهنمای کامل اکسپرت در متاتریدر 5",
+      "description": "راهنمای کامل ربات فارکس: طرز کار اکسپرت، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5",
+      "inLanguage": "fa-IR",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/what-is-forex-robot.html"
+    }
+    </script>
+
+    <!-- Structured Data: مسیر صفحه (Breadcrumb) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "ربات فارکس چیست؟", "item": "https://mql5expert.ir/blog/what-is-forex-robot.html" }
+      ]
+    }
+    </script>
+
+    <style>
+        body { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; direction: rtl; text-align: right; line-height: 2; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; direction: ltr; display: inline-block; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-right: 25px; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ لینک به صفحه اصلی (برای سئو مهم است) ═══ -->
+    <p><a href="/">← بازگشت به صفحه اصلی</a></p>
+
+    <article>
+
+        <h1>ربات فارکس چیست؟ راهنمای کامل اکسپرت در متاتریدر 5</h1>
+        <p class="meta">تاریخ انتشار: ۱۶ مرداد ۱۴۰۵ | دسته‌بندی: آموزش</p>
+
+        <p>اگر در بازار فارکس فعالیت می‌کنید، حتماً اصطلاح <strong>ربات فارکس</strong> یا <strong>اکسپرت (Expert Advisor)</strong> را شنیده‌اید. در این مقاله به زبان ساده توضیح می‌دهیم ربات فارکس چیست، چطور کار می‌کند و چه فرقی با اندیکاتور دارد.</p>
+
+        <h2>ربات فارکس (اکسپرت) چیست؟</h2>
+        <p>ربات فارکس یک برنامه معاملاتی است که روی پلتفرم <a href="/">متاتریدر 5 (MT5)</a> نصب می‌شود و بر اساس استراتژی از پیش تعریف‌شده، به‌صورت خودکار سفارش‌های خرید و فروش را باز و بسته می‌کند. به این برنامه‌ها Expert Advisor یا به اختصار EA گفته می‌شود.</p>
+        <p>مزیت اصلی ربات فارکس این است که بدون احساسات معامله می‌کند، ۲۴ ساعته فعال است و سرعت اجرای آن بسیار بالاست. برای همین بسیاری از معامله‌گران از <a href="/">ربات معاملاتی فارکس</a> برای اجرای استراتژی خود استفاده می‌کنند.</p>
+
+        <h2>تفاوت اکسپرت و اندیکاتور</h2>
+        <p>بسیاری از افراد این دو را با هم اشتباه می‌گیرند:</p>
+        <ul>
+            <li><strong>اندیکاتور</strong> فقط اطلاعات و سیگنال را روی چارت نمایش می‌دهد و خودش معامله نمی‌کند.</li>
+            <li><strong>اکسپرت (ربات)</strong> می‌تواند به‌صورت خودکار و بدون دخالت کاربر، سفارش باز کند، حد ضرر و حد سود بگذارد و موقعیت را ببندد.</li>
+        </ul>
+
+        <h2>مراحل نصب اکسپرت در متاتریدر 5</h2>
+        <ol>
+            <li>فایل <code>.ex5</code> را در پوشه <code>MQL5\Experts</code> کپی کنید.</li>
+            <li>در متاتریدر روی <code>Navigator</code> کلیک راست کرده و <code>Refresh</code> بزنید.</li>
+            <li>اکسپرت را روی چارت بکشید و تنظیمات را تأیید کنید.</li>
+            <li>دکمه <code>AutoTrading</code> را در نوار ابزار فعال کنید.</li>
+        </ol>
+
+        <h2>سوالات متداول</h2>
+
+        <h3>آیا ربات فارکس سود تضمینی دارد؟</h3>
+        <p>خیر. هیچ ربات یا اکسپرتی سود تضمینی ندارد. بازار فارکس ریسک دارد و مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+
+        <h3>بهترین ربات فارکس کدام است؟</h3>
+        <p>ربات مناسب به استراتژی و سبک معاملاتی شما بستگی دارد. ربات‌های سوپرترند برای دنبال‌کردن روند، فارکس فیوری برای معاملات خودکار و گلد آپکس برای بازار طلا (XAUUSD) طراحی شده‌اند.</p>
+
+        <!-- ═══ باکس معرفی محصولات (لینک داخلی به صفحه اصلی) ═══ -->
+        <div class="cta">
+            <p>برای خرید ربات معاملاتی آماده (سوپرترند، فارکس فیوری، گلد آپکس) به <a href="/">صفحه اصلی سایت</a> مراجعه کنید.</p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+</body>
+</html>
