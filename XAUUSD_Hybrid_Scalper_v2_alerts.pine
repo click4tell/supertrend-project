@@ -1,0 +1,259 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Kamran_monkaresi — original author
+// Modified & published by: Kamran_monkaresi
+// Modifications: sound alerts (alert) for all entries/exits, colored triangle markers,
+// short horizontal event lines, configurable SL/TP line width, fixed-lot default sizing,
+// simple text labels without box on the short lines: SL/TP, long/short, EXL/EXS.
+//@version=6
+
+// ===================== INPUTS =====================
+grpStrategy = "1. Strategy"
+enableSMASys = input.bool(true, "Enable SMA Crossover System", group=grpStrategy)
+enableHybrid = input.bool(true, "Enable Hybrid Scalper System", group=grpStrategy)
+
+grpSMA = "2. SMA Crossover System"
+smaFastLen = input.int(14, "SMA Fast Length", group=grpSMA, minval=1)
+smaSlowLen = input.int(28, "SMA Slow Length", group=grpSMA, minval=1)
+
+grpEMA = "3. Trend Filter (EMA)"
+emaFastLen = input.int(20, "EMA Fast Length", group=grpEMA, minval=1)
+emaSlowLen = input.int(50, "EMA Slow Length", group=grpEMA, minval=1)
+
+grpRSI = "4. RSI Filter"
+rsiLen   = input.int(14, "RSI Length", group=grpRSI, minval=1)
+rsiLevel = input.int(50, "RSI Crossover Level", group=grpRSI, minval=1, maxval=99)
+
+grpATR = "5. Candles & ATR"
+atrLen       = input.int(14, "ATR Length", group=grpATR, minval=1)
+slAtrMult    = input.float(1.5, "Stop Loss (x ATR)", group=grpATR, minval=0.1, step=0.1)
+tpAtrMult    = input.float(2.0, "Take Profit (x ATR)", group=grpATR, minval=0.1, step=0.1)
+candleStrLen = input.int(20, "Candle Strength SMA Length", group=grpATR, minval=1)
+slTpWidth    = input.int(2, "SL/TP Line Width", group=grpATR, minval=1, maxval=5)
+slTpLineLen  = input.int(10, "SL/TP Line Length (bars)", group=grpATR, minval=1, maxval=200, step=1)
+
+grpSession = "6. Session Filter"
+sessionInput = input.session("0800-1700", "Session (HHMM-HHMM)", group=grpSession)
+sessionTZ    = input.string("GMT+0", "Session Timezone", group=grpSession)
+
+grpColors = "7. Colors"
+colEmaFast = input.color(color.green, "EMA Fast", group=grpColors)
+colEmaSlow = input.color(color.red, "EMA Slow", group=grpColors)
+colBuy     = input.color(color.lime, "Buy Signal", group=grpColors)
+colSell    = input.color(color.red, "Sell Signal", group=grpColors)
+colSL      = input.color(color.orange, "Stop Loss Line", group=grpColors)
+colTP      = input.color(color.aqua, "Take Profit Line", group=grpColors)
+
+grpLines = "8. Chart Display (Lines & Markers)"
+colSmaLongLine   = input.color(color.blue,    "SMA Long Entry",    group=grpLines)
+colSmaShortLine  = input.color(color.orange,  "SMA Short Entry",   group=grpLines)
+colHybBuyLine    = input.color(color.green,   "Hybrid Buy Entry",  group=grpLines)
+colHybSellLine   = input.color(color.red,     "Hybrid Sell Entry", group=grpLines)
+colLongExitLine  = input.color(color.fuchsia, "Long Exit",         group=grpLines)
+colShortExitLine = input.color(color.purple,  "Short Exit",        group=grpLines)
+lineWidth        = input.int(1, "Alert Line Width", group=grpLines, minval=1, maxval=5)
+lineLength       = input.int(5, "Alert Line Length (bars)", group=grpLines, minval=1, maxval=200, step=1)
+showLines        = input.bool(true, "Show Alert Lines", group=grpLines)
+deletePrev       = input.bool(true, "Delete Previous Lines (Keep Only Latest)", group=grpLines)
+showLabels       = input.bool(true, "Show Text Labels (long/short/EXL/EXS)", group=grpLines)
+showTriangles    = input.bool(true, "Show Triangle Markers", group=grpLines)
+
+// ===================== STRATEGY =====================
+// حجم معامله از Properties (Settings) قابل تغییر است: Fixed lots = 0.10
+// این پیش‌فرض روی طلا (۱ لات = ۱۰۰ اونس) به‌وضوح در تستر معامله ثبت می‌کند.
+strategy("XAUUSD Hybrid Scalper v2",
+     overlay=true,
+     initial_capital=10000,        // سرمایه اولیه (ثابت)
+     commission_type=strategy.commission.percent,
+     commission_value=0.02,        // کارمزد ٪ (ثابت)
+     default_qty_type=strategy.fixed,
+     default_qty_value=0.10,       // حجم معامله: ۰.۱۰ لات (در Properties قابل تغییر)
+     pyramiding=0,                 // حداکثر ورود همزمان (ثابت)
+     fill_orders_on_standard_ohlc=true)
+
+// ===================== CALCULATIONS =====================
+smaFast = ta.sma(close, smaFastLen)
+smaSlow = ta.sma(close, smaSlowLen)
+
+ema20 = ta.ema(close, emaFastLen)
+ema50 = ta.ema(close, emaSlowLen)
+rsi = ta.rsi(close, rsiLen)
+atr = ta.atr(atrLen)
+
+avgCandleRange = ta.sma(close - open, candleStrLen)
+candleStrongUp   = close > open and (close - open) > avgCandleRange
+candleStrongDown = close < open and (open - close) > avgCandleRange
+
+sessionFilter = not na(time(timeframe.period, sessionInput, sessionTZ))
+
+rsiCrossUp   = ta.crossover(rsi, rsiLevel)
+rsiCrossDown = ta.crossunder(rsi, rsiLevel)
+
+// ===================== ENTRY SIGNALS =====================
+longCondition  = ta.crossover(smaFast, smaSlow)
+shortCondition = ta.crossunder(smaFast, smaSlow)
+
+if enableSMASys and longCondition
+    strategy.entry("Long", strategy.long)
+
+if enableSMASys and shortCondition
+    strategy.entry("Short", strategy.short)
+
+longCond  = ema20 > ema50 and rsiCrossUp and candleStrongUp and sessionFilter
+shortCond = ema20 < ema50 and rsiCrossDown and candleStrongDown and sessionFilter
+
+if enableHybrid and longCond
+    strategy.entry("Buy", strategy.long)
+if enableHybrid and shortCond
+    strategy.entry("Sell", strategy.short)
+
+// ===================== SL / TP =====================
+var float entryPrice = na
+if strategy.position_size != 0
+    entryPrice := strategy.position_avg_price
+else
+    entryPrice := na
+
+sl_long  = entryPrice - slAtrMult * atr
+tp_long  = entryPrice + tpAtrMult * atr
+sl_short = entryPrice + slAtrMult * atr
+tp_short = entryPrice - tpAtrMult * atr
+
+if strategy.position_size > 0
+    strategy.exit("XL", stop=sl_long, limit=tp_long)
+if strategy.position_size < 0
+    strategy.exit("XS", stop=sl_short, limit=tp_short)
+
+// — خط‌های کوتاه افقی SL/TP + برچسب‌های سادهٔ SL / TP روی آن‌ها
+var line lineSL = na
+var line lineTP = na
+var label lblSL = na
+var label lblTP = na
+
+if strategy.position_size > 0
+    if not na(lineSL)
+        line.delete(lineSL)
+    if not na(lineTP)
+        line.delete(lineTP)
+    if not na(lblSL)
+        label.delete(lblSL)
+    if not na(lblTP)
+        label.delete(lblTP)
+    lineSL := line.new(bar_index, sl_long, bar_index + slTpLineLen, sl_long, color=colSL, width=slTpWidth)
+    lineTP := line.new(bar_index, tp_long, bar_index + slTpLineLen, tp_long, color=colTP, width=slTpWidth)
+    lblSL := label.new(bar_index + slTpLineLen, sl_long, "SL", style=label.style_none, color=color.new(color.black, 100), textcolor=colSL, size=size.small)
+    lblTP := label.new(bar_index + slTpLineLen, tp_long, "TP", style=label.style_none, color=color.new(color.black, 100), textcolor=colTP, size=size.small)
+else if strategy.position_size < 0
+    if not na(lineSL)
+        line.delete(lineSL)
+    if not na(lineTP)
+        line.delete(lineTP)
+    if not na(lblSL)
+        label.delete(lblSL)
+    if not na(lblTP)
+        label.delete(lblTP)
+    lineSL := line.new(bar_index, sl_short, bar_index + slTpLineLen, sl_short, color=colSL, width=slTpWidth)
+    lineTP := line.new(bar_index, tp_short, bar_index + slTpLineLen, tp_short, color=colTP, width=slTpWidth)
+    lblSL := label.new(bar_index + slTpLineLen, sl_short, "SL", style=label.style_none, color=color.new(color.black, 100), textcolor=colSL, size=size.small)
+    lblTP := label.new(bar_index + slTpLineLen, tp_short, "TP", style=label.style_none, color=color.new(color.black, 100), textcolor=colTP, size=size.small)
+else
+    if not na(lineSL)
+        line.delete(lineSL)
+        lineSL := na
+    if not na(lineTP)
+        line.delete(lineTP)
+        lineTP := na
+    if not na(lblSL)
+        label.delete(lblSL)
+        lblSL := na
+    if not na(lblTP)
+        label.delete(lblTP)
+        lblTP := na
+
+// ===================== EVENTS (Alerts + Lines) =====================
+// — رویدادهای ورود (هر دو سیستم)
+smaLongAlert  = enableSMASys and longCondition
+smaShortAlert = enableSMASys and shortCondition
+hybBuyAlert   = enableHybrid and longCond
+hybSellAlert  = enableHybrid and shortCond
+
+// — رویدادهای خروج (پوزیشن بسته شد یا جهت آن برعکس شد)
+longClosed  = strategy.position_size[1] > 0 and strategy.position_size <= 0
+shortClosed = strategy.position_size[1] < 0 and strategy.position_size >= 0
+
+// — هشدار صوتی (alert)
+sym = syminfo.tickerid
+
+if smaLongAlert
+    alert(sym + " | SMA | LONG ENTRY @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+if smaShortAlert
+    alert(sym + " | SMA | SHORT ENTRY @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+if hybBuyAlert
+    alert(sym + " | HYBRID | BUY ENTRY @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+if hybSellAlert
+    alert(sym + " | HYBRID | SELL ENTRY @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+if longClosed
+    alert(sym + " | EXIT LONG (Closed) @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+if shortClosed
+    alert(sym + " | EXIT SHORT (Closed) @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar)
+
+// — برچسب‌های سادهٔ ورود (بدون باکس، روی خط کوتاه): long / short
+if showLabels and (smaLongAlert or hybBuyAlert)
+    label.new(bar_index + lineLength, close, "long", style=label.style_none, color=color.new(color.black, 100), textcolor=color.green, size=size.small)
+if showLabels and (smaShortAlert or hybSellAlert)
+    label.new(bar_index + lineLength, close, "short", style=label.style_none, color=color.new(color.black, 100), textcolor=color.red, size=size.small)
+
+// — برچسب‌های سادهٔ خروج (بدون باکس، روی خط کوتاه): EXL / EXS
+if showLabels and longClosed
+    label.new(bar_index + lineLength, close, "EXL", style=label.style_none, color=color.new(color.black, 100), textcolor=colLongExitLine, size=size.small)
+if showLabels and shortClosed
+    label.new(bar_index + lineLength, close, "EXS", style=label.style_none, color=color.new(color.black, 100), textcolor=colShortExitLine, size=size.small)
+
+// — خط افقی کوتاه رنگی: از نقطهٔ رویداد (قیمت بسته‌شدن کندل) به سمت راست
+var line lineSmaLong   = na
+var line lineSmaShort  = na
+var line lineHybBuy    = na
+var line lineHybSell   = na
+var line lineLongExit  = na
+var line lineShortExit = na
+
+if showLines and smaLongAlert
+    if deletePrev and not na(lineSmaLong)
+        line.delete(lineSmaLong)
+    lineSmaLong := line.new(bar_index, close, bar_index + lineLength, close, color=colSmaLongLine, width=lineWidth)
+
+if showLines and smaShortAlert
+    if deletePrev and not na(lineSmaShort)
+        line.delete(lineSmaShort)
+    lineSmaShort := line.new(bar_index, close, bar_index + lineLength, close, color=colSmaShortLine, width=lineWidth)
+
+if showLines and hybBuyAlert
+    if deletePrev and not na(lineHybBuy)
+        line.delete(lineHybBuy)
+    lineHybBuy := line.new(bar_index, close, bar_index + lineLength, close, color=colHybBuyLine, width=lineWidth)
+
+if showLines and hybSellAlert
+    if deletePrev and not na(lineHybSell)
+        line.delete(lineHybSell)
+    lineHybSell := line.new(bar_index, close, bar_index + lineLength, close, color=colHybSellLine, width=lineWidth)
+
+if showLines and longClosed
+    if deletePrev and not na(lineLongExit)
+        line.delete(lineLongExit)
+    lineLongExit := line.new(bar_index, close, bar_index + lineLength, close, color=colLongExitLine, width=lineWidth)
+
+if showLines and shortClosed
+    if deletePrev and not na(lineShortExit)
+        line.delete(lineShortExit)
+    lineShortExit := line.new(bar_index, close, bar_index + lineLength, close, color=colShortExitLine, width=lineWidth)
+
+// ===================== PLOTS =====================
+plot(ema20, "EMA Fast", color=colEmaFast)
+plot(ema50, "EMA Slow", color=colEmaSlow)
+
+// — مثلث‌های رنگی برای مشخص‌کردن نقطهٔ هر ۶ رویداد (با کلید Show Triangles قابل خاموش‌شدن)
+plotshape(showTriangles and smaLongAlert,  "SMA Long Entry",  shape.triangleup,   location.belowbar, color=colSmaLongLine,  size=size.small)
+plotshape(showTriangles and smaShortAlert, "SMA Short Entry", shape.triangledown, location.abovebar, color=colSmaShortLine, size=size.small)
+plotshape(showTriangles and hybBuyAlert,   "Hybrid Buy Entry",  shape.triangleup,   location.belowbar, color=colHybBuyLine,  size=size.small)
+plotshape(showTriangles and hybSellAlert,  "Hybrid Sell Entry", shape.triangledown, location.abovebar, color=colHybSellLine, size=size.small)
+plotshape(showTriangles and longClosed,    "Long Exit",  shape.triangleup,   location.belowbar, color=colLongExitLine,  size=size.small)
+plotshape(showTriangles and shortClosed,   "Short Exit", shape.triangledown, location.abovebar, color=colShortExitLine, size=size.small)
