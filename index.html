@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--
   ═══════════════════════════════════════════════════════════════════
-  index.html — نسخه کامل و بهینه‌شده برای سئو + منوی بالای سایت
+  index.html — نسخه کامل و بهینه‌شده برای سئو + منوی کشویی
   ═══════════════════════════════════════════════════════════════════
-  منو: خانه | مقالات، آموزش‌ها و گزارش‌ها | دانلودها | تلگرام | تماس با ما
-  - بخش دانلود و کادرهای تلگرام/تماس از بدنه حذف شدند (در منو هستند)
+  منو: خانه | مقالات، آموزش‌ها و گزارش‌ها (کشویی) | دانلودها (کشویی) | تلگرام | تماس با ما
+  - فایل‌های دانلود در پوشه /downloads/ و گزارش‌ها در /docs/ هستند
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fa" dir="rtl">
@@ -207,6 +207,63 @@
         }
         .main-nav a.nav-cta:hover {
             background: #1e40af;
+        }
+
+        /* ═══ منوی کشویی ═══ */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown > a::after {
+            content: " ▾";
+            font-size: 10px;
+            color: inherit;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            min-width: 250px;
+            z-index: 1000;
+            padding: 8px;
+            text-align: right;
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+        .main-nav .dropdown-content a {
+            display: block;
+            margin: 0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: transparent;
+            color: #374151;
+            font-size: 13px;
+            white-space: nowrap;
+            text-align: right;
+            line-height: 1.6;
+        }
+        .main-nav .dropdown-content a:hover {
+            background: #e0e7ff;
+            color: #1d4ed8;
+        }
+        .main-nav .dropdown-content hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 6px 0;
+        }
+        .main-nav .dropdown-content .dd-title {
+            font-size: 11px;
+            color: #9ca3af;
+            font-weight: bold;
+            padding: 6px 12px 2px;
+            margin: 0;
         }
 
         .lang-switcher {
@@ -737,11 +794,41 @@ html[lang="fa"] .copyright  { direction: rtl; }
 </head>
 <body>
 
-    <!-- ═══ منوی بالای سایت ═══ -->
+    <!-- ═══ منوی بالای سایت (با منوی کشویی) ═══ -->
     <nav class="main-nav">
         <a href="/" data-fa="خانه" data-en="Home">خانه</a>
-        <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
-        <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
+
+        <div class="dropdown">
+            <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
+            <div class="dropdown-content">
+                <p class="dd-title">مقالات</p>
+                <a href="/blog/what-is-forex-robot.html">ربات فارکس چیست؟</a>
+                <a href="/blog/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در MT5</a>
+                <a href="/blog/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست؟</a>
+                <a href="/blog/best-forex-trading-robots-2026.html">بهترین ربات فارکس 2026</a>
+                <a href="/blog/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور</a>
+                <a href="/blog/forex-fury-review.html">بررسی فارکس فیوری</a>
+                <hr>
+                <p class="dd-title">گزارش‌ها و تحلیل</p>
+                <a href="/docs/info.pdf" target="_blank">مشخصات سوپرترند</a>
+                <a href="/docs/ForexFuryPro.pdf" target="_blank">مشخصات فارکس فیوری</a>
+                <a href="/docs/ReportTester.pdf" target="_blank">گزارش تست فارکس فیوری</a>
+                <a href="/docs/EA&EM-SuperTrend&Footprint_info.pdf" target="_blank">تحلیل EA&amp;EM-SuperTrend&amp;Footprint</a>
+                <a href="/GoldApex_WF.html" target="_blank">تحلیل گلد آپکس</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
+            <div class="dropdown-content">
+                <a href="/downloads/EA&EM-PRO.ex5" download>ربات EA&amp;EM-PRO</a>
+                <a href="/downloads/SuperTrend_EA.ex5" download>ربات سوپرترند</a>
+                <a href="/downloads/ForexFuryPro.ex5" download>ربات فارکس فیوری</a>
+                <a href="/downloads/GoldApex_WF.zip" download>ربات گلد آپکس</a>
+                <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download>استراتژی اسکالپر طلا</a>
+            </div>
+        </div>
+
         <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
         <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
     </nav>
