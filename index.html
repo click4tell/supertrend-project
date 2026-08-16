@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--
   ═══════════════════════════════════════════════════════════════════
-  index.html — نسخه کامل و بهینه‌شده برای سئو (جایگزین فایل فعلی سایت)
+  index.html — نسخه کامل و بهینه‌شده برای سئو + منوی بالای سایت
   ═══════════════════════════════════════════════════════════════════
-  تغییرات اعمال‌شده نسبت به نسخه قبلی:
-  1) زبان پیش‌فرض فارسی: <html lang="fa" dir="rtl"> (گوگل آن را می‌بیند)
-  2) متن فارسی به‌صورت پیش‌فرض در HTML (قابل ایندکس شدن برای کلیدواژه‌های فارسی)
-  3) head جدید: عنوان بهینه، Canonical، Open Graph، Twitter Card و ۴ نوع Schema
-  4) لینک ایمیل خراب اصلاح شد → info@tsgcoltd.ir
-  5) فقط یک H1 در صفحه؛ عنوان «محصولات ما» به H2 تغییر کرد
-  6) alt تصاویر فارسی؛ نام و توضیح محصولات به‌صورت متن ثابت در HTML
-  7) باگ جاوااسکریپت اصلاح شد: المان‌های دارای زیرالمان (فوتر، سلب مسئولیت) دیگر خراب نمی‌شوند
+  تغییرات:
+  1) زبان پیش‌فرض فارسی: <html lang="fa" dir="rtl">
+  2) منوی بالای سایت: خانه | بلاگ و مقالات | تلگرام | تماس با ما
+  3) دکمه‌های «مشخصات/تحلیل محصولات» به صفحه بلاگ منتقل شدند
+  4) تلگرام و تماس با ما کنار هم (راست به چپ)
+  5) head بهینه + Schema + Canonical + Open Graph
+  6) ایمیل واقعی info@tsgcoltd.ir (کلودفلر خودش امن می‌کند)
+  7) متن فارسی در HTML برای ایندکس شدن + محصولات ثابت
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fa" dir="rtl">
@@ -173,6 +173,46 @@
             min-height: 100vh;
             direction: rtl;
             text-align: right;
+        }
+
+        /* ═══ منوی بالای سایت ═══ */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 60px 10px 15px;
+        }
+        .main-nav a {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: #f3f4f6;
+            color: #374151;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 0;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .main-nav a:hover {
+            background: #4CAF50;
+            color: #fff;
+        }
+        .main-nav a.nav-cta {
+            background: #1d4ed8;
+            color: #fff;
+        }
+        .main-nav a.nav-cta:hover {
+            background: #1e40af;
         }
 
         .lang-switcher {
@@ -362,6 +402,33 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* ═══ دکمه‌های تلگرام و تماس کنار هم ═══ */
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px auto;
+            max-width: 500px;
+        }
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #0066cc;
+            line-height: 1.5;
+            margin: 0;
+            transition: background-color 0.3s ease;
+        }
+        .contact-btn:hover { color: #fff; text-decoration: none; background-color: #0055aa; }
+        .telegram-btn { background-color: #229ED9; }
+        .telegram-btn:hover { background-color: #1c8ac0; }
 
         #copyText, #copyCardText {
             cursor: pointer;
@@ -703,6 +770,14 @@ html[lang="fa"] .copyright  { direction: rtl; }
 </head>
 <body>
 
+    <!-- ═══ منوی بالای سایت ═══ -->
+    <nav class="main-nav">
+        <a href="/" data-fa="خانه" data-en="Home">خانه</a>
+        <a href="/blog/" class="nav-cta" data-fa="بلاگ و مقالات" data-en="Blog &amp; Articles">بلاگ و مقالات</a>
+        <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
+        <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
+    </nav>
+
     <button class="lang-switcher" onclick="toggleLanguage()">
         <img src="/ir.svg" alt="English" id="flag-gb">
         <img src="/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
@@ -724,12 +799,6 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <div class="tether-price-box" id="tetherPriceBox">
             <span data-fa="در حال بارگذاری قیمت تتر..." data-en="Loading Tether price...">در حال بارگذاری قیمت تتر...</span>
         </div>
-
-        <button onclick="window.open('/info.pdf', '_blank')" data-fa="مشخصات سوپرترند" data-en="SuperTrend Info">مشخصات سوپرترند</button>
-        <button onclick="window.open('/ForexFuryPro.pdf', '_blank')" data-fa="مشخصات فارکس فیوری" data-en="ForexFury Info">مشخصات فارکس فیوری</button>
-        <button onclick="window.open('/ReportTester.pdf', '_blank')" data-fa="گزارش تست فارکس فیوری" data-en="ForexFury Report">گزارش تست فارکس فیوری</button>
-        <button onclick="window.open('/EA&EM-SuperTrend&Footprint_info.pdf', '_blank')" data-fa="تحلیل EA&EM-SuperTrend&Footprint" data-en="EA&EM-SuperTrend&Footprint Info">تحلیل EA&EM-SuperTrend&Footprint</button>
-        <button onclick="window.open('/GoldApex_WF.html', '_blank')" data-fa="تحلیل گلد آپکس" data-en="GoldApex_WF Info">تحلیل گلد آپکس</button>
     </div>
 
     <!-- ═══ محصولات — نسخه ثابت برای ایندکس شدن در گوگل ═══
@@ -843,17 +912,13 @@ html[lang="fa"] .copyright  { direction: rtl; }
      <a href="/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download class="download-button" data-fa="استراتژی اسکالپر طلا برای تریدینگ ویو" data-en="Tradingview Gold Scalper Pine Script">استراتژی اسکالپر طلا برای تریدینگ ویو</a>
   
     </div>
-    <div class="container">
-        <!-- ═══ بلاگ و مقالات ═══ -->
-        <h2 data-fa="بلاگ و مقالات" data-en="Blog &amp; Articles">بلاگ و مقالات</h2>
-        <p data-fa="مقالات آموزشی ربات فارکس، اکسپرت و اندیکاتور برای متاتریدر 5" data-en="Educational articles about Forex robots, experts and indicators for MT5">مقالات آموزشی ربات فارکس، اکسپرت و اندیکاتور برای متاتریدر 5</p>
-        <a href="/blog/" class="download-button" data-fa="مشاهده همه مقالات بلاگ" data-en="View All Blog Articles">مشاهده همه مقالات بلاگ</a>
 
-        <button onclick="window.open('https://t.me/Mq5_EA_bot','_blank')" data-fa="ورود به لینک تلگرام برای خرید" data-en="Enter Telegram Link for Purchase">ورود به لینک تلگرام برای خرید</button>
-    </div>
-
+    <!-- ═══ ارتباط با ما: تلگرام و تماس کنار هم ═══ -->
     <div class="container">
-        <a href="contact.html" data-fa="تماس با ما" data-en="Contact Us" style="display: inline-block; padding: 10px 20px; background-color: #0066cc; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">تماس با ما</a>
+        <div class="contact-row">
+            <a href="https://t.me/Mq5_EA_bot" target="_blank" class="contact-btn telegram-btn" data-fa="ورود به تلگرام برای خرید" data-en="Telegram for Purchase">ورود به تلگرام برای خرید</a>
+            <a href="/contact.html" class="contact-btn" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
+        </div>
     </div>
 
     <div id="myModal" class="modal">
