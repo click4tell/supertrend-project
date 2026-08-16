@@ -3,14 +3,8 @@
   ═══════════════════════════════════════════════════════════════════
   index.html — نسخه کامل و بهینه‌شده برای سئو + منوی بالای سایت
   ═══════════════════════════════════════════════════════════════════
-  تغییرات:
-  1) زبان پیش‌فرض فارسی: <html lang="fa" dir="rtl">
-  2) منوی بالای سایت: خانه | بلاگ و مقالات | تلگرام | تماس با ما
-  3) دکمه‌های «مشخصات/تحلیل محصولات» به صفحه بلاگ منتقل شدند
-  4) تلگرام و تماس با ما کنار هم (راست به چپ)
-  5) head بهینه + Schema + Canonical + Open Graph
-  6) ایمیل واقعی info@tsgcoltd.ir (کلودفلر خودش امن می‌کند)
-  7) متن فارسی در HTML برای ایندکس شدن + محصولات ثابت
+  منو: خانه | مقالات، آموزش‌ها و گزارش‌ها | دانلودها | تلگرام | تماس با ما
+  - بخش دانلود و کادرهای تلگرام/تماس از بدنه حذف شدند (در منو هستند)
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fa" dir="rtl">
@@ -403,33 +397,6 @@
             text-decoration: underline;
         }
 
-        /* ═══ دکمه‌های تلگرام و تماس کنار هم ═══ */
-        .contact-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 15px auto;
-            max-width: 500px;
-        }
-        .contact-btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #0066cc;
-            line-height: 1.5;
-            margin: 0;
-            transition: background-color 0.3s ease;
-        }
-        .contact-btn:hover { color: #fff; text-decoration: none; background-color: #0055aa; }
-        .telegram-btn { background-color: #229ED9; }
-        .telegram-btn:hover { background-color: #1c8ac0; }
-
         #copyText, #copyCardText {
             cursor: pointer;
             border: 1px solid #ccc;
@@ -773,7 +740,8 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <!-- ═══ منوی بالای سایت ═══ -->
     <nav class="main-nav">
         <a href="/" data-fa="خانه" data-en="Home">خانه</a>
-        <a href="/blog/" class="nav-cta" data-fa="بلاگ و مقالات" data-en="Blog &amp; Articles">بلاگ و مقالات</a>
+        <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
+        <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
         <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
         <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
     </nav>
@@ -900,24 +868,6 @@ html[lang="fa"] .copyright  { direction: rtl; }
                 <video src="/GoldApex_WF.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت یا ربات معاملاتی گلد آپکس" data-en="Expert (Robot) GoldApex_WF">اکسپرت یا ربات معاملاتی گلد آپکس</p>
             </div>
-        </div>
-    </div>
-
-    <h2 data-fa="دانلود فایل‌ها" data-en="Download Files">دانلود فایل‌ها</h2>
-    <div class="container">
-       <a href="/EA&EM-PRO.ex5" download class="download-button" data-fa="دانلود ربات EA&EM-PRO" data-en="EA&EM-PRO Download">دانلود ربات EA&EM-PRO</a>
-        <a href="/SuperTrend_EA.ex5" download class="download-button" data-fa="دانلود ربات سوپرترند" data-en="SuperTrend EA Download">دانلود ربات سوپرترند</a>
-        <a href="/ForexFuryPro.ex5" download class="download-button" data-fa="دانلود ربات فارکس فیوری" data-en="Forex Fury Pro Download">دانلود ربات فارکس فیوری</a>
-        <a href="/GoldApex_WF.zip" download class="download-button" data-fa="دانلود ربات گلد آپکس" data-en="GoldApex_WF Download">دانلود ربات گلد آپکس</a>
-     <a href="/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download class="download-button" data-fa="استراتژی اسکالپر طلا برای تریدینگ ویو" data-en="Tradingview Gold Scalper Pine Script">استراتژی اسکالپر طلا برای تریدینگ ویو</a>
-  
-    </div>
-
-    <!-- ═══ ارتباط با ما: تلگرام و تماس کنار هم ═══ -->
-    <div class="container">
-        <div class="contact-row">
-            <a href="https://t.me/Mq5_EA_bot" target="_blank" class="contact-btn telegram-btn" data-fa="ورود به تلگرام برای خرید" data-en="Telegram for Purchase">ورود به تلگرام برای خرید</a>
-            <a href="/contact.html" class="contact-btn" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
         </div>
     </div>
 
