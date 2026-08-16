@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرق اکسپرت و اندیکاتور در MT5 | کدام را انتخاب کنیم؟</title>
+    <meta name="description" content="تفاوت اکسپرت (ربات) و اندیکاتور در متاتریدر 5: کاربرد، مزایا و معایب هرکدام به همراه جدول مقایسه و راهنمای انتخاب برای معامله‌گران.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/expert-vs-indicator-mt5.html">
+    <meta property="og:title" content="فرق اکسپرت و اندیکاتور در MT5">
+    <meta property="og:description" content="تفاوت ربات معاملاتی و اندیکاتور در متاتریدر 5 با جدول مقایسه">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/expert-vs-indicator-mt5.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "فرق اکسپرت و اندیکاتور در MT5",
+      "description": "تفاوت اکسپرت و اندیکاتور در متاتریدر 5 با جدول مقایسه",
+      "inLanguage": "fa-IR",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/expert-vs-indicator-mt5.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "فرق اکسپرت و اندیکاتور", "item": "https://mql5expert.ir/blog/expert-vs-indicator-mt5.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; direction: rtl; text-align: right; line-height: 2; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        h3 { color: #374151; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; direction: ltr; display: inline-block; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-right: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th, table td { border: 1px solid #e5e7eb; padding: 10px; text-align: right; font-size: 14px; }
+        table th { background: #f3f4f6; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← فهرست مقالات</a></p>
+
+    <article>
+
+        <h1>فرق اکسپرت و اندیکاتور در MT5؛ کدام را انتخاب کنیم؟</h1>
+        <p class="meta">تاریخ انتشار: ۱۶ مرداد ۱۴۰۵ | دسته‌بندی: آموزش</p>
+
+        <p>اگر تازه با متاتریدر 5 آشنا شده‌اید، حتماً این دو اصطلاح را شنیده‌اید: <strong>اندیکاتور</strong> و <strong>اکسپرت (ربات)</strong>. خیلی‌ها این دو را یکی می‌دانند، اما تفاوت اساسی دارند. در این مقاله ساده و شفاف توضیح می‌دهیم.</p>
+
+        <h2>اندیکاتور چیست؟</h2>
+        <p><strong>اندیکاتور</strong> یک ابزار تحلیلی است که روی چارت نصب می‌شود و اطلاعات قیمت را محاسبه و نمایش می‌دهد؛ مانند میانگین متحرک، RSI یا سوپرترند. اندیکاتور <strong>فقط نمایش می‌دهد</strong> — خودش هیچ معامله‌ای باز یا بسته نمی‌کند. تصمیم نهایی همیشه با شماست.</p>
+
+        <h2>اکسپرت (ربات) چیست؟</h2>
+        <p><strong>اکسپرت (Expert Advisor)</strong> یک برنامه معاملاتی است که می‌تواند <strong>به‌صورت خودکار</strong> سفارش ثبت کند، حد ضرر و حد سود بگذارد و موقعیت‌ها را مدیریت کند. اکسپرت می‌تواند از اندیکاتورها هم استفاده کند، اما برخلاف آن‌ها «عمل» هم انجام می‌دهد.</p>
+
+        <h2>مقایسه در یک نگاه</h2>
+        <table>
+            <tr>
+                <th>ویژگی</th>
+                <th>اندیکاتور</th>
+                <th>اکسپرت (ربات)</th>
+            </tr>
+            <tr>
+                <td>نمایش سیگنال</td>
+                <td>✅</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>باز کردن معامله</td>
+                <td>❌</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>مدیریت حد ضرر/سود</td>
+                <td>❌</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>نیاز به حضور معامله‌گر</td>
+                <td>بله (برای تصمیم)</td>
+                <td>خیر (خودکار)</td>
+            </tr>
+            <tr>
+                <td>سختی نصب</td>
+                <td>کم</td>
+                <td>کم (با <a href="/blog/how-to-install-expert-in-metatrader5.html">آموزش نصب</a>)</td>
+            </tr>
+        </table>
+
+        <h2>چه زمانی از اندیکاتور استفاده کنیم؟</h2>
+        <ul>
+            <li>وقتی می‌خواهید تحلیل و تصمیم‌گیری را خودتان انجام دهید.</li>
+            <li>وقتی در حال یادگیری بازار و استراتژی هستید.</li>
+            <li>برای تأیید سیگنال‌های معاملاتی به‌صورت دستی.</li>
+        </ul>
+
+        <h2>چه زمانی از اکسپرت استفاده کنیم؟</h2>
+        <ul>
+            <li>وقتی استراتژی مشخصی دارید و می‌خواهید آن را خودکار کنید.</li>
+            <li>وقتی وقت کافی برای نشستن پای چارت ندارید.</li>
+            <li>برای حذف احساسات از معاملات.</li>
+        </ul>
+
+        <h2>جمع‌بندی</h2>
+        <p>به زبان ساده: <strong>اندیکاتور «چشم» است و اکسپرت «چشم و دست با هم».</strong> بسیاری از معامله‌گران حرفه‌ای ترکیبی از هر دو را استفاده می‌کنند: با اندیکاتور تحلیل می‌کنند و با <a href="/">اکسپرت</a> اجرا. انتخاب نهایی به سبک معاملاتی شما بستگی دارد.</p>
+
+        <div class="cta">
+            <p>خرید اکسپرت و اندیکاتور حرفه‌ای ← <a href="/">صفحه اصلی سایت</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+</body>
+</html>

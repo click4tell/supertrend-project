@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش نصب اکسپرت در متاتریدر 5 | راهنمای کامل گام‌به‌گام</title>
+    <meta name="description" content="آموزش گام‌به‌گام نصب اکسپرت (ربات) در متاتریدر 5: کپی فایل ex5 در پوشه Experts، فعال‌سازی AutoTrading، تست در دمو و حل مشکلات رایج.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html">
+    <meta property="og:title" content="آموزش نصب اکسپرت در متاتریدر 5">
+    <meta property="og:description" content="راهنمای کامل نصب ربات معاملاتی در MT5 به همراه حل مشکلات رایج">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "آموزش نصب اکسپرت در متاتریدر 5",
+      "description": "آموزش گام‌به‌گام نصب اکسپرت در متاتریدر 5 با حل مشکلات رایج",
+      "inLanguage": "fa-IR",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "آموزش نصب اکسپرت در متاتریدر 5", "item": "https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; direction: rtl; text-align: right; line-height: 2; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        h3 { color: #374151; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; direction: ltr; display: inline-block; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-right: 25px; }
+        .note { background: #fff7ed; border-right: 4px solid #f59e0b; padding: 10px 15px; border-radius: 6px; margin: 15px 0; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← فهرست مقالات</a></p>
+
+    <article>
+
+        <h1>آموزش نصب اکسپرت در متاتریدر 5 (راهنمای کامل گام‌به‌گام)</h1>
+        <p class="meta">تاریخ انتشار: ۱۶ مرداد ۱۴۰۵ | دسته‌بندی: آموزش</p>
+
+        <p>یکی از اولین سؤال‌هایی که بعد از خرید <a href="/">اکسپرت یا ربات معاملاتی</a> مطرح می‌شود، نحوه نصب آن در متاتریدر 5 است. در این مقاله قدم‌به‌قدم و کاملاً ساده آموزش می‌دهیم که چگونه اکسپرت را روی پلتفرم MT5 نصب و فعال کنید.</p>
+
+        <h2>پیش‌نیازهای نصب اکسپرت</h2>
+        <ul>
+            <li>پلتفرم <strong>متاتریدر 5</strong> نصب‌شده (از بروکر خودتان دانلود کنید).</li>
+            <li>فایل <code>.ex5</code> ربات معاملاتی.</li>
+            <li>(اختیاری) فایل تنظیمات <code>.set</code> اگر همراه ربات ارائه شده باشد.</li>
+        </ul>
+
+        <h2>گام اول — پیدا کردن پوشه Data Folder</h2>
+        <p>در متاتریدر 5 از منوی بالا روی <strong>File</strong> کلیک کنید و گزینه <strong>Open Data Folder</strong> را انتخاب کنید. یک پنجره ویندوز باز می‌شود که پوشه داده‌های متاتریدر را نشان می‌دهد.</p>
+
+        <h2>گام دوم — کپی فایل اکسپرت</h2>
+        <p>در پوشه Data Folder وارد مسیر زیر شوید:</p>
+        <p><code>MQL5\Experts</code></p>
+        <p>فایل <code>.ex5</code> ربات خود را در این پوشه <strong>کپی</strong> (Copy) کنید. دقت کنید ربات‌ها فقط از پوشه <code>Experts</code> قابل استفاده هستند؛ پوشه <code>Indicators</code> مخصوص اندیکاتورهاست.</p>
+
+        <h2>گام سوم — Refresh در پنجره Navigator</h2>
+        <p>به متاتریدر برگردید. در پنجره <strong>Navigator</strong> (سمت چپ) روی <strong>Expert Advisors</strong> کلیک راست کنید و گزینه <strong>Refresh</strong> را بزنید. حالا نام ربات شما باید در لیست ظاهر شود.</p>
+
+        <h2>گام چهارم — اضافه کردن ربات به چارت</h2>
+        <p>ربات را از Navigator <strong>روی چارت بکشید</strong> (Drag &amp; Drop). پنجره تنظیمات باز می‌شود:</p>
+        <ul>
+            <li>تب <strong>Inputs</strong>: پارامترهای ورودی ربات (مانند حجم معامله و حد ضرر).</li>
+            <li>تب <strong>Common</strong>: چک‌باکس‌های Allow Algo Trading و نمایش سیگنال‌ها.</li>
+        </ul>
+        <p>بعد از تنظیم، <strong>OK</strong> را بزنید.</p>
+
+        <h2>گام پنجم — فعال‌سازی AutoTrading</h2>
+        <p>در نوار ابزار بالای متاتریدر دکمه <strong>AutoTrading</strong> را پیدا کنید (آیکون سبز/قرمز) و مطمئن شوید <strong>روشن</strong> است. همچنین از مسیر زیر مطمئن شوید گزینه الگوریتمی فعال باشد:</p>
+        <p><code>Tools → Options → Expert Advisors → Allow Algorithmic Trading</code></p>
+        <div class="note">
+            <strong>⚠️ نکته:</strong> اگر AutoTrading خاموش باشد یا Allow Algorithmic Trading فعال نباشد، ربات هیچ معامله‌ای انجام نمی‌دهد و آیکون آن روی چارت خاکستری می‌شود.
+        </div>
+
+        <h2>تست در حساب دمو</h2>
+        <p>قبل از استفاده با سرمایه واقعی، ربات را حداقل چند هفته روی <strong>حساب دمو</strong> و ترجیحاً با داده‌های تاریخی (بک‌تست در Strategy Tester) آزمایش کنید و گزارش عملکرد را بررسی کنید.</p>
+
+        <h2>مشکلات رایج و راه‌حل</h2>
+        <ul>
+            <li><strong>ربات خاکستری و غیرفعال است:</strong> AutoTrading یا Allow Algorithmic Trading را روشن کنید.</li>
+            <li><strong>ربات معامله باز نمی‌کند:</strong> موجودی و مارجین کافی نیست، یا فاصله از قیمت بازار کمتر از حد مجاز (stops level) بروکر است.</li>
+            <li><strong>فایل ex5 دیده نمی‌شود:</strong> فایل را در پوشه درست کپی کرده و Refresh بزنید؛ اگر فایل محافظت‌شده است، حتماً از بروکر خودتان استفاده کنید.</li>
+        </ul>
+
+        <h2>جمع‌بندی</h2>
+        <p>نصب اکسپرت در متاتریدر 5 فقط چند دقیقه زمان می‌برد: کپی فایل در <code>MQL5\Experts</code>، Refresh و فعال‌سازی AutoTrading. اگر به دنبال <a href="/">خرید ربات معاملاتی آماده برای MT5</a> هستید، محصولات ما شامل اکسپرت سوپرترند، فارکس فیوری و گلد آپکس را در صفحه اصلی ببینید.</p>
+
+        <div class="cta">
+            <p>خرید اکسپرت و ربات فارکس با پشتیبانی کامل ← <a href="/">صفحه اصلی سایت</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+</body>
+</html>

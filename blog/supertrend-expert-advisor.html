@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اکسپرت سوپرترند چیست و چگونه کار می‌کند؟ | ربات سوپرترند MT5</title>
+    <meta name="description" content="آشنایی کامل با اکسپرت سوپرترند برای متاتریدر 5: استراتژی دنبال‌کردن روند، نحوه کار، مزایا و معایب و تنظیمات پیشنهادی ربات سوپرترند.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/supertrend-expert-advisor.html">
+    <meta property="og:title" content="اکسپرت سوپرترند چیست و چگونه کار می‌کند؟">
+    <meta property="og:description" content="راهنمای کامل ربات سوپرترند: استراتژی دنبال‌کردن روند، مزایا و تنظیمات">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/supertrend-expert-advisor.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "اکسپرت سوپرترند چیست و چگونه کار می‌کند؟",
+      "description": "راهنمای کامل اکسپرت سوپرترند برای متاتریدر 5",
+      "inLanguage": "fa-IR",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-08-16",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/supertrend-expert-advisor.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "اکسپرت سوپرترند چیست؟", "item": "https://mql5expert.ir/blog/supertrend-expert-advisor.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; direction: rtl; text-align: right; line-height: 2; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        h3 { color: #374151; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; direction: ltr; display: inline-block; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-right: 25px; }
+        .note { background: #fff7ed; border-right: 4px solid #f59e0b; padding: 10px 15px; border-radius: 6px; margin: 15px 0; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← فهرست مقالات</a></p>
+
+    <article>
+
+        <h1>اکسپرت سوپرترند چیست و چگونه کار می‌کند؟</h1>
+        <p class="meta">تاریخ انتشار: ۱۶ مرداد ۱۴۰۵ | دسته‌بندی: محصولات</p>
+
+        <p>سوپرترند یکی از محبوب‌ترین اندیکاتورهای <strong>دنبال‌کردن روند (Trend Following)</strong> در متاتریدر است. حالا تصور کنید همین اندیکاتور به یک <a href="/">ربات معاملاتی</a> تبدیل شود که بدون دخالت شما معامله می‌کند. در این مقاله به زبان ساده توضیح می‌دهیم اکسپرت سوپرترند چیست و چگونه کار می‌کند.</p>
+
+        <h2>اندیکاتور سوپرترند چیست؟</h2>
+        <p>سوپرترند یک اندیکاتور تکنیکال است که یک خط روی چارت رسم می‌کند؛ وقتی بازار صعودی است خط زیر قیمت و سبز، و وقتی نزولی است خط بالای قیمت و قرمز می‌شود. تغییر رنگ خط، سیگنال تغییر روند است. پارامترهای اصلی آن <strong>Period</strong> (معمولاً ۱۰) و <strong>Multiplier</strong> (معمولاً ۳) هستند.</p>
+
+        <h2>اکسپرت سوپرترند چیست؟</h2>
+        <p>اکسپرت سوپرترند همان استراتژی سوپرترند است که به کد تبدیل شده و به‌صورت خودکار اجرا می‌شود. به‌جای اینکه خودتان رنگ خط را نگاه کنید و دستی معامله باز کنید، ربات این کار را برای شما انجام می‌دهد.</p>
+
+        <h2>اکسپرت سوپرترند چگونه کار می‌کند؟</h2>
+        <ol>
+            <li>خط سوپرترند را روی چارت محاسبه می‌کند.</li>
+            <li>وقتی خط <strong>سبز</strong> می‌شود → سیگنال خرید (Buy) و باز کردن معامله خرید.</li>
+            <li>وقتی خط <strong>قرمز</strong> می‌شود → سیگنال فروش (Sell) و باز کردن معامله فروش.</li>
+            <li>حد ضرر و حد سود را بر اساس تنظیمات شما مدیریت می‌کند.</li>
+        </ol>
+        <p>این سبک برای بازارهای <strong>رونددار</strong> بسیار مناسب است، اما در بازارهای بی‌روند (Range) ممکن است سیگنال‌های متعدد و اشتباه بدهد.</p>
+
+        <h2>مزایای اکسپرت سوپرترند</h2>
+        <ul>
+            <li>سادگی و قابل فهم بودن استراتژی.</li>
+            <li>مناسب برای دنبال‌کردن روندهای قوی در جفت‌ارزها و طلا.</li>
+            <li>اجرای خودکار بدون احساسات.</li>
+            <li>قابل تنظیم برای تایم‌فریم‌های مختلف (H1، H4 و D1).</li>
+        </ul>
+
+        <h2>معایب و ریسک‌ها</h2>
+        <p>در بازارهای بدون روند، سوپرترند می‌تواند ضررهای پیدرپی ایجاد کند. همچنین هیچ رباتی سود تضمینی ندارد و تنظیمات نامناسب (دوره و ضریب خیلی کوچک) باعث نویز زیاد سیگنال‌ها می‌شود. همیشه در حساب دمو تست کنید.</p>
+
+        <h2>تنظیمات پیشنهادی</h2>
+        <ul>
+            <li>تایم‌فریم: <strong>H1 یا H4</strong></li>
+            <li>دوره (Period): <strong>۱۰</strong></li>
+            <li>ضریب (Multiplier): <strong>۳</strong></li>
+            <li>مدیریت ریسک: حداکثر ۱ تا ۲ درصد موجودی در هر معامله</li>
+        </ul>
+
+        <h2>جمع‌بندی</h2>
+        <p>اکسپرت سوپرترند انتخابی عالی برای معامله‌گرانی است که به سبک دنبال‌کردن روند علاقه دارند و می‌خواهند معاملات خود را خودکار کنند. برای مشاهده مشخصات و <a href="/">خرید اکسپرت سوپرترند</a> به صفحه اصلی سایت مراجعه کنید.</p>
+
+        <div class="cta">
+            <p>مشاهده و خرید ربات سوپرترند ← <a href="/">صفحه اصلی سایت</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+</body>
+</html>
