@@ -14,7 +14,7 @@
 4. [کد کامل head.html](#4-کد-کامل-headhtml)
 5. [کد کامل index.html (نسخه بهینه‌شده)](#5-کد-کامل-indexhtml)
 6. [کد کامل sitemap.xml](#6-کد-کامل-sitemapxml)
-7. [مقاله بلاگ: ربات فارکس چیست](#7-مقاله-بلاگ)
+7. [مقالات بلاگ](#7-مقالات-بلاگ)
 8. [نکات مهم و یادآوری‌ها](#8-نکات-مهم)
 
 ---
@@ -23,10 +23,16 @@
 
 | فایل | محل قرارگیری در ریپو | توضیح |
 |------|----------------------|--------|
-| `index.html` | ریشه (جایگزین فایل فعلی) | نسخه کامل بهینه‌شده سایت |
-| `sitemap.xml` | ریشه | نقشه سایت |
+| `index.html` | ریشه (جایگزین فایل فعلی) | نسخه کامل بهینه‌شده سایت + بخش بلاگ |
+| `sitemap.xml` | ریشه | نقشه سایت (۷ آدرس) |
 | `head.html` | مرجع (اختیاری) | بخش head بهینه |
-| `blog/what-is-forex-robot.html` | پوشه `blog/` | مقاله اول |
+| `blog/index.html` | پوشه `blog/` | فهرست همه مقالات (دکمه بلاگ به اینجا لینک است) |
+| `blog/what-is-forex-robot.html` | پوشه `blog/` | مقاله: ربات فارکس چیست |
+| `blog/how-to-install-expert-in-metatrader5.html` | پوشه `blog/` | مقاله: آموزش نصب اکسپرت |
+| `blog/supertrend-expert-advisor.html` | پوشه `blog/` | مقاله: اکسپرت سوپرترند |
+| `blog/best-forex-trading-robots-2026.html` | پوشه `blog/` | مقاله: بهترین ربات فارکس 2026 |
+| `blog/expert-vs-indicator-mt5.html` | پوشه `blog/` | مقاله: فرق اکسپرت و اندیکاتور |
+| `blog/forex-fury-review.html` | پوشه `blog/` | مقاله: بررسی فارکس فیوری |
 | `blog-article-template.html` | مرجع (اختیاری) | قالب مقاله برای مقالات بعدی |
 | `README-SEO.md` | مرجع (اختیاری) | راهنمای کوتاه |
 | `SEO-PACKAGE-COMPLETE.md` | مرجع (اختیاری) | همین فایل جامع |
@@ -38,7 +44,7 @@
 ### قدم ۱ — آپلود فایل‌ها در گیت‌هاب
 1. `index.html` جدید را جایگزین فایل فعلی ریشه ریپو کنید (فایل قبلی را برای پشتیبان نگه دارید).
 2. `sitemap.xml` را در ریشه قرار دهید.
-3. پوشه `blog/` بسازید و مقاله را در آن بگذارید.
+3. پوشه `blog/` بسازید و فایل `index.html` + ۶ مقاله را داخل آن بگذارید.
 4. Commit و Push.
 
 ### قدم ۲ — Cloudflare
@@ -48,13 +54,15 @@
 ### قدم ۳ — Google Search Console
 1. دامنه را وریفای کنید (DNS یا HTML file).
 2. **Sitemaps** → آدرس کامل `https://mql5expert.ir/sitemap.xml` را سابمیت کنید (برای Domain property باید آدرس کامل باشد).
-3. **URL Inspection** → `https://mql5expert.ir/` → **Request Indexing**.
+3. **URL Inspection** → آدرس هر صفحه جدید → **Request Indexing**.
 4. پیام «URL is on Google» یعنی ایندکس شده ✅.
 
-### قدم ۴ — تولید محتوا (مهم‌ترین قدم برای رتبه)
-- ماهی ۲ تا ۴ مقاله در `blog/` با قالب آماده منتشر کنید.
-- هر مقاله جدید را به `sitemap.xml` اضافه کنید.
-- لینک هر مقاله به صفحه اصلی را حتماً بگذارید.
+### قدم ۴ — افزودن مقاله جدید (برای آینده)
+1. مقاله را با قالب `blog-article-template.html` در پوشه `blog/` بسازید.
+2. یک خط لینک به `blog/index.html` اضافه کنید.
+3. آدرس مقاله را به `sitemap.xml` اضافه کنید.
+4. Push + Purge Cache + درخواست ایندکس.
+> ✅ نیازی به تغییر صفحه اصلی نیست — دکمه بلاگ به `blog/` لینک شده.
 
 ### قدم ۵ — سابمیت در موتورهای دیگر (اختیاری)
 - Bing Webmaster Tools: `bing.com/webmasters` → سابمیت sitemap.
@@ -190,21 +198,16 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 ## 4. کد کامل head.html
 
-> بخش `<head>` بهینه‌شده — قبلاً داخل `index.html` اعمال شده است.
+> بخش `<head>` بهینه‌شده — قبلاً داخل `index.html` اعمال شده است. (عنوان، Canonical، Open Graph، Twitter Card و ۴ نوع Schema: WebSite، Organization، ItemList محصولات، FAQPage)
 
 ```html
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- عنوان و توضیحات -->
     <title>خرید اکسپرت و ربات فارکس برای متاتریدر 5 | ربات معاملاتی MT5</title>
     <meta name="description" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5: ربات سوپرترند، اکسپرت فارکس فیوری، ربات گلد آپکس و اندیکاتور معاملاتی با پشتیبانی کامل و معرفی بی‌طرفانه ربات‌های معاملاتی فارکس.">
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://mql5expert.ir/">
-
     <!-- Open Graph -->
     <meta property="og:title" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5">
     <meta property="og:description" content="فروش اکسپرت و ربات معاملاتی فارکس برای MT5 با پشتیبانی کامل">
@@ -214,137 +217,13 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <meta property="og:locale" content="fa_IR">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:image" content="https://mql5expert.ir/logo.ico">
-
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5">
     <meta name="twitter:description" content="فروش اکسپرت و ربات معاملاتی فارکس برای MT5 با پشتیبانی کامل">
-
     <link rel="icon" type="image/x-icon" href="/logo.ico">
-
-    <!-- Structured Data: وب‌سایت -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "MQL5 Expert",
-      "alternateName": "خرید اکسپرت و ربات فارکس",
-      "url": "https://mql5expert.ir",
-      "inLanguage": "fa-IR",
-      "description": "فروش و معرفی اکسپرت و ربات معاملاتی فارکس برای پلتفرم متاتریدر 5"
-    }
-    </script>
-
-    <!-- Structured Data: سازمان -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "MQL5 Expert",
-      "url": "https://mql5expert.ir",
-      "email": "info@tsgcoltd.ir",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "info@tsgcoltd.ir",
-        "contactType": "customer service",
-        "availableLanguage": ["fa", "en"]
-      }
-    }
-    </script>
-
-    <!-- Structured Data: محصولات -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "محصولات اکسپرت و ربات فارکس",
-      "itemListElement": [
-        {
-          "@type": "Product",
-          "position": 1,
-          "name": "EA&EM-PRO",
-          "description": "ربات معاملات دستی و اتوماتیک برای متاتریدر 5",
-          "url": "https://mql5expert.ir/",
-          "brand": { "@type": "Brand", "name": "MQL5 Expert" },
-          "offers": { "@type": "Offer", "price": "10", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-        },
-        {
-          "@type": "Product",
-          "position": 2,
-          "name": "SuperTrend EA",
-          "description": "اکسپرت و ربات معاملاتی سوپرترند برای متاتریدر 5",
-          "url": "https://mql5expert.ir/",
-          "brand": { "@type": "Brand", "name": "MQL5 Expert" },
-          "offers": { "@type": "Offer", "price": "10", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-        },
-        {
-          "@type": "Product",
-          "position": 3,
-          "name": "Forex Fury Pro",
-          "description": "اکسپرت معاملات اتوماتیک فارکس فیوری پرو",
-          "url": "https://mql5expert.ir/",
-          "brand": { "@type": "Brand", "name": "MQL5 Expert" },
-          "offers": { "@type": "Offer", "price": "10", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-        },
-        {
-          "@type": "Product",
-          "position": 4,
-          "name": "GoldApex_WF",
-          "description": "اکسپرت و ربات معاملاتی طلا (گلد آپکس)",
-          "url": "https://mql5expert.ir/GoldApex_WF.html",
-          "brand": { "@type": "Brand", "name": "MQL5 Expert" },
-          "offers": { "@type": "Offer", "price": "10", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
-        }
-      ]
-    }
-    </script>
-
-    <!-- Structured Data: سوالات متداول -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "ربات فارکس چیست؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ربات فارکس یا اکسپرت (Expert Advisor) برنامه‌ای است که روی پلتفرم متاتریدر 5 نصب می‌شود و به‌صورت خودکار بر اساس استراتژی تعریف‌شده، معاملات را باز و بسته می‌کند."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "اکسپرت چه فرقی با اندیکاتور دارد؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "اندیکاتور فقط سیگنال و اطلاعات را روی چارت نمایش می‌دهد، اما اکسپرت (ربات) می‌تواند بدون دخالت کاربر به‌صورت خودکار معامله کند."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "چگونه اکسپرت را در متاتریدر 5 نصب کنیم؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "فایل .ex5 را در پوشه MQL5/Experts قرار دهید، سپس در متاتریدر 5 روی Navigator کلیک راست کرده و Refresh بزنید. اکسپرت در لیست Expert Advisors ظاهر می‌شود."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "آیا ربات فارکس سود تضمینی دارد؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "خیر. هیچ ربات یا اکسپرتی سود تضمینی ندارد. مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است."
-          }
-        }
-      ]
-    }
-    </script>
-
-    <!-- استایل سایت — بدون تغییر -->
-    <style>
-        /* کد CSS قبلی خودتان را اینجا نگه دارید */
-    </style>
+    <!-- Schema: WebSite / Organization / ItemList(4 محصول) / FAQPage -->
+    <!-- کد کامل JSON-LD در فایل head.html ذخیره شده است -->
 </head>
 ```
 
@@ -352,11 +231,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 ## 5. کد کامل index.html
 
-> نسخه کامل و بهینه‌شده — این فایل همان `SEO/index.html` است و کامل‌ترین مرجع است.
-> برای مشاهده کد کامل به فایل `index.html` در همین پوشه مراجعه کنید (۴۸ کیلوبایت).
+> نسخه کامل و بهینه‌شده — فایل `SEO/index.html` (حدود ۴۸ کیلوبایت). برای آپلود مستقیم از همان فایل استفاده کنید.
 
-**خلاصه تغییرات اعمال‌شده در index.html:**
-
+**تغییرات اعمال‌شده:**
 1. زبان پیش‌فرض فارسی: `<html lang="fa" dir="rtl">`
 2. متن فارسی به‌صورت پیش‌فرض در HTML (قابل ایندکس شدن)
 3. head جدید: عنوان بهینه، Canonical، Open Graph، Twitter Card و ۴ نوع Schema
@@ -364,25 +241,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 5. فقط یک H1 در صفحه؛ «محصولات ما» به H2 تغییر کرد
 6. alt تصاویر فارسی؛ محصولات به‌صورت متن ثابت در HTML
 7. باگ جاوااسکریپت اصلاح شد (فوتر و سلب مسئولیت هنگام سوییچ زبان خراب نمی‌شوند)
-8. بخش «بلاگ و مقالات» با لینک به مقاله اول (ربات فارکس چیست) به صفحه اصلی اضافه شد
-
-```html
-<!--
-  index.html — نسخه کامل و بهینه‌شده برای سئو
-  کد کامل این فایل در: SEO/index.html (48 KB)
-  نکته: به‌دلیل حجم زیاد، کد کامل در فایل جداگانه index.html ذخیره شده است.
-  این بخش فقط خلاصه تغییرات است.
--->
-<html lang="fa" dir="rtl">
-<head>
-    <!-- head بهینه: دقیقاً مطابق بخش 4 همین فایل + CSS کامل سایت -->
-</head>
-<body>
-    <!-- بدنه: تمام بخش‌های سایت با متن فارسی پیش‌فرض + فوتر اصلاح‌شده -->
-    <!-- جاوااسکریپت: زبان پیش‌فرض fa + اصلاح باگ سوییچ زبان -->
-</body>
-</html>
-```
+8. بخش «بلاگ و مقالات» اضافه شد — دکمه بلاگ به `blog/` لینک شده
 
 ---
 
@@ -392,30 +251,53 @@ html[lang="fa"] .copyright  { direction: rtl; }
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- صفحه اصلی -->
   <url>
     <loc>https://mql5expert.ir/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- صفحه تماس -->
   <url>
     <loc>https://mql5expert.ir/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <!-- صفحه تحلیل GoldApex -->
   <url>
     <loc>https://mql5expert.ir/GoldApex_WF.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- مقاله: ربات فارکس چیست -->
+  <url>
+    <loc>https://mql5expert.ir/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/supertrend-expert-advisor.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/best-forex-trading-robots-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/expert-vs-indicator-mt5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/forex-fury-review.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -425,33 +307,19 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 ---
 
-## 7. مقاله بلاگ
+## 7. مقالات بلاگ
 
-> فایل کامل: `SEO/blog/what-is-forex-robot.html` (16 KB)
-> مسیر در ریپو: `blog/what-is-forex-robot.html`
+| مقاله | فایل در ریپو | دسته |
+|-------|--------------|------|
+| ربات فارکس چیست و چگونه کار می‌کند؟ | `blog/what-is-forex-robot.html` | آموزش |
+| آموزش نصب اکسپرت در متاتریدر 5 | `blog/how-to-install-expert-in-metatrader5.html` | آموزش |
+| اکسپرت سوپرترند چیست؟ | `blog/supertrend-expert-advisor.html` | محصولات |
+| بهترین ربات معاملاتی فارکس 2026 | `blog/best-forex-trading-robots-2026.html` | بررسی |
+| فرق اکسپرت و اندیکاتور در MT5 | `blog/expert-vs-indicator-mt5.html` | آموزش |
+| بررسی ربات فارکس فیوری | `blog/forex-fury-review.html` | بررسی |
+| فهرست بلاگ (لیست همه مقالات) | `blog/index.html` | — |
 
-**عنوان:** ربات فارکس چیست و چگونه کار می‌کند؟
-
-**بخش‌های مقاله (حدود ۷۰۰ کلمه):**
-- مقدمه
-- ربات فارکس (اکسپرت) چیست؟
-- ربات فارکس چگونه کار می‌کند؟
-- تفاوت اکسپرت و اندیکاتور
-- مزایای استفاده از ربات فارکس
-- معایب و ریسک‌ها
-- آموزش نصب در متاتریدر 5
-- جدول انواع ربات‌ها (سوپرترند، فارکس فیوری، گلد آپکس، EA&EM-PRO)
-- سوالات متداول
-- جمع‌بندی + CTA
-
-**امکانات سئو مقاله:** Schema مقاله + Breadcrumb + FAQ، لینک‌های داخلی، هشدار ریسک.
-
-**ایده‌های مقالات بعدی:**
-1. «آموزش نصب اکسپرت در متاتریدر 5»
-2. «اکسپرت سوپرترند چیست و چگونه کار می‌کند؟»
-3. «بهترین ربات معاملاتی فارکس 2026»
-4. «فرق اکسپرت و اندیکاتور در MT5»
-5. «بررسی ربات فارکس فیوری»
+> **هر مقاله شامل:** عنوان و متا دیسکریپشن بهینه، Schema مقاله + Breadcrumb، لینک‌های داخلی به صفحه اصلی و فهرست بلاگ، هشدار ریسک.
 
 ---
 
@@ -465,7 +333,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 ### 🔧 کارهای دوره‌ای
 - بعد از هر تغییر در گیت‌هاب: Cloudflare → Purge Cache
-- هر مقاله جدید: اضافه کردن به sitemap.xml + درخواست ایندکس در GSC
+- هر مقاله جدید: اضافه کردن به sitemap.xml + یک خط به blog/index.html + درخواست ایندکس در GSC
 - بررسی ماهانه: Google Search Console → Performance
 
 ### 📈 انتظار واقع‌بینانه

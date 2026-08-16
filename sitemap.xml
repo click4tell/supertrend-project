@@ -22,9 +22,41 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- مقاله: ربات فارکس چیست -->
+  <!-- فهرست بلاگ -->
+  <url>
+    <loc>https://mql5expert.ir/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- مقالات بلاگ -->
   <url>
     <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/supertrend-expert-advisor.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/best-forex-trading-robots-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/expert-vs-indicator-mt5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/forex-fury-review.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
