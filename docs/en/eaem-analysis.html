@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EA&amp;EM-SuperTrend&amp;Footprint Analysis | Hybrid MT5 EA</title>
-    <meta name="description" content="EA&amp;EM-SuperTrend&amp;Footprint analysis: SuperTrend and Footprint combined, manual and automated trading for MetaTrader 5.">
+    <title>EA&amp;EM-SuperTrend&amp;Footprint v1.27 Analysis | Hybrid MT5 EA</title>
+    <meta name="description" content="Full introduction and analysis of EA&amp;EM-SuperTrend&amp;Footprint v1.27: 9-timeframe signal engine, 6 advanced filters, manual and automated trading and a professional dashboard.">
     <link rel="canonical" href="https://mql5expert.ir/docs/en/eaem-analysis.html">
-    <meta property="og:title" content="EA&amp;EM-SuperTrend&amp;Footprint Analysis">
-    <meta property="og:description" content="Hybrid EA&amp;EM analysis and specs">
+    <meta property="og:title" content="EA&amp;EM-SuperTrend&amp;Footprint v1.27 Analysis">
+    <meta property="og:description" content="Full analysis of the hybrid EA&amp;EM expert">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/en/eaem-analysis.html">
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="en_US">
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <style>
-        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:ltr;text-align:left;line-height:1.8;color:#333;max-width:820px;margin:0 auto;padding:20px}
-        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:25px;text-align:center;margin:15px 0}
-        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:5px 0 0;opacity:.9}
+        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:ltr;text-align:left;line-height:1.8;color:#333;max-width:860px;margin:0 auto;padding:20px}
+        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:28px;text-align:center;margin:15px 0}
+        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:6px 0 0;opacity:.92;font-size:15px}
         .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:15px 0}
-        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:30px}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:32px}
+        h3{color:#1d4ed8;margin:18px 0 8px}
         table{width:100%;border-collapse:collapse;margin:15px 0}
         table th,table td{border:1px solid #e5e7eb;padding:9px;text-align:left;font-size:14px}
-        table th{background:#f3f4f6;width:35%}
+        table th{background:#f3f4f6}
         .note{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:15px 0}
+        .ok{color:#16a34a;font-weight:bold}.bad{color:#dc2626;font-weight:bold}
         .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
         .cta a{color:#1d4ed8;font-weight:bold}
         .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
-        ul{padding-left:25px}
+        ul,ol{padding-left:25px}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px}
         footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
     </style>
 </head>
@@ -35,37 +38,156 @@
     <p class="top-links"><a href="/">← Back to Home</a> | <a href="/blog/">← Articles &amp; Reports</a> | <a href="/docs/eaem-analysis.html">نسخه فارسی</a></p>
 
     <div class="page-hero">
-        <h1>EA&amp;EM-SuperTrend&amp;Footprint</h1>
-        <p>Hybrid expert: manual and automated trading with SuperTrend &amp; Footprint</p>
+        <h1>EA&amp;EM-SuperTrend&amp;Footprint v1.27</h1>
+        <p>Full introduction and analysis — hybrid manual &amp; automated trading expert for MetaTrader 5</p>
     </div>
 
+    <h2>Key Specifications</h2>
     <div class="card">
-        <h2>Product Analysis</h2>
-        <p>EA&amp;EM-SuperTrend&amp;Footprint is an advanced Expert Advisor that combines two powerful indicators — <strong>SuperTrend</strong> for trend following and <strong>Footprint</strong> for order-flow analysis. It trades fully automatically and also offers manual trading mode for traders who want more control.</p>
+        <table>
+            <tr><th>Name</th><td>EA&amp;EM-SuperTrend&amp;Footprint</td></tr>
+            <tr><th>Version</th><td>1.27 (Update: Auto Pending Orders)</td></tr>
+            <tr><th>Developer</th><td>KM@2025</td></tr>
+            <tr><th>Platform</th><td>MetaTrader 5</td></tr>
+            <tr><th>Activation</th><td>Dedicated code + account whitelist</td></tr>
+        </table>
     </div>
 
     <h2>Key Features</h2>
+
+    <h3>1. Multi-Timeframe Signal Engine (9 timeframes simultaneously)</h3>
     <ul>
-        <li>Combines SuperTrend signals and Footprint analysis</li>
-        <li>Manual and automated trading modes in one EA</li>
-        <li>Informational dashboard on the chart</li>
-        <li>Automatic Stop Loss and Take Profit management</li>
-        <li>Usable across different markets</li>
-        <li>Compatible with MetaTrader 5</li>
+        <li>Simultaneous analysis: <strong>M1 | M5 | M15 | M30 | H1 | H4 | D1 | W1 | MN1</strong></li>
+        <li>Signal engine: SuperTrend + ATR (period 14, Multiplier 2.5)</li>
+        <li>Signal validity: at least <strong>5 aligned timeframes</strong></li>
+        <li>Signal output: BUY / SELL / NEUTRAL</li>
     </ul>
 
-    <h2>Specifications</h2>
+    <h3>2. Six Advanced Filters (pass condition: PASS)</h3>
     <table>
-        <tr><th>Platform</th><td>MetaTrader 5 (MT5)</td></tr>
-        <tr><th>File format</th><td>.ex5</td></tr>
-        <tr><th>Trading style</th><td>Manual + Automated (hybrid)</td></tr>
-        <tr><th>Analysis tools</th><td>SuperTrend + Footprint</td></tr>
-        <tr><th>Best market</th><td>Pairs, Gold and others</td></tr>
-        <tr><th>Risk management</th><td>Adjustable</td></tr>
-        <tr><th>Support</th><td>Installation guide and support</td></tr>
+        <tr><th>Filter</th><th>Condition</th><th>Purpose</th></tr>
+        <tr><td>MA (EMA6)</td><td>Price &gt; MA</td><td>Confirms uptrend</td></tr>
+        <tr><td>RSI (7)</td><td>40 to 60</td><td>Avoids Overbought / Oversold</td></tr>
+        <tr><td>ADX (3)</td><td>&lt; 25</td><td>Trend strength</td></tr>
+        <tr><td>OBV</td><td>Rising</td><td>Volume confirmation</td></tr>
+        <tr><td>Stochastic</td><td>30 to 70</td><td>Avoids dangerous zones</td></tr>
+        <tr><td>MACD</td><td>MACD &gt; Signal</td><td>Momentum confirmation</td></tr>
     </table>
 
-    <div class="note"><strong>⚠️ Warning:</strong> No robot offers guaranteed profits. Trading risk is the user's responsibility.</div>
+    <h3>3. Professional Live Dashboard</h3>
+    <ul>
+        <li>Overall signal (BUY / SELL / OFF)</li>
+        <li>Up / Down / Neutral counts</li>
+        <li>Status of all 6 filters (PASS / FAIL)</li>
+        <li>Current ATR (pips)</li>
+        <li>Volume Delta + CVD + Equity + Profit/Loss</li>
+        <li>Tick Volume</li>
+    </ul>
+
+    <h3>4. Trading Systems</h3>
+    <ul>
+        <li><strong>Manual trading (buttons):</strong> BUY now | SELL now | BUY LIMIT (pending ATR × Multiplier) | SELL LIMIT (pending ATR × Multiplier) | CLOSE ALL</li>
+        <li><strong>Automated trading:</strong> max positions mode
+            <ul>
+                <li>Auto Direct: 1 direction each (signal + filters)</li>
+                <li>Auto Pending: Pullback Strategy (1 direction each)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>How It Works</h2>
+
+    <h3>1. SuperTrend Calculation</h3>
+    <div class="card">
+        <p><code>HL2 = (High + Low) / 2</code></p>
+        <p><code>Upper Band = HL2 + (Multiplier × ATR)</code></p>
+        <p><code>Lower Band = HL2 − (Multiplier × ATR)</code></p>
+        <p>✅ Close &gt; Upper Band → uptrend</p>
+        <p>✅ Close &lt; Lower Band → downtrend</p>
+    </div>
+
+    <h3>2. Signal Generation</h3>
+    <ul>
+        <li><strong>BUY signal:</strong> at least 5 bullish timeframes + all filters PASS</li>
+        <li><strong>SELL signal:</strong> at least 5 bearish timeframes + all filters PASS</li>
+        <li>Sound alert on signal change</li>
+    </ul>
+
+    <h3>3. Trade Execution</h3>
+    <ul>
+        <li><strong>Auto Direct:</strong> instant entry at Ask/Bid + fixed SL/TP</li>
+        <li><strong>Auto Pending:</strong>
+            <ul>
+                <li>Buy Limit: <code>Ask − (ATR × Multiplier)</code></li>
+                <li>Sell Limit: <code>Bid + (ATR × Multiplier)</code></li>
+                <li>Pullback Strategy</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Risk Management</h2>
+    <div class="card">
+        <table>
+            <tr><th>Stop Loss</th><td>1000 pips (adjustable)</td></tr>
+            <tr><th>Take Profit</th><td>210 pips (adjustable)</td></tr>
+            <tr><th>Advanced 3-step Trailing</th><td>1. Breakeven: +1000 pips — 2. Trailing: 100 pips — 3. Step: 2 pips</td></tr>
+            <tr><th>Default lot size</th><td>0.02 (buttons, Auto Direct, Auto Pending)</td></tr>
+        </table>
+    </div>
+
+    <h2>Competitive Advantages</h2>
+    <table>
+        <tr><th>Feature</th><th>EA&amp;EM</th><th>Competitors</th></tr>
+        <tr><td>Multi-TF analysis</td><td class="ok">✅ 9 timeframes</td><td class="bad">❌ 1–2 timeframes</td></tr>
+        <tr><td>Simultaneous filters</td><td class="ok">✅ 6 filters</td><td class="bad">❌ 1–3 filters</td></tr>
+        <tr><td>Auto Pending</td><td class="ok">✅ New</td><td class="bad">❌ Not available</td></tr>
+        <tr><td>Advanced trailing</td><td class="ok">✅ 3 steps</td><td class="bad">❌ Simple</td></tr>
+        <tr><td>Volume Delta</td><td class="ok">✅ CVD+TVD</td><td class="bad">❌ Not available</td></tr>
+        <tr><td>Complete dashboard</td><td class="ok">✅ Real-time</td><td class="bad">❌ Limited</td></tr>
+    </table>
+
+    <h2>Usage Guide</h2>
+    <h3>Step 1 — Installation</h3>
+    <ol>
+        <li>Copy the .ex5 file into the Experts folder</li>
+        <li>Enter the activation code</li>
+        <li>Attach the EA to a chart</li>
+    </ol>
+    <h3>Step 2 — Recommended Settings</h3>
+    <table>
+        <tr><th>Parameter</th><th>Forex recommended</th><th>Crypto recommended</th></tr>
+        <tr><td>SL Pips</td><td>1000</td><td>2000</td></tr>
+        <tr><td>TP Pips</td><td>210</td><td>500</td></tr>
+        <tr><td>Lot Size</td><td>0.02</td><td>0.01</td></tr>
+        <tr><td>Min TF</td><td>5</td><td>6</td></tr>
+    </table>
+    <h3>Step 3 — Trading</h3>
+    <ul>
+        <li>Colored manual buttons: mode</li>
+        <li>Auto Direct: AUTO DIR button</li>
+        <li>Auto Pending: AUTO PEND button</li>
+    </ul>
+
+    <h2>Pre-Use Checklist</h2>
+    <ul>
+        <li>Account activation confirmed</li>
+        <li>Balance suitable for the lot size</li>
+        <li>SL/TP aligned with the strategy</li>
+        <li>Auto Trading off during manual testing</li>
+        <li>24/7 execution with a VPS</li>
+    </ul>
+
+    <div class="note">
+        <strong>⚠️ Important warnings:</strong> Trading involves high risk • No guaranteed profits • Test on a demo account first • Capital management is mandatory.
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>EA&amp;EM-SuperTrend&amp;Footprint v1.27 is a complete combination of multi-timeframe analysis, advanced filters, automated trading and a professional dashboard. Designed for:</p>
+    <ul>
+        <li>✅ Manual traders who want precise signals</li>
+        <li>✅ Automated traders who want full control</li>
+        <li>✅ Volume and Footprint analysts</li>
+    </ul>
 
     <div class="cta">
         <p>Buy EA&amp;EM-PRO → <a href="/">MQL5 Expert Home</a></p>

@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperTrend EA Specifications | MT5 Trend-Following Robot</title>
-    <meta name="description" content="Complete SuperTrend Expert Advisor specifications for MetaTrader 5: features, settings and full spec table.">
+    <title>SuperTrend EA Guide (ForexTrend Pro v1.60) | 9-Timeframe MT5 Robot</title>
+    <meta name="description" content="How the SuperTrend EA (ForexTrend Professional v1.60) works: 9-timeframe analysis, 5-timeframe signal, ATR risk management and full setup guide.">
     <link rel="canonical" href="https://mql5expert.ir/docs/en/supertrend-specs.html">
-    <meta property="og:title" content="SuperTrend EA Specifications">
-    <meta property="og:description" content="Complete SuperTrend robot specs for MT5">
+    <meta property="og:title" content="SuperTrend EA Guide (v1.60)">
+    <meta property="og:description" content="9-timeframe SuperTrend robot: how it works, setup and settings">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/en/supertrend-specs.html">
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="en_US">
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <style>
-        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:ltr;text-align:left;line-height:1.8;color:#333;max-width:820px;margin:0 auto;padding:20px}
-        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:25px;text-align:center;margin:15px 0}
-        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:5px 0 0;opacity:.9}
+        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:ltr;text-align:left;line-height:1.8;color:#333;max-width:860px;margin:0 auto;padding:20px}
+        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:28px;text-align:center;margin:15px 0}
+        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:6px 0 0;opacity:.92;font-size:15px}
         .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:15px 0}
-        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:30px}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:32px}
+        h3{color:#1d4ed8;margin:18px 0 8px}
         table{width:100%;border-collapse:collapse;margin:15px 0}
         table th,table td{border:1px solid #e5e7eb;padding:9px;text-align:left;font-size:14px}
-        table th{background:#f3f4f6;width:35%}
+        table th{background:#f3f4f6}
         .note{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:15px 0}
         .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
         .cta a{color:#1d4ed8;font-weight:bold}
         .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
-        ul{padding-left:25px}
+        ul,ol{padding-left:25px}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px}
+        .step{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;margin:10px 0}
+        .step b{color:#1d4ed8}
         footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
     </style>
 </head>
@@ -35,39 +39,79 @@
     <p class="top-links"><a href="/">← Back to Home</a> | <a href="/blog/">← Articles &amp; Reports</a> | <a href="/docs/supertrend-specs.html">نسخه فارسی</a></p>
 
     <div class="page-hero">
-        <h1>SuperTrend Expert Advisor</h1>
-        <p>Automated trend-following robot for MetaTrader 5</p>
+        <h1>SuperTrend EA — ForexTrend Professional v1.60</h1>
+        <p>Multi-timeframe trend-following robot for MetaTrader 5 (9 timeframes analyzed simultaneously)</p>
     </div>
 
     <div class="card">
-        <h2>Product Overview</h2>
-        <p>The SuperTrend EA is an automated trading robot based on the SuperTrend indicator. It identifies the market trend and automatically opens trades in its direction, manages Stop Loss and Take Profit, and runs 24/7 without requiring you to sit in front of the chart.</p>
+        <h2>Overview</h2>
+        <p>The SuperTrend EA (internal name: <strong>ForexTrend Professional EA v1.60</strong>) is a trend-following robot that analyzes <strong>9 timeframes simultaneously</strong> and only opens a trade when at least 5 timeframes are aligned. Stop Loss and Take Profit are calculated dynamically from the <strong>ATR</strong> (market volatility).</p>
     </div>
 
-    <h2>Key Features</h2>
-    <ul>
-        <li>Fully automated trading based on SuperTrend signals</li>
-        <li>Trend following on currency pairs and gold</li>
-        <li>Adjustable Period and Multiplier</li>
-        <li>Automatic Stop Loss and Take Profit management</li>
-        <li>Suitable for H1 and H4 timeframes</li>
-        <li>Easy installation, compatible with MT5</li>
-    </ul>
+    <h2>Key Specifications</h2>
+    <div class="card">
+        <table>
+            <tr><th>Name</th><td>ForexTrend Professional EA</td></tr>
+            <tr><th>Version</th><td>1.60 (Standard SuperTrend)</td></tr>
+            <tr><th>Developer</th><td>KM@2025 — mql5expert.ir</td></tr>
+            <tr><th>Platform</th><td>MetaTrader 5</td></tr>
+            <tr><th>Recommended symbol</th><td>XAUUSD (Gold) — H1 timeframe</td></tr>
+            <tr><th>Activation</th><td>Activation code only for real accounts — demo &amp; backtest free</td></tr>
+            <tr><th>Expiration</th><td>2030.12.31</td></tr>
+        </table>
+    </div>
 
-    <h2>Specifications</h2>
-    <table>
-        <tr><th>Platform</th><td>MetaTrader 5 (MT5)</td></tr>
-        <tr><th>File format</th><td>.ex5</td></tr>
-        <tr><th>Trading style</th><td>Trend Following</td></tr>
-        <tr><th>Recommended timeframe</th><td>H1 and H4</td></tr>
-        <tr><th>Period</th><td>10 (adjustable)</td></tr>
-        <tr><th>Multiplier</th><td>3 (adjustable)</td></tr>
-        <tr><th>Best market</th><td>Currency pairs and XAUUSD</td></tr>
-        <tr><th>Risk management</th><td>Adjustable lot, SL and TP</td></tr>
-        <tr><th>Support</th><td>Installation guide and support</td></tr>
-    </table>
+    <h2>How It Works (from the real source code)</h2>
+    <div class="step"><b>Step 1 — 9-timeframe analysis:</b> the robot calculates SuperTrend on M1–MN1 (ATR period 35, multiplier 16).</div>
+    <div class="step"><b>Step 2 — Direction per timeframe:</b> price above the upper band → bullish; below the lower band → bearish.</div>
+    <div class="step"><b>Step 3 — Overall signal:</b> at least 5 bullish timeframes → BUY; at least 5 bearish → SELL; otherwise OFF (no trade).</div>
+    <div class="step"><b>Step 4 — Entry filters:</b> max allowed ATR (1410 pips), max spread (14 pips), trading hours and max 1 trade per bar.</div>
+    <div class="step"><b>Step 5 — Entry &amp; risk:</b> BUY at Ask with SL <code>Ask − (1.7 × ATR)</code> and TP <code>Ask + (2.3 × ATR)</code>.</div>
+    <div class="step"><b>Step 6 — Lot size:</b> base 0.01 lot + 0.01 increment for every $1000 of balance.</div>
 
-    <div class="note"><strong>⚠️ Warning:</strong> No robot offers guaranteed profits. Always test on a demo account before using real money. Trading risk is the user's responsibility.</div>
+    <h3>Strategy Diagram</h3>
+    <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px">
+        <text x="20" y="22" font-size="12" fill="#555">Price (grey) + SuperTrend (green = bullish)</text>
+        <polyline points="20,95 80,75 120,90 180,50 240,60 300,30 360,40" fill="none" stroke="#888" stroke-width="2"/>
+        <polyline points="20,110 80,100 120,110 180,80 240,90 300,60 360,70" fill="none" stroke="#16a34a" stroke-width="3" stroke-dasharray="6,3"/>
+        <text x="20" y="145" font-size="12" fill="#16a34a">✅ 5+ timeframes bullish → BUY signal</text>
+        <circle cx="300" cy="30" r="5" fill="#16a34a"/>
+    </svg>
+
+    <h2>Inputs — Default Values</h2>
+    <div class="card">
+        <table>
+            <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+            <tr><td>PERIOD</td><td>H1 / XAUUSD</td><td>Recommended symbol &amp; timeframe</td></tr>
+            <tr><td>ATR_Multiplier_SL</td><td>1.7</td><td>ATR multiplier for Stop Loss</td></tr>
+            <tr><td>ATR_Multiplier_TP</td><td>2.3</td><td>ATR multiplier for Take Profit</td></tr>
+            <tr><td>BaseLotSize</td><td>0.01</td><td>Base lot size</td></tr>
+            <tr><td>LotIncrementPer1000</td><td>0.01</td><td>Lot increment per $1000</td></tr>
+            <tr><td>ATR_Period</td><td>35</td><td>ATR period for SL/TP</td></tr>
+            <tr><td>MaxATRThreshold</td><td>1410 pips</td><td>Maximum allowed volatility</td></tr>
+            <tr><td>MaxSpread</td><td>14 pips</td><td>Maximum allowed spread</td></tr>
+            <tr><td>TradingStart/EndHour</td><td>0–23</td><td>Trading hours</td></tr>
+            <tr><td>MaxTradesPerBar</td><td>1</td><td>Max trades per bar</td></tr>
+            <tr><td>SuperTrend_ATR_Period</td><td>35</td><td>SuperTrend ATR period</td></tr>
+            <tr><td>SuperTrend_Multiplier</td><td>16</td><td>SuperTrend multiplier</td></tr>
+            <tr><td>MinTimeframesForSignal</td><td>5</td><td>Min aligned timeframes for signal</td></tr>
+            <tr><td>EnableHedging</td><td>false</td><td>Hedging mode (off for profitability)</td></tr>
+            <tr><td>MagicNumber</td><td>202509</td><td>Trade identifier</td></tr>
+        </table>
+    </div>
+
+    <h2>Installation &amp; Setup</h2>
+    <ol>
+        <li>Copy the <code>.ex5</code> file into <code>MQL5\Experts</code>.</li>
+        <li>In MT5: right-click the Navigator → Refresh.</li>
+        <li>Drag the EA onto a <strong>XAUUSD H1</strong> chart.</li>
+        <li><strong>Activation:</strong> enter the code for real accounts (not required on demo/backtest).</li>
+        <li>Enable AutoTrading and Allow Algorithmic Trading.</li>
+    </ol>
+
+    <div class="note">
+        <strong>⚠️ Warnings:</strong> Trading involves high risk • No guaranteed profits • Past performance is not a guarantee of future results • Test on a demo account first • Capital management is mandatory.
+    </div>
 
     <div class="cta">
         <p>Buy the SuperTrend EA → <a href="/">MQL5 Expert Home</a></p>
