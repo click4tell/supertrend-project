@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استراتژی اسکالپر ترکیبی طلا (XAUUSD Hybrid Scalper v2) برای تریدینگ ویو | رایگان</title>
+    <meta name="description" content="استراتژی رایگان Pine Script تریدینگ ویو برای طلا (XAUUSD): دو سیستم کراس SMA و اسکالپر هیبرید با SL/TP مبتنی بر ATR، آژیر صوتی و آموزش کامل نصب.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/xauusd-hybrid-scalper-tradingview.html">
+    <meta property="og:title" content="استراتژی XAUUSD Hybrid Scalper v2 برای تریدینگ ویو (رایگان)">
+    <meta property="og:description" content="استراتژی رایگان طلا برای تریدینگ ویو با آژیر صوتی و آموزش نصب">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/xauusd-hybrid-scalper-tradingview.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "استراتژی اسکالپر ترکیبی طلا برای تریدینگ ویو (رایگان)",
+      "description": "استراتژی رایگان Pine Script طلا با آژیر صوتی",
+      "inLanguage": "fa",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-08-17",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/xauusd-hybrid-scalper-tradingview.html"
+    }
+    </script>
+    <style>
+        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:820px;margin:0 auto;padding:20px}
+        h1{color:#1d4ed8;font-size:1.8em}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:38px}
+        .meta{color:#888;font-size:14px}
+        .free{display:inline-block;background:#16a34a;color:#fff;border-radius:999px;padding:3px 14px;font-size:12px;font-weight:bold}
+        .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:16px 20px;margin:14px 0}
+        table{width:100%;border-collapse:collapse;margin:14px 0}
+        table th,table td{border:1px solid #e5e7eb;padding:8px 10px;text-align:right;font-size:14px}
+        table th{background:#f3f4f6}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
+        .note{background:#fff7ed;border-right:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:14px 0}
+        .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
+        .cta a{color:#1d4ed8;font-weight:bold}
+        .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
+        ol{padding-right:25px}
+        footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
+    </style>
+</head>
+<body>
+
+    <p class="top-links"><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← مقالات، آموزش‌ها و گزارش‌ها</a> | <a href="/blog/en/xauusd-hybrid-scalper-tradingview.html">English Version</a></p>
+
+    <article>
+        <h1>استراتژی اسکالپر ترکیبی طلا (XAUUSD Hybrid Scalper v2) برای تریدینگ ویو <span class="free">رایگان</span></h1>
+        <p class="meta">منتشرشده: ۱۷ اوت ۲۰۲۶ | دسته: استراتژی رایگان</p>
+
+        <p>اگر در <strong>تریدینگ ویو (TradingView)</strong> معامله می‌کنید و به دنبال یک <strong>استراتژی رایگان</strong> برای بازار طلا هستید، «XAUUSD Hybrid Scalper v2» انتخاب مناسبی است. این استراتژی به زبان <strong>Pine Script نسخه ۶</strong> نوشته شده و به‌صورت کامل (تحت مجوز MPL 2.0) رایگان ارائه می‌شود.</p>
+
+        <h2>این استراتژی چیست؟</h2>
+        <p>XAUUSD Hybrid Scalper v2 یک استراتژی ترکیبی است که <strong>دو سیستم معاملاتی مستقل</strong> را با هم اجرا می‌کند:</p>
+        <ul>
+            <li><strong>سیستم ۱ — کراس SMA:</strong> تقاطع میانگین متحرک سریع (۱۴) و کند (۲۸) — سیگنال Long/Short کلاسیک.</li>
+            <li><strong>سیستم ۲ — اسکالپر هیبرید:</strong> ترکیب روند (EMA20 بالای EMA50)، کراس RSI از سطح ۵۰، کندل قوی و فیلتر سشن — سیگنال Buy/Sell دقیق‌تر.</li>
+        </ul>
+
+        <h2>نحوه عملکرد</h2>
+        <div class="card">
+            <p><strong>شرط ورود Long (سیستم SMA):</strong> تقاطع SMA سریع به بالا از SMA کند.</p>
+            <p><strong>شرط ورود Short (سیستم SMA):</strong> تقاطع SMA سریع به پایین از SMA کند.</p>
+            <p><strong>شرط Buy (هیبرید):</strong> EMA20 &gt; EMA50 + کراس RSI به بالای ۵۰ + کندل صعودی قوی + داخل سشن.</p>
+            <p><strong>شرط Sell (هیبرید):</strong> EMA20 &lt; EMA50 + کراس RSI به پایین ۵۰ + کندل نزولی قوی + داخل سشن.</p>
+            <p><strong>خروج:</strong> حد ضرر <code>1.5 × ATR</code> و حد سود <code>2.0 × ATR</code> (دوره ATR: ۱۴).</p>
+        </div>
+
+        <h2>تنظیمات (Inputs)</h2>
+        <table>
+            <tr><th>گروه</th><th>پارامتر</th><th>پیش‌فرض</th></tr>
+            <tr><td>SMA</td><td>SMA سریع / کند</td><td>۱۴ / ۲۸</td></tr>
+            <tr><td>EMA</td><td>EMA سریع / کند (فیلتر روند)</td><td>۲۰ / ۵۰</td></tr>
+            <tr><td>RSI</td><td>دوره / سطح کراس</td><td>۱۴ / ۵۰</td></tr>
+            <tr><td>ATR</td><td>دوره / ضریب SL / ضریب TP</td><td>۱۴ / ۱.۵ / ۲.۰</td></tr>
+            <tr><td>سشن</td><td>ساعت معاملاتی</td><td>08:00 تا 17:00 (GMT+0)</td></tr>
+            <tr><td>حجم</td><td>لات ثابت</td><td>۰.۱۰ (قابل تغییر)</td></tr>
+            <tr><td>سرمایه/کارمزد</td><td>سرمایه اولیه / کارمزد</td><td>۱۰,۰۰۰$ / ۰.۰۲٪</td></tr>
+        </table>
+
+        <h2>آژیر صوتی و نمایش</h2>
+        <ul>
+            <li><strong>آژیر صوتی (Alert):</strong> برای همه ورودها و خروج‌ها با ذکر نماد و قیمت.</li>
+            <li><strong>خطوط افقی رنگی:</strong> نقطه ورود Long/Short و خروج EXL/EXS.</li>
+            <li><strong>مثلث‌های رنگی:</strong> زیر/بالای کندل برای هر ۶ رویداد.</li>
+            <li><strong>خطوط SL/TP:</strong> نمایش حد ضرر و حد سود پوزیشن باز.</li>
+        </ul>
+
+        <h2>آموزش اضافه کردن به تریدینگ ویو</h2>
+        <ol>
+            <li>فایل <strong>Pine Script</strong> را از لینک دانلود زیر دریافت کنید.</li>
+            <li>در TradingView یک چارت <strong>XAUUSD</strong> باز کنید.</li>
+            <li>از پایین صفحه روی <strong>Pine Editor</strong> کلیک کنید.</li>
+            <li>کد فایل را در ویرایشگر <strong>کپی</strong> کنید (جایگزین محتوای قبلی).</li>
+            <li>روی <strong>Add to chart</strong> (افزودن به چارت) کلیک کنید.</li>
+            <li>تنظیمات استراتژی را از تب <strong>Settings</strong> بررسی کنید.</li>
+            <li>برای بک‌تست: تب <strong>Strategy Tester</strong> را باز کنید.</li>
+            <li>برای آژیر: روی استراتژی راست‌کلیک → <strong>Add alert</strong> → گزینه‌های alert را انتخاب کنید.</li>
+        </ol>
+
+        <div class="note"><strong>⚠️ نکته:</strong> حجم پیش‌فرض ۰.۱۰ لات است و از بخش Properties (Settings) قابل تغییر است. قبل از معامله واقعی، حتماً بک‌تست و دمو بگیرید.</div>
+
+        <h2>دانلود فایل</h2>
+        <div class="cta">
+            <p>📥 <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download>دانلود رایگان استراتژی XAUUSD Hybrid Scalper v2 (.pine)</a></p>
+        </div>
+
+        <h2>جمع‌بندی</h2>
+        <p>این استراتژی رایگان برای معامله‌گرانی که با تریدینگ ویو کار می‌کنند و به دنبال یک سیستم ساده اما کامل (با آژیر، خطوط و مثلث) روی طلا هستند عالی است. لطفاً پیش از استفاده، هشدار ریسک زیر را در نظر بگیرید.</p>
+
+        <div class="note"><strong>سلب مسئولیت:</strong> این استراتژی رایگان به‌صورت «همان‌گونه که هست» ارائه می‌شود و هیچ‌گونه تضمینی برای سوددهی ندارد. معامله در بازارهای مالی با ریسک از دست دادن سرمایه همراه است.</div>
+
+        <div class="cta">
+            <p>سایر محصولات اکسپرت و ربات متاتریدر → <a href="/">صفحه اصلی سایت</a></p>
+        </div>
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+</body>
+</html>
