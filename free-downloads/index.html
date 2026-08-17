@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="note">
+    <div class="note" style="display:none">
         <b data-fa="📌 نحوه استفاده:" data-en="📌 How to use:">📌 نحوه استفاده:</b>
         <span data-fa="فایل‌های موردنظر را در پوشه <code>free-downloads/</code> ریپوی گیت‌هاب آپلود کنید (بدون نیاز به تغییر هیچ صفحه‌ای). همین صفحه به‌صورت خودکار فایل‌ها و زیرپوشه‌ها را به‌صورت درختی نمایش می‌دهد و با کلیک روی هر فایل، دانلود انجام می‌شود." data-en="Upload your files into the <code>free-downloads/</code> folder of the GitHub repo (no page changes needed). This page automatically shows the files and subfolders as a tree, and clicking a file downloads it.">فایل‌های موردنظر را در پوشه <code>free-downloads/</code> ریپوی گیت‌هاب آپلود کنید (بدون نیاز به تغییر هیچ صفحه‌ای). همین صفحه به‌صورت خودکار فایل‌ها و زیرپوشه‌ها را به‌صورت درختی نمایش می‌دهد و با کلیک روی هر فایل، دانلود انجام می‌شود.</span>
     </div>
@@ -136,7 +136,7 @@
         async function renderFolder(path, container, depth){
             container.innerHTML = '<div class="msg">' + (currentLang === 'fa' ? 'در حال خواندن...' : 'Loading...') + '</div>';
             try{
-                const items = await apiGet(path);
+                let items = await apiGet(path); items = items.filter(i => !(i.type === 'file' && i.name.toLowerCase() === 'index.html'));
                 container.innerHTML = "";
                 items.sort((a,b) => (a.type === 'dir' ? -1 : 1) - (b.type === 'dir' ? -1 : 1) || a.name.localeCompare(b.name));
                 items.forEach(item => {
