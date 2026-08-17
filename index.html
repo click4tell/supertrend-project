@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <!--
   ═══════════════════════════════════════════════════════════════════
-  index.html — نسخه کامل و بهینه‌شده برای سئو + منوی کشویی
+  index.html — نسخه کامل و بهینه‌شده برای سئو + منوی کشویی دوزبانه
   ═══════════════════════════════════════════════════════════════════
-  منو: خانه | مقالات، آموزش‌ها و گزارش‌ها (کشویی) | دانلودها (کشویی) | تلگرام | تماس با ما
-  - فایل‌های دانلود در پوشه /downloads/ و گزارش‌ها در /docs/ هستند
+  با زدن دکمه زبان، تمام منوها و متن‌ها به انگلیسی تغییر می‌کنند.
+  - مقالات انگلیسی در پوشه /blog/en/ هستند و لینک‌ها خودکار عوض می‌شوند
+  - فایل‌های دانلود در /downloads/ و گزارش‌ها در /docs/ هستند
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fa" dir="rtl">
@@ -537,8 +538,8 @@ footer a:hover {
     line-height: 2;
     text-align: center;
     margin: 0;
-    display: block;           /* مهم: برخلاف قانون عمومی footer p */
-    white-space: normal;      /* مهم: اجازه شکستن خط */
+    display: block;
+    white-space: normal;
 }
 
 /* حالت فارسی: راست‌چین */
@@ -794,38 +795,38 @@ html[lang="fa"] .copyright  { direction: rtl; }
 </head>
 <body>
 
-    <!-- ═══ منوی بالای سایت (با منوی کشویی) ═══ -->
+    <!-- ═══ منوی بالای سایت (با منوی کشویی دوزبانه) ═══ -->
     <nav class="main-nav">
         <a href="/" data-fa="خانه" data-en="Home">خانه</a>
 
         <div class="dropdown">
-            <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
+            <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
             <div class="dropdown-content">
-                <p class="dd-title">مقالات</p>
-                <a href="/blog/what-is-forex-robot.html">ربات فارکس چیست؟</a>
-                <a href="/blog/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در MT5</a>
-                <a href="/blog/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست؟</a>
-                <a href="/blog/best-forex-trading-robots-2026.html">بهترین ربات فارکس 2026</a>
-                <a href="/blog/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور</a>
-                <a href="/blog/forex-fury-review.html">بررسی فارکس فیوری</a>
+                <p class="dd-title" data-fa="مقالات" data-en="Articles">مقالات</p>
+                <a href="/blog/what-is-forex-robot.html" data-fa="ربات فارکس چیست؟" data-en="What is a Forex Robot?" data-href-fa="/blog/what-is-forex-robot.html" data-href-en="/blog/en/what-is-forex-robot.html">ربات فارکس چیست؟</a>
+                <a href="/blog/how-to-install-expert-in-metatrader5.html" data-fa="آموزش نصب اکسپرت در MT5" data-en="How to Install an EA in MT5" data-href-fa="/blog/how-to-install-expert-in-metatrader5.html" data-href-en="/blog/en/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در MT5</a>
+                <a href="/blog/supertrend-expert-advisor.html" data-fa="اکسپرت سوپرترند چیست؟" data-en="What is SuperTrend EA?" data-href-fa="/blog/supertrend-expert-advisor.html" data-href-en="/blog/en/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست؟</a>
+                <a href="/blog/best-forex-trading-robots-2026.html" data-fa="بهترین ربات فارکس 2026" data-en="Best Forex Robots 2026" data-href-fa="/blog/best-forex-trading-robots-2026.html" data-href-en="/blog/en/best-forex-trading-robots-2026.html">بهترین ربات فارکس 2026</a>
+                <a href="/blog/expert-vs-indicator-mt5.html" data-fa="فرق اکسپرت و اندیکاتور" data-en="EA vs Indicator" data-href-fa="/blog/expert-vs-indicator-mt5.html" data-href-en="/blog/en/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور</a>
+                <a href="/blog/forex-fury-review.html" data-fa="بررسی فارکس فیوری" data-en="Forex Fury Review" data-href-fa="/blog/forex-fury-review.html" data-href-en="/blog/en/forex-fury-review.html">بررسی فارکس فیوری</a>
                 <hr>
-                <p class="dd-title">گزارش‌ها و تحلیل</p>
-                <a href="/docs/info.pdf" target="_blank">مشخصات سوپرترند</a>
-                <a href="/docs/ForexFuryPro.pdf" target="_blank">مشخصات فارکس فیوری</a>
-                <a href="/docs/ReportTester-3399802.html" target="_blank">گزارش بک‌تست گلد آپکس</a>
-                <a href="/docs/EA&EM-SuperTrend&Footprint_info.pdf" target="_blank">تحلیل EA&amp;EM-SuperTrend&amp;Footprint</a>
-                <a href="/GoldApex_WF.html" target="_blank">تحلیل گلد آپکس</a>
+                <p class="dd-title" data-fa="گزارش‌ها و تحلیل" data-en="Reports &amp; Analysis">گزارش‌ها و تحلیل</p>
+                <a href="/docs/info.pdf" target="_blank" data-fa="مشخصات سوپرترند" data-en="SuperTrend Specs">مشخصات سوپرترند</a>
+                <a href="/docs/ForexFuryPro.pdf" target="_blank" data-fa="مشخصات فارکس فیوری" data-en="ForexFury Specs">مشخصات فارکس فیوری</a>
+                <a href="/docs/ReportTester-3399802.html" target="_blank" data-fa="گزارش بک‌تست گلد آپکس" data-en="GoldApex Backtest Report">گزارش بک‌تست گلد آپکس</a>
+                <a href="/docs/EA&EM-SuperTrend&Footprint_info.pdf" target="_blank" data-fa="تحلیل EA&amp;EM-SuperTrend&amp;Footprint" data-en="EA&amp;EM-SuperTrend&amp;Footprint Analysis">تحلیل EA&amp;EM-SuperTrend&amp;Footprint</a>
+                <a href="/GoldApex_WF.html" target="_blank" data-fa="تحلیل گلد آپکس" data-en="GoldApex Analysis">تحلیل گلد آپکس</a>
             </div>
         </div>
 
         <div class="dropdown">
             <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
             <div class="dropdown-content">
-                <a href="/downloads/EA&EM-PRO.ex5" download>ربات EA&amp;EM-PRO</a>
-                <a href="/downloads/SuperTrend_EA.ex5" download>ربات سوپرترند</a>
-                <a href="/downloads/ForexFuryPro.ex5" download>ربات فارکس فیوری</a>
-                <a href="/downloads/GoldApex_WF.zip" download>ربات گلد آپکس</a>
-                <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download>استراتژی اسکالپر طلا</a>
+                <a href="/downloads/EA&EM-PRO.ex5" download data-fa="ربات EA&amp;EM-PRO" data-en="EA&amp;EM-PRO Robot">ربات EA&amp;EM-PRO</a>
+                <a href="/downloads/SuperTrend_EA.ex5" download data-fa="ربات سوپرترند" data-en="SuperTrend Robot">ربات سوپرترند</a>
+                <a href="/downloads/ForexFuryPro.ex5" download data-fa="ربات فارکس فیوری" data-en="ForexFury Robot">ربات فارکس فیوری</a>
+                <a href="/downloads/GoldApex_WF.zip" download data-fa="ربات گلد آپکس" data-en="GoldApex Robot">ربات گلد آپکس</a>
+                <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download data-fa="استراتژی اسکالپر طلا" data-en="Gold Scalper Strategy">استراتژی اسکالپر طلا</a>
             </div>
         </div>
 
@@ -842,9 +843,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <header>
         <video autoplay muted loop id="bgVideo">
             <source src="/logo.webm" type="video/webm">
-            مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+            <span data-fa="مرورگر شما از ویدیو پشتیبانی نمی‌کند." data-en="Your browser does not support the video tag.">مرورگر شما از ویدیو پشتیبانی نمی‌کند.</span>
         </video>
-        <h1 data-fa="متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور" data-en="METATRADER 5, MQL5, MQ5, EXPERT, INDICATOR">متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور</h1>
+        <h1 data-fa="متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور" data-en="MT5 Forex Trading Robots &amp; Indicators">متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور</h1>
         <p data-fa="فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی</p>
     </header>
 
@@ -932,7 +933,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
         </div>
         <div>
             <img src="/indicator_chart.png" alt="داشبورد اندیکاتور سوپرترند در چارت متاتریدر 5" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
-            <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Dashboard for Manual & Automatic Trading in Chart">داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت</p>
+            <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Dashboard for Manual &amp; Automatic Trading in Chart">داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت</p>
         </div>
     </div>
 
@@ -949,7 +950,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             </div>
             <div>
                 <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
-                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی EA&EM-PRO" data-en="EA&EM-PRO">اکسپرت اتوماتیک و دستی EA&EM-PRO</p>
+                <p class="caption" data-fa="اکسپرت اتوماتیک و دستی EA&EM-PRO" data-en="EA&amp;EM-PRO">اکسپرت اتوماتیک و دستی EA&amp;EM-PRO</p>
             </div>
             <div>
                 <video src="/GoldApex_WF.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
@@ -972,10 +973,10 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <!-- ═══ باکس سلب مسئولیت ═══ -->
         <div class="disclaimer-box">
             <p class="disclaimer-title" data-fa="سلب مسئولیت" data-en="Disclaimer">سلب مسئولیت</p>
-            <p class="disclaimer" data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد. معرفی و بررسی بروکرها کاملاً بی‌طرفانه است. ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم." data-en="Responsibility for profits and losses arising from trading decisions rests entirely with the user, and Forex trading bears no responsibility for any potential losses. Broker introductions and reviews are completely impartial. We accept no responsibility for the performance, violations, or potential problems of brokers.">
-                مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد.<br>
-                معرفی و بررسی بروکرها کاملاً بی‌طرفانه است.<br>
-                ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم.
+            <p class="disclaimer">
+                <span data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد." data-en="Responsibility for profits and losses arising from trading decisions rests entirely with the user, and Forex trading bears no responsibility for any potential losses.">مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد.</span><br>
+                <span data-fa="معرفی و بررسی بروکرها کاملاً بی‌طرفانه است." data-en="Broker introductions and reviews are completely impartial.">معرفی و بررسی بروکرها کاملاً بی‌طرفانه است.</span><br>
+                <span data-fa="ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم." data-en="We accept no responsibility for the performance, violations, or potential problems of brokers.">ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم.</span>
             </p>
         </div>
 
@@ -1169,10 +1170,15 @@ html[lang="fa"] .copyright  { direction: rtl; }
             document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
             document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
 
-            /* فقط المان‌های ساده (بدون زیرالمان) عوض می‌شوند تا فوتر و سلب مسئولیت خراب نشوند */
+            /* سوییچ متن + لینک برای المان‌های ساده (بدون زیرالمان) */
             document.querySelectorAll('[data-fa]').forEach(el => {
                 if (el.children.length === 0) {
                     el.textContent = el.getAttribute('data-' + lang) || el.getAttribute('data-' + (lang === 'fa' ? 'en' : 'fa'));
+                    const hrefFa = el.getAttribute('data-href-fa');
+                    const hrefEn = el.getAttribute('data-href-en');
+                    if (hrefFa && hrefEn) {
+                        el.setAttribute('href', lang === 'fa' ? hrefFa : hrefEn);
+                    }
                 }
             });
 
