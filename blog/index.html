@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+<!--
+  blog/index.html — مقالات، آموزش‌ها و گزارش‌ها (دوزبانه)
+  با زدن دکمه زبان، همه موارد به انگلیسی تغییر می‌کنند و لینک مقالات به نسخه انگلیسی (/blog/en/) میروند.
+-->
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بلاگ و مقالات آموزشی | ربات فارکس و اکسپرت MT5</title>
-    <meta name="description" content="مقالات آموزشی ربات فارکس، اکسپرت و اندیکاتور متاتریدر 5: آموزش نصب، معرفی ربات‌ها، بررسی محصولات و نکات معاملاتی.">
+    <title>مقالات، آموزش‌ها و گزارش‌ها | ربات فارکس و اکسپرت MT5</title>
+    <meta name="description" content="مقالات آموزشی ربات فارکس، اکسپرت و اندیکاتور متاتریدر 5: آموزش نصب، معرفی ربات‌ها، گزارش تست، مشخصات و تحلیل محصولات و دانلود فایل‌ها.">
     <link rel="canonical" href="https://mql5expert.ir/blog/">
-    <meta property="og:title" content="بلاگ و مقالات آموزشی | MQL5 Expert">
-    <meta property="og:description" content="مقالات آموزشی ربات فارکس و اکسپرت متاتریدر 5">
+    <meta property="og:title" content="مقالات، آموزش‌ها و گزارش‌ها | MQL5 Expert">
+    <meta property="og:description" content="مقالات، آموزش‌ها، گزارش‌ها و دانلود ربات فارکس و اکسپرت متاتریدر 5">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mql5expert.ir/blog/">
     <meta property="og:site_name" content="MQL5 Expert">
@@ -18,7 +22,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Blog",
-      "name": "بلاگ MQL5 Expert",
+      "name": "مقالات و آموزش‌های MQL5 Expert",
       "url": "https://mql5expert.ir/blog/",
       "inLanguage": "fa-IR",
       "description": "مقالات آموزشی ربات فارکس و اکسپرت متاتریدر 5"
@@ -30,7 +34,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://mql5expert.ir/" },
-        { "@type": "ListItem", "position": 2, "name": "بلاگ", "item": "https://mql5expert.ir/blog/" }
+        { "@type": "ListItem", "position": 2, "name": "مقالات، آموزش‌ها و گزارش‌ها", "item": "https://mql5expert.ir/blog/" }
       ]
     }
     </script>
@@ -43,52 +47,133 @@
         .post a { color: #1d4ed8; font-weight: bold; text-decoration: none; font-size: 17px; }
         .post a:hover { text-decoration: underline; }
         .post p { margin: 5px 0 0 0; font-size: 14px; color: #666; }
-        .back { margin-bottom: 20px; }
-        .back a { color: #1d4ed8; text-decoration: none; }
+        .docs { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
+        .docs a { display: block; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 18px; color: #1d4ed8; text-decoration: none; font-weight: bold; text-align: center; transition: background 0.3s ease; }
+        .docs a:hover { background: #e0e7ff; text-decoration: none; }
+        .main-nav { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 15px; margin-bottom: 20px; }
+        .main-nav a { display: inline-block; padding: 8px 18px; border-radius: 20px; background: #f3f4f6; color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; line-height: 1.5; margin: 0; transition: background 0.3s ease, color 0.3s ease; }
+        .main-nav a:hover { background: #4CAF50; color: #fff; }
+        .main-nav a.nav-cta { background: #1d4ed8; color: #fff; }
+        .main-nav a.nav-cta:hover { background: #1e40af; }
+        .lang-switcher { position: fixed; top: 10px; right: 10px; z-index: 1000; background: #4CAF50; color: white; border: none; padding: 6px 8px; border-radius: 10px; cursor: pointer; font-size: 12px; max-width: 52px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: all 0.3s ease; }
+        .lang-switcher:hover { background: #45a049; transform: scale(1.08); }
+        .lang-switcher img { width: 26px; height: 18px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+        .lang-switcher span { font-weight: bold; font-size: 10px; }
         footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
     </style>
 </head>
 <body>
 
-    <p class="back"><a href="/">← بازگشت به صفحه اصلی</a></p>
+    <button class="lang-switcher" onclick="toggleLanguage()">
+        <img src="/ir.svg" alt="English" id="flag-gb">
+        <img src="/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
+        <span id="lang-text">فارسی</span>
+    </button>
 
-    <h1>بلاگ و مقالات آموزشی</h1>
-    <p class="meta">آموزش، بررسی و معرفی ربات فارکس، اکسپرت و اندیکاتور متاتریدر 5</p>
+    <nav class="main-nav">
+        <a href="/" data-fa="خانه" data-en="Home">خانه</a>
+        <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
+        <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
+        <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
+        <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
+    </nav>
+
+    <h1 data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</h1>
+    <p class="meta" data-fa="آموزش، بررسی و معرفی ربات فارکس، اکسپرت و اندیکاتور متاتریدر 5" data-en="Tutorials, reviews and introductions to Forex robots, Expert Advisors and MT5 indicators">آموزش، بررسی و معرفی ربات فارکس، اکسپرت و اندیکاتور متاتریدر 5</p>
+
+    <h2 data-fa="مقالات و آموزش‌ها" data-en="Articles &amp; Tutorials">مقالات و آموزش‌ها</h2>
 
     <div class="post">
-        <a href="/blog/what-is-forex-robot.html">ربات فارکس چیست و چگونه کار می‌کند؟</a>
-        <p>تعریف کامل اکسپرت، طرز کار، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5. (آموزش)</p>
+        <a href="/blog/what-is-forex-robot.html" data-fa="ربات فارکس چیست و چگونه کار می‌کند؟" data-en="What is a Forex Robot and How Does It Work?" data-href-fa="/blog/what-is-forex-robot.html" data-href-en="/blog/en/what-is-forex-robot.html">ربات فارکس چیست و چگونه کار می‌کند؟</a>
+        <p data-fa="تعریف کامل اکسپرت، طرز کار، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5. (آموزش)" data-en="Full explanation of Expert Advisors, how they work, the difference from indicators and installation in MT5. (Tutorial)">تعریف کامل اکسپرت، طرز کار، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5. (آموزش)</p>
     </div>
 
     <div class="post">
-        <a href="/blog/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در متاتریدر 5 (گام‌به‌گام)</a>
-        <p>راهنمای کامل نصب ربات: کپی فایل ex5، فعال‌سازی AutoTrading، تست دمو و حل مشکلات رایج. (آموزش)</p>
+        <a href="/blog/how-to-install-expert-in-metatrader5.html" data-fa="آموزش نصب اکسپرت در متاتریدر 5 (گام‌به‌گام)" data-en="How to Install an Expert Advisor in MT5 (Step-by-Step)" data-href-fa="/blog/how-to-install-expert-in-metatrader5.html" data-href-en="/blog/en/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در متاتریدر 5 (گام‌به‌گام)</a>
+        <p data-fa="راهنمای کامل نصب ربات: کپی فایل ex5، فعال‌سازی AutoTrading، تست دمو و حل مشکلات رایج. (آموزش)" data-en="Complete install guide: copying the ex5 file, enabling AutoTrading, demo testing and fixing common issues. (Tutorial)">راهنمای کامل نصب ربات: کپی فایل ex5، فعال‌سازی AutoTrading، تست دمو و حل مشکلات رایج. (آموزش)</p>
     </div>
 
     <div class="post">
-        <a href="/blog/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست و چگونه کار می‌کند؟</a>
-        <p>آشنایی با ربات سوپرترند، استراتژی دنبال‌کردن روند، مزایا و تنظیمات پیشنهادی. (محصولات)</p>
+        <a href="/blog/supertrend-expert-advisor.html" data-fa="اکسپرت سوپرترند چیست و چگونه کار می‌کند؟" data-en="What is a SuperTrend Expert Advisor and How Does It Work?" data-href-fa="/blog/supertrend-expert-advisor.html" data-href-en="/blog/en/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست و چگونه کار می‌کند؟</a>
+        <p data-fa="آشنایی با ربات سوپرترند، استراتژی دنبال‌کردن روند، مزایا و تنظیمات پیشنهادی. (محصولات)" data-en="An introduction to the SuperTrend robot, trend-following strategy, pros and recommended settings. (Products)">آشنایی با ربات سوپرترند، استراتيجي دنبال‌کردن روند، مزایا و تنظیمات پیشنهادی. (محصولات)</p>
     </div>
 
     <div class="post">
-        <a href="/blog/best-forex-trading-robots-2026.html">بهترین ربات معاملاتی فارکس 2026</a>
-        <p>مقایسه ربات‌های برتر: سوپرترند، فارکس فیوری، گلد آپکس و EA&amp;EM-PRO با راهنمای انتخاب. (بررسی)</p>
+        <a href="/blog/best-forex-trading-robots-2026.html" data-fa="بهترین ربات معاملاتی فارکس 2026" data-en="Best Forex Trading Robots 2026" data-href-fa="/blog/best-forex-trading-robots-2026.html" data-href-en="/blog/en/best-forex-trading-robots-2026.html">بهترین ربات معاملاتی فارکس 2026</a>
+        <p data-fa="مقایسه ربات‌های برتر: سوپرترند، فارکس فیوری، گلد آپکس و EA&amp;EM-PRO با راهنمای انتخاب. (بررسی)" data-en="Comparing top robots: SuperTrend, Forex Fury, GoldApex and EA&amp;EM-PRO with a buying guide. (Review)">مقایسه ربات‌های برتر: سوپرترند، فارکس فیوری، گلد آپکس و EA&amp;EM-PRO با راهنمای انتخاب. (بررسی)</p>
     </div>
 
     <div class="post">
-        <a href="/blog/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور در MT5</a>
-        <p>تفاوت ربات معاملاتی و اندیکاتور با جدول مقایسه و راهنمای انتخاب. (آموزش)</p>
+        <a href="/blog/expert-vs-indicator-mt5.html" data-fa="فرق اکسپرت و اندیکاتور در MT5" data-en="Expert Advisor vs Indicator in MT5" data-href-fa="/blog/expert-vs-indicator-mt5.html" data-href-en="/blog/en/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور در MT5</a>
+        <p data-fa="تفاوت ربات معاملاتی و اندیکاتور با جدول مقایسه و راهنمای انتخاب. (آموزش)" data-en="The difference between trading robots and indicators with a comparison table. (Tutorial)">تفاوت ربات معاملاتی و اندیکاتور با جدول مقایسه و راهنمای انتخاب. (آموزش)</p>
     </div>
 
     <div class="post">
-        <a href="/blog/forex-fury-review.html">بررسی ربات فارکس فیوری (Forex Fury)</a>
-        <p>نقد و تحلیل کامل فارکس فیوری: عملکرد، بک‌تست، مزایا، معایب و مقایسه با سوپرترند. (بررسی)</p>
+        <a href="/blog/forex-fury-review.html" data-fa="بررسی ربات فارکس فیوری (Forex Fury)" data-en="Forex Fury Robot Review" data-href-fa="/blog/forex-fury-review.html" data-href-en="/blog/en/forex-fury-review.html">بررسی ربات فارکس فیوری (Forex Fury)</a>
+        <p data-fa="نقد و تحلیل کامل فارکس فیوری: عملکرد، بک‌تست، مزایا، معایب و مقایسه با سوپرترند. (بررسی)" data-en="A full Forex Fury analysis: performance, backtest, pros, cons and comparison with SuperTrend. (Review)">نقد و تحلیل کامل فارکس فیوری: عملکرد، بک‌تست، مزایا، معایب و مقایسه با سوپرترند. (بررسی)</p>
+    </div>
+
+    <h2 data-fa="مشخصات، گزارش‌ها و تحلیل محصولات" data-en="Product Specs, Reports &amp; Analysis">مشخصات، گزارش‌ها و تحلیل محصولات</h2>
+    <p class="meta" data-fa="فایل‌های اطلاعاتی، گزارش تست و تحلیل محصولات (پوشه docs/):" data-en="Info files, test reports and product analysis (docs/ folder):">فایل‌های اطلاعاتی، گزارش تست و تحلیل محصولات (پوشه docs/):</p>
+    <div class="docs">
+        <a href="/docs/supertrend-specs.html" target="_blank" data-fa="📄 مشخصات سوپرترند" data-en="📄 SuperTrend Specs" data-href-fa="/docs/supertrend-specs.html" data-href-en="/docs/en/supertrend-specs.html">📄 مشخصات سوپرترند</a>
+        <a href="/docs/forexfury-specs.html" target="_blank" data-fa="📄 مشخصات فارکس فیوری" data-en="📄 ForexFury Specs" data-href-fa="/docs/forexfury-specs.html" data-href-en="/docs/en/forexfury-specs.html">📄 مشخصات فارکس فیوری</a>
+        <a href="/docs/ReportTester-3399802.html" target="_blank" data-fa="📊 گزارش بک‌تست گلد آپکس" data-en="📊 GoldApex Backtest Report" data-href-fa="/docs/ReportTester-3399802.html" data-href-en="/docs/en/reporttester-goldapex.html">📊 گزارش بک‌تست گلد آپکس</a>
+        <a href="/docs/eaem-analysis.html" target="_blank" data-fa="📄 تحلیل EA&amp;EM-SuperTrend&amp;Footprint" data-en="📄 EA&amp;EM Analysis" data-href-fa="/docs/eaem-analysis.html" data-href-en="/docs/en/eaem-analysis.html">📄 تحلیل EA&amp;EM-SuperTrend&amp;Footprint</a>
+        <a href="/docs/goldapex-analysis.html" target="_blank" data-fa="📈 تحلیل گلد آپکس" data-en="📈 GoldApex Analysis" data-href-fa="/docs/goldapex-analysis.html" data-href-en="/docs/en/goldapex-analysis.html">📈 تحلیل گلد آپکس</a>
+    </div>
+
+    <h2 id="downloads" data-fa="دانلود فایل‌ها" data-en="Downloads">دانلود فایل‌ها</h2>
+    <p class="meta" data-fa="دانلود ربات‌ها و استراتژی‌های معاملاتی (پوشه downloads/):" data-en="Download robots and trading strategies (downloads/ folder):">دانلود ربات‌ها و استراتژی‌های معاملاتی (پوشه downloads/):</p>
+    <div class="docs">
+        <a href="/downloads/EA&EM-PRO.ex5" download data-fa="📥 دانلود ربات EA&amp;EM-PRO" data-en="📥 Download EA&amp;EM-PRO Robot">📥 دانلود ربات EA&amp;EM-PRO</a>
+        <a href="/downloads/SuperTrend_EA.ex5" download data-fa="📥 دانلود ربات سوپرترند" data-en="📥 Download SuperTrend Robot">📥 دانلود ربات سوپرترند</a>
+        <a href="/downloads/ForexFuryPro.ex5" download data-fa="📥 دانلود ربات فارکس فیوری" data-en="📥 Download ForexFury Robot">📥 دانلود ربات فارکس فیوری</a>
+        <a href="/downloads/GoldApex_WF.zip" download data-fa="📥 دانلود ربات گلد آپکس" data-en="📥 Download GoldApex Robot">📥 دانلود ربات گلد آپکس</a>
+        <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download data-fa="📥 استراتژی اسکالپر طلا (تریدینگ ویو)" data-en="📥 Gold Scalper Strategy (TradingView)">📥 استراتژی اسکالپر طلا (تریدینگ ویو)</a>
     </div>
 
     <footer>
-        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
-        <p>مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+        <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است." data-en="Responsibility for profits and losses from trading decisions rests entirely with the user.">مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
     </footer>
+
+    <script>
+        let currentLang = localStorage.getItem('lang') || 'fa';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
+
+            document.querySelectorAll('[data-fa]').forEach(el => {
+                if (el.children.length === 0) {
+                    el.textContent = el.getAttribute('data-' + lang) || el.getAttribute('data-' + (lang === 'fa' ? 'en' : 'fa'));
+                    const hrefFa = el.getAttribute('data-href-fa');
+                    const hrefEn = el.getAttribute('data-href-en');
+                    if (hrefFa && hrefEn) {
+                        el.setAttribute('href', lang === 'fa' ? hrefFa : hrefEn);
+                    }
+                }
+            });
+
+            document.getElementById('flag-gb').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('flag-ir').style.display = lang === 'fa' ? 'block' : 'none';
+            document.getElementById('lang-text').textContent = lang === 'en' ? 'فارسی' : 'English';
+
+            localStorage.setItem('lang', lang);
+        }
+
+        function toggleLanguage() {
+            updateLanguage(currentLang === 'en' ? 'fa' : 'en');
+        }
+
+        window.addEventListener('load', () => {
+            updateLanguage(currentLang);
+        });
+    </script>
 
 </body>
 </html>
