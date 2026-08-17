@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانلود رایگان فایل‌ها | Free Downloads — نمایش درختی خودکار</title>
+    <meta name="description" content="صفحه دانلود فایل‌های رایگان با نمایش درختی خودکار؛ فایل‌ها را در پوشه free-downloads آپلود کنید تا به‌صورت خودکار اینجا نمایش داده شوند.">
+    <link rel="canonical" href="https://mql5expert.ir/free-downloads/">
+    <meta property="og:title" content="دانلود رایگان فایل‌ها">
+    <meta property="og:description" content="نمایش درختی خودکار فایل‌های پوشه free-downloads">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mql5expert.ir/free-downloads/">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="fa_IR">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <style>
+        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:900px;margin:0 auto;padding:20px;background:#f5f7fb}
+        .page-hero{background:linear-gradient(135deg,#0f2a43,#1d4ed8);color:#fff;border-radius:12px;padding:26px;text-align:center;margin:15px 0}
+        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:6px 0 0;opacity:.9;font-size:14px}
+        .explorer{background:#fff;border:1px solid #e3e9f0;border-radius:12px;overflow:hidden;margin:18px 0;box-shadow:0 2px 10px rgba(15,42,67,.06)}
+        .explorer .topbar{background:#0f2a43;color:#fff;padding:8px 16px;font-size:13px;direction:ltr;text-align:left;font-family:Consolas,monospace;display:flex;align-items:center;justify-content:space-between}
+        .explorer .topbar .refresh{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:6px;padding:3px 12px;cursor:pointer;font-size:12px}
+        .explorer .topbar .refresh:hover{background:rgba(255,255,255,.3)}
+        .tree{padding:8px 0;min-height:120px}
+        .row{display:flex;align-items:center;gap:12px;padding:9px 16px;border-top:1px solid #f0f3f7;cursor:default}
+        .row:hover{background:#f5f8ff}
+        .row .ico{font-size:19px;flex-shrink:0;width:26px;text-align:center}
+        .row .name{flex:1;font-weight:600;font-size:14px;color:#33455a;cursor:pointer}
+        .row .name a{color:#1d4ed8;text-decoration:none}
+        .row .name a:hover{text-decoration:underline}
+        .row .size{font-size:12px;color:#888;flex-shrink:0;direction:ltr}
+        .row .act{background:#1d4ed8;color:#fff;border-radius:8px;padding:4px 14px;font-size:12px;font-weight:700;flex-shrink:0;text-decoration:none}
+        .row:hover .act{background:#0e9f6e}
+        .row.dir .toggle{width:20px;font-size:12px;color:#1d4ed8;flex-shrink:0;text-align:center;cursor:pointer}
+        .children{padding-right:28px;display:none}
+        .children.open{display:block}
+        .msg{padding:30px 20px;text-align:center;color:#888;font-size:14px}
+        .msg.error{color:#dc2626}
+        .note{background:#fff7ed;border-right:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:14px 0;font-size:13px}
+        .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:20px 0;text-align:center}
+        .cta a{color:#1d4ed8;font-weight:bold}
+        .main-nav{background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 15px;margin-bottom:20px}
+        .main-nav a{display:inline-block;padding:8px 18px;border-radius:20px;background:#f3f4f6;color:#374151;text-decoration:none;font-size:14px;font-weight:500;line-height:1.5;margin:0;transition:background .3s,color .3s}
+        .main-nav a:hover{background:#4CAF50;color:#fff}
+        .main-nav a.nav-cta{background:#1d4ed8;color:#fff}
+        .lang-switcher{position:fixed;top:10px;right:10px;z-index:1000;background:#4CAF50;color:#fff;border:none;padding:6px 8px;border-radius:10px;cursor:pointer;font-size:12px;max-width:52px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+        .lang-switcher img{width:26px;height:18px;border-radius:4px}
+        .lang-switcher span{font-weight:bold;font-size:10px}
+        footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
+    </style>
+</head>
+<body>
+
+    <button class="lang-switcher" onclick="toggleLanguage()">
+        <img src="/ir.svg" alt="English" id="flag-gb">
+        <img src="/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
+        <span id="lang-text">فارسی</span>
+    </button>
+
+    <nav class="main-nav">
+        <a href="/" data-fa="خانه" data-en="Home">خانه</a>
+        <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
+        <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
+        <a href="/free-downloads/" class="nav-cta" data-fa="دانلود رایگان فایل‌ها" data-en="Free Download Files">دانلود رایگان فایل‌ها</a>
+        <a href="/links.html" data-fa="لینک‌های مفید" data-en="Useful Links">لینک‌های مفید</a>
+        <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
+        <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
+    </nav>
+
+    <div class="page-hero">
+        <h1 data-fa="دانلود رایگان فایل‌ها" data-en="Free Download Files">دانلود رایگان فایل‌ها</h1>
+        <p data-fa="نمایش درختی خودکار پوشه free-downloads — فایل‌ها را آپلود کنید، این صفحه خودش به‌روز می‌شود" data-en="Automatic tree view of the free-downloads folder — upload files and this page updates itself">نمایش درختی خودکار پوشه free-downloads — فایل‌ها را آپلود کنید، این صفحه خودش به‌روز می‌شود</p>
+    </div>
+
+    <div class="explorer">
+        <div class="topbar">
+            <span>📁 free-downloads/</span>
+            <button class="refresh" onclick="loadTree()" data-fa="🔄 بروزرسانی" data-en="🔄 Refresh">🔄 بروزرسانی</button>
+        </div>
+        <div class="tree" id="tree">
+            <div class="msg" id="loadingMsg" data-fa="در حال خواندن فایل‌ها..." data-en="Loading files...">در حال خواندن فایل‌ها...</div>
+        </div>
+    </div>
+
+    <div class="note">
+        <b data-fa="📌 نحوه استفاده:" data-en="📌 How to use:">📌 نحوه استفاده:</b>
+        <span data-fa="فایل‌های موردنظر را در پوشه <code>free-downloads/</code> ریپوی گیت‌هاب آپلود کنید (بدون نیاز به تغییر هیچ صفحه‌ای). همین صفحه به‌صورت خودکار فایل‌ها و زیرپوشه‌ها را به‌صورت درختی نمایش می‌دهد و با کلیک روی هر فایل، دانلود انجام می‌شود." data-en="Upload your files into the <code>free-downloads/</code> folder of the GitHub repo (no page changes needed). This page automatically shows the files and subfolders as a tree, and clicking a file downloads it.">فایل‌های موردنظر را در پوشه <code>free-downloads/</code> ریپوی گیت‌هاب آپلود کنید (بدون نیاز به تغییر هیچ صفحه‌ای). همین صفحه به‌صورت خودکار فایل‌ها و زیرپوشه‌ها را به‌صورت درختی نمایش می‌دهد و با کلیک روی هر فایل، دانلود انجام می‌شود.</span>
+    </div>
+
+    <div class="cta">
+        <p data-fa="اکسپرت و ربات معاملاتی متاتریدر 5 → " data-en="MT5 Expert Advisors &amp; Robots → ">اکسپرت و ربات معاملاتی متاتریدر 5 → </p>
+        <p><a href="/" data-fa="صفحه اصلی سایت" data-en="MQL5 Expert Home">صفحه اصلی سایت</a></p>
+    </div>
+
+    <footer>
+        <p data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است." data-en="Responsibility for profits and losses from trading decisions rests entirely with the user.">مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</p>
+    </footer>
+
+    <script>
+        /* ═══════════════ تنظیمات — این دو خط را با اطلاعات ریپوی خود پر کنید ═══════════════ */
+        const GITHUB_REPO = "USERNAME/REPONAME";   // ⬅️ مثال: "kamran/mql5expert"
+        const GITHUB_BRANCH = "main";              // ⬅️ "main" یا "gh-pages" (شاخه انتشار سایت)
+        /* ═══════════════════════════════════════════════════════════════════════════════ */
+
+        const FOLDER = "free-downloads";
+        const API = "https://api.github.com/repos/" + GITHUB_REPO + "/contents/";
+        const BASE = "/free-downloads/";
+
+        let currentLang = localStorage.getItem('lang') || 'fa';
+
+        function fmtSize(bytes){
+            if(bytes == null) return "";
+            if(bytes < 1024) return bytes + " B";
+            if(bytes < 1048576) return (bytes/1024).toFixed(1) + " KB";
+            return (bytes/1048576).toFixed(2) + " MB";
+        }
+        function iconOf(name){
+            const ext = name.split('.').pop().toLowerCase();
+            if(['ex5','ex4'].includes(ext)) return '🤖';
+            if(['pdf'].includes(ext)) return '📕';
+            if(['png','jpg','jpeg','gif','webp','svg'].includes(ext)) return '🖼️';
+            if(['zip','rar','7z'].includes(ext)) return '🗜️';
+            if(['pine','txt','md','mq5','mqh'].includes(ext)) return '📄';
+            if(['mp4','webm','avi','mov'].includes(ext)) return '🎬';
+            return '📄';
+        }
+
+        async function apiGet(path){
+            const res = await fetch(API + encodeURIComponent(path) + "?ref=" + GITHUB_BRANCH);
+            if(!res.ok) throw new Error("HTTP " + res.status);
+            return await res.json();
+        }
+
+        async function renderFolder(path, container, depth){
+            container.innerHTML = '<div class="msg">' + (currentLang === 'fa' ? 'در حال خواندن...' : 'Loading...') + '</div>';
+            try{
+                const items = await apiGet(path);
+                container.innerHTML = "";
+                items.sort((a,b) => (a.type === 'dir' ? -1 : 1) - (b.type === 'dir' ? -1 : 1) || a.name.localeCompare(b.name));
+                items.forEach(item => {
+                    const rel = (path === FOLDER ? "" : path.replace(FOLDER + "/", "") + "/");
+                    if(item.type === 'dir'){
+                        const row = document.createElement('div');
+                        row.className = 'row dir';
+                        row.style.paddingRight = (depth * 22) + 'px';
+                        row.innerHTML =
+                            '<span class="toggle">▸</span><span class="ico">📁</span>' +
+                            '<span class="name" onclick="toggleDir(this)">' + item.name + '</span>' +
+                            '<span class="size"></span>';
+                        const ch = document.createElement('div');
+                        ch.className = 'children';
+                        ch.dataset.path = item.path;
+                        ch.dataset.loaded = "0";
+                        row.querySelector('.toggle').onclick = () => toggleDir(row.querySelector('.name'));
+                        container.appendChild(row);
+                        container.appendChild(ch);
+                    } else {
+                        const row = document.createElement('div');
+                        row.className = 'row';
+                        row.style.paddingRight = (depth * 22) + 'px';
+                        row.innerHTML =
+                            '<span class="toggle"></span><span class="ico">' + iconOf(item.name) + '</span>' +
+                            '<span class="name"><a href="' + BASE + rel + encodeURIComponent(item.name) + '" download>' + item.name + '</a></span>' +
+                            '<span class="size">' + fmtSize(item.size) + '</span>' +
+                            '<a class="act" href="' + BASE + rel + encodeURIComponent(item.name) + '" download>' + (currentLang === 'fa' ? 'دانلود' : 'Download') + '</a>';
+                        container.appendChild(row);
+                    }
+                });
+                if(items.length === 0){
+                    container.innerHTML = '<div class="msg">' + (currentLang === 'fa' ? 'پوشه خالی است.' : 'Folder is empty.') + '</div>';
+                }
+            } catch(e){
+                container.innerHTML = '<div class="msg error">' +
+                    (currentLang === 'fa' ?
+                        'خطا در خواندن فایلها (' + e.message + '). نام ریپو/شاخه در کد را بررسی کنید یا کمی بعد دوباره تلاش کنید.' :
+                        'Failed to load files (' + e.message + '). Check the repo/branch setting in the code or try again later.') +
+                    '</div>';
+            }
+        }
+
+        function toggleDir(nameEl){
+            const row = nameEl.parentElement;
+            const ch = row.nextElementSibling;
+            const tgl = row.querySelector('.toggle');
+            if(!ch || !ch.classList.contains('children')) return;
+            if(ch.classList.contains('open')){
+                ch.classList.remove('open');
+                tgl.textContent = '▸';
+                return;
+            }
+            ch.classList.add('open');
+            tgl.textContent = '▾';
+            if(ch.dataset.loaded !== "1"){
+                ch.dataset.loaded = "1";
+                const depth = Math.round(parseFloat(row.style.paddingRight || 0) / 22) + 1;
+                renderFolder(ch.dataset.path, ch, depth);
+            }
+        }
+
+        function loadTree(){
+            renderFolder(FOLDER, document.getElementById('tree'), 0);
+        }
+
+        /* زبان */
+        function updateLanguage(lang){
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.direction = lang === 'fa' ? 'rtl' : 'ltr';
+            document.body.style.textAlign = lang === 'fa' ? 'right' : 'left';
+            document.querySelectorAll('[data-fa]').forEach(el => {
+                if(el.children.length === 0){
+                    el.textContent = el.getAttribute('data-' + lang) || el.getAttribute('data-' + (lang === 'fa' ? 'en' : 'fa'));
+                }
+            });
+            document.getElementById('flag-gb').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('flag-ir').style.display = lang === 'fa' ? 'block' : 'none';
+            document.getElementById('lang-text').textContent = lang === 'en' ? 'فارسی' : 'English';
+            localStorage.setItem('lang', lang);
+            loadTree();
+        }
+        function toggleLanguage(){ updateLanguage(currentLang === 'en' ? 'fa' : 'en'); }
+
+        window.addEventListener('load', () => {
+            updateLanguage(currentLang);
+        });
+    </script>
+
+</body>
+</html>
