@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a SuperTrend Expert Advisor and How Does It Work? | MT5 Robot</title>
+    <meta name="description" content="Complete introduction to the SuperTrend Expert Advisor for MetaTrader 5: the trend-following strategy, how it works, pros, cons and recommended settings.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/en/supertrend-expert-advisor.html">
+    <meta property="og:title" content="What is a SuperTrend Expert Advisor?">
+    <meta property="og:description" content="Complete SuperTrend robot guide: strategy, pros and settings">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/en/supertrend-expert-advisor.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "What is a SuperTrend Expert Advisor and How Does It Work?",
+      "description": "Complete SuperTrend EA guide for MetaTrader 5",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-08-17",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/en/supertrend-expert-advisor.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "What is SuperTrend EA?", "item": "https://mql5expert.ir/blog/en/supertrend-expert-advisor.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; direction: ltr; text-align: left; line-height: 1.8; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-left: 25px; }
+        .note { background: #fff7ed; border-left: 4px solid #f59e0b; padding: 10px 15px; border-radius: 6px; margin: 15px 0; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← Back to Home</a> | <a href="/blog/">← All Articles</a></p>
+
+    <article>
+
+        <h1>What is a SuperTrend Expert Advisor and How Does It Work?</h1>
+        <p class="meta">Published: August 17, 2026 | Category: Products</p>
+
+        <p>SuperTrend is one of the most popular <strong>trend-following</strong> indicators in MetaTrader. Now imagine that same indicator turned into a <a href="/">trading robot</a> that trades without your involvement. This article explains in simple terms what the SuperTrend Expert Advisor is and how it works.</p>
+
+        <h2>What is the SuperTrend Indicator?</h2>
+        <p>SuperTrend is a technical indicator that draws a line on the chart. When the market is bullish the line is below price and green; when bearish, the line is above price and red. A colour change is a trend reversal signal. Its main parameters are <strong>Period</strong> (usually 10) and <strong>Multiplier</strong> (usually 3).</p>
+
+        <h2>What is the SuperTrend Expert Advisor?</h2>
+        <p>The SuperTrend EA is the SuperTrend strategy converted into code that runs automatically. Instead of watching the line colour and placing trades manually, the robot does it for you.</p>
+
+        <h2>How Does the SuperTrend EA Work?</h2>
+        <ol>
+            <li>It calculates the SuperTrend line on the chart.</li>
+            <li>When the line turns <strong>green</strong> → buy signal (Buy order opened).</li>
+            <li>When the line turns <strong>red</strong> → sell signal (Sell order opened).</li>
+            <li>It manages Stop Loss and Take Profit based on your settings.</li>
+        </ol>
+        <p>This style is excellent for <strong>trending markets</strong>, but in range-bound (sideways) markets it can produce repeated false signals.</p>
+
+        <h2>Advantages</h2>
+        <ul>
+            <li>Simple and easy-to-understand strategy.</li>
+            <li>Suitable for following strong trends in currency pairs and gold.</li>
+            <li>Fully automated, emotion-free execution.</li>
+            <li>Adjustable for different timeframes (H1, H4 and D1).</li>
+        </ul>
+
+        <h2>Risks and Disadvantages</h2>
+        <p>In non-trending markets, SuperTrend can generate consecutive losses. No robot offers guaranteed profits, and bad settings (very small period or multiplier) create signal noise. Always test on a demo account first.</p>
+
+        <h2>Recommended Settings</h2>
+        <ul>
+            <li>Timeframe: <strong>H1 or H4</strong></li>
+            <li>Period: <strong>10</strong></li>
+            <li>Multiplier: <strong>3</strong></li>
+            <li>Risk management: 1–2% of balance per trade maximum</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>The SuperTrend Expert Advisor is an excellent choice for traders who like trend-following and want to automate their trading. See the specs and <a href="/">buy the SuperTrend EA</a> on our home page.</p>
+
+        <div class="cta">
+            <p>View and buy the SuperTrend robot → <a href="/">MQL5 Expert Home</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>Trading involves risk. Past performance is not a guarantee of future results.</p>
+    </footer>
+
+</body>
+</html>

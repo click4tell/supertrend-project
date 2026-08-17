@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install an Expert Advisor in MetaTrader 5 | Step-by-Step Guide</title>
+    <meta name="description" content="Step-by-step guide to installing an Expert Advisor (robot) in MetaTrader 5: copy the ex5 file, enable AutoTrading, test on demo and fix common problems.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/en/how-to-install-expert-in-metatrader5.html">
+    <meta property="og:title" content="How to Install an Expert Advisor in MetaTrader 5">
+    <meta property="og:description" content="Complete MT5 EA installation guide with common problem fixes">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/en/how-to-install-expert-in-metatrader5.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Install an Expert Advisor in MetaTrader 5",
+      "description": "Step-by-step MT5 EA installation guide",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-08-17",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/en/how-to-install-expert-in-metatrader5.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Install EA in MT5", "item": "https://mql5expert.ir/blog/en/how-to-install-expert-in-metatrader5.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; direction: ltr; text-align: left; line-height: 1.8; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        .meta { color: #888; font-size: 14px; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-left: 25px; }
+        .note { background: #fff7ed; border-left: 4px solid #f59e0b; padding: 10px 15px; border-radius: 6px; margin: 15px 0; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← Back to Home</a> | <a href="/blog/">← All Articles</a></p>
+
+    <article>
+
+        <h1>How to Install an Expert Advisor in MetaTrader 5 (Step-by-Step)</h1>
+        <p class="meta">Published: August 17, 2026 | Category: Tutorial</p>
+
+        <p>One of the first questions after buying an <a href="/">Expert Advisor or trading robot</a> is how to install it in MetaTrader 5. This step-by-step guide shows you exactly how to install and enable an EA on the MT5 platform.</p>
+
+        <h2>Prerequisites</h2>
+        <ul>
+            <li><strong>MetaTrader 5</strong> installed (download it from your broker).</li>
+            <li>The <code>.ex5</code> file of your robot.</li>
+            <li>(Optional) a <code>.set</code> settings file if provided with the robot.</li>
+        </ul>
+
+        <h2>Step 1 — Find the Data Folder</h2>
+        <p>In MetaTrader 5, open the <strong>File</strong> menu and select <strong>Open Data Folder</strong>. A Windows window will open showing the MT5 data directory.</p>
+
+        <h2>Step 2 — Copy the Expert File</h2>
+        <p>Inside the Data Folder, go to:</p>
+        <p><code>MQL5\Experts</code></p>
+        <p>Copy the <code>.ex5</code> file into this folder. Note that robots can only be loaded from the <code>Experts</code> folder; the <code>Indicators</code> folder is for indicators.</p>
+
+        <h2>Step 3 — Refresh the Navigator</h2>
+        <p>Back in MetaTrader, right-click <strong>Expert Advisors</strong> in the <strong>Navigator</strong> panel (left side) and choose <strong>Refresh</strong>. Your robot should now appear in the list.</p>
+
+        <h2>Step 4 — Attach the Robot to a Chart</h2>
+        <p>Drag the EA from the Navigator <strong>onto your chart</strong>. The settings window will open:</p>
+        <ul>
+            <li><strong>Inputs</strong> tab: the EA's parameters (lot size, stop loss, etc.).</li>
+            <li><strong>Common</strong> tab: checkboxes such as Allow Algo Trading.</li>
+        </ul>
+        <p>Click <strong>OK</strong> when done.</p>
+
+        <h2>Step 5 — Enable AutoTrading</h2>
+        <p>Find the <strong>AutoTrading</strong> button in the MT5 toolbar and make sure it is <strong>enabled</strong>. Also verify this setting:</p>
+        <p><code>Tools → Options → Expert Advisors → Allow Algorithmic Trading</code></p>
+        <div class="note">
+            <strong>⚠️ Note:</strong> If AutoTrading is off or Allow Algorithmic Trading is unchecked, the robot will not trade and its icon on the chart will turn grey.
+        </div>
+
+        <h2>Test on a Demo Account</h2>
+        <p>Before using real money, test the robot for at least a few weeks on a <strong>demo account</strong>, and preferably run a backtest in the Strategy Tester to review its performance.</p>
+
+        <h2>Common Problems and Fixes</h2>
+        <ul>
+            <li><strong>Grey/inactive robot:</strong> enable AutoTrading or Allow Algorithmic Trading.</li>
+            <li><strong>Robot opens no trades:</strong> not enough balance/margin, or the price distance is below the broker's stops level.</li>
+            <li><strong>ex5 file not visible:</strong> copy the file to the correct folder and Refresh; if the file is protected, use it only with your broker.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>Installing an EA in MetaTrader 5 takes only a few minutes: copy the file to <code>MQL5\Experts</code>, Refresh and enable AutoTrading. If you are looking for <a href="/">ready-made trading robots for MT5</a>, check out our SuperTrend, Forex Fury and GoldApex experts on the home page.</p>
+
+        <div class="cta">
+            <p>Buy Expert Advisors and Forex robots with full support → <a href="/">MQL5 Expert Home</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>Trading involves risk. Past performance is not a guarantee of future results.</p>
+    </footer>
+
+</body>
+</html>

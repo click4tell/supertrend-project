@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Advisor vs Indicator in MT5 | Which One Should You Choose?</title>
+    <meta name="description" content="The difference between an Expert Advisor (robot) and an indicator in MetaTrader 5: usage, pros and cons, a comparison table and a selection guide.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/en/expert-vs-indicator-mt5.html">
+    <meta property="og:title" content="Expert Advisor vs Indicator in MT5">
+    <meta property="og:description" content="EA vs indicator in MetaTrader 5 with a comparison table">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/en/expert-vs-indicator-mt5.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Expert Advisor vs Indicator in MT5",
+      "description": "The difference between Expert Advisors and indicators in MT5",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-08-17",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/en/expert-vs-indicator-mt5.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mql5expert.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mql5expert.ir/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "EA vs Indicator", "item": "https://mql5expert.ir/blog/en/expert-vs-indicator-mt5.html" }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; direction: ltr; text-align: left; line-height: 1.8; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1d4ed8; font-size: 1.8em; }
+        h2 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 40px; }
+        .meta { color: #888; font-size: 14px; }
+        .cta { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 40px; text-align: center; }
+        .cta a { color: #1d4ed8; font-weight: bold; }
+        ul, ol { padding-left: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th, table td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; font-size: 14px; }
+        table th { background: #f3f4f6; }
+        footer { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 15px; font-size: 13px; color: #888; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <p><a href="/">← Back to Home</a> | <a href="/blog/">← All Articles</a></p>
+
+    <article>
+
+        <h1>Expert Advisor vs Indicator in MT5: Which One Should You Choose?</h1>
+        <p class="meta">Published: August 17, 2026 | Category: Tutorial</p>
+
+        <p>If you are new to MetaTrader 5, you have probably heard two terms: <strong>indicator</strong> and <strong>Expert Advisor (EA)</strong>. Many people think they are the same, but they are fundamentally different. This article explains the difference simply and clearly.</p>
+
+        <h2>What is an Indicator?</h2>
+        <p>An <strong>indicator</strong> is an analytical tool installed on a chart that calculates and displays price information — such as moving averages, RSI or SuperTrend. An indicator <strong>only displays</strong>; it never opens or closes trades on its own. The final decision is always yours.</p>
+
+        <h2>What is an Expert Advisor (Robot)?</h2>
+        <p>An <strong>Expert Advisor</strong> is a trading program that can <strong>automatically</strong> place orders, set stop loss and take profit and manage positions. An EA can also use indicators internally, but unlike them it also "acts".</p>
+
+        <h2>Comparison at a Glance</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Indicator</th>
+                <th>Expert Advisor</th>
+            </tr>
+            <tr>
+                <td>Shows signals</td>
+                <td>✅</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>Opens trades</td>
+                <td>❌</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>Manages SL/TP</td>
+                <td>❌</td>
+                <td>✅</td>
+            </tr>
+            <tr>
+                <td>Needs a trader at the chart</td>
+                <td>Yes (to decide)</td>
+                <td>No (automatic)</td>
+            </tr>
+            <tr>
+                <td>Installation difficulty</td>
+                <td>Low</td>
+                <td>Low (see <a href="/blog/en/how-to-install-expert-in-metatrader5.html">install guide</a>)</td>
+            </tr>
+        </table>
+
+        <h2>When to Use an Indicator</h2>
+        <ul>
+            <li>When you want to analyse and decide yourself.</li>
+            <li>When you are still learning the market and strategies.</li>
+            <li>For manual confirmation of trading signals.</li>
+        </ul>
+
+        <h2>When to Use an Expert Advisor</h2>
+        <ul>
+            <li>When you have a clear strategy and want to automate it.</li>
+            <li>When you do not have time to watch the charts.</li>
+            <li>To remove emotions from trading.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>In simple terms: <strong>an indicator is the "eyes", and an EA is the "eyes and hands together".</strong> Many professional traders combine both: they analyse with indicators and execute with <a href="/">Expert Advisors</a>. The final choice depends on your trading style.</p>
+
+        <div class="cta">
+            <p>Buy professional EAs and indicators → <a href="/">MQL5 Expert Home</a></p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>Trading involves risk. Past performance is not a guarantee of future results.</p>
+    </footer>
+
+</body>
+</html>
