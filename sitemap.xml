@@ -16,6 +16,13 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- ═══════════════ لینک‌های مفید ═══════════════ -->
+  <url>
+    <loc>https://mql5expert.ir/links.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- ═══════════════ فهرست بلاگ ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/blog/</loc>
