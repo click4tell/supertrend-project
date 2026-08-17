@@ -1,346 +1,114 @@
-# 📦 پکیج کامل سئو — سایت MQL5 Expert (mql5expert.ir)
+# 📦 بسته کامل سئو و بهینهسازی سایت MQL5 Expert
 
-> **تاریخ تهیه:** ۱۶ مرداد ۱۴۰۵
-> **هدف:** بهبود رتبه سایت در گوگل برای کلمات «ربات فارکس»، «اکسپرت»، «متاتریدر 5» و...
-> **میزبان:** GitHub Pages + Cloudflare
+**دامنه:** https://mql5expert.ir — **نسخه بسته:** v5.0 — **آخرین بهروزرسانی:** 2026-08-17
 
----
-
-## 📑 فهرست مطالب
-
-1. [فهرست فایل‌ها و محل قرارگیری](#1-فهرست-فایل‌ها)
-2. [راهنمای گام‌به‌گام راه‌اندازی](#2-راهنمای-گامبهگام)
-3. [کد فوتر: سلب مسئولیت + کپی‌رایت](#3-کد-فوتر)
-4. [کد کامل head.html](#4-کد-کامل-headhtml)
-5. [کد کامل index.html (نسخه بهینه‌شده)](#5-کد-کامل-indexhtml)
-6. [کد کامل sitemap.xml](#6-کد-کامل-sitemapxml)
-7. [مقالات بلاگ](#7-مقالات-بلاگ)
-8. [نکات مهم و یادآوری‌ها](#8-نکات-مهم)
+این فایل مرجع جامع همه تغییرات، فایلها و مراحل است. هر فایلی که در این بسته است، دقیقاً همینجا ثبت شده تا برای بررسیهای آینده به آن مراجعه کنید.
 
 ---
 
-## 1. فهرست فایل‌ها
+## ۱) فهرست کامل فایلها (وضعیت فعلی)
 
-| فایل | محل قرارگیری در ریپو | توضیح |
-|------|----------------------|--------|
-| `index.html` | ریشه (جایگزین فایل فعلی) | نسخه کامل بهینه‌شده سایت + بخش بلاگ |
-| `sitemap.xml` | ریشه | نقشه سایت (۷ آدرس) |
-| `head.html` | مرجع (اختیاری) | بخش head بهینه |
-| `blog/index.html` | پوشه `blog/` | فهرست همه مقالات (دکمه بلاگ به اینجا لینک است) |
-| `blog/what-is-forex-robot.html` | پوشه `blog/` | مقاله: ربات فارکس چیست |
-| `blog/how-to-install-expert-in-metatrader5.html` | پوشه `blog/` | مقاله: آموزش نصب اکسپرت |
-| `blog/supertrend-expert-advisor.html` | پوشه `blog/` | مقاله: اکسپرت سوپرترند |
-| `blog/best-forex-trading-robots-2026.html` | پوشه `blog/` | مقاله: بهترین ربات فارکس 2026 |
-| `blog/expert-vs-indicator-mt5.html` | پوشه `blog/` | مقاله: فرق اکسپرت و اندیکاتور |
-| `blog/forex-fury-review.html` | پوشه `blog/` | مقاله: بررسی فارکس فیوری |
-| `blog-article-template.html` | مرجع (اختیاری) | قالب مقاله برای مقالات بعدی |
-| `README-SEO.md` | مرجع (اختیاری) | راهنمای کوتاه |
-| `SEO-PACKAGE-COMPLETE.md` | مرجع (اختیاری) | همین فایل جامع |
+### ریشه (آپلود به ریشه ریپوی گیتهاب)
+| فایل | اندازه | توضیح |
+|------|--------|--------|
+| `index.html` | 52 KB | صفحه اصلی: دوزبانه، منوی کشویی، Schema، فرم پرداخت، سلب مسئولیت |
+| `sitemap.xml` | 5.4 KB | نقشه سایت — ۲۸ آدرس با hreflang |
+| `README.md` | 4.5 KB | README حرفهای ریپو (دوزبانه) |
+| `contact.html` | — | صفحه تماس |
+| `logo.ico` | — | فاوآیکون |
+| `ir.svg` / `gb.svg` | — | پرچمها برای سوییچ زبان |
 
----
+### پوشه `blog/` — مقالات فارسی
+| فایل | موضوع |
+|------|-------|
+| `index.html` | فهرست مقالات، آموزشها، گزارشها و دانلودها (دوزبانه) |
+| `what-is-forex-robot.html` | ربات فارکس چیست |
+| `how-to-install-expert-in-metatrader5.html` | آموزش نصب اکسپرت در MT5 |
+| `supertrend-expert-advisor.html` | اکسپرت سوپرترند چیست |
+| `best-forex-trading-robots-2026.html` | بهترین ربات فارکس 2026 |
+| `expert-vs-indicator-mt5.html` | فرق اکسپرت و اندیکاتور |
+| `forex-fury-review.html` | بررسی فارکس فیوری |
+| `xauusd-hybrid-scalper-tradingview.html` | استراتژی تریدینگ ویو (رایگان) |
 
-## 2. راهنمای گام‌به‌گام
+### پوشه `blog/en/` — مقالات انگلیسی
+۶ مقاله + استراتژی تریدینگ ویو — همنام فایلهای فارسی با پیشوند مسیر `blog/en/`.
 
-### قدم ۱ — آپلود فایل‌ها در گیت‌هاب
-1. `index.html` جدید را جایگزین فایل فعلی ریشه ریپو کنید (فایل قبلی را برای پشتیبان نگه دارید).
-2. `sitemap.xml` را در ریشه قرار دهید.
-3. پوشه `blog/` بسازید و فایل `index.html` + ۶ مقاله را داخل آن بگذارید.
-4. Commit و Push.
+### پوشه `docs/` — مشخصات و تحلیل (فارسی)
+| فایل | منبع محتوا |
+|------|-----------|
+| `supertrend-specs.html` | از سورس واقعی `SuperTrend_EA.mq5` (v1.60) |
+| `forexfury-specs.html` | از سورس واقعی `ForexFuryPro.mq5` (v10) |
+| `eaem-analysis.html` | از PDF واقعی EA&EM v1.27 |
+| `goldapex-analysis.html` | از گزارش واقعی GoldApex WF v4.3 (۳۶ KB) |
+| `reporttester-goldapex.html` | صفحه خلاصه بکتست (اختیاری) |
+| `ReportTester-3399802.html` | گزارش بکتست اصلی گلد آپکس (همراه PNG) |
+| `images/` | تصاویر مستندات |
 
-### قدم ۲ — Cloudflare
-1. داشبورد Cloudflare → دامنه `mql5expert.ir` → **Caching → Configuration → Crawler Hints** را روشن کنید.
-2. **Caching → Purge Everything** بزنید (بعد از هر تغییر سایت).
+### پوشه `docs/en/` — نسخه انگلیسی همه مستندات بالا.
 
-### قدم ۳ — Google Search Console
-1. دامنه را وریفای کنید (DNS یا HTML file).
-2. **Sitemaps** → آدرس کامل `https://mql5expert.ir/sitemap.xml` را سابمیت کنید (برای Domain property باید آدرس کامل باشد).
-3. **URL Inspection** → آدرس هر صفحه جدید → **Request Indexing**.
-4. پیام «URL is on Google» یعنی ایندکس شده ✅.
+### پوشه `downloads/`
+`EA&EM-PRO.ex5`، `SuperTrend_EA.ex5`، `ForexFuryPro.ex5`، `GoldApex_WF.zip`، `XAUUSD_Hybrid_Scalper_v2_alerts.pine`
 
-### قدم ۴ — افزودن مقاله جدید (برای آینده)
-1. مقاله را با قالب `blog-article-template.html` در پوشه `blog/` بسازید.
-2. یک خط لینک به `blog/index.html` اضافه کنید.
-3. آدرس مقاله را به `sitemap.xml` اضافه کنید.
-4. Push + Purge Cache + درخواست ایندکس.
-> ✅ نیازی به تغییر صفحه اصلی نیست — دکمه بلاگ به `blog/` لینک شده.
-
-### قدم ۵ — سابمیت در موتورهای دیگر (اختیاری)
-- Bing Webmaster Tools: `bing.com/webmasters` → سابمیت sitemap.
+### سایر
+`head.html` (مرجع)، `blog-article-template.html` (قالب مقاله)، `README-SEO.md` (راهنمای سئو)
 
 ---
 
-## 3. کد فوتر
+## ۲) نقشه کامل آدرسهای سایت
 
-### HTML (سلب مسئولیت + کپی‌رایت)
+| آدرس | نوع |
+|------|-----|
+| `/` | صفحه اصلی |
+| `/contact.html` | تماس |
+| `/blog/` | فهرست بلاگ |
+| `/blog/<عنوان>.html` × ۷ | مقالات فارسی |
+| `/blog/en/<عنوان>.html` × ۷ | مقالات انگلیسی |
+| `/docs/<نام>.html` × ۵ | مستندات فارسی |
+| `/docs/en/<نام>.html` × ۵ | مستندات انگلیسی |
+| `/docs/ReportTester-3399802.html` | گزارش بکتست اصلی |
+| `/downloads/<فایل>` × ۵ | دانلودها |
 
-```html
-<footer>
-    <div class="footer-container">
+## ۳) نحوه اضافه کردن مقاله جدید (۳ قدم)
 
-        <!-- ═══ باکس سلب مسئولیت ═══ -->
-        <div class="disclaimer-box">
-            <p class="disclaimer-title" data-fa="سلب مسئولیت" data-en="Disclaimer">سلب مسئولیت</p>
-            <p class="disclaimer" data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد. معرفی و بررسی بروکرها کاملاً بی‌طرفانه است. ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم." data-en="Responsibility for profits and losses arising from trading decisions rests entirely with the user, and Forex trading bears no responsibility for any potential losses. Broker introductions and reviews are completely impartial. We accept no responsibility for the performance, violations, or potential problems of brokers.">
-                مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد.<br>
-                معرفی و بررسی بروکرها کاملاً بی‌طرفانه است.<br>
-                ما هیچ‌گونه مسئولیتی در قبال عملکرد، تخلفات یا مشکلات احتمالی بروکرها نداریم.
-            </p>
-        </div>
+1. فایل جدید در `blog/` (فارسی) و `blog/en/` (انگلیسی) بسازید (از `blog-article-template.html` استفاده کنید).
+2. یک کارت مقاله در `blog/index.html` اضافه کنید (با `data-fa` / `data-en` / `data-href`).
+3. یک `<url>` در `sitemap.xml` اضافه کنید → آپلود → Purge Cache → درخواست ایندکس.
 
-        <!-- ═══ کپی‌رایت ═══ -->
-        <p class="copyright" data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">
-            © All rights reserved K_M 2025 <span class="separator">|</span>
-            <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a>
-        </p>
+## ۴) مراحل انتشار نهایی (چکلیست)
 
-    </div>
-</footer>
-```
+- [x] صفحه اصلی دوزبانه با منوی کشویی
+- [x] ۷ مقاله فارسی + ۷ انگلیسی
+- [x] ۵ مستندات فارسی + ۵ انگلیسی (از محتوای واقعی)
+- [x] لینک ایمیل واقعی (Cloudflare محافظت میکند)
+- [x] سلب مسئولیت دوزبانه در فوتر
+- [x] sitemap کامل ۲۸ آدرس
+- [x] README حرفهای
+- [ ] آپلود همه فایلها در گیتهاب
+- [ ] Purge Cache در Cloudflare
+- [ ] درخواست ایندکس صفحات جدید در GSC
 
-### CSS فوتر
+## ۵) سابمیت در موتورهای جستجو
 
-```css
-footer {
-    background-color: #f9fafb;
-    padding: 15px 20px;
-    text-align: center;
-    border-top: 1px solid #e5e7eb;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    color: #374151;
-    margin-top: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
+- **Google Search Console:** `https://mql5expert.ir/sitemap.xml`
+- **Bing Webmaster Tools:** همان sitemap (اختیاری)
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;   /* باکس سلب مسئولیت بالا، کپی‌رایت پایین */
-    align-items: center;
-    justify-content: center;
-    white-space: normal;      /* اجازه شکستن خط به متن بلند */
-}
+## ۶) نکات حیاتی
 
-/* خط کپی‌رایت — فقط این یک‌خطی و افقی بماند */
-.copyright {
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: nowrap;
-}
+1. ⚠️ **ایمیل را دستی تغییر ندهید** — `mailto:info@tsgcoltd.ir` در کد است؛ Cloudflare خودش امنش میکند.
+2. ⚠️ **عبارت «سود تضمینی» ممنوع** در همه محتوا.
+3. ⚠️ **محصولات ثابت HTML** در صفحه اصلی را حذف نکنید (برای ایندکس گوگل).
+4. ⚠️ بعد از تغییر `index.html` همیشه اسکریپت را بدون خطا بررسی کنید (سوییچ زبان).
 
-footer a {
-    color: #1d4ed8;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
+## ۷) تاریخچه تغییرات (Changelog)
 
-footer a:hover {
-    color: #1e40af;
-    text-decoration: underline;
-}
-
-.separator {
-    margin: 0 10px;
-    color: #9ca3af;
-}
-
-/* ═══ باکس سلب مسئولیت ═══ */
-.disclaimer-box {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    background: #f3f4f6;
-    padding: 14px 20px;
-    margin-bottom: 14px;
-    max-width: 900px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.disclaimer-title {
-    font-size: 13px;
-    font-weight: bold;
-    color: #555;
-    margin: 0 0 8px 0;
-}
-
-.disclaimer {
-    font-size: 12px;
-    color: #6b7280;
-    line-height: 2;
-    text-align: center;
-    margin: 0;
-    display: block;
-    white-space: normal;
-}
-
-/* حالت فارسی: راست‌چین */
-html[lang="fa"] .disclaimer { direction: rtl; text-align: right; }
-html[lang="fa"] .copyright  { direction: rtl; }
-
-@media (max-width: 600px) {
-    footer { font-size: 12px; padding: 10px 15px; }
-    .footer-container { flex-wrap: nowrap; }
-    .separator { margin: 0 5px; }
-    .disclaimer-box { padding: 10px 12px; }
-}
-
-@media (min-width: 768px) {
-    header { height: 300px; padding-top: 120px; }
-}
-```
+| نسخه | تاریخ | تغییر |
+|------|-------|-------|
+| v1.0 | 2026-08-16 | پکیج اولیه: head، sitemap، قالب مقاله، راهنما |
+| v2.0 | 2026-08-16 | بازسازی index.html: فارسی پیشفرض، Schema، ایمیل، ۸ اصلاح |
+| v3.0 | 2026-08-17 | ۶ مقاله + فهرست بلاگ + منوی کشویی |
+| v4.0 | 2026-08-17 | انتقال به منو، دوزبانه کامل، مقالات انگلیسی، docs انگلیسی |
+| v5.0 | 2026-08-17 | مستندات از محتوای واقعی (سورس MQL5 + PDFها + گزارش گلد آپکس) + مقاله تریدینگ ویو رایگان |
 
 ---
 
-## 4. کد کامل head.html
-
-> بخش `<head>` بهینه‌شده — قبلاً داخل `index.html` اعمال شده است. (عنوان، Canonical، Open Graph، Twitter Card و ۴ نوع Schema: WebSite، Organization، ItemList محصولات، FAQPage)
-
-```html
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خرید اکسپرت و ربات فارکس برای متاتریدر 5 | ربات معاملاتی MT5</title>
-    <meta name="description" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5: ربات سوپرترند، اکسپرت فارکس فیوری، ربات گلد آپکس و اندیکاتور معاملاتی با پشتیبانی کامل و معرفی بی‌طرفانه ربات‌های معاملاتی فارکس.">
-    <link rel="canonical" href="https://mql5expert.ir/">
-    <!-- Open Graph -->
-    <meta property="og:title" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5">
-    <meta property="og:description" content="فروش اکسپرت و ربات معاملاتی فارکس برای MT5 با پشتیبانی کامل">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mql5expert.ir/">
-    <meta property="og:site_name" content="MQL5 Expert">
-    <meta property="og:locale" content="fa_IR">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:image" content="https://mql5expert.ir/logo.ico">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="خرید اکسپرت و ربات فارکس برای متاتریدر 5">
-    <meta name="twitter:description" content="فروش اکسپرت و ربات معاملاتی فارکس برای MT5 با پشتیبانی کامل">
-    <link rel="icon" type="image/x-icon" href="/logo.ico">
-    <!-- Schema: WebSite / Organization / ItemList(4 محصول) / FAQPage -->
-    <!-- کد کامل JSON-LD در فایل head.html ذخیره شده است -->
-</head>
-```
-
----
-
-## 5. کد کامل index.html
-
-> نسخه کامل و بهینه‌شده — فایل `SEO/index.html` (حدود ۴۸ کیلوبایت). برای آپلود مستقیم از همان فایل استفاده کنید.
-
-**تغییرات اعمال‌شده:**
-1. زبان پیش‌فرض فارسی: `<html lang="fa" dir="rtl">`
-2. متن فارسی به‌صورت پیش‌فرض در HTML (قابل ایندکس شدن)
-3. head جدید: عنوان بهینه، Canonical، Open Graph، Twitter Card و ۴ نوع Schema
-4. لینک ایمیل خراب اصلاح شد → `info@tsgcoltd.ir`
-5. فقط یک H1 در صفحه؛ «محصولات ما» به H2 تغییر کرد
-6. alt تصاویر فارسی؛ محصولات به‌صورت متن ثابت در HTML
-7. باگ جاوااسکریپت اصلاح شد (فوتر و سلب مسئولیت هنگام سوییچ زبان خراب نمی‌شوند)
-8. بخش «بلاگ و مقالات» اضافه شد — دکمه بلاگ به `blog/` لینک شده
-
----
-
-## 6. کد کامل sitemap.xml
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://mql5expert.ir/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/GoldApex_WF.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/how-to-install-expert-in-metatrader5.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/supertrend-expert-advisor.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/best-forex-trading-robots-2026.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/expert-vs-indicator-mt5.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mql5expert.ir/blog/forex-fury-review.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-</urlset>
-```
-
----
-
-## 7. مقالات بلاگ
-
-| مقاله | فایل در ریپو | دسته |
-|-------|--------------|------|
-| ربات فارکس چیست و چگونه کار می‌کند؟ | `blog/what-is-forex-robot.html` | آموزش |
-| آموزش نصب اکسپرت در متاتریدر 5 | `blog/how-to-install-expert-in-metatrader5.html` | آموزش |
-| اکسپرت سوپرترند چیست؟ | `blog/supertrend-expert-advisor.html` | محصولات |
-| بهترین ربات معاملاتی فارکس 2026 | `blog/best-forex-trading-robots-2026.html` | بررسی |
-| فرق اکسپرت و اندیکاتور در MT5 | `blog/expert-vs-indicator-mt5.html` | آموزش |
-| بررسی ربات فارکس فیوری | `blog/forex-fury-review.html` | بررسی |
-| فهرست بلاگ (لیست همه مقالات) | `blog/index.html` | — |
-
-> **هر مقاله شامل:** عنوان و متا دیسکریپشن بهینه، Schema مقاله + Breadcrumb، لینک‌های داخلی به صفحه اصلی و فهرست بلاگ، هشدار ریسک.
-
----
-
-## 8. نکات مهم
-
-### ⚠️ هشدارهای سئو
-- **هرگز از عبارت «سود تضمینی» و «پولدار شدن» استفاده نکنید** — گوگل و قوانین فارکس این ادعاها را جریمه می‌کنند.
-- `lang="fa" dir="rtl"` باید در HTML ثابت باشد، نه فقط با جاوااسکریپت.
-- محصولاتی که از Cloudflare Worker لود می‌شوند در HTML نیستند؛ حتماً نام و توضیح کوتاه آن‌ها به‌صورت متن ثابت در HTML باشد.
-- هر صفحه فقط یک H1 داشته باشد.
-
-### 🔧 کارهای دوره‌ای
-- بعد از هر تغییر در گیت‌هاب: Cloudflare → Purge Cache
-- هر مقاله جدید: اضافه کردن به sitemap.xml + یک خط به blog/index.html + درخواست ایندکس در GSC
-- بررسی ماهانه: Google Search Console → Performance
-
-### 📈 انتظار واقع‌بینانه
-- ایندکس شدن: چند روز تا چند هفته
-- رتبه گرفتن برای کلمات رقابتی: ۳ تا ۶ ماه با تولید محتوای منظم
-- «URL is on Google, but has issues» یعنی ایندکس شده ولی Rich Results نمایش داده نمی‌شود — طبیعی و بی‌خطر است.
-
----
-
-*پایان پکیج — تهیه‌شده توسط MetaTrader Assistant*
+© All rights reserved K_M 2025 | info@tsgcoltd.ir

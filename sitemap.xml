@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- صفحه اصلی -->
+  <!-- ═══════════════ صفحات اصلی ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://mql5expert.ir/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mql5expert.ir/"/>
   </url>
-
-  <!-- صفحه تماس -->
   <url>
     <loc>https://mql5expert.ir/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- صفحه تحلیل GoldApex -->
-  <url>
-    <loc>https://mql5expert.ir/GoldApex_WF.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- فهرست بلاگ -->
+  <!-- ═══════════════ فهرست بلاگ ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- مقالات بلاگ -->
+  <!-- ═══════════════ مقالات فارسی ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/blog/what-is-forex-robot.html</loc>
     <changefreq>monthly</changefreq>
@@ -59,6 +53,107 @@
     <loc>https://mql5expert.ir/blog/forex-fury-review.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/xauusd-hybrid-scalper-tradingview.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══════════════ مقالات انگلیسی ═══════════════ -->
+  <url>
+    <loc>https://mql5expert.ir/blog/en/what-is-forex-robot.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/how-to-install-expert-in-metatrader5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/supertrend-expert-advisor.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/best-forex-trading-robots-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/expert-vs-indicator-mt5.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/forex-fury-review.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/blog/en/xauusd-hybrid-scalper-tradingview.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ═══════════════ صفحات مشخصات و تحلیل (فارسی) ═══════════════ -->
+  <url>
+    <loc>https://mql5expert.ir/docs/supertrend-specs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/forexfury-specs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/eaem-analysis.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/goldapex-analysis.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/reporttester-goldapex.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/ReportTester-3399802.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- ═══════════════ صفحات مشخصات و تحلیل (انگلیسی) ═══════════════ -->
+  <url>
+    <loc>https://mql5expert.ir/docs/en/supertrend-specs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/en/forexfury-specs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/en/eaem-analysis.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/en/goldapex-analysis.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mql5expert.ir/docs/en/reporttester-goldapex.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
