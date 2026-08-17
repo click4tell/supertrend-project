@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAUUSD Hybrid Scalper v2 Strategy for TradingView | Free Pine Script</title>
+    <meta name="description" content="Free Pine Script TradingView strategy for gold (XAUUSD): SMA crossover and hybrid scalper systems with ATR-based SL/TP, sound alerts and a full install guide.">
+    <link rel="canonical" href="https://mql5expert.ir/blog/en/xauusd-hybrid-scalper-tradingview.html">
+    <meta property="og:title" content="XAUUSD Hybrid Scalper v2 for TradingView (Free)">
+    <meta property="og:description" content="Free gold strategy for TradingView with sound alerts and install guide">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mql5expert.ir/blog/en/xauusd-hybrid-scalper-tradingview.html">
+    <meta property="og:site_name" content="MQL5 Expert">
+    <meta property="og:locale" content="en_US">
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "XAUUSD Hybrid Scalper v2 Strategy for TradingView (Free)",
+      "description": "Free Pine Script gold strategy with sound alerts",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
+      "datePublished": "2026-08-17",
+      "dateModified": "2026-08-17",
+      "mainEntityOfPage": "https://mql5expert.ir/blog/en/xauusd-hybrid-scalper-tradingview.html"
+    }
+    </script>
+    <style>
+        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;direction:ltr;text-align:left;line-height:1.8;color:#333;max-width:820px;margin:0 auto;padding:20px}
+        h1{color:#1d4ed8;font-size:1.8em}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:38px}
+        .meta{color:#888;font-size:14px}
+        .free{display:inline-block;background:#16a34a;color:#fff;border-radius:999px;padding:3px 14px;font-size:12px;font-weight:bold}
+        .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:16px 20px;margin:14px 0}
+        table{width:100%;border-collapse:collapse;margin:14px 0}
+        table th,table td{border:1px solid #e5e7eb;padding:8px 10px;text-align:left;font-size:14px}
+        table th{background:#f3f4f6}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px}
+        .note{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:14px 0}
+        .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
+        .cta a{color:#1d4ed8;font-weight:bold}
+        .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
+        ol{padding-left:25px}
+        footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
+    </style>
+</head>
+<body>
+
+    <p class="top-links"><a href="/">← Back to Home</a> | <a href="/blog/">← Articles, Tutorials &amp; Reports</a> | <a href="/blog/xauusd-hybrid-scalper-tradingview.html">نسخه فارسی</a></p>
+
+    <article>
+        <h1>XAUUSD Hybrid Scalper v2 Strategy for TradingView <span class="free">FREE</span></h1>
+        <p class="meta">Published: August 17, 2026 | Category: Free Strategy</p>
+
+        <p>If you trade on <strong>TradingView</strong> and are looking for a <strong>free strategy</strong> for the gold market, "XAUUSD Hybrid Scalper v2" is a great option. It is written in <strong>Pine Script version 6</strong> and is completely free (MPL 2.0 license).</p>
+
+        <h2>What Is This Strategy?</h2>
+        <p>XAUUSD Hybrid Scalper v2 is a hybrid strategy that runs <strong>two independent trading systems</strong> together:</p>
+        <ul>
+            <li><strong>System 1 — SMA Crossover:</strong> fast (14) and slow (28) SMA crossover — classic Long/Short signals.</li>
+            <li><strong>System 2 — Hybrid Scalper:</strong> trend (EMA20 above EMA50), RSI crossover of level 50, strong candle and a session filter — more precise Buy/Sell signals.</li>
+        </ul>
+
+        <h2>How It Works</h2>
+        <div class="card">
+            <p><strong>Long entry (SMA system):</strong> fast SMA crosses above the slow SMA.</p>
+            <p><strong>Short entry (SMA system):</strong> fast SMA crosses below the slow SMA.</p>
+            <p><strong>Buy (hybrid):</strong> EMA20 &gt; EMA50 + RSI crosses above 50 + strong bullish candle + inside the session.</p>
+            <p><strong>Sell (hybrid):</strong> EMA20 &lt; EMA50 + RSI crosses below 50 + strong bearish candle + inside the session.</p>
+            <p><strong>Exit:</strong> Stop Loss <code>1.5 × ATR</code> and Take Profit <code>2.0 × ATR</code> (ATR period: 14).</p>
+        </div>
+
+        <h2>Inputs (Settings)</h2>
+        <table>
+            <tr><th>Group</th><th>Parameter</th><th>Default</th></tr>
+            <tr><td>SMA</td><td>Fast / Slow SMA</td><td>14 / 28</td></tr>
+            <tr><td>EMA</td><td>Fast / Slow EMA (trend filter)</td><td>20 / 50</td></tr>
+            <tr><td>RSI</td><td>Length / crossover level</td><td>14 / 50</td></tr>
+            <tr><td>ATR</td><td>Length / SL mult / TP mult</td><td>14 / 1.5 / 2.0</td></tr>
+            <tr><td>Session</td><td>Trading session</td><td>08:00–17:00 (GMT+0)</td></tr>
+            <tr><td>Size</td><td>Fixed lots</td><td>0.10 (changeable)</td></tr>
+            <tr><td>Capital / fee</td><td>Initial capital / commission</td><td>$10,000 / 0.02%</td></tr>
+        </table>
+
+        <h2>Sound Alerts &amp; Display</h2>
+        <ul>
+            <li><strong>Sound alerts:</strong> for all entries and exits with symbol and price.</li>
+            <li><strong>Colored horizontal lines:</strong> Long/Short entries and EXL/EXS exits.</li>
+            <li><strong>Colored triangles:</strong> below/above candles for all 6 events.</li>
+            <li><strong>SL/TP lines:</strong> display of the open position's stop and target.</li>
+        </ul>
+
+        <h2>How to Add It to TradingView</h2>
+        <ol>
+            <li>Download the <strong>Pine Script</strong> file from the link below.</li>
+            <li>Open an <strong>XAUUSD</strong> chart in TradingView.</li>
+            <li>Click <strong>Pine Editor</strong> at the bottom of the page.</li>
+            <li><strong>Copy</strong> the code into the editor (replace previous content).</li>
+            <li>Click <strong>Add to chart</strong>.</li>
+            <li>Review the strategy settings in the <strong>Settings</strong> tab.</li>
+            <li>For backtesting, open the <strong>Strategy Tester</strong> tab.</li>
+            <li>For alerts: right-click the strategy → <strong>Add alert</strong> → choose the alert options.</li>
+        </ol>
+
+        <div class="note"><strong>⚠️ Note:</strong> the default size is 0.10 lots and can be changed in Properties (Settings). Always backtest and demo before live trading.</div>
+
+        <h2>Download</h2>
+        <div class="cta">
+            <p>📥 <a href="/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine" download>Download XAUUSD Hybrid Scalper v2 (.pine) — Free</a></p>
+        </div>
+
+        <h2>Conclusion</h2>
+        <p>This free strategy is ideal for TradingView users looking for a simple but complete system (alerts, lines and triangles) on gold. Please read the risk warning below before use.</p>
+
+        <div class="note"><strong>Disclaimer:</strong> this strategy is provided free "as is" with no guarantee of profitability. Trading financial markets involves the risk of losing capital.</div>
+
+        <div class="cta">
+            <p>More MT5 Expert Advisors and robots → <a href="/">MQL5 Expert Home</a></p>
+        </div>
+    </article>
+
+    <footer>
+        <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
+        <p>Responsibility for profits and losses from trading decisions rests entirely with the user.</p>
+    </footer>
+
+</body>
+</html>
