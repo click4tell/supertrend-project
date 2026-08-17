@@ -23,6 +23,13 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- ═══════════════ دانلود رایگان ═══════════════ -->
+  <url>
+    <loc>https://mql5expert.ir/free-downloads/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- ═══════════════ فهرست بلاگ ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/blog/</loc>
