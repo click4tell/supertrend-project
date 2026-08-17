@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحلیل EA&amp;EM-SuperTrend&amp;Footprint | اکسپرت ترکیبی MT5</title>
-    <meta name="description" content="تحلیل و مشخصات EA&amp;EM-SuperTrend&amp;Footprint: ترکیب سوپرترند و فوت‌پرینت، معاملات دستی و اتوماتیک برای متاتریدر 5.">
+    <title>تحلیل EA&amp;EM-SuperTrend&amp;Footprint v1.27 | اکسپرت ترکیبی MT5</title>
+    <meta name="description" content="معرفی و تحلیل کامل EA&amp;EM-SuperTrend&amp;Footprint v1.27: سیگنال‌گیری ۹ تایم‌فریم، ۶ فیلتر پیشرفته، معاملات دستی و خودکار و داشبورد حرفه‌ای.">
     <link rel="canonical" href="https://mql5expert.ir/docs/eaem-analysis.html">
-    <meta property="og:title" content="تحلیل EA&amp;EM-SuperTrend&amp;Footprint">
-    <meta property="og:description" content="تحلیل و مشخصات اکسپرت ترکیبی EA&amp;EM">
+    <meta property="og:title" content="تحلیل EA&amp;EM-SuperTrend&amp;Footprint v1.27">
+    <meta property="og:description" content="معرفی و تحلیل کامل اکسپرت ترکیبی EA&amp;EM">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/eaem-analysis.html">
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="fa_IR">
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <style>
-        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:820px;margin:0 auto;padding:20px}
-        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:25px;text-align:center;margin:15px 0}
-        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:5px 0 0;opacity:.9}
+        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:860px;margin:0 auto;padding:20px}
+        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:28px;text-align:center;margin:15px 0}
+        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:6px 0 0;opacity:.92;font-size:15px}
         .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:15px 0}
-        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:30px}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:32px}
+        h3{color:#1d4ed8;margin:18px 0 8px}
         table{width:100%;border-collapse:collapse;margin:15px 0}
         table th,table td{border:1px solid #e5e7eb;padding:9px;text-align:right;font-size:14px}
-        table th{background:#f3f4f6;width:35%}
+        table th{background:#f3f4f6}
         .note{background:#fff7ed;border-right:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:15px 0}
+        .ok{color:#16a34a;font-weight:bold}.bad{color:#dc2626;font-weight:bold}
         .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
         .cta a{color:#1d4ed8;font-weight:bold}
         .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
         ul{padding-right:25px}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
         footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
     </style>
 </head>
@@ -35,37 +38,156 @@
     <p class="top-links"><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← مقالات، آموزش‌ها و گزارش‌ها</a> | <a href="/docs/en/eaem-analysis.html">English Version</a></p>
 
     <div class="page-hero">
-        <h1>EA&amp;EM-SuperTrend&amp;Footprint</h1>
-        <p>اکسپرت ترکیبی: معاملات دستی و اتوماتیک با سوپرترند و فوت‌پرینت</p>
+        <h1>EA&amp;EM-SuperTrend&amp;Footprint v1.27</h1>
+        <p>معرفی کامل و تحلیل — اکسپرت ترکیبی معاملات دستی و خودکار برای متاتریدر 5</p>
     </div>
 
+    <h2>مشخصات کلیدی</h2>
     <div class="card">
-        <h2>تحلیل محصول</h2>
-        <p>EA&amp;EM-SuperTrend&amp;Footprint یک اکسپرت پیشرفته است که قدرت دو اندیکاتور مهم — <strong>سوپرترند</strong> برای دنبال‌کردن روند و <strong>فوت‌پرینت</strong> برای تحلیل جریان سفارشات (Order Flow) — را ترکیب می‌کند. این ربات هم به‌صورت کاملاً اتوماتیک معامله می‌کند و هم امکان معاملات دستی را برای معامله‌گری که می‌خواهد کنترل بیشتری داشته باشد فراهم می‌کند.</p>
+        <table>
+            <tr><th>نام</th><td>EA&amp;EM-SuperTrend&amp;Footprint</td></tr>
+            <tr><th>نسخه</th><td>1.27 (به‌روزرسانی: Auto Pending Orders)</td></tr>
+            <tr><th>سازنده</th><td>KM@2025</td></tr>
+            <tr><th>پلتفرم</th><td>MetaTrader 5</td></tr>
+            <tr><th>فعال‌سازی</th><td>کد اختصاصی + وایت‌لیست حساب‌ها</td></tr>
+        </table>
     </div>
 
-    <h2>ویژگی‌های اصلی</h2>
+    <h2>ویژگی‌های کلیدی</h2>
+
+    <h3>۱. سیستم سیگنال‌گیری Multi-Timeframe (۹ تایم‌فریم همزمان)</h3>
     <ul>
-        <li>ترکیب سیگنال سوپرترند و تحلیل فوت‌پرینت</li>
-        <li>حالت معاملات دستی و اتوماتیک در یک اکسپرت</li>
-        <li>داشبورد اطلاعاتی روی چارت</li>
-        <li>مدیریت خودکار حد ضرر و حد سود</li>
-        <li>قابل استفاده در بازارهای مختلف</li>
-        <li>سازگار با متاتریدر 5</li>
+        <li>تحلیل همزمان: <strong>M1 | M5 | M15 | M30 | H1 | H4 | D1 | W1 | MN1</strong></li>
+        <li>موتور سیگنال: SuperTrend + ATR (دوره ۱۴، Multiplier 2.5)</li>
+        <li>اعتبار سیگنال: حداقل <strong>۵ تایم‌فریم</strong> هم‌راستا</li>
+        <li>خروجی سیگنال: BUY / SELL / NEUTRAL</li>
     </ul>
 
-    <h2>جدول مشخصات</h2>
+    <h3>۲. شش فیلتر پیشرفته همزمان (شرط عبور: PASS)</h3>
     <table>
-        <tr><th>پلتفرم</th><td>متاتریدر 5 (MT5)</td></tr>
-        <tr><th>فرمت فایل</th><td>ex5.</td></tr>
-        <tr><th>سبک معاملاتی</th><td>دستی + اتوماتیک (ترکیبی)</td></tr>
-        <tr><th>ابزار تحلیل</th><td>سوپرترند + فوت‌پرینت</td></tr>
-        <tr><th>بازار مناسب</th><td>جفت‌ارزها، طلا و سایر</td></tr>
-        <tr><th>مدیریت ریسک</th><td>قابل تنظیم</td></tr>
-        <tr><th>پشتیبانی</th><td>راهنمای نصب و پاسخگویی</td></tr>
+        <tr><th>فیلتر</th><th>شرط</th><th>کاربرد</th></tr>
+        <tr><td>MA (EMA6)</td><td>Price &gt; MA</td><td>تأیید روند صعودی</td></tr>
+        <tr><td>RSI (7)</td><td>40 تا 60</td><td>جلوگیری از Overbought / Oversold</td></tr>
+        <tr><td>ADX (3)</td><td>&lt; 25</td><td>قدرت روند</td></tr>
+        <tr><td>OBV</td><td>صعودی</td><td>تأیید حجم</td></tr>
+        <tr><td>Stochastic</td><td>30 تا 70</td><td>جلوگیری از نقاط خطرناک</td></tr>
+        <tr><td>MACD</td><td>MACD &gt; Signal</td><td>تأیید مومنتوم</td></tr>
     </table>
 
-    <div class="note"><strong>⚠️ هشدار:</strong> هیچ رباتی سود تضمینی ندارد. مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است.</div>
+    <h3>۳. داشبورد حرفه‌ای زنده</h3>
+    <ul>
+        <li>سیگنال کلی (BUY / SELL / OFF)</li>
+        <li>تعداد Up / Down / Neutral</li>
+        <li>وضعیت ۶ فیلتر (PASS / FAIL)</li>
+        <li>ATR فعلی (پیپ)</li>
+        <li>Volume Delta + CVD + Equity + سود/زیان</li>
+        <li>Tick Volume</li>
+    </ul>
+
+    <h3>۴. سیستم‌های معاملاتی</h3>
+    <ul>
+        <li><strong>معاملات دستی (دکمه‌ها):</strong> BUY فوری | SELL فوری | BUY LIMIT (پندینگ ATR × Multiplier) | SELL LIMIT (پندینگ ATR × Multiplier) | CLOSE ALL</li>
+        <li><strong>معاملات خودکار:</strong> حالت حداکثر پوشش (Max Positions)
+            <ul>
+                <li>Auto Direct: هر ۱ جهت (سیگنال + فیلترها)</li>
+                <li>Auto Pending: Pullback Strategy (هر ۱ جهت)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>نحوه عملکرد</h2>
+
+    <h3>۱. محاسبه SuperTrend</h3>
+    <div class="card">
+        <p><code>HL2 = (High + Low) / 2</code></p>
+        <p><code>Upper Band = HL2 + (Multiplier × ATR)</code></p>
+        <p><code>Lower Band = HL2 − (Multiplier × ATR)</code></p>
+        <p>✅ Close &gt; Upper Band → روند صعودی</p>
+        <p>✅ Close &lt; Lower Band → روند نزولی</p>
+    </div>
+
+    <h3>۲. تولید سیگنال</h3>
+    <ul>
+        <li><strong>سیگنال BUY:</strong> حداقل ۵ تایم‌فریم صعودی + عبور تمام فیلترها (PASS)</li>
+        <li><strong>سیگنال SELL:</strong> حداقل ۵ تایم‌فریم نزولی + عبور تمام فیلترها (PASS)</li>
+        <li>آلارم صوتی هنگام تغییر سیگنال</li>
+    </ul>
+
+    <h3>۳. اجرای معاملات</h3>
+    <ul>
+        <li><strong>Auto Direct:</strong> ورود فوری در Ask/Bid + حد ضرر/حد سود ثابت</li>
+        <li><strong>Auto Pending:</strong>
+            <ul>
+                <li>Buy Limit: <code>Ask − (ATR × Multiplier)</code></li>
+                <li>Sell Limit: <code>Bid + (ATR × Multiplier)</code></li>
+                <li>Pullback Strategy</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>مدیریت ریسک</h2>
+    <div class="card">
+        <table>
+            <tr><th>حد ضرر (Stop Loss)</th><td>۱۰۰۰ پیپ (قابل تنظیم)</td></tr>
+            <tr><th>حد سود (Take Profit)</th><td>۲۱۰ پیپ (قابل تنظیم)</td></tr>
+            <tr><th>Trailing Stop مرحله‌ای (۳ مرحله)</th><td>۱. Breakeven: +۱۰۰۰ پیپ — ۲. Trailing: ۱۰۰ پیپ — ۳. Step: ۲ پیپ</td></tr>
+            <tr><th>حجم معاملات (پیش‌فرض)</th><td>۰.۰۲ لات (دکمه‌ها، Auto Direct، Auto Pending)</td></tr>
+        </table>
+    </div>
+
+    <h2>مزایای رقابتی</h2>
+    <table>
+        <tr><th>ویژگی</th><th>EA&amp;EM</th><th>رقبا</th></tr>
+        <tr><td>تحلیل Multi-TF</td><td class="ok">✅ ۹ تایم‌فریم</td><td class="bad">❌ ۱–۲ تایم‌فریم</td></tr>
+        <tr><td>فیلتر همزمان</td><td class="ok">✅ ۶ فیلتر</td><td class="bad">❌ ۱–۳ فیلتر</td></tr>
+        <tr><td>Auto Pending</td><td class="ok">✅ جدید</td><td class="bad">❌ ندارد</td></tr>
+        <tr><td>Trailing پیشرفته</td><td class="ok">✅ ۳ مرحله</td><td class="bad">❌ ساده</td></tr>
+        <tr><td>Volume Delta</td><td class="ok">✅ CVD+TVD</td><td class="bad">❌ ندارد</td></tr>
+        <tr><td>داشبورد کامل</td><td class="ok">✅ Real-time</td><td class="bad">❌ محدود</td></tr>
+    </table>
+
+    <h2>راهنمای استفاده</h2>
+    <h3>مرحله ۱ — نصب</h3>
+    <ol>
+        <li>فایل .ex5 را در پوشه Experts کپی کنید</li>
+        <li>کد فعال‌سازی را وارد کنید</li>
+        <li>EA را روی چارت اجرا کنید</li>
+    </ol>
+    <h3>مرحله ۲ — تنظیمات پیشنهادی</h3>
+    <table>
+        <tr><th>پارامتر</th><th>پیشنهاد فارکس</th><th>پیشنهاد کریپتو</th></tr>
+        <tr><td>SL Pips</td><td>۱۰۰۰</td><td>۲۰۰۰</td></tr>
+        <tr><td>TP Pips</td><td>۲۱۰</td><td>۵۰۰</td></tr>
+        <tr><td>Lot Size</td><td>۰.۰۲</td><td>۰.۰۱</td></tr>
+        <tr><td>Min TF</td><td>۵</td><td>۶</td></tr>
+    </table>
+    <h3>مرحله ۳ — معاملات</h3>
+    <ul>
+        <li>دکمه‌های رنگی دستی: حالت</li>
+        <li>Auto Direct: دکمه AUTO DIR</li>
+        <li>Auto Pending: دکمه AUTO PEND</li>
+    </ul>
+
+    <h2>چک‌لیست قبل از استفاده</h2>
+    <ul>
+        <li>تأیید فعال‌سازی حساب</li>
+        <li>موجودی مناسب با Lot Size</li>
+        <li>SL/TP منطبق با استراتژی</li>
+        <li>در تست دستی، Auto Trading خاموش باشد</li>
+        <li>اجرای ۲۴/۷ با VPS</li>
+    </ul>
+
+    <div class="note">
+        <strong>⚠️ هشدارهای مهم:</strong> معاملات حاوی ریسک بالا هستند • بدون سود تضمینی • ابتدا در حساب Demo تست کنید • مدیریت سرمایه الزامی است.
+    </div>
+
+    <h2>نتیجه‌گیری</h2>
+    <p>EA&amp;EM-SuperTrend&amp;Footprint v1.27 ترکیب کاملی از تحلیل چندتایم‌فریمی، فیلترهای پیشرفته، معاملات خودکار و داشبورد حرفه‌ای است. طراحی‌شده برای:</p>
+    <ul>
+        <li>✅ تریدرهای دستی که سیگنال دقیق می‌خواهند</li>
+        <li>✅ تریدرهای خودکار که کنترل کامل می‌خواهند</li>
+        <li>✅ تحلیلگران حجم و Footprint</li>
+    </ul>
 
     <div class="cta">
         <p>برای خرید EA&amp;EM-PRO → <a href="/">صفحه اصلی سایت</a></p>

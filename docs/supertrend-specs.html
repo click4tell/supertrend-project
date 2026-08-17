@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشخصات اکسپرت سوپرترند | ربات دنبال‌کننده روند MT5</title>
-    <meta name="description" content="مشخصات کامل اکسپرت سوپرترند برای متاتریدر 5: ربات خودکار دنبال‌کننده روند، ویژگی‌ها، تنظیمات و جدول مشخصات.">
+    <title>آموزش و مشخصات اکسپرت سوپرترند (ForexTrend Pro v1.60) | ربات ۹ تایم‌فریم MT5</title>
+    <meta name="description" content="آموزش عملکرد و راه‌اندازی اکسپرت سوپرترند (ForexTrend Professional v1.60): تحلیل همزمان ۹ تایم‌فریم، سیگنال ≥۵ تایم‌فریم، مدیریت ریسک ATR و تنظیمات کامل.">
     <link rel="canonical" href="https://mql5expert.ir/docs/supertrend-specs.html">
-    <meta property="og:title" content="مشخصات اکسپرت سوپرترند">
-    <meta property="og:description" content="مشخصات کامل ربات سوپرترند برای MT5">
+    <meta property="og:title" content="آموزش و مشخصات اکسپرت سوپرترند v1.60">
+    <meta property="og:description" content="ربات ۹ تایم‌فریمی سوپرترند: نحوه عملکرد، راه‌اندازی و تنظیمات">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/supertrend-specs.html">
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="fa_IR">
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <style>
-        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:820px;margin:0 auto;padding:20px}
-        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:25px;text-align:center;margin:15px 0}
-        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:5px 0 0;opacity:.9}
+        body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;direction:rtl;text-align:right;line-height:2;color:#333;max-width:860px;margin:0 auto;padding:20px}
+        .page-hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;padding:28px;text-align:center;margin:15px 0}
+        .page-hero h1{margin:0;font-size:1.6em}.page-hero p{margin:6px 0 0;opacity:.92;font-size:15px}
         .card{background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin:15px 0}
-        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:30px}
+        h2{color:#374151;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin-top:32px}
+        h3{color:#1d4ed8;margin:18px 0 8px}
         table{width:100%;border-collapse:collapse;margin:15px 0}
         table th,table td{border:1px solid #e5e7eb;padding:9px;text-align:right;font-size:14px}
-        table th{background:#f3f4f6;width:35%}
+        table th{background:#f3f4f6}
         .note{background:#fff7ed;border-right:4px solid #f59e0b;padding:10px 15px;border-radius:6px;margin:15px 0}
         .cta{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin:20px 0;text-align:center}
         .cta a{color:#1d4ed8;font-weight:bold}
         .top-links a{color:#1d4ed8;text-decoration:none;font-size:14px}
-        ul{padding-right:25px}
+        ul,ol{padding-right:25px}
+        code{background:#f3f4f6;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
+        .steps{counter-reset:step}
+        .step{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 16px;margin:10px 0}
+        .step b{color:#1d4ed8}
         footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#888;text-align:center}
     </style>
 </head>
@@ -35,39 +40,81 @@
     <p class="top-links"><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← مقالات، آموزش‌ها و گزارش‌ها</a> | <a href="/docs/en/supertrend-specs.html">English Version</a></p>
 
     <div class="page-hero">
-        <h1>اکسپرت سوپرترند</h1>
-        <p>ربات معاملاتی خودکار دنبال‌کننده روند برای متاتریدر 5</p>
+        <h1>اکسپرت سوپرترند — ForexTrend Professional v1.60</h1>
+        <p>ربات چندتایم‌فریمی دنبال‌کننده روند برای متاتریدر 5 (تحلیل همزمان ۹ تایم‌فریم)</p>
     </div>
 
     <div class="card">
-        <h2>معرفی محصول</h2>
-        <p>اکسپرت سوپرترند یک ربات معاملاتی خودکار بر پایه اندیکاتور سوپرترند است. این ربات روند بازار را شناسایی می‌کند و در جهت آن به‌صورت خودکار معامله باز می‌کند، حد ضرر و حد سود را مدیریت می‌کند و بدون نیاز به حضور دائمی شما پای چارت، ۲۴ ساعته فعال است.</p>
+        <h2>معرفی</h2>
+        <p>اکسپرت سوپرترند (نام داخلی: <strong>ForexTrend Professional EA v1.60</strong>) یک ربات دنبال‌کننده روند (Trend Following) است که <strong>۹ تایم‌فریم را همزمان</strong> تحلیل می‌کند و تنها وقتی معامله باز می‌کند که حداقل ۵ تایم‌فریم با یکدیگر هم‌راستا باشند. حد ضرر و حد سود بر اساس <strong>ATR</strong> (نوسان بازار) به‌صورت پویا محاسبه می‌شود.</p>
     </div>
 
-    <h2>ویژگی‌های اصلی</h2>
-    <ul>
-        <li>معاملات کاملاً خودکار بر اساس سیگنال سوپرترند</li>
-        <li>دنبال‌کردن روند در جفت‌ارزها و بازار طلا</li>
-        <li>قابلیت تنظیم دوره (Period) و ضریب (Multiplier)</li>
-        <li>مدیریت خودکار حد ضرر و حد سود</li>
-        <li>مناسب تایم‌فریم‌های H1 و H4</li>
-        <li>نصب آسان و سازگار با متاتریدر 5</li>
-    </ul>
+    <h2>مشخصات کلیدی</h2>
+    <div class="card">
+        <table>
+            <tr><th>نام</th><td>ForexTrend Professional EA</td></tr>
+            <tr><th>نسخه</th><td>1.60 (Standard SuperTrend)</td></tr>
+            <tr><th>سازنده</th><td>KM@2025 — mql5expert.ir</td></tr>
+            <tr><th>پلتفرم</th><td>MetaTrader 5</td></tr>
+            <tr><th>نماد پیشنهادی</th><td>XAUUSD (طلا) — تایم‌فریم H1</td></tr>
+            <tr><th>فعال‌سازی</th><td>رمز فعال‌سازی فقط برای اکانت واقعی — دمو و بک‌تست بدون رمز</td></tr>
+            <tr><th>تاریخ انقضا</th><td>2030.12.31</td></tr>
+        </table>
+    </div>
 
-    <h2>جدول مشخصات</h2>
-    <table>
-        <tr><th>پلتفرم</th><td>متاتریدر 5 (MT5)</td></tr>
-        <tr><th>فرمت فایل</th><td>ex5.</td></tr>
-        <tr><th>سبک معاملاتی</th><td>دنبال‌کردن روند (Trend Following)</td></tr>
-        <tr><th>تایم‌فریم پیشنهادی</th><td>H1 و H4</td></tr>
-        <tr><th>دوره (Period)</th><td>۱۰ (قابل تنظیم)</td></tr>
-        <tr><th>ضریب (Multiplier)</th><td>۳ (قابل تنظیم)</td></tr>
-        <tr><th>بازار مناسب</th><td>جفت‌ارزها و XAUUSD</td></tr>
-        <tr><th>مدیریت ریسک</th><td>حجم، حد ضرر و حد سود قابل تنظیم</td></tr>
-        <tr><th>پشتیبانی</th><td>راهنمای نصب و پاسخگویی</td></tr>
-    </table>
+    <h2>نحوه عملکرد (از روی سورس واقعی)</h2>
+    <div class="steps">
+        <div class="step"><b>گام ۱ — تحلیل ۹ تایم‌فریم:</b> ربات در تایم‌فریم‌های M1 تا MN1، اندیکاتور SuperTrend را محاسبه می‌کند (ATR دوره ۳۵ و ضریب ۱۶).</div>
+        <div class="step"><b>گام ۲ — جهت هر تایم‌فریم:</b> اگر قیمت بالای باند بالایی باشد → صعودی، اگر پایین باند پایینی باشد → نزولی.</div>
+        <div class="step"><b>گام ۳ — سیگنال کلی:</b> اگر حداقل ۵ تایم‌فریم صعودی باشند → سیگنال BUY؛ اگر حداقل ۵ تایم‌فریم نزولی باشند → سیگنال SELL؛ در غیر این صورت OFF (بدون معامله).</div>
+        <div class="step"><b>گام ۴ — فیلترهای ورود:</b> حداکثر ATR مجاز (۱۴۱۰ پیپ)، حداکثر اسپرد (۱۴ پیپ)، ساعات معاملاتی و حداکثر ۱ معامله در هر کندل.</div>
+        <div class="step"><b>گام ۵ — ورود و مدیریت ریسک:</b> ورود BUY در Ask با حد ضرر <code>Ask − (1.7 × ATR)</code> و حد سود <code>Ask + (2.3 × ATR)</code>.</div>
+        <div class="step"><b>گام ۶ — حجم معامله:</b> حجم پایه ۰.۰۱ لات + افزایش ۰.۰۱ به ازای هر ۱۰۰۰ دلار موجودی.</div>
+    </div>
 
-    <div class="note"><strong>⚠️ هشدار:</strong> هیچ رباتی سود تضمینی ندارد. قبل از استفاده با سرمایه واقعی، حتماً در حساب دمو تست کنید و مسئولیت سود و زیان معاملات بر عهده کاربر است.</div>
+    <h3>نمای شماتیک استراتژی</h3>
+    <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px">
+        <text x="20" y="22" font-size="12" fill="#555">Price (grey) + SuperTrend (green = bullish)</text>
+        <polyline points="20,95 80,75 120,90 180,50 240,60 300,30 360,40" fill="none" stroke="#888" stroke-width="2"/>
+        <polyline points="20,110 80,100 120,110 180,80 240,90 300,60 360,70" fill="none" stroke="#16a34a" stroke-width="3" stroke-dasharray="6,3"/>
+        <text x="20" y="145" font-size="12" fill="#16a34a">✅ 5+ timeframes bullish → BUY signal</text>
+        <circle cx="300" cy="30" r="5" fill="#16a34a"/>
+    </svg>
+
+    <h2>تنظیمات (Inputs) — مقادیر پیش‌فرض</h2>
+    <div class="card">
+        <table>
+            <tr><th>پارامتر</th><th>پیش‌فرض</th><th>توضیح</th></tr>
+            <tr><td>PERIOD</td><td>H1 / XAUUSD</td><td>تایم‌فریم و نماد پیشنهادی</td></tr>
+            <tr><td>ATR_Multiplier_SL</td><td>1.7</td><td>ضریب ATR برای حد ضرر</td></tr>
+            <tr><td>ATR_Multiplier_TP</td><td>2.3</td><td>ضریب ATR برای حد سود</td></tr>
+            <tr><td>BaseLotSize</td><td>0.01</td><td>حجم پایه</td></tr>
+            <tr><td>LotIncrementPer1000</td><td>0.01</td><td>افزایش حجم هر ۱۰۰۰ دلار</td></tr>
+            <tr><td>ATR_Period</td><td>35</td><td>دوره ATR برای SL/TP</td></tr>
+            <tr><td>MaxATRThreshold</td><td>1410 پیپ</td><td>حداکثر نوسان مجاز</td></tr>
+            <tr><td>MaxSpread</td><td>14 پیپ</td><td>حداکثر اسپرد مجاز</td></tr>
+            <tr><td>TradingStart/EndHour</td><td>0 تا 23</td><td>ساعات معاملاتی</td></tr>
+            <tr><td>MaxTradesPerBar</td><td>1</td><td>حداکثر معامله در هر کندل</td></tr>
+            <tr><td>SuperTrend_ATR_Period</td><td>35</td><td>دوره ATR سوپرترند</td></tr>
+            <tr><td>SuperTrend_Multiplier</td><td>16</td><td>ضریب سوپرترند</td></tr>
+            <tr><td>MinTimeframesForSignal</td><td>5</td><td>حداقل تایم‌فریم هم‌راستا برای سیگنال</td></tr>
+            <tr><td>EnableHedging</td><td>false</td><td>حالت هجینگ (برای سوددهی خاموش)</td></tr>
+            <tr><td>MagicNumber</td><td>202509</td><td>شناسه معاملات ربات</td></tr>
+        </table>
+    </div>
+
+    <h2>راه‌اندازی و نصب</h2>
+    <ol>
+        <li>فایل <code>.ex5</code> را در پوشه <code>MQL5\Experts</code> کپی کنید.</li>
+        <li>در متاتریدر 5: روی Navigator کلیک راست → Refresh.</li>
+        <li>ربات را روی چارت <strong>XAUUSD تایم‌فریم H1</strong> بکشید.</li>
+        <li><strong>فعال‌سازی:</strong> برای اکانت واقعی، کد فعال‌سازی را وارد کنید (برای دمو و بک‌تست نیازی نیست).</li>
+        <li>دکمه AutoTrading و Allow Algorithmic Trading را فعال کنید.</li>
+    </ol>
+
+    <div class="note">
+        <strong>⚠️ هشدارها:</strong> معاملات پرریسک هستند • بدون سود تضمینی • عملکرد گذشته تضمین آینده نیست • ابتدا در حساب دمو تست کنید • مدیریت سرمایه الزامی است.
+    </div>
 
     <div class="cta">
         <p>برای خرید اکسپرت سوپرترند → <a href="/">صفحه اصلی سایت</a></p>
