@@ -16,6 +16,7 @@
     <meta property="og:image" content="https://mql5expert.ir/EA-EM-PRO.jpg">
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="fa_IR">
+    <meta property="og:locale:alternate" content="en_US">
 
     <link rel="icon" type="image/x-icon" href="/logo.ico">
 
@@ -44,7 +45,9 @@
         "priceValidUntil": "2027-08-18",
         "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "MQL5 Expert" }
+        "seller": { "@type": "Organization", "name": "MQL5 Expert" },
+        "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "IR", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted", "merchantReturnDays": 0 },
+        "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "IR" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 2, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 1, "unitCode": "DAY" } } }
       }
     }
     </script>
@@ -55,13 +58,19 @@
         .main-nav a { display: inline-block; padding: 8px 18px; border-radius: 20px; background: #f3f4f6; color: #374151; text-decoration: none; font-size: 14px; font-weight: 500; line-height: 1.5; margin: 0; transition: background 0.3s ease, color 0.3s ease; }
         .main-nav a:hover { background: #4CAF50; color: #fff; }
         .main-nav a.nav-cta { background: #1d4ed8; color: #fff; }
+        .lang-switcher { position: fixed; top: 10px; right: 10px; z-index: 1000; background: #4CAF50; color: white; border: none; padding: 6px 8px; border-radius: 10px; cursor: pointer; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+        .lang-switcher:hover { background: #45a049; transform: scale(1.08); }
+        .lang-switcher img { width: 26px; height: 18px; border-radius: 4px; }
+        .lang-switcher span { font-weight: bold; font-size: 10px; }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background: #FFFFFF; text-align: center; }
         .product-card { background: #f9f9f9; padding: 25px; margin: 15px auto; border-radius: 10px; border: 1px solid #ddd; max-width: 500px; }
+        .product-card img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 12px; }
         .product-card h1 { color: #1d4ed8; margin: 0 0 10px 0; }
-        .price { font-size: 1.3em; font-weight: bold; color: #4CAF50; margin: 10px 0; }
-        .download-button { display: inline-block; padding: 12px 24px; margin: 10px; background-color: #1d4ed8; color: white; text-decoration: none; border-radius: 5px; font-size: 16px; }
-        .download-button:hover { background-color: #1e40af; }
-        img { max-width: 100%; height: auto; border-radius: 5px; }
+        .price { font-size: 1.3em; font-weight: bold; color: #4CAF50; margin: 14px 0; line-height: 1.8; }
+        .buy-button { display: block; width: 100%; padding: 14px 0; margin: 10px 0; background-color: #1d4ed8; color: white; border: none; border-radius: 8px; font-size: 17px; font-weight: 600; cursor: pointer; }
+        .buy-button:hover { background-color: #1e40af; }
+        .download-button { display: block; width: 100%; padding: 14px 0; margin: 10px 0; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 8px; font-size: 16px; font-weight: 600; }
+        .download-button:hover { background-color: #45a049; }
         footer { background-color: #f9fafb; padding: 15px 20px; text-align: center; border-top: 1px solid #e5e7eb; margin-top: 20px; font-size: 14px; color: #374151; width: 100%; box-sizing: border-box; }
         .disclaimer { font-size: 12px; color: #6b7280; line-height: 2; text-align: center; border: 1px solid #e0e0e0; border-radius: 10px; background: #f3f4f6; padding: 14px 20px; max-width: 800px; margin: 0 auto 14px auto; }
         footer a { color: #1d4ed8; text-decoration: none; }
@@ -76,47 +85,57 @@
 </head>
 <body>
 
+    <button class="lang-switcher" id="lang-switcher">
+        <img src="/ir.svg" alt="English" id="flag-gb">
+        <img src="/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
+        <span id="lang-text">فارسی</span>
+    </button>
+
     <nav class="main-nav">
-        <a href="/">خانه</a>
+        <a href="/" data-fa="خانه" data-en="Home">خانه</a>
         <div class="dropdown">
-            <a href="/blog/" class="nav-cta">مقالات، آموزش‌ها و گزارش‌ها</a>
+            <a href="/blog/" class="nav-cta" data-fa="مقالات، آموزش‌ها و گزارش‌ها" data-en="Articles, Tutorials &amp; Reports">مقالات، آموزش‌ها و گزارش‌ها</a>
             <div class="dropdown-content">
-                <p class="dd-title">مقالات</p>
-                <a href="/blog/what-is-forex-robot.html">ربات فارکس چیست؟</a>
-                <a href="/blog/how-to-install-expert-in-metatrader5.html">آموزش نصب اکسپرت در MT5</a>
-                <a href="/blog/supertrend-expert-advisor.html">اکسپرت سوپرترند چیست؟</a>
-                <a href="/blog/best-forex-trading-robots-2026.html">بهترین ربات فارکس 2026</a>
-                <a href="/blog/expert-vs-indicator-mt5.html">فرق اکسپرت و اندیکاتور</a>
-                <a href="/blog/forex-fury-review.html">بررسی فارکس فیوری</a>
+                <p class="dd-title" data-fa="مقالات" data-en="Articles">مقالات</p>
+                <a href="/blog/what-is-forex-robot.html" data-fa="ربات فارکس چیست؟" data-en="What is a Forex Robot?">ربات فارکس چیست؟</a>
+                <a href="/blog/how-to-install-expert-in-metatrader5.html" data-fa="آموزش نصب اکسپرت در MT5" data-en="How to Install an EA in MT5">آموزش نصب اکسپرت در MT5</a>
+                <a href="/blog/supertrend-expert-advisor.html" data-fa="اکسپرت سوپرترند چیست؟" data-en="What is SuperTrend EA?">اکسپرت سوپرترند چیست؟</a>
                 <hr>
-                <p class="dd-title">گزارش‌ها و تحلیل</p>
-                <a href="/docs/eaem-analysis.html">تحلیل EA;EM;فوت پرینت</a>
-                <a href="/docs/goldapex-analysis.html">تحلیل گلد آپکس</a>
+                <p class="dd-title" data-fa="گزارش‌ها و تحلیل" data-en="Reports &amp; Analysis">گزارش‌ها و تحلیل</p>
+                <a href="/docs/eaem-analysis.html" data-fa="تحلیل EA;EM;فوت پرینت" data-en="EA;EM;Footprint">تحلیل EA;EM;فوت پرینت</a>
+                <a href="/docs/goldapex-analysis.html" data-fa="تحلیل گلد آپکس" data-en="GoldApex Analysis">تحلیل گلد آپکس</a>
             </div>
         </div>
-        <a href="https://t.me/Mq5_EA_bot" target="_blank">تلگرام</a>
-        <a href="/contact.html">تماس با ما</a>
-        <a href="/links.html">لینک‌های مفید</a>
-        <a href="/free-downloads/">دانلود رایگان فایل‌ها</a>
+        <a href="/#products" data-fa="محصولات" data-en="Products">محصولات</a>
+        <a href="https://t.me/Mq5_EA_bot" target="_blank" data-fa="تلگرام" data-en="Telegram">تلگرام</a>
+        <a href="/contact.html" data-fa="تماس با ما" data-en="Contact Us">تماس با ما</a>
     </nav>
 
     <div class="container">
         <div class="product-card">
-            <img src="/EA-EM-PRO.jpg" alt="اکسپرت EA&amp;EM-PRO برای متاتریدر 5">
-            <h1>اکسپرت EA&amp;EM-PRO</h1>
-            <p>ربات معاملات دستی و اتوماتیک برای متاتریدر 5</p>
-            <p class="price">قیمت: 10 تتر (USDT TRC20)</p>
-            <a class="download-button" href="/downloads/EA&EM-PRO.ex5" download>دانلود EA&amp;EM-PRO</a>
+            <img id="prdImg" src="/EA-EM-PRO.jpg" alt="اکسپرت EA&amp;EM-PRO برای متاتریدر 5">
+            <h1 id="prdName">اکسپرت EA&amp;EM-PRO</h1>
+            <p id="prdDesc">ربات معاملات دستی و اتوماتیک برای متاتریدر 5</p>
+            <p class="price" id="productPrice">در حال بارگذاری قیمت...</p>
+            <button class="buy-button" id="buyBtn"><span id="buyText">خرید محصول</span></button>
+            <a class="download-button" id="dlBtn" href="/downloads/EA&EM-PRO.ex5" download><span id="downloadText">دانلود</span> EA&amp;EM-PRO</a>
         </div>
     </div>
 
     <footer>
         <div class="disclaimer">
-            <strong>سلب مسئولیت</strong><br>
-            مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد.
+            <strong data-fa="سلب مسئولیت" data-en="Disclaimer">سلب مسئولیت</strong><br>
+            <span data-fa="مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد." data-en="Responsibility for profits and losses arising from trading decisions rests entirely with the user, and Forex trading bears no responsibility for any potential losses.">مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است و تجارت فارکس مسئولیتی در قبال زیان‌های احتمالی ندارد.</span>
         </div>
         <p>© All rights reserved K_M 2025 | <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a></p>
     </footer>
+
+    <script>
+        window.PRODUCT_KEY = 'EA_EM_PRO';
+        window.DOWNLOAD_URL = '/downloads/EA&EM-PRO.ex5';
+        window.PRODUCT_LINKS = { fa: '/products/ea-em-pro.html', en: '/products/en/ea-em-pro.html' };
+    </script>
+    <script src="/products/product-common.js"></script>
 
 </body>
 </html>
