@@ -22,6 +22,15 @@
   var currentLang = localStorage.getItem('lang') || 'fa';
   var tetherPriceInToman = 0;
   var priceTether = 0;      // قیمت محصول به تتر (از ورکر)
+  var loaded = false;       // آیا قیمت واقعی لود شده؟
+
+  // قیمت پیش‌فرض fallback (اگر ورکر در دسترس نبود) — به ترتیب محصول
+  var FALLBACK_TETHER_PRICE = {
+    'EA_EM_PRO': 2,
+    'EA_SuperTrend': 2,
+    'EA_ForexFury': 2,
+    'GoldApex_WF': 10
+  };
 
   /* ---------- یافتن المان‌های صفحه ---------- */
   function el(id) { return document.getElementById(id); }
@@ -94,7 +103,9 @@
         tetherPriceInToman = data.tether_price_toman || 0;
         return tetherPriceInToman;
       })
-      .catch(function () { tetherPriceInToman = 0; return 0; });
+      .catch(function () {
+        tetherPriceInToman = 0; return 0;
+      });
   }
 
   /* ---------- قیمت محصول از ورکر ---------- */
@@ -102,49 +113,56 @@
     return fetch(WORKER_URL + '/products?lang=' + currentLang)
       .then(function (r) { return r.json(); })
       .then(function (data) {
+        var fallback = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
         if (data && data[PRODUCT_KEY]) {
           var p = data[PRODUCT_KEY];
-          priceTether = Number(p.trx) || 0;
+          priceTether = Number(p.trx) || fallback;
           if (p.desc_fa && currentLang === 'fa' && el('prdDesc')) el('prdDesc').textContent = p.desc_fa;
           if (p.desc_en && currentLang === 'en' && el('prdDesc')) el('prdDesc').textContent = p.desc_en;
+        } else {
+          priceTether = fallback;
         }
+        loaded = true;
         return priceTether;
       })
       .catch(function () {
-        priceTether = 0; return 0;
+        priceTether = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
+        return priceTether;
       });
   }
 
-  /* ---------- رندر قیمت (تتر + تومان) با پیام انتظار ---------- */
+  /* ---------- رندر قیمت (تتر + تومان) با پیام انتظار و fallback ---------- */
   function renderPrice() {
     var priceBox = el('productPrice');
     if (!priceBox) return;
 
-    // اگر هنوز قیمت واریز نشده، پیام لود/انتظار نشان بده
-    if (priceTether <= 0 || tetherPriceInToman <= 0) {
-      priceBox.innerHTML = currentLang === 'fa'
-        ? '<span style="color:#b45309;">⏳ لطفاً صبر کنید تا قیمت لحظه‌ای به‌روزرسانی شود...</span>'
-        : '<span style="color:#b45309;">⏳ Please wait, updating the live price...</span>';
+    // اگر هنوز قیمت واقعی لود نشده و تتر هم موجود نیست → پیام انتظار
+    if (!loaded && priceTether <= 0 && tetherPriceInToman <= 0) {
+      priceBox.innerHTML =
+        '<span style="color:#b45309;font-weight:700;">⏳ لطفاً صبر کنید تا قیمت لحظه‌ای به‌روزرسانی شود...</span>';
       return;
     }
 
+    // اگر قیمت محصول واریز شده ولی قیمت تتر نیامده → فقط تتر را نشان بده
     var priceToman = Math.round(priceTether * tetherPriceInToman);
 
     if (currentLang === 'fa') {
-      priceBox.innerHTML =
-        'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20)</strong>' +
-        ' <span style="opacity:0.75">معادل ' + priceToman.toLocaleString('fa-IR') + ' تومان</span>';
+      if (tetherPriceInToman > 0) {
+        priceBox.innerHTML =
+          'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20)</strong>' +
+          ' <span style="opacity:0.75">معادل ' + priceToman.toLocaleString('fa-IR') + ' تومان</span>';
+      } else {
+        priceBox.innerHTML = 'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20)</strong>';
+      }
     } else {
-      priceBox.innerHTML =
-        'Price: <strong>' + priceTether + ' USDT (TRC20)</strong>' +
-        ' <span style="opacity:0.75">≈ ' + priceToman.toLocaleString('en-US') + ' Toman</span>';
+      if (tetherPriceInToman > 0) {
+        priceBox.innerHTML =
+          'Price: <strong>' + priceTether + ' USDT (TRC20)</strong>' +
+          ' <span style="opacity:0.75">≈ ' + priceToman.toLocaleString('en-US') + ' Toman</span>';
+      } else {
+        priceBox.innerHTML = 'Price: <strong>' + priceTether + ' USDT (TRC20)</strong>';
+      }
     }
-
-    // به‌روزرسانی اتریبیوت‌های قیمت برای Schema (سئو)
-    var schemaPrice = el('schemaLowPrice');
-    var schemaPriceCurrency = el('schemaPriceCurrency');
-    if (schemaPrice) schemaPrice.textContent = String(priceTether);
-    if (schemaPriceCurrency) schemaPriceCurrency.textContent = 'USD';
   }
 
   /* ---------- مقداردهی اولیه ---------- */
@@ -165,10 +183,18 @@
       window.location.href = '/#products';
     });
 
-    // به‌روزرسانی هر ۶۰ ثانیه قیمت تتر
+    // به‌روزرسانی هر ۶۰ ثانیه قیمت
     setInterval(function () {
       fetchTetherPrice().then(function () { renderPrice(); });
     }, 60000);
+
+    // Fallback: اگر بعد از ۸ ثانیه قیمت لود نشد، قیمت پیش‌فرض را نشان بده
+    setTimeout(function () {
+      if (!loaded) {
+        priceTether = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
+        renderPrice();
+      }
+    }, 8000);
   }
 
   document.addEventListener('DOMContentLoaded', init);
