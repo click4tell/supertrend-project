@@ -5,7 +5,7 @@
   ═══════════════════════════════════════════════════════════════════
   با زدن دکمه زبان، تمام منوها و متن‌ها به انگلیسی تغییر می‌کنند.
   - مقالات انگلیسی در پوشه /blog/en/ هستند و لینک‌ها خودکار عوض می‌شوند
-  - فایل‌های دانلود در /downloads/ و گزارش‌ها در /docs/ هستند
+  - صفحات محصول در /products/ هستند و کارت‌های محصول در صفحه اول نمایش داده می‌شوند
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fa" dir="rtl">
@@ -37,6 +37,7 @@
 
     <!-- ═══ فاوآیکون ═══ -->
     <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <link rel="stylesheet" href="/products.css">
 
     <!-- ═══ Structured Data: وب‌سایت ═══ -->
     <script type="application/ld+json">
@@ -885,7 +886,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
         </div>
 
         <div class="dropdown">
-            <a href="/blog/#downloads" data-fa="دانلودها" data-en="Downloads">دانلودها</a>
+            <a href="/#products" data-fa="محصولات" data-en="Products">محصولات</a>
             <div class="dropdown-content">
                 <a href="/products/ea-em-pro.html" data-fa="ربات EA&amp;EM-PRO" data-en="EA&amp;EM-PRO Robot">ربات EA&amp;EM-PRO</a>
                 <a href="/products/supertrend-ea.html" data-fa="ربات سوپرترند" data-en="SuperTrend Robot">ربات سوپرترند</a>
@@ -916,7 +917,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <p data-fa="فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی</p>
     </header>
 
-    <div class="container">
+    <div class="container" id="products">
         <h2 id="productsTitle" data-fa="محصولات ما" data-en="Our Products">محصولات ما</h2>
 
         <div class="tether-price-box" id="tetherPriceBox">
@@ -925,27 +926,58 @@ html[lang="fa"] .copyright  { direction: rtl; }
     </div>
 
     <!-- ═══ محصولات — نسخه ثابت برای ایندکس شدن در گوگل ═══
-         جاوااسکریپت هنگام بارگذاری، این بخش را با اطلاعات زنده به‌روزرسانی می‌کند -->
-    <div class="product" id="productContainer">
-        <div class="product">
-            <h3><a href="/products/ea-em-pro.html">اکسپرت EA&amp;EM-PRO</a></h3>
-            <p>ربات معاملات دستی و اتوماتیک برای متاتریدر 5</p>
-            <p>قیمت: 10 تتر (USDT TRC20)</p>
+         جاوااسکریپت هنگام بارگذاری، این بخش را با کارت‌های دارای رسانه و دکمه خرید به‌روزرسانی می‌کند -->
+    <div class="products-grid" id="productContainer">
+        <div class="product-card">
+            <div class="product-media">
+                <video src="/EA&EM-SuperTrend&Footprint.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/EA&EM-SuperTrend&Footprint.webm', 'video')"></video>
+            </div>
+            <div class="product-body">
+                <h3><a href="/products/ea-em-pro.html">اکسپرت EA&amp;EM-PRO</a></h3>
+                <p class="product-desc">ربات معاملات دستی و اتوماتیک برای متاتریدر 5</p>
+                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <button class="buy-btn" onclick="buyNow('EA_EM_PRO')">خرید محصول</button>
+                <a class="detail-link" href="/products/ea-em-pro.html">مشاهده جزئیات و دانلود</a>
+            </div>
         </div>
-        <div class="product">
-            <h3><a href="/products/supertrend-ea.html">اکسپرت SuperTrend EA</a></h3>
-            <p>ربات معاملاتی سوپرترند برای دنبال‌کردن روند در متاتریدر 5</p>
-            <p>قیمت: 10 تتر (USDT TRC20)</p>
+
+        <div class="product-card">
+            <div class="product-media">
+                <video src="/supertrend.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/supertrend.webm', 'video')"></video>
+            </div>
+            <div class="product-body">
+                <h3><a href="/products/supertrend-ea.html">اکسپرت SuperTrend EA</a></h3>
+                <p class="product-desc">ربات معاملاتی سوپرترند برای دنبال‌کردن روند در متاتریدر 5</p>
+                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <button class="buy-btn" onclick="buyNow('EA_SuperTrend')">خرید محصول</button>
+                <a class="detail-link" href="/products/supertrend-ea.html">مشاهده جزئیات و دانلود</a>
+            </div>
         </div>
-        <div class="product">
-            <h3><a href="/products/forex-fury-pro.html">اکسپرت Forex Fury Pro</a></h3>
-            <p>اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
-            <p>قیمت: 10 تتر (USDT TRC20)</p>
+
+        <div class="product-card">
+            <div class="product-media">
+                <video src="/ForexFuryPro.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/ForexFuryPro.webm', 'video')"></video>
+            </div>
+            <div class="product-body">
+                <h3><a href="/products/forex-fury-pro.html">اکسپرت Forex Fury Pro</a></h3>
+                <p class="product-desc">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
+                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <button class="buy-btn" onclick="buyNow('EA_ForexFury')">خرید محصول</button>
+                <a class="detail-link" href="/products/forex-fury-pro.html">مشاهده جزئیات و دانلود</a>
+            </div>
         </div>
-        <div class="product">
-            <h3><a href="/products/goldapex-wf.html">اکسپرت GoldApex_WF</a></h3>
-            <p>ربات معاملاتی طلا (XAUUSD) با استراتژی گلد آپکس</p>
-            <p>قیمت: 10 تتر (USDT TRC20)</p>
+
+        <div class="product-card">
+            <div class="product-media">
+                <video src="/GoldApex_WF.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/GoldApex_WF.webm', 'video')"></video>
+            </div>
+            <div class="product-body">
+                <h3><a href="/products/goldapex-wf.html">اکسپرت GoldApex_WF</a></h3>
+                <p class="product-desc">ربات معاملاتی طلا (XAUUSD) با استراتژی گلد آپکس</p>
+                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <button class="buy-btn" onclick="buyNow('GoldApex_WF')">خرید محصول</button>
+                <a class="detail-link" href="/products/goldapex-wf.html">مشاهده جزئیات و دانلود</a>
+            </div>
         </div>
     </div>
 
@@ -1147,32 +1179,93 @@ html[lang="fa"] .copyright  { direction: rtl; }
             }
         }
 
+        /* ═══ رندر کارت‌های محصولات (گرید با رسانه + دکمه خرید) ═══ */
+        const PRODUCT_MEDIA = {
+            'EA_EM_PRO':      { video: '/EA&EM-SuperTrend&Footprint.webm', page: '/products/ea-em-pro.html' },
+            'EA_SuperTrend':  { video: '/supertrend.webm',                 page: '/products/supertrend-ea.html' },
+            'EA_ForexFury':   { video: '/ForexFuryPro.webm',               page: '/products/forex-fury-pro.html' },
+            'GoldApex_WF':    { video: '/GoldApex_WF.webm',                page: '/products/goldapex-wf.html' }
+        };
+
         function populateProducts() {
             const container = document.getElementById('productContainer');
             container.innerHTML = '';
 
             Object.keys(products).forEach(key => {
                 const prod = products[key];
-                const div = document.createElement('div');
-                div.className = 'product';
+                const media = PRODUCT_MEDIA[key] || {};
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                /* رسانه (پیش‌نمایش ویدیویی با قابلیت کلیک برای بزرگ‌نمایی) */
+                const mediaDiv = document.createElement('div');
+                mediaDiv.className = 'product-media';
+                if (media.video) {
+                    const vid = document.createElement('video');
+                    vid.src = media.video;
+                    vid.muted = true;
+                    vid.loop = true;
+                    vid.autoplay = true;
+                    vid.playsInline = true;
+                    vid.addEventListener('click', () => openFullScreenModal(media.video, 'video'));
+                    mediaDiv.appendChild(vid);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = '/logo.ico';
+                    img.alt = currentLang === 'fa' ? (prod.name_fa || prod.name_en) : (prod.name_en || prod.name_fa);
+                    mediaDiv.appendChild(img);
+                }
+                card.appendChild(mediaDiv);
+
+                /* بدنه کارت */
+                const body = document.createElement('div');
+                body.className = 'product-body';
 
                 const h3 = document.createElement('h3');
-                h3.textContent = currentLang === 'fa' ? (prod.name_fa || prod.name_en) : (prod.name_en || prod.name_fa);
-                div.appendChild(h3);
+                const aHref = document.createElement('a');
+                aHref.href = media.page || '#';
+                aHref.textContent = currentLang === 'fa' ? (prod.name_fa || prod.name_en) : (prod.name_en || prod.name_fa);
+                h3.appendChild(aHref);
+                body.appendChild(h3);
 
                 const desc = document.createElement('p');
+                desc.className = 'product-desc';
                 desc.textContent = currentLang === 'fa' ? (prod.desc_fa || prod.desc_en || '') : (prod.desc_en || prod.desc_fa || '');
-                div.appendChild(desc);
+                body.appendChild(desc);
 
                 const price = document.createElement('p');
+                price.className = 'product-price';
                 if (currentLang === 'fa') {
-                    price.textContent = `قیمت: ${prod.usdt} تتر (USDT TRC20) | معادل ${prod.toman.toLocaleString('fa-IR')} تومان`;
+                    price.textContent = `قیمت: ${prod.usdt} تتر (USDT TRC20) | ≈ ${prod.toman.toLocaleString('fa-IR')} تومان`;
                 } else {
                     price.textContent = `Price: ${prod.usdt} USDT (TRC20) | ≈ ${prod.toman.toLocaleString('en-US')} Toman`;
                 }
-                div.appendChild(price);
+                body.appendChild(price);
 
-                container.appendChild(div);
+                /* دکمه خرید → انتخاب محصول در فرم و اسکرول به ناحیه پرداخت */
+                const buyBtn = document.createElement('button');
+                buyBtn.className = 'buy-btn';
+                buyBtn.textContent = currentLang === 'fa' ? 'خرید محصول' : 'Buy Now';
+                buyBtn.addEventListener('click', () => {
+                    const select = document.getElementById('productSelect');
+                    if (select && select.querySelector(`option[value="${key}"]`)) {
+                        select.value = key;
+                        updateAmounts();
+                    }
+                    showPaymentForm();
+                });
+                body.appendChild(buyBtn);
+
+                /* لینک جزئیات محصول */
+                const detailLink = document.createElement('a');
+                detailLink.className = 'detail-link';
+                detailLink.href = media.page || '#';
+                detailLink.textContent = currentLang === 'fa' ? 'مشاهده جزئیات و دانلود' : 'View details & download';
+                body.appendChild(detailLink);
+
+                card.appendChild(body);
+                container.appendChild(card);
             });
 
             updateLanguage(currentLang);
@@ -1220,6 +1313,16 @@ html[lang="fa"] .copyright  { direction: rtl; }
             document.getElementById('paymentForm').style.display = 'block';
             document.getElementById('paymentForm').scrollIntoView({ behavior: 'smooth' });
             togglePaymentDetails();
+        }
+
+        /* انتخاب محصول در فرم پرداخت و اسکرول به ناحیه خرید */
+        function buyNow(productKey) {
+            const select = document.getElementById('productSelect');
+            if (select && select.querySelector(`option[value="${productKey}"]`)) {
+                select.value = productKey;
+                updateAmounts();
+            }
+            showPaymentForm();
         }
 
         function copyToClipboard() {
