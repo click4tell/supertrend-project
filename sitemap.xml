@@ -170,6 +170,7 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- ═══════════════ صفحات محصول ═══════════════ -->
   <url>
     <loc>https://mql5expert.ir/products/ea-em-pro.html</loc>
     <changefreq>monthly</changefreq>
@@ -201,11 +202,6 @@
     <loc>https://mql5expert.ir/free-downloads.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-</urlset>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
 
 </urlset>
