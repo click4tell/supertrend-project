@@ -70,7 +70,7 @@
       }
     });
 
-    // بروزرسانی نام/توضیح محصول از داده داینامیک یا ورکر
+    // بروزرسانی نام/توضیح محصول
     var prdName = el('prdName');
     var prdDesc = el('prdDesc');
     if (prdName) prdName.textContent = currentData().name;
@@ -105,7 +105,6 @@
         if (data && data[PRODUCT_KEY]) {
           var p = data[PRODUCT_KEY];
           priceTether = Number(p.trx) || 0;
-          // در صورت وجود توضیح واقعی از ورکر، آن را جایگزین کن
           if (p.desc_fa && currentLang === 'fa' && el('prdDesc')) el('prdDesc').textContent = p.desc_fa;
           if (p.desc_en && currentLang === 'en' && el('prdDesc')) el('prdDesc').textContent = p.desc_en;
         }
@@ -116,11 +115,20 @@
       });
   }
 
-  /* ---------- رندر قیمت (تتر + تومان) ---------- */
+  /* ---------- رندر قیمت (تتر + تومان) با پیام انتظار ---------- */
   function renderPrice() {
-    var priceToman = Math.round(priceTether * tetherPriceInToman);
     var priceBox = el('productPrice');
     if (!priceBox) return;
+
+    // اگر هنوز قیمت واریز نشده، پیام لود/انتظار نشان بده
+    if (priceTether <= 0 || tetherPriceInToman <= 0) {
+      priceBox.innerHTML = currentLang === 'fa'
+        ? '<span style="color:#b45309;">⏳ لطفاً صبر کنید تا قیمت لحظه‌ای به‌روزرسانی شود...</span>'
+        : '<span style="color:#b45309;">⏳ Please wait, updating the live price...</span>';
+      return;
+    }
+
+    var priceToman = Math.round(priceTether * tetherPriceInToman);
 
     if (currentLang === 'fa') {
       priceBox.innerHTML =
@@ -151,7 +159,7 @@
       applyLanguage(currentLang === 'en' ? 'fa' : 'en');
     });
 
-    // دکمه خرید → رفتن به ناحیه خرید صفحه اصلی / تماس
+    // دکمه خرید → رفتن به ناحیه خرید صفحه اصلی
     var buyBtn = el('buyBtn');
     if (buyBtn) buyBtn.addEventListener('click', function () {
       window.location.href = '/#products';
