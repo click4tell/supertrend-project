@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Fury Pro EA Guide (v10) | MT5 Range Scalper</title>
-    <meta name="description" content="How the Forex Fury Professional EA works: range scalping on EURUSD M15 with ADX filter, Bollinger mean reversion, dynamic money management and breakeven.">
+    <title>Forex Fury Pro EA Guide (v13.5) | MT5 Range Scalper</title>
+    <meta name="description" content="How the Forex Fury Professional EA v13.5 works: range scalping on EURUSD M15 with ADX filter, Bollinger mean reversion, dynamic money management and a three-layer capital protection system.">
     <link rel="canonical" href="https://mql5expert.ir/docs/en/forexfury-specs.html">
-    <meta property="og:title" content="Forex Fury Pro EA Guide (v10)">
-    <meta property="og:description" content="Forex Fury range scalper: how it works, setup and settings">
+    <meta property="og:title" content="Forex Fury Pro EA Guide (v13.5)">
+    <meta property="og:description" content="Forex Fury range scalper v13.5: how it works, setup, settings and protection system">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/en/forexfury-specs.html">
     <meta property="og:site_name" content="MQL5 Expert">
@@ -39,35 +39,38 @@
     <p class="top-links"><a href="/">← Back to Home</a> | <a href="/blog/">← Articles &amp; Reports</a> | <a href="/docs/forexfury-specs.html">نسخه فارسی</a></p>
 
     <div class="page-hero">
-        <h1>Forex Fury Professional EA — v10.0.0</h1>
-        <p>Range scalper with trend filter for MetaTrader 5 (optimized: EURUSD on M15)</p>
+        <h1>Forex Fury Professional EA — v13.5.0</h1>
+        <p>Range scalper with a three-layer capital protection system for MetaTrader 5 (optimized: EURUSD on M15)</p>
     </div>
 
     <div class="card">
         <h2>Overview</h2>
-        <p>Forex Fury Professional EA (v10.0.0) is a <strong>range scalper</strong>: when the market is in a <strong>range (no trend)</strong>, it trades price reversion to the mean. Range detection uses <strong>ADX</strong>, while entries/exits are controlled by <strong>Bollinger Bands</strong>, <strong>ATR</strong> and dynamic money management.</p>
+        <p>Forex Fury Professional EA (v13.5.0) is a <strong>range scalper</strong>: when the market is in a <strong>range (no trend)</strong>, it uses pin bar + ADX detection and Bollinger Band mean reversion to open short-term trades. Entries/exits are controlled by <strong>Bollinger Bands</strong>, <strong>ATR</strong> and dynamic money management. Version 13.5 was fully redesigned from the earlier builds (up to v12) to be <strong>compatible with any broker</strong> and to <strong>protect capital against margin calls</strong>.</p>
     </div>
 
     <h2>Key Specifications</h2>
     <div class="card">
         <table>
             <tr><th>Name</th><td>Forex Fury Professional EA</td></tr>
-            <tr><th>Version</th><td>10.0.0 (internal build 11.00)</td></tr>
+            <tr><th>Version</th><td>13.5.0 (latest — updated 2026-08-19)</td></tr>
             <tr><th>Trading style</th><td>Range Scalping + Mean Reversion</td></tr>
             <tr><th>Developer</th><td>KM@2025 — mql5expert.ir</td></tr>
             <tr><th>Platform / Timeframe</th><td>MT5 — M15 (best on EURUSD)</td></tr>
             <tr><th>Activation</th><td>Code required for real accounts — demo &amp; backtest free</td></tr>
             <tr><th>Expiration</th><td>2030.12.31</td></tr>
+            <tr><th>Protection system</th><td>Daily loss limit + 25% peak-equity drawdown + auto-resume + margin control</td></tr>
         </table>
     </div>
 
     <h2>How It Works (from the real source code)</h2>
-    <div class="step"><b>Step 1 — Range detection:</b> the robot checks the last 12 bars; if ADX (period 20) is below 36 on all of them → the market is in a range.</div>
-    <div class="step"><b>Step 2 — Volume filter:</b> trading volume must be above the average (MA20 × 1.6) to confirm the entry.</div>
-    <div class="step"><b>Step 3 — Mean reversion:</b> price approaches the Bollinger Band (period 11, deviation 1.4) and the robot trades the return to the mean.</div>
-    <div class="step"><b>Step 4 — SL / TP:</b> based on ATR (period 19): Stop Loss <code>6 × ATR</code> and Take Profit <code>11 × ATR</code>.</div>
-    <div class="step"><b>Step 5 — Dynamic management:</b> Breakeven after +10 pips, trailing stop (start 10, step 9 pips), max drawdown 5%.</div>
-    <div class="step"><b>Step 6 — Extra filters:</b> spread (max 15 pips + dynamic 1.5× average), leverage 500, trading hours 5–22 GMT, news filter (avoid 8:30 for 2 hours) and max 54 trades per day.</div>
+    <div class="step"><b>Step 1 — Pin bar detection:</b> the robot checks the previous candle; bullish/bearish pin bar with a long shadow and small body (body &lt; 30% of the range).</div>
+    <div class="step"><b>Step 2 — Range detection:</b> it checks the last 12 bars; if ADX (period 20) is below 36 on all of them → the market is in a range.</div>
+    <div class="step"><b>Step 3 — Volume filter:</b> trading volume must be above the average (MA20 × 1.6) to confirm the entry.</div>
+    <div class="step"><b>Step 4 — Mean reversion:</b> price approaches the Bollinger Band (period 11, deviation 1.4) and the robot trades the return to the mean.</div>
+    <div class="step"><b>Step 5 — SL / TP:</b> based on ATR (period 19): Stop Loss <code>6 × ATR</code> and Take Profit <code>11 × ATR</code>.</div>
+    <div class="step"><b>Step 6 — Dynamic management:</b> Breakeven after +1 pip, trailing stop (start 1.0, step 0.9 pips — the profitable v12 profile with correct pip units).</div>
+    <div class="step"><b>Step 7 — Protection system:</b> daily loss limit 10% (pause until the next day) + 25% peak-equity drawdown (emergency stop) + auto-resume after 30 days + margin control at 40%.</div>
+    <div class="step"><b>Step 8 — Extra filters:</b> spread (max 1.5 pips + dynamic 1.5× average), trading hours 5–22 GMT, news filter (30 minutes around 8:30) and max 5 trades per day.</div>
 
     <h3>Strategy Diagram</h3>
     <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px">
@@ -75,33 +78,63 @@
         <line x1="20" y1="40" x2="380" y2="40" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5,3"/>
         <line x1="20" y1="120" x2="380" y2="120" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5,3"/>
         <polyline points="20,80 60,55 100,95 140,65 180,100 220,50 260,90 300,60 340,95 380,70" fill="none" stroke="#333" stroke-width="2"/>
-        <text x="20" y="145" font-size="12" fill="#16a34a">✅ ADX &lt; 36 + mean reversion → scalp trade</text>
+        <text x="20" y="145" font-size="12" fill="#16a34a">✅ ADX &lt; 36 + pin bar + mean reversion → scalp trade</text>
         <circle cx="220" cy="50" r="5" fill="#16a34a"/>
     </svg>
+
+    <h2>Capital Protection System (Three Layers)</h2>
+    <div class="card">
+        <table>
+            <tr><th>Layer</th><th>Parameter</th><th>Behavior</th></tr>
+            <tr><td>1. Daily loss limit</td><td>DailyLossPercent = 10%</td><td>If 10% is lost in one day, trading pauses until the next day</td></tr>
+            <tr><td>2. Peak-equity drawdown</td><td>MaxDrawdownPercent = 25%</td><td>If equity drops 25% from the account's highest point, trading stops (capital protection)</td></tr>
+            <tr><td>3. Auto-resume</td><td>EnableDrawdownReset / 30 days</td><td>After 30 days the robot automatically resumes with a fresh baseline</td></tr>
+            <tr><td>+ Margin control</td><td>MaxMarginPercent = 40%</td><td>If the broker lowers leverage (e.g., 500 → 200), the lot shrinks automatically — no stop, no margin call</td></tr>
+        </table>
+        <p><strong>Why was the leverage filter removed?</strong> Old versions only worked with a leverage of exactly 500; if the broker reduced leverage in critical times, the robot stopped. In v13.5 it was replaced by <strong>automatic margin protection</strong> that works with any leverage.</p>
+    </div>
 
     <h2>Inputs — Default Values</h2>
     <div class="card">
         <table>
             <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
             <tr><td>Timeframe</td><td>M15</td><td>Trading timeframe (best: EURUSD)</td></tr>
-            <tr><td>LotSize / MaxLotSize</td><td>0.01 / 5</td><td>Fixed / max lot size</td></tr>
-            <tr><td>RiskPercent</td><td>9%</td><td>Risk per trade of balance</td></tr>
-            <tr><td>UseDynamicMoneyManagement</td><td>true</td><td>Dynamic risk management</td></tr>
-            <tr><td>MaxTradesPerDay</td><td>54</td><td>Max trades per day</td></tr>
+            <tr><td>LotSize / MaxLotSize</td><td>0.01 / 0.3</td><td>Fixed / max lot size</td></tr>
+            <tr><td>RiskPercent</td><td>2%</td><td>Risk per trade of balance</td></tr>
+            <tr><td>MaxOpenPositions</td><td>3</td><td>Max simultaneous positions</td></tr>
+            <tr><td>MaxTradesPerDay</td><td>5</td><td>Max trades per day</td></tr>
+            <tr><td>MinTimeBetweenTrades</td><td>10 seconds</td><td>Min time between trades</td></tr>
             <tr><td>ADX_Period / Threshold</td><td>20 / 36</td><td>Range market detection</td></tr>
             <tr><td>ATR_Period</td><td>19</td><td>ATR period</td></tr>
             <tr><td>ATR_Multiplier_SL / TP</td><td>6.0 / 11.0</td><td>ATR multiplier for SL/TP</td></tr>
-            <tr><td>TrailingStart / Step</td><td>10 / 9 pips</td><td>Trailing stop</td></tr>
-            <tr><td>MaxDrawdownPercent</td><td>5%</td><td>Max drawdown limit</td></tr>
-            <tr><td>BreakevenPips</td><td>10 pips</td><td>Breakeven trigger</td></tr>
+            <tr><td>TrailingStart / Step</td><td>1.0 / 0.9 pips</td><td>Trailing stop (v12 profile)</td></tr>
+            <tr><td>BreakevenPips</td><td>1.0 pip</td><td>Breakeven trigger</td></tr>
+            <tr><td>MaxDrawdownPercent</td><td>25% of peak equity</td><td>Max drawdown limit</td></tr>
+            <tr><td>DailyLossPercent</td><td>10%</td><td>Daily loss limit</td></tr>
+            <tr><td>EnableDrawdownReset / Days</td><td>true / 30</td><td>Auto-resume after a stop</td></tr>
+            <tr><td>MaxMarginPercent</td><td>40%</td><td>Automatic margin control (replaces leverage filter)</td></tr>
             <tr><td>RangeConfirmBars</td><td>12</td><td>Bars to confirm range</td></tr>
-            <tr><td>UseTrendFilter / MA_Period</td><td>false / 200</td><td>SMA200 trend filter (off)</td></tr>
-            <tr><td>MaxSpread</td><td>15 pips</td><td>Maximum spread</td></tr>
+            <tr><td>UseTrendFilter / MA_Period</td><td>false / 200</td><td>SMA200 trend filter</td></tr>
+            <tr><td>MaxSpread</td><td>1.5 pips</td><td>Maximum spread</td></tr>
+            <tr><td>UseDynamicSpreadFilter</td><td>true (1.5×)</td><td>Dynamic spread filter</td></tr>
+            <tr><td>UseVolumeFilter</td><td>true (1.6×)</td><td>Volume filter</td></tr>
             <tr><td>BB_Period / Deviation</td><td>11 / 1.4</td><td>Bollinger Bands</td></tr>
-            <tr><td>Leverage Filter</td><td>500</td><td>Acceptable leverage</td></tr>
             <tr><td>Start/EndHour (GMT)</td><td>5–22</td><td>Trading hours</td></tr>
-            <tr><td>UseNewsFilter</td><td>true</td><td>Avoids news times</td></tr>
+            <tr><td>UseNewsFilter</td><td>true (30 min)</td><td>Avoids news times</td></tr>
+            <tr><td>MagicNumber</td><td>123456</td><td>Dedicated trade identifier</td></tr>
         </table>
+    </div>
+
+    <h2>Backtest Results (Real Ticks)</h2>
+    <div class="card">
+        <table>
+            <tr><th>Period</th><th>Deposit</th><th>Final Balance</th><th>Return</th></tr>
+            <tr><td>2024 – 2026</td><td>2,500</td><td>4,485</td><td>+79%</td></tr>
+            <tr><td>2025 – 2026</td><td>2,500</td><td>3,541</td><td>+42%</td></tr>
+            <tr><td>2023 – 2026 (recommended settings)</td><td>2,500</td><td>5,295</td><td>+112%</td></tr>
+        </table>
+        <p>Tests were run on EURUSD (M15), "Every tick based on real ticks" model, 1:500 leverage, with no margin call. For higher returns you can raise <code>MaxLotSize</code>; for maximum safety keep <code>RiskPercent</code> at 1–2.</p>
+        <div class="note"><strong>⚠️ Warning:</strong> Past backtests are no guarantee of future results. Scalping is high risk — test on a demo account first.</div>
     </div>
 
     <h2>Installation &amp; Setup</h2>
