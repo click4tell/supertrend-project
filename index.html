@@ -943,7 +943,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             <div class="product-body">
                 <h3><a href="/products/ea-em-pro.html">اکسپرت EA&amp;EM-PRO</a></h3>
                 <p class="product-desc">ربات معاملات دستی و اتوماتیک برای متاتریدر 5</p>
-                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <p class="product-price">⏳ هنوز بروز نیست...</p>
                 <button class="buy-btn" onclick="buyNow('EA_EM_PRO')">خرید محصول</button>
                 <a class="detail-link" href="/products/ea-em-pro.html">مشاهده جزئیات و دانلود</a>
             </div>
@@ -956,7 +956,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             <div class="product-body">
                 <h3><a href="/products/supertrend-ea.html">اکسپرت SuperTrend EA</a></h3>
                 <p class="product-desc">ربات معاملاتی سوپرترند برای دنبال‌کردن روند در متاتریدر 5</p>
-                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <p class="product-price">⏳ هنوز بروز نیست...</p>
                 <button class="buy-btn" onclick="buyNow('EA_SuperTrend')">خرید محصول</button>
                 <a class="detail-link" href="/products/supertrend-ea.html">مشاهده جزئیات و دانلود</a>
             </div>
@@ -969,7 +969,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             <div class="product-body">
                 <h3><a href="/products/forex-fury-pro.html">اکسپرت Forex Fury Pro</a></h3>
                 <p class="product-desc">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
-                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <p class="product-price">⏳ هنوز بروز نیست...</p>
                 <button class="buy-btn" onclick="buyNow('EA_ForexFury')">خرید محصول</button>
                 <a class="detail-link" href="/products/forex-fury-pro.html">مشاهده جزئیات و دانلود</a>
             </div>
@@ -982,7 +982,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             <div class="product-body">
                 <h3><a href="/products/goldapex-wf.html">اکسپرت GoldApex_WF</a></h3>
                 <p class="product-desc">ربات معاملاتی طلا (XAUUSD) با استراتژی گلد آپکس</p>
-                <p class="product-price">قیمت: 10 تتر (USDT TRC20)</p>
+                <p class="product-price">⏳ هنوز بروز نیست...</p>
                 <button class="buy-btn" onclick="buyNow('GoldApex_WF')">خرید محصول</button>
                 <a class="detail-link" href="/products/goldapex-wf.html">مشاهده جزئیات و دانلود</a>
             </div>
@@ -995,7 +995,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
     <form id="paymentForm">
         <div id="trxDetails">
-            <h3 data-fa="کادر زیر آدرس تتر (USDT) ما روی شبکه TRC20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود" data-en="Click below to copy our USDT (TRC20) address for purchase">کادر زیر آدرس تتر (USDT) ما روی شبکه TRC20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود</h3>
+            <h3 id="trxTitle" data-fa="کادر زیر آدرس تتر (USDT) ما روی شبکه TRC20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود" data-en="Click below to copy our USDT (TRC20) address for purchase">کادر زیر آدرس تتر (USDT) ما روی شبکه TRC20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود</h3>
             <p id="copyText" onclick="copyToClipboard()" data-fa="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca" data-en="TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</p>
             <label data-fa="هش تراکنش (txHash) را که پس از انتقال تتر گرفتید اینجا جایگذاری کنید:" data-en="Enter txHash after sending USDT:">هش تراکنش (txHash) را که پس از انتقال تتر گرفتید اینجا جایگذاری کنید:</label>
             <input type="text" name="txHashTrx" id="txHashTrx"><br>
@@ -1018,7 +1018,8 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <label data-fa="روش پرداخت:" data-en="Payment Method:">روش پرداخت:</label>
         <div class="payment-method">
             <label><input type="radio" name="paymentMethod" value="trx" checked onchange="togglePaymentDetails()"> <span data-fa="تتر (USDT TRC20)" data-en="USDT (TRC20)">تتر (USDT TRC20)</span></label>
-            <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی" data-en="Bank Card">کارت بانکی</span></label>
+            <label><input type="radio" name="paymentMethod" value="bep20" onchange="togglePaymentDetails()"> <span data-fa="تتر (USDT BEP20)" data-en="USDT (BEP20)">تتر (USDT BEP20)</span></label>
+            <label><input type="radio" name="paymentMethod" value="card" onchange="togglePaymentDetails()"> <span data-fa="کارت بانکی (تومان)" data-en="Bank Card (Toman)">کارت بانکی (تومان)</span></label>
         </div>
 
         <label data-fa="محصول:" data-en="Product:">محصول:</label>
@@ -1106,6 +1107,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         let products = {};
         let cardDetails = {};
+        let walletAddresses = { trc20: null, bep20: null };
 
         async function fetchTetherPrice() {
             try {
@@ -1158,26 +1160,26 @@ html[lang="fa"] .copyright  { direction: rtl; }
                     'EA_EM_PRO': {
                         name_fa: 'EA&EM-PRO',
                         name_en: 'EA&EM-PRO',
-                        usdt: 10,
-                        toman: Math.round(10 * tetherPriceInToman)
+                        usdt: 0,
+                        toman: 0
                     },
                     'EA_SuperTrend': {
                         name_fa: 'اکسپرت SuperTrend EA',
                         name_en: 'SuperTrend EA',
-                        usdt: 10,
-                        toman: Math.round(10 * tetherPriceInToman)
+                        usdt: 0,
+                        toman: 0
                     },
                     'EA_ForexFury': {
                         name_fa: 'اکسپرت ForexFury EA',
                         name_en: 'ForexFury EA',
-                        usdt: 10,
-                        toman: Math.round(10 * tetherPriceInToman)
+                        usdt: 0,
+                        toman: 0
                     },
                     'GoldApex_WF': {
                         name_fa: 'اکسپرت GoldApex_WF',
                         name_en: 'GoldApex_WF',
-                        usdt: 10,
-                        toman: Math.round(10 * tetherPriceInToman)
+                        usdt: 0,
+                        toman: 0
                     }
                 };
                 cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
@@ -1245,9 +1247,17 @@ html[lang="fa"] .copyright  { direction: rtl; }
                 const price = document.createElement('p');
                 price.className = 'product-price';
                 if (currentLang === 'fa') {
-                    price.textContent = `قیمت: ${prod.usdt} تتر (USDT TRC20) | ≈ ${prod.toman.toLocaleString('fa-IR')} تومان`;
+                    if (prod.usdt) {
+                        price.textContent = `قیمت: ${prod.usdt} تتر (USDT TRC20/BEP20) | ≈ ${prod.toman.toLocaleString('fa-IR')} تومان`;
+                    } else {
+                        price.textContent = currentLang === 'fa' ? '⏳ هنوز بروز نیست...' : '⏳ Price not updated yet...';
+                    }
                 } else {
-                    price.textContent = `Price: ${prod.usdt} USDT (TRC20) | ≈ ${prod.toman.toLocaleString('en-US')} Toman`;
+                    if (prod.usdt) {
+                        price.textContent = `Price: ${prod.usdt} USDT (TRC20/BEP20) | ≈ ${prod.toman.toLocaleString('en-US')} Toman`;
+                    } else {
+                        price.textContent = '⏳ Price not updated yet...';
+                    }
                 }
                 body.appendChild(price);
 
@@ -1310,12 +1320,42 @@ html[lang="fa"] .copyright  { direction: rtl; }
             }
         }
 
+        async function fetchWalletAddresses() {
+            try {
+                const res = await fetch(WORKER_URL + '/wallet-addresses');
+                if (res.ok) walletAddresses = await res.json();
+            } catch (err) {
+                console.error('Error loading wallet addresses:', err);
+            }
+            syncWalletDisplay();
+        }
+
+        function syncWalletDisplay() {
+            const method = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'trx';
+            const addrEl = document.getElementById('copyText');
+            const titleEl = document.getElementById('trxTitle');
+            if (!addrEl || !titleEl) return;
+            if (method === 'bep20') {
+                if (walletAddresses.bep20) addrEl.textContent = walletAddresses.bep20;
+                titleEl.textContent = currentLang === 'fa'
+                    ? 'کادر زیر آدرس تتر (USDT) ما روی شبکه BEP20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود'
+                    : 'Click below to copy our USDT (BEP20) address for purchase';
+            } else {
+                if (walletAddresses.trc20) addrEl.textContent = walletAddresses.trc20;
+                titleEl.textContent = currentLang === 'fa'
+                    ? 'کادر زیر آدرس تتر (USDT) ما روی شبکه TRC20 جهت خرید شماست؛ کلیک کنید تا آدرس کپی شود'
+                    : 'Click below to copy our USDT (TRC20) address for purchase';
+            }
+        }
+
         function togglePaymentDetails() {
             const method = document.querySelector('input[name="paymentMethod"]:checked').value;
-            document.getElementById('trxDetails').style.display = method === 'trx' ? 'block' : 'none';
+            document.getElementById('trxDetails').style.display = (method === 'trx' || method === 'bep20') ? 'block' : 'none';
             document.getElementById('cardCopySection').style.display = method === 'card' ? 'block' : 'none';
             document.getElementById('cardDetails').style.display = method === 'card' ? 'block' : 'none';
+            syncWalletDisplay();
         }
+         
 
         function showPaymentForm() {
             document.getElementById('paymentForm').style.display = 'block';
@@ -1367,6 +1407,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             localStorage.setItem('lang', lang);
             fetchProductsAndCard();
             fetchTetherPrice();
+            fetchWalletAddresses();
         }
 
         function toggleLanguage() {
@@ -1435,6 +1476,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
         window.addEventListener('load', () => {
             updateLanguage(currentLang);
             fetchTetherPrice();
+            fetchWalletAddresses();
         });
     </script>
 
