@@ -136,10 +136,12 @@
     var priceBox = el('productPrice');
     if (!priceBox) return;
 
-    // اگر هنوز قیمت واقعی لود نشده و تتر هم موجود نیست → پیام انتظار
-    if (!loaded && priceTether <= 0 && tetherPriceInToman <= 0) {
+    // اگر هنوز قیمت واقعی از ورکر لود نشده → پیام «هنوز بروز نیست» (نه قیمت ثابت/اشتباه)
+    if (!loaded) {
       priceBox.innerHTML =
-        '<span style="color:#b45309;font-weight:700;">⏳ لطفاً صبر کنید تا قیمت لحظه‌ای به‌روزرسانی شود...</span>';
+        (currentLang === 'fa'
+          ? '<span style="color:#b45309;font-weight:700;">⏳ هنوز بروز نیست...</span>'
+          : '<span style="color:#b45309;font-weight:700;">⏳ Price not updated yet...</span>');
       return;
     }
 
@@ -149,18 +151,18 @@
     if (currentLang === 'fa') {
       if (tetherPriceInToman > 0) {
         priceBox.innerHTML =
-          'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20)</strong>' +
+          'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20/BEP20)</strong>' +
           ' <span style="opacity:0.75">معادل ' + priceToman.toLocaleString('fa-IR') + ' تومان</span>';
       } else {
-        priceBox.innerHTML = 'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20)</strong>';
+        priceBox.innerHTML = 'قیمت: <strong>' + priceTether + ' تتر (USDT TRC20/BEP20)</strong>';
       }
     } else {
       if (tetherPriceInToman > 0) {
         priceBox.innerHTML =
-          'Price: <strong>' + priceTether + ' USDT (TRC20)</strong>' +
+          'Price: <strong>' + priceTether + ' USDT (TRC20/BEP20)</strong>' +
           ' <span style="opacity:0.75">≈ ' + priceToman.toLocaleString('en-US') + ' Toman</span>';
       } else {
-        priceBox.innerHTML = 'Price: <strong>' + priceTether + ' USDT (TRC20)</strong>';
+        priceBox.innerHTML = 'Price: <strong>' + priceTether + ' USDT (TRC20/BEP20)</strong>';
       }
     }
   }
@@ -188,7 +190,7 @@
       fetchTetherPrice().then(function () { renderPrice(); });
     }, 60000);
 
-    // Fallback: اگر بعد از ۸ ثانیه قیمت لود نشد، قیمت پیش‌فرض را نشان بده
+    // اگر بعد از ۸ ثانیه قیمت واقعی لود نشد، همچنان «هنوز بروز نیست» نمایش داده می‌شود
     setTimeout(function () {
       if (!loaded) {
         priceTether = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
