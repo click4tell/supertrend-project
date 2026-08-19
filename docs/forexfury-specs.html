@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آموزش و مشخصات اکسپرت فارکس فیوری پرو (Forex Fury v10) | اسکالپر رنج MT5</title>
-    <meta name="description" content="آموزش عملکرد و راه‌اندازی اکسپرت فارکس فیوری پرو: اسکالپر محدوده (رنج) روی EURUSD M15 با فیلتر ADX، باند بولینگر، مدیریت ریسک پویا و Breakeven.">
+    <title>آموزش و مشخصات اکسپرت فارکس فیوری پرو (Forex Fury v13.5) | اسکالپر رنج MT5</title>
+    <meta name="description" content="آموزش عملکرد و راه‌اندازی اکسپرت فارکس فیوری پرو نسخه 13.5: اسکالپر محدوده (رنج) روی EURUSD M15 با فیلتر ADX، باند بولینگر، مدیریت ریسک پویا و سامانه حفاظت سه‌لایه.">
     <link rel="canonical" href="https://mql5expert.ir/docs/forexfury-specs.html">
-    <meta property="og:title" content="آموزش و مشخصات اکسپرت فارکس فیوری پرو">
-    <meta property="og:description" content="اسکالپر رنج فارکس فیوری: نحوه عملکرد، راه‌اندازی و تنظیمات">
+    <meta property="og:title" content="آموزش و مشخصات اکسپرت فارکس فیوری پرو v13.5">
+    <meta property="og:description" content="اسکالپر رنج فارکس فیوری v13.5: نحوه عملکرد، راه‌اندازی و تنظیمات">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/docs/forexfury-specs.html">
     <meta property="og:site_name" content="MQL5 Expert">
@@ -39,35 +39,38 @@
     <p class="top-links"><a href="/">← بازگشت به صفحه اصلی</a> | <a href="/blog/">← مقالات، آموزش‌ها و گزارش‌ها</a> | <a href="/docs/en/forexfury-specs.html">English Version</a></p>
 
     <div class="page-hero">
-        <h1>اکسپرت فارکس فیوری پرو — Forex Fury Professional v10</h1>
-        <p>اسکالپر محدوده (Range) با فیلتر روند برای متاتریدر 5 (بهینه: EURUSD در M15)</p>
+        <h1>اکسپرت فارکس فیوری پرو — Forex Fury Professional v13.5</h1>
+        <p>اسکالپر محدوده (Range) با سامانه حفاظت سه‌لایه برای متاتریدر 5 (بهینه: EURUSD در M15)</p>
     </div>
 
     <div class="card">
         <h2>معرفی</h2>
-        <p>فارکس فیوری پرو (Forex Fury Professional EA v10.0.0) یک <strong>اسکالپر محدوده</strong> است: ربات وقتی بازار در حالت <strong>رنج (بدون روند)</strong> است، از بازگشت قیمت به میانگین (Mean Reversion) معامله می‌کند. تشخیص رنج با <strong>ADX</strong> انجام می‌شود و ورود/خروج با <strong>باند بولینگر</strong>، <strong>ATR</strong> و مدیریت ریسک پویا کنترل می‌شود.</p>
+        <p>فارکس فیوری پرو (Forex Fury Professional EA v13.5.0) یک <strong>اسکالپر محدوده</strong> است: ربات وقتی بازار در حالت <strong>رنج (بدون روند)</strong> است، با تشخیص پین‌بار و بازگشت قیمت به میانگین (Mean Reversion) معامله می‌کند. تشخیص رنج با <strong>ADX</strong> انجام می‌شود و ورود/خروج با <strong>باند بولینگر</strong>، <strong>ATR</strong> و مدیریت ریسک پویا کنترل می‌شود. نسخه ۱۳.۵ نسبت به نسخه‌های قبلی (تا v12) به‌صورت کامل بازطراحی شده تا <strong>با همه بروکرها سازگار</strong> باشد و <strong>سرمایه را در برابر کال‌شدن محافظت</strong> کند.</p>
     </div>
 
     <h2>مشخصات کلیدی</h2>
     <div class="card">
         <table>
             <tr><th>نام</th><td>Forex Fury Professional EA</td></tr>
-            <tr><th>نسخه</th><td>10.0.0 (نسخه‌بندی داخلی 11.00)</td></tr>
+            <tr><th>نسخه</th><td>13.5.0 (آخرین نسخه — به‌روزرسانی 2026-08-19)</td></tr>
             <tr><th>سبک معاملاتی</th><td>اسکالپینگ محدوده (Range Scalping) + بازگشت به میانگین</td></tr>
             <tr><th>سازنده</th><td>KM@2025 — mql5expert.ir</td></tr>
             <tr><th>پلتفرم / تایم‌فریم</th><td>MT5 — M15 (بهترین نتیجه: EURUSD)</td></tr>
             <tr><th>فعال‌سازی</th><td>رمز فعال‌سازی فقط اکانت واقعی — دمو و بک‌تست بدون رمز</td></tr>
             <tr><th>تاریخ انقضا</th><td>2030.12.31</td></tr>
+            <tr><th>سامانه حفاظت</th><td>سقف ضرر روزانه + دراوودان ۲۵٪ از اوج اکوئیتی + بازنشانی خودکار + کنترل مارجین</td></tr>
         </table>
     </div>
 
     <h2>نحوه عملکرد (از روی سورس واقعی)</h2>
-    <div class="step"><b>گام ۱ — تشخیص بازار رنج:</b> ربات ۱۲ کندل آخر را بررسی می‌کند؛ اگر مقدار ADX (دوره ۲۰) در همه آن‌ها کمتر از ۳۶ باشد → بازار رنج است.</div>
-    <div class="step"><b>گام ۲ — فیلتر حجم:</b> حجم معاملات باید بالاتر از میانگین (MA20 × 1.6) باشد تا ورود تأیید شود.</div>
-    <div class="step"><b>گام ۳ — بازگشت به میانگین:</b> قیمت به باند بولینگر (دوره ۱۱، انحراف ۱.۴) نزدیک می‌شود و ربات در جهت بازگشت به میانگین معامله باز می‌کند.</div>
-    <div class="step"><b>گام ۴ — حد ضرر و حد سود:</b> بر اساس ATR (دوره ۱۹): حد ضرر <code>6 × ATR</code> و حد سود <code>11 × ATR</code>.</div>
-    <div class="step"><b>گام ۵ — مدیریت پویا:</b> Breakeven بعد از +۱۰ پیپ، تریلینگ استاپ (شروع ۱۰، گام ۹ پیپ)، سقف افت سرمایه ۵٪.</div>
-    <div class="step"><b>گام ۶ — فیلترهای اضافه:</b> اسپرد (حداکثر ۱۵ پیپ + داینامیک ۱.۵ برابر میانگین)، اهرم ۵۰۰، ساعات ۵ تا ۲۲ GMT، فیلتر خبر (اجتناب از ۸:۳۰ به‌مدت ۲ ساعت) و حداکثر ۵۴ معامله در روز.</div>
+    <div class="step"><b>گام ۱ — تشخیص پین‌بار:</b> ربات کندل قبلی را بررسی می‌کند؛ پین‌بار صعودی/نزولی با سایه بلند و بدنه کوچک (بدنه کمتر از ۳۰٪ دامنه).</div>
+    <div class="step"><b>گام ۲ — تشخیص بازار رنج:</b> ۱۲ کندل آخر بررسی می‌شود؛ اگر ADX (دوره ۲۰) در همه آن‌ها کمتر از ۳۶ باشد → بازار رنج است.</div>
+    <div class="step"><b>گام ۳ — فیلتر حجم:</b> حجم معاملات باید بالاتر از میانگین (MA20 × 1.6) باشد تا ورود تأیید شود.</div>
+    <div class="step"><b>گام ۴ — بازگشت به میانگین:</b> قیمت به باند بولینگر (دوره ۱۱، انحراف ۱.۴) نزدیک می‌شود و ربات در جهت بازگشت به میانگین معامله باز می‌کند.</div>
+    <div class="step"><b>گام ۵ — حد ضرر و حد سود:</b> بر اساس ATR (دوره ۱۹): حد ضرر <code>6 × ATR</code> و حد سود <code>11 × ATR</code>.</div>
+    <div class="step"><b>گام ۶ — مدیریت پویا:</b> Breakeven بعد از +۱ پیپ، تریلینگ استاپ (شروع ۱.۰، گام ۰.۹ پیپ — پروفایل سودده v12 با واحد پیپ صحیح).</div>
+    <div class="step"><b>گام ۷ — سامانه حفاظت:</b> سقف ضرر روزانه ۱۰٪ (توقف موقت تا فردا) + دراوودان ۲۵٪ از اوج اکوئیتی (توقف اضطراری) + بازنشانی خودکار بعد از ۳۰ روز + کنترل مارجین ۴۰٪.</div>
+    <div class="step"><b>گام ۸ — فیلترهای اضافه:</b> اسپرد (حداکثر ۱.۵ پیپ + داینامیک ۱.۵ برابر میانگین)، ساعت ۵ تا ۲۲ GMT، فیلتر خبر (اجتناب ۳۰ دقیقه از ۸:۳۰) و حداکثر ۵ معامله در روز.</div>
 
     <h3>نمای شماتیک استراتژی</h3>
     <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px">
@@ -75,33 +78,63 @@
         <line x1="20" y1="40" x2="380" y2="40" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5,3"/>
         <line x1="20" y1="120" x2="380" y2="120" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5,3"/>
         <polyline points="20,80 60,55 100,95 140,65 180,100 220,50 260,90 300,60 340,95 380,70" fill="none" stroke="#333" stroke-width="2"/>
-        <text x="20" y="145" font-size="12" fill="#16a34a">✅ ADX &lt; 36 + mean reversion → scalp trade</text>
+        <text x="20" y="145" font-size="12" fill="#16a34a">✅ ADX &lt; 36 + pin bar + mean reversion → scalp trade</text>
         <circle cx="220" cy="50" r="5" fill="#16a34a"/>
     </svg>
+
+    <h2>سامانه حفاظت از سرمایه (سه‌لایه)</h2>
+    <div class="card">
+        <table>
+            <tr><th>لایه</th><th>پارامتر</th><th>رفتار</th></tr>
+            <tr><td>۱. سقف ضرر روزانه</td><td>DailyLossPercent = 10٪</td><td>اگر در یک روز ۱۰٪ ضرر شود، معامله‌گری فقط تا فردا متوقف می‌شود</td></tr>
+            <tr><td>۲. دراوودان از اوج</td><td>MaxDrawdownPercent = 25٪</td><td>اگر اکوئیتی ۲۵٪ از بالاترین نقطه حساب افت کند، معامله‌گری متوقف می‌شود (حفظ سرمایه)</td></tr>
+            <tr><td>۳. بازنشانی خودکار</td><td>EnableDrawdownReset / 30 روز</td><td>بعد از ۳۰ روز، ربات با مبنای جدید خودکار دوباره شروع می‌کند</td></tr>
+            <tr><td>+ کنترل مارجین</td><td>MaxMarginPercent = 40٪</td><td>اگر بروکر لوریج را پایین بیاورد (مثلاً ۵۰۰ به ۲۰۰)، حجم لات خودکار کاهش می‌یابد — بدون توقف و بدون کال‌شدن</td></tr>
+        </table>
+        <p><strong>چرا فیلتر لوریج حذف شد؟</strong> نسخه‌های قدیمی فقط با لوریج دقیقاً ۵۰۰ کار می‌کردند؛ اگر بروکر در شرایط بحرانی لوریج را به ۲۰۰ کاهش می‌داد، ربات متوقف می‌شد. در نسخه ۱۳.۵ به‌جای آن، <strong>محافظت خودکار مارجین</strong> گذاشته شده که با هر لوریجی کار می‌کند.</p>
+    </div>
 
     <h2>تنظیمات (Inputs) — مقادیر پیش‌فرض</h2>
     <div class="card">
         <table>
             <tr><th>پارامتر</th><th>پیش‌فرض</th><th>توضیح</th></tr>
             <tr><td>Timeframe</td><td>M15</td><td>تایم‌فریم معاملاتی (بهترین: EURUSD)</td></tr>
-            <tr><td>LotSize / MaxLotSize</td><td>0.01 / 5</td><td>حجم ثابت / حداکثر حجم</td></tr>
-            <tr><td>RiskPercent</td><td>9٪</td><td>ریسک هر معامله از موجودی</td></tr>
-            <tr><td>UseDynamicMoneyManagement</td><td>true</td><td>مدیریت ریسک پویا</td></tr>
-            <tr><td>MaxTradesPerDay</td><td>54</td><td>حداکثر معامله در روز</td></tr>
+            <tr><td>LotSize / MaxLotSize</td><td>0.01 / 0.3</td><td>حجم ثابت / حداکثر حجم</td></tr>
+            <tr><td>RiskPercent</td><td>2٪</td><td>ریسک هر معامله از موجودی</td></tr>
+            <tr><td>MaxOpenPositions</td><td>3</td><td>حداکثر پوزیشن همزمان</td></tr>
+            <tr><td>MaxTradesPerDay</td><td>5</td><td>حداکثر معامله در روز</td></tr>
+            <tr><td>MinTimeBetweenTrades</td><td>10 ثانیه</td><td>حداقل فاصله بین معاملات</td></tr>
             <tr><td>ADX_Period / Threshold</td><td>20 / 36</td><td>تشخیص بازار رنج</td></tr>
             <tr><td>ATR_Period</td><td>19</td><td>دوره ATR</td></tr>
             <tr><td>ATR_Multiplier_SL / TP</td><td>6.0 / 11.0</td><td>ضریب ATR برای حد ضرر/سود</td></tr>
-            <tr><td>TrailingStart / Step</td><td>10 / 9 پیپ</td><td>تریلینگ استاپ</td></tr>
-            <tr><td>MaxDrawdownPercent</td><td>5٪</td><td>سقف افت سرمایه</td></tr>
-            <tr><td>BreakevenPips</td><td>10 پیپ</td><td>نقطه Breakeven</td></tr>
+            <tr><td>TrailingStart / Step</td><td>1.0 / 0.9 پیپ</td><td>تریلینگ استاپ (پروفایل v12)</td></tr>
+            <tr><td>BreakevenPips</td><td>1.0 پیپ</td><td>نقطه Breakeven</td></tr>
+            <tr><td>MaxDrawdownPercent</td><td>25٪ از اوج اکوئیتی</td><td>سقف افت سرمایه</td></tr>
+            <tr><td>DailyLossPercent</td><td>10٪</td><td>سقف ضرر روزانه</td></tr>
+            <tr><td>EnableDrawdownReset / Days</td><td>true / 30</td><td>بازنشانی خودکار بعد از توقف</td></tr>
+            <tr><td>MaxMarginPercent</td><td>40٪</td><td>کنترل خودکار مارجین (جایگزین فیلتر لوریج)</td></tr>
             <tr><td>RangeConfirmBars</td><td>12</td><td>تعداد کندل تأیید رنج</td></tr>
-            <tr><td>UseTrendFilter / MA_Period</td><td>false / 200</td><td>فیلتر روند SMA200 (خاموش)</td></tr>
-            <tr><td>MaxSpread</td><td>15 پیپ</td><td>حداکثر اسپرد</td></tr>
+            <tr><td>UseTrendFilter / MA_Period</td><td>false / 200</td><td>فیلتر روند SMA200</td></tr>
+            <tr><td>MaxSpread</td><td>1.5 پیپ</td><td>حداکثر اسپرد</td></tr>
+            <tr><td>UseDynamicSpreadFilter</td><td>true (1.5×)</td><td>فیلتر اسپرد داینامیک</td></tr>
+            <tr><td>UseVolumeFilter</td><td>true (1.6×)</td><td>فیلتر حجم</td></tr>
             <tr><td>BB_Period / Deviation</td><td>11 / 1.4</td><td>باند بولینگر</td></tr>
-            <tr><td>Leverage Filter</td><td>500</td><td>اهرم قابل قبول</td></tr>
             <tr><td>Start/EndHour (GMT)</td><td>5 تا 22</td><td>ساعات معاملاتی</td></tr>
-            <tr><td>UseNewsFilter</td><td>true</td><td>اجتناب از زمان اخبار</td></tr>
+            <tr><td>UseNewsFilter</td><td>true (۳۰ دقیقه)</td><td>اجتناب از زمان اخبار</td></tr>
+            <tr><td>MagicNumber</td><td>123456</td><td>شناسه اختصاصی معاملات</td></tr>
         </table>
+    </div>
+
+    <h2>نتایج بک‌تست (تیک واقعی)</h2>
+    <div class="card">
+        <table>
+            <tr><th>دوره</th><th>دپازیت</th><th>بالانس نهایی</th><th>بازده</th></tr>
+            <tr><td>2024 تا 2026</td><td>2,500</td><td>4,485</td><td>+79٪</td></tr>
+            <tr><td>2025 تا 2026</td><td>2,500</td><td>3,541</td><td>+42٪</td></tr>
+            <tr><td>2023 تا 2026 (تنظیمات پیشنهادی)</td><td>2,500</td><td>5,295</td><td>+112٪</td></tr>
+        </table>
+        <p>تست‌ها روی EURUSD (M15)، مدل «همه تیک‌ها بر اساس تیک‌های واقعی»، لوریج ۱:۵۰۰ و بدون هیچ کال‌شدنی انجام شده‌اند. برای بازده بالاتر می‌توان <code>MaxLotSize</code> را افزایش داد؛ برای امنیت بیشتر <code>RiskPercent</code> را روی ۱-۲ نگه دارید.</p>
+        <div class="note"><strong>⚠️ هشدار:</strong> بک‌تست گذشته تضمینی برای آینده نیست. اسکالپینگ پرریسک است؛ ابتدا در دمو تست کنید.</div>
     </div>
 
     <h2>راه‌اندازی و نصب</h2>
