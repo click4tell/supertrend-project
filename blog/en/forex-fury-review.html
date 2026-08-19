@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Fury Robot Review | Full Analysis 2026</title>
-    <meta name="description" content="Full Forex Fury robot review: performance, backtest, pros and cons, comparison with SuperTrend and usage tips for MetaTrader 5.">
+    <title>Forex Fury Robot Review (v13.5) | Full Analysis 2026</title>
+    <meta name="description" content="Full Forex Fury v13.5 robot review: performance and backtest, capital protection features, pros and cons, comparison with SuperTrend for MetaTrader 5.">
     <link rel="canonical" href="https://mql5expert.ir/blog/en/forex-fury-review.html">
-    <meta property="og:title" content="Forex Fury Robot Review">
-    <meta property="og:description" content="A full and impartial Forex Fury analysis with comparison and tips">
+    <meta property="og:title" content="Forex Fury Robot Review (v13.5)">
+    <meta property="og:description" content="A full and impartial Forex Fury v13.5 analysis with backtest results and tips">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://mql5expert.ir/blog/en/forex-fury-review.html">
     <meta property="og:site_name" content="MQL5 Expert">
@@ -18,13 +18,13 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Forex Fury Robot Review",
-      "description": "Full and impartial Forex Fury robot analysis",
+      "headline": "Forex Fury Robot Review (v13.5)",
+      "description": "Full and impartial Forex Fury v13.5 robot analysis",
       "inLanguage": "en",
       "author": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
       "publisher": { "@type": "Organization", "name": "MQL5 Expert", "url": "https://mql5expert.ir" },
       "datePublished": "2026-08-17",
-      "dateModified": "2026-08-17",
+      "dateModified": "2026-08-19",
       "mainEntityOfPage": "https://mql5expert.ir/blog/en/forex-fury-review.html"
     }
     </script>
@@ -60,33 +60,48 @@
 
     <article>
 
-        <h1>Forex Fury Robot Review (Forex Fury)</h1>
-        <p class="meta">Published: August 17, 2026 | Category: Review</p>
+        <h1>Forex Fury Robot Review (v13.5)</h1>
+        <p class="meta">Published: August 17, 2026 | Updated: August 19, 2026 | Category: Review</p>
 
-        <p>Forex Fury is one of the best-known <a href="/">Forex trading robots</a> and has been on the market for years. In this article we review its pros, cons and performance impartially so you can make an informed decision.</p>
+        <p>Forex Fury Professional is a <a href="/">MetaTrader 5 Expert Advisor</a> that trades fully automatically in range markets. The latest version of this robot is <strong>13.5</strong>. In this article we review its performance, capital protection features and backtest results.</p>
 
         <h2>What is Forex Fury?</h2>
-        <p>Forex Fury is an Expert Advisor for MetaTrader 4 and 5 that trades automatically on major currency pairs. It became popular thanks to its ease of use and published backtest reports.</p>
+        <p>Forex Fury is a <strong>range scalper</strong>: when the market has no trend, it uses pin bar + ADX filtering and Bollinger Band mean reversion to open short-term trades. Its best instrument is <strong>EURUSD on M15</strong>. Version 13.5 was redesigned specifically for broker compatibility and capital protection.</p>
 
-        <h2>Performance and Backtest</h2>
-        <p>The published Forex Fury backtests show significant account growth over several years. However, it is important to remember:</p>
+        <h2>Performance and Backtest (Real Ticks)</h2>
+        <p>Version 13.5 backtests were run with real ticks on EURUSD, M15 timeframe, $2,500 deposit and 1:500 leverage:</p>
+        <table>
+            <tr><th>Period</th><th>Final Balance</th><th>Return</th></tr>
+            <tr><td>2024 – 2026</td><td>$4,485</td><td>+79%</td></tr>
+            <tr><td>2025 – 2026</td><td>$3,541</td><td>+42%</td></tr>
+            <tr><td>2023 – 2026 (recommended settings)</td><td>$5,295</td><td>+112%</td></tr>
+        </table>
         <div class="note">
-            <strong>⚠️ Warning:</strong> Past backtest results are no guarantee of future performance. Results depend on settings, the broker and market conditions, and can differ considerably on live accounts.
+            <strong>⚠️ Warning:</strong> Past backtest results are no guarantee of future performance. Results depend on settings, the broker and market conditions, and can differ on live accounts.
         </div>
+
+        <h2>Version 13.5 Features</h2>
+        <ul>
+            <li>Fully automated trading (pin bar + ADX + Bollinger Bands + ATR).</li>
+            <li><strong>Three-layer capital protection:</strong> daily loss limit (10%), 25% peak-equity drawdown stop, and automatic trading resume after 30 days.</li>
+            <li><strong>Automatic margin protection:</strong> if the broker lowers leverage in critical times (e.g., 500 → 200), the robot shrinks the lot automatically instead of stopping.</li>
+            <li>Full broker compatibility: auto filling-mode detection, volume/price normalization, correct pip calculation.</li>
+            <li>Dedicated activation system (real accounts only — demo &amp; backtest free).</li>
+        </ul>
 
         <h2>Pros</h2>
         <ul>
             <li>Fully automated trading with no need for constant monitoring.</li>
-            <li>Long track record and backtest documentation.</li>
+            <li>Automatic capital protection and no margin-call risk.</li>
             <li>Simple installation and setup.</li>
-            <li>Suitable for mid-term timeframes.</li>
+            <li>Real-tick backtest documentation.</li>
         </ul>
 
         <h2>Cons and Notes</h2>
         <ul>
-            <li>In highly volatile markets it may experience large drawdowns.</li>
-            <li>Results are sensitive to broker, spread and execution speed.</li>
-            <li>Like all robots, it offers no guaranteed profits.</li>
+            <li>Designed for range markets only; it does not trade strong trends.</li>
+            <li>Scalping is inherently risky and results depend on the broker, spread and execution speed.</li>
+            <li>Like all robots, there is no guaranteed profit.</li>
         </ul>
 
         <h2>Comparison with the SuperTrend EA</h2>
@@ -98,24 +113,24 @@
             </tr>
             <tr>
                 <td>Trading style</td>
-                <td>Automated mid-term</td>
+                <td>Range scalping (mean reversion)</td>
                 <td>Trend following</td>
             </tr>
             <tr>
                 <td>Best market</td>
-                <td>Major pairs</td>
+                <td>EURUSD (M15)</td>
                 <td>Pairs &amp; Gold</td>
             </tr>
             <tr>
-                <td>User control</td>
-                <td>Low</td>
-                <td>More adjustable</td>
+                <td>Capital protection</td>
+                <td>Three-layer (daily/peak/resume)</td>
+                <td>Standard</td>
             </tr>
         </table>
         <p>The choice depends on your style: if you like gold and trends, the SuperTrend EA fits better; if you want fully automated trades on currency pairs, Forex Fury is more suitable.</p>
 
         <h2>Conclusion</h2>
-        <p>Forex Fury is a well-documented, well-known robot, but always test it on a demo account first and stick to risk management. See the specs and <a href="/">buy the Forex Fury robot</a> on our home page.</p>
+        <p>Forex Fury v13.5 is a well-known robot with capital protection, but always test it on a demo account first and stick to risk management. See the full <a href="/docs/en/forexfury-specs.html">setup guide</a> and <a href="/">buy the Forex Fury robot</a> on our home page.</p>
 
         <div class="cta">
             <p>View and buy the Forex Fury robot → <a href="/">MQL5 Expert Home</a></p>
