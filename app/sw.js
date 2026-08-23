@@ -1,6 +1,11 @@
 /* sw.js — سرویس‌ورکر ساده برای کش آفلاین نسخه PWA فروشگاه MQL5 Expert */
-var CACHE_NAME = 'mql5expert-pwa-v1';
-var CORE_ASSETS = ['./', './index.html', './manifest.webmanifest'];
+var CACHE_NAME = 'mql5expert-pwa-v2';
+var CORE_ASSETS = [
+  './', './index.html', './manifest.webmanifest',
+  './appstore-images/android/launchericon-192x192.png',
+  './appstore-images/android/launchericon-512x512.png',
+  './icons/icon-maskable.png'
+];
 
 self.addEventListener('install', function (event) {
   event.waitUntil(
