@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ir.mql5expert.twa",
+        "sha256_cert_fingerprints": ["04:93:4D:82:82:88:77:DF:DD:E0:A4:C2:5B:74:4C:96:C3:B8:FF:35:B5:C0:B3:67:4C:2B:6D:16:4B:13:D7:67"]
+      }
+    }]
