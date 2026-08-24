@@ -63,7 +63,7 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot/products.png.jpg",
+      "src": "screenshot/products.jpg",
       "sizes": "1080x2400",
       "type": "image/jpeg",
       "form_factor": "narrow",
@@ -71,7 +71,7 @@
       "platform": "android"
     },
     {
-      "src": "screenshot/payment.png.jpg",
+      "src": "screenshot/payment.jpg",
       "sizes": "1080x2400",
       "type": "image/jpeg",
       "form_factor": "narrow",
