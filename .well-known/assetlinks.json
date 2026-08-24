@@ -1,8 +1,8 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "ir.mql5expert.twa",
-    "sha256_cert_fingerprints": ["54:CA:8F:21:09:97:6E:EE:70:02:77:9C:13:FA:32:80:35:A0:DD:AA:BA:C4:2B:AB:5C:03:39:70:FE:56:3D:D7"]
-  }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ir.mql5expert.twa",
+        "sha256_cert_fingerprints": ["54:CA:8F:21:09:97:6E:EE:70:02:77:9C:13:FA:32:80:35:A0:DD:AA:BA:C4:2B:AB:5C:03:39:70:FE:56:3D:D7"]
+      }
+    }]
