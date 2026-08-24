@@ -1,5 +1,5 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
+  "relation": ["cafebazaar_twa", "delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
     "package_name": "ir.mql5expert.twa",
