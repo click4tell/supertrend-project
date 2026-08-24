@@ -1,27 +1,99 @@
 {
+  "id": "mql5expert-sales-app",
   "name": "فروشگاه MQL5 Expert",
   "short_name": "MQL5 Expert",
-  "description": "فروش اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5",
+  "description": "فروش اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5 — خرید آسان با تتر (USDT TRC20/BEP20) یا کارت بانکی و دریافت خودکار کد فعال‌سازی",
   "lang": "fa",
   "dir": "rtl",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#0D1B3E",
   "theme_color": "#0D1B3E",
+  "categories": ["finance", "shopping", "business"],
+  "shortcuts": [
+    {
+      "name": "محصولات",
+      "short_name": "محصولات",
+      "description": "مشاهده فهرست محصولات",
+      "url": "./#productsBox",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "خرید",
+      "short_name": "خرید",
+      "description": "ثبت سفارش خرید",
+      "url": "./#buyCard",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' fill='%230D1B3E'/%3E%3Crect x='56' y='44' width='16' height='60' fill='%23F5B301'/%3E%3Crect x='44' y='64' width='40' height='28' fill='%23F5B301'/%3E%3Crect x='96' y='56' width='16' height='56' fill='%23FFFFFF'/%3E%3Crect x='84' y='80' width='40' height='20' fill='%23FFFFFF'/%3E%3Crect x='136' y='64' width='16' height='44' fill='%23F5B301'/%3E%3Crect x='124' y='80' width='40' height='20' fill='%23F5B301'/%3E%3C/svg%3E",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Crect width='512' height='512' fill='%230D1B3E'/%3E%3Crect x='150' y='116' width='42' height='160' fill='%23F5B301'/%3E%3Crect x='118' y='170' width='106' height='76' fill='%23F5B301'/%3E%3Crect x='256' y='150' width='42' height='150' fill='%23FFFFFF'/%3E%3Crect x='224' y='212' width='106' height='54' fill='%23FFFFFF'/%3E%3Crect x='362' y='170' width='42' height='118' fill='%23F5B301'/%3E%3Crect x='330' y='212' width='106' height='54' fill='%23F5B301'/%3E%3C/svg%3E",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot/products.png.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "فهرست محصولات و قیمت‌های زنده",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/payment.png.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "انتخاب روش پرداخت (تتر TRC20 / BEP20 / کارت بانکی)",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/order_page.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "فرم ثبت سفارش",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/order-form.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "ثبت سفارش و دریافت کد فعال‌سازی",
+      "platform": "android"
+    }
+  ],
+  "prefer_related_applications": false
 }
