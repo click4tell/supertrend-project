@@ -1,0 +1,99 @@
+{
+  "id": "mql5expert-sales-app",
+  "name": "فروشگاه MQL5 Expert",
+  "short_name": "MQL5 Expert",
+  "description": "فروش اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5 — خرید آسان با تتر (USDT TRC20/BEP20) یا کارت بانکی و دریافت خودکار کد فعال‌سازی",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0D1B3E",
+  "theme_color": "#0D1B3E",
+  "categories": ["finance", "shopping", "business"],
+  "shortcuts": [
+    {
+      "name": "محصولات",
+      "short_name": "محصولات",
+      "description": "مشاهده فهرست محصولات",
+      "url": "./#productsBox",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "خرید",
+      "short_name": "خرید",
+      "description": "ثبت سفارش خرید",
+      "url": "./#buyCard",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot/products.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "فهرست محصولات و قیمت‌های زنده",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/payment.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "انتخاب روش پرداخت (تتر TRC20 / BEP20 / کارت بانکی)",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/order_page.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "فرم ثبت سفارش",
+      "platform": "android"
+    },
+    {
+      "src": "screenshot/order-form.jpg",
+      "sizes": "1080x2400",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "ثبت سفارش و دریافت کد فعال‌سازی",
+      "platform": "android"
+    }
+  ],
+  "prefer_related_applications": false
+}
