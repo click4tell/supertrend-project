@@ -152,7 +152,8 @@
     <div class="title">فروشگاه MQL5 Expert</div>
     <div class="sub">اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5</div>
   </div>
-<button class="btn-site" onclick="location.href='https://mql5expert.ir'">🌐 باز کردن سایت</button>
+  <button class="btn-site" onclick="openSite()">🌐 باز کردن سایت</button>
+</header>
 
 <div class="container">
 
@@ -529,6 +530,7 @@
     r.addEventListener('change', updatePaymentUI);
   });
 
+  /* exposes */ window.openSite=openSite; window.copyWallet=copyWallet; window.copyCard=copyCard; window.submitOrder=submitOrder;
   document.addEventListener('DOMContentLoaded', loadAll);
 
   /* ---------- ثبت سرویس‌ورکر (PWA) ---------- */
