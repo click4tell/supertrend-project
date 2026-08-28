@@ -158,6 +158,14 @@
   var FALLBACK_WALLETS = { trc20: 'TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca', bep20: '' };
   var FALLBACK_CARD = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
 
+  /* ---------- مسیر تصاویر محصولات داخل /app/assets/ ---------- */
+  var PRODUCT_IMAGES = {
+    'EA_EM_PRO':     'assets/ea-em-pro.png',
+    'EA_SuperTrend': 'assets/supertrend-ea.png',
+    'EA_ForexFury':  'assets/forex-fury-pro.png',
+    'GoldApex_WF':   'assets/goldapex-wf.png'
+  };
+
   var PRODUCT_PAGES = {
     'EA_EM_PRO':     SITE_URL + '/products/ea-em-pro.html',
     'EA_SuperTrend': SITE_URL + '/products/supertrend-ea.html',
@@ -285,7 +293,7 @@
       div.dataset.key = key;
       var toman = Math.round(p.trx * state.tetherToman);
       div.innerHTML =
-        '<img class="product-thumb" src="assets/mql5expert-banner.png" alt="' + (p.name_fa || key) + '">' +
+        '<img class="product-thumb" src="' + (PRODUCT_IMAGES[key] || 'assets/mql5expert-banner.png') + '" alt="' + (p.name_fa || key) + '" onerror="this.onerror=null;this.src=\'assets/mql5expert-banner.png\';">' +
         '<div class="product-info">' +
         '<div class="name">' + (p.name_fa || key) + '</div>' +
         '<div class="desc">' + (p.desc_fa || '') + '</div>' +
