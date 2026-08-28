@@ -12,160 +12,73 @@
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <title>فروشگاه MQL5 Expert</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body {
-    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-    background: #F4F6FA;
-    color: #1a2333;
-    direction: rtl;
-    padding-bottom: 40px;
+  :root{
+    --bg:#f5f7fb; --surface:#fff; --ink:#10203f; --muted:#68758c;
+    --line:#e5eaf2; --gold:#f5b301; --green:#35c84a; --navy:#0b1735;
+    --shadow:0 12px 35px rgba(16,32,63,.08); --radius:22px;
   }
-  .header {
-    background: linear-gradient(135deg, #0D1B3E 0%, #1a2f63 100%);
-    color: #fff;
-    padding: 18px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 10px rgba(0,0,0,.25);
-  }
-  .header .title { font-size: 17px; font-weight: 700; }
-  .header .sub { font-size: 11px; opacity: .8; margin-top: 2px; }
-  .btn-site {
-    background: #F5B301;
-    color: #0D1B3E;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 14px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .container { padding: 14px; }
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 14px;
-    box-shadow: 0 1px 6px rgba(13,27,62,.08);
-  }
-  .card h2 { font-size: 15px; color: #0D1B3E; margin-bottom: 10px; }
-  .product {
-    border: 1px solid #e4e8f0;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: border-color .15s;
-  }
-  .product.active { border-color: #F5B301; background: #FFFBF0; }
-  .product .name { font-size: 14px; font-weight: 700; color: #0D1B3E; }
-  .product .desc { font-size: 11.5px; color: #5a6478; margin-top: 4px; line-height: 1.6; }
-  .product .price { font-size: 13px; margin-top: 8px; color: #0D1B3E; font-weight: 700; }
-  .product .price .toman { color: #8a94a8; font-weight: 400; font-size: 11.5px; }
-  .method { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
-  .method label {
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid #e4e8f0; border-radius: 10px; padding: 10px;
-    font-size: 13px; cursor: pointer;
-  }
-  .method label.selected { border-color: #F5B301; background: #FFFBF0; }
-  .method input { accent-color: #F5B301; }
-  .wallet-box {
-    background: #F0F3F9;
-    border: 1px dashed #b9c4d8;
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-    margin: 10px 0;
-    cursor: pointer;
-    word-break: break-all;
-    font-family: monospace;
-    font-size: 13px;
-    direction: ltr;
-  }
-  .hint { font-size: 11.5px; color: #5a6478; margin-bottom: 6px; }
-  label.field { display: block; font-size: 12.5px; color: #33405a; margin: 10px 0 4px; font-weight: 600; }
-  input[type=text], input[type=number], input[type=email], select {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid #cfd6e4;
-    border-radius: 10px;
-    font-size: 14px;
-    background: #fff;
-    direction: rtl;
-  }
-  select { appearance: auto; }
-  .btn-buy {
-    width: 100%;
-    background: linear-gradient(135deg, #F5B301, #e09e00);
-    color: #0D1B3E;
-    border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    margin-top: 14px;
-    box-shadow: 0 3px 10px rgba(245,179,1,.35);
-  }
-  .btn-buy:active { transform: scale(.98); }
-  .result {
-    display: none;
-    margin-top: 12px;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 13px;
-    line-height: 1.9;
-    background: #eef7ee;
-    border: 1px solid #b7dfb7;
-    color: #1d5a1d;
-    white-space: pre-line;
-  }
-  .result.error { background: #fdecec; border-color: #f3b9b9; color: #8c1d1d; }
-  .result .code { font-weight: 800; font-size: 16px; color: #0D1B3E; direction: ltr; display: block; text-align: center; }
-  .loading { color: #F5B301; font-size: 12px; }
-  .footer {
-    text-align: center; font-size: 11px; color: #8a94a8; padding: 10px 16px 0;
-  }
-  .toast {
-    position: fixed; bottom: 20px; right: 50%;
-    transform: translateX(50%);
-    background: #0D1B3E; color: #fff;
-    padding: 10px 18px; border-radius: 20px;
-    font-size: 13px; opacity: 0; pointer-events: none;
-    transition: opacity .25s; z-index: 99;
-  }
-  .toast.show { opacity: 1; }
-  .hidden { display: none !important; }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#eef5ff 0,#f5f7fb 38%,#f7f8fb 100%);color:var(--ink);direction:rtl;padding-bottom:40px;line-height:1.5}
+  button,input{font:inherit}
+  .header{background:linear-gradient(135deg,#08132f 0%,#12346a 58%,#0c1f49 100%);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20;box-shadow:0 8px 24px rgba(8,19,47,.22);backdrop-filter:blur(12px)}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-mark{width:42px;height:42px;border-radius:13px;object-fit:cover;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .header .title{font-size:16px;font-weight:800;white-space:nowrap}.header .sub{font-size:10.5px;opacity:.78;margin-top:2px;white-space:nowrap}
+  .btn-site{background:linear-gradient(135deg,#ffd45a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:9px 13px;font-size:11.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 5px 16px rgba(245,179,1,.22)}
+  .container{max-width:980px;margin:auto;padding:16px}
+  .hero{position:relative;overflow:hidden;border-radius:26px;background:#fff;box-shadow:var(--shadow);margin-bottom:16px;border:1px solid rgba(255,255,255,.9)}
+  .hero img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;object-position:center top}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,19,47,.04),transparent 55%,rgba(255,255,255,.1));pointer-events:none}
+  .hero-copy{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px}.hero-copy strong{font-size:15px}.hero-copy span{font-size:11px;color:var(--muted)}
+  .card{background:rgba(255,255,255,.92);border:1px solid rgba(229,234,242,.95);border-radius:var(--radius);padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+  .section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h2{font-size:15px;color:var(--ink)}.section-head .badge{font-size:10px;padding:5px 8px;border-radius:99px;background:#eef7ef;color:#238b32;font-weight:700}
+  .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .product{border:1px solid var(--line);border-radius:18px;padding:10px;cursor:pointer;transition:.2s ease;background:#fff;display:flex;gap:11px;align-items:center;min-height:108px}.product:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,32,63,.08)}.product.active{border-color:#f5c43c;background:linear-gradient(135deg,#fffdf5,#fff)}
+  .product-thumb{width:82px;height:82px;flex:0 0 82px;border-radius:15px;object-fit:cover;object-position:center top;background:#eef2f8;box-shadow:inset 0 0 0 1px rgba(16,32,63,.05)}
+  .product-info{min-width:0}.product .name{font-size:13px;font-weight:800;color:var(--ink);line-height:1.5}.product .desc{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.65}.product .price{font-size:12px;margin-top:7px;color:var(--ink);font-weight:800}.product .price .toman{color:#8a94a8;font-weight:500;font-size:10.5px}.product-link{margin-top:5px;font-size:10px;color:#1769aa;font-weight:700}
+  .method{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}.method label{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:13px;padding:11px;font-size:11.5px;cursor:pointer;background:#fff;min-height:48px}.method label.selected{border-color:#f4c23b;background:#fffaf0;box-shadow:0 4px 12px rgba(245,179,1,.1)}.method input{accent-color:#f5b301}
+  .wallet-box{background:linear-gradient(135deg,#f4f7fb,#eef2f8);border:1px dashed #b9c4d8;border-radius:14px;padding:13px;text-align:center;margin:10px 0;cursor:pointer;word-break:break-all;font-family:monospace;font-size:12.5px;direction:ltr;color:#233451}.hint{font-size:10.8px;color:var(--muted);margin-bottom:6px}label.field{display:block;font-size:11.5px;color:#33405a;margin:11px 0 5px;font-weight:700}
+  input[type=text],input[type=number],input[type=email],select{width:100%;padding:12px;border:1px solid #d5dce8;border-radius:13px;font-size:13px;background:#fff;direction:rtl;outline:none;transition:.18s}input:focus{border-color:#8fa8ce;box-shadow:0 0 0 4px rgba(42,99,168,.08)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.form-grid .full{grid-column:1/-1}
+  .btn-buy{width:100%;background:linear-gradient(135deg,#ffd25a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:900;cursor:pointer;margin-top:14px;box-shadow:0 8px 18px rgba(245,179,1,.24)}.btn-buy:active{transform:scale(.985)}.btn-buy:disabled{opacity:.65;cursor:wait}
+  .result{display:none;margin-top:12px;padding:12px;border-radius:13px;font-size:12.5px;line-height:1.9;background:#eef7ee;border:1px solid #b7dfb7;color:#1d5a1d;white-space:pre-line}.result.error{background:#fdecec;border-color:#f3b9b9;color:#8c1d1d}.result .code{font-weight:900;font-size:16px;color:var(--ink);direction:ltr;display:block;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.step{padding:10px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;text-align:center}.step b{display:grid;place-items:center;width:27px;height:27px;margin:0 auto 7px;border-radius:50%;background:#eaf1ff;color:#185da8;font-size:11px}.step span{font-size:10.5px;color:#526077;line-height:1.65}
+  .footer{text-align:center;font-size:10.5px;color:#8a94a8;padding:8px 16px 0;line-height:1.8}.toast{position:fixed;bottom:20px;right:50%;transform:translateX(50%);background:#0b1735;color:#fff;padding:10px 18px;border-radius:20px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.18)}.toast.show{opacity:1}.hidden{display:none!important}.loading{color:#f5b301;font-size:12px;padding:15px;text-align:center}
+  @media(max-width:680px){.products-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.step:last-child{grid-column:1/-1}.method{grid-template-columns:1fr}.hero{border-radius:20px}.hero img{aspect-ratio:16/8}.hero-copy{display:block}.hero-copy span{display:block;margin-top:2px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.product-thumb{width:76px;height:76px;flex-basis:76px}}
+  @media(min-width:681px){.buy-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}.buy-layout>.card{margin-bottom:0}.buy-layout .method{grid-template-columns:1fr}.buy-layout .form-grid{grid-template-columns:1fr}.buy-layout .form-grid .full{grid-column:auto}}
 </style>
 </head>
 <body>
 
 <header class="header">
-  <div>
-    <div class="title">فروشگاه MQL5 Expert</div>
-    <div class="sub">اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5</div>
+  <div class="brand">
+    <img class="brand-mark" src="assets/mql5expert-banner.png" alt="MQL5 Expert">
+    <div>
+      <div class="title">فروشگاه MQL5 Expert</div>
+      <div class="sub">اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5</div>
+    </div>
   </div>
   <button class="btn-site" onclick="openSite()">🌐 باز کردن سایت</button>
 </header>
 
 <div class="container">
 
+  <section class="hero">
+    <img src="assets/mql5expert-banner.png" alt="MQL5 Expert — اکسپرت‌ها و ربات‌های معاملاتی">
+    <div class="hero-overlay"></div>
+    <div class="hero-copy"><div><strong>ترید هوشمند، انتخاب حرفه‌ای</strong><br><span>اکسپرت‌های متاتریدر 5 با خرید سریع و فعال‌سازی آنلاین</span></div><button class="btn-site" onclick="openSite()">مشاهده سایت</button></div>
+  </section>
+
   <!-- ═══════ محصولات ═══════ -->
   <div class="card">
-    <h2>🛒 محصولات</h2>
-    <div id="productsBox"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
+    <div class="section-head"><h2>🛒 محصولات</h2><span class="badge">انتخاب محصول</span></div>
+    <div id="productsBox" class="products-grid"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
   </div>
 
+  <div class="buy-layout">
   <!-- ═══════ خرید ═══════ -->
   <div class="card" id="buyCard">
-    <h2>💳 خرید محصول</h2>
+    <div class="section-head"><h2>💳 خرید محصول</h2><span class="badge">پرداخت امن</span></div>
 
     <div class="hint">روش پرداخت را انتخاب کنید:</div>
     <div class="method" id="methodBox">
@@ -196,14 +109,11 @@
     </div>
 
     <!-- فرم -->
-    <label class="field">هش تراکنش (TxHash) بعد از واریز:</label>
-    <input type="text" id="txHash" placeholder="مثلاً 6f3a... یا کد پیگیری" autocomplete="off">
-
-    <label class="field">شماره اکانت MT5:</label>
-    <input type="number" id="account" placeholder="مثلاً 12345678" inputmode="numeric">
-
-    <label class="field">ایمیل (کد فعال‌سازی به این ایمیل ارسال می‌شود):</label>
-    <input type="email" id="email" placeholder="you@example.com" inputmode="email">
+    <div class="form-grid">
+      <div class="full"><label class="field">هش تراکنش (TxHash) بعد از واریز:</label><input type="text" id="txHash" placeholder="مثلاً 6f3a... یا کد پیگیری" autocomplete="off"></div>
+      <div><label class="field">شماره اکانت MT5:</label><input type="number" id="account" placeholder="مثلاً 12345678" inputmode="numeric"></div>
+      <div><label class="field">ایمیل (کد فعال‌سازی به این ایمیل ارسال می‌شود):</label><input type="email" id="email" placeholder="you@example.com" inputmode="email"></div>
+    </div>
 
     <button class="btn-buy" id="submitBtn" onclick="submitOrder()">✅ پس از پرداخت، ثبت سفارش</button>
     <div class="result" id="result"></div>
@@ -211,14 +121,15 @@
 
   <!-- ═══════ راهنما ═══════ -->
   <div class="card">
-    <h2>📌 مراحل خرید</h2>
-    <div style="font-size:12.5px;color:#33405a;line-height:2;">
-      ۱) محصول را انتخاب کنید.<br>
-      ۲) مبلغ را به آدرس نمایش‌داده‌شده (USDT یا کارت) واریز کنید.<br>
-      ۳) هش تراکنش (TxHash) را اینجا وارد کنید.<br>
-      ۴) شماره اکانت MT5 و ایمیل را وارد کرده و «ثبت سفارش» را بزنید.<br>
-      ۵) بعد از تأیید پرداخت، <b>کد فعال‌سازی</b> به ایمیل شما ارسال می‌شود.
+    <div class="section-head"><h2>📌 مراحل خرید</h2><span class="badge">ساده و سریع</span></div>
+    <div class="steps">
+      <div class="step"><b>۱</b><span>محصول را انتخاب کنید.</span></div>
+      <div class="step"><b>۲</b><span>مبلغ را با USDT یا کارت واریز کنید.</span></div>
+      <div class="step"><b>۳</b><span>TxHash یا کد پیگیری را وارد کنید.</span></div>
+      <div class="step"><b>۴</b><span>اکانت MT5 و ایمیل را وارد کنید.</span></div>
+      <div class="step"><b>۵</b><span>پس از تأیید، کد فعال‌سازی ایمیل می‌شود.</span></div>
     </div>
+  </div>
   </div>
 
   <div class="footer">
@@ -374,12 +285,15 @@
       div.dataset.key = key;
       var toman = Math.round(p.trx * state.tetherToman);
       div.innerHTML =
+        '<img class="product-thumb" src="assets/mql5expert-banner.png" alt="' + (p.name_fa || key) + '">' +
+        '<div class="product-info">' +
         '<div class="name">' + (p.name_fa || key) + '</div>' +
         '<div class="desc">' + (p.desc_fa || '') + '</div>' +
-        '<div class="price">قیمت: ' + p.trx + ' تتر (USDT)' +
+        '<div class="price">' + p.trx + ' USDT' +
         (toman > 0 ? ' <span class="toman">≈ ' + toman.toLocaleString('fa-IR') + ' تومان</span>' : '') +
         '</div>' +
-        '<div style="margin-top:6px;font-size:11px;color:#1a6db5;">مشاهده جزئیات در سایت ←</div>';
+        '<div class="product-link">جزئیات و انتخاب ←</div>' +
+        '</div>';
       div.addEventListener('click', function () {
         selectProduct(key);
         openProductPage(key);
