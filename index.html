@@ -375,10 +375,13 @@
 
         header {
             position: relative;
-            height: 200px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 180px;
+            max-height: 480px;
             overflow: hidden;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 0;
             color: #fff;
         }
 
@@ -640,8 +643,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 @media (min-width: 768px) {
     header {
-        height: 300px;
-        padding-top: 120px;
+        aspect-ratio: 21 / 9;
+        max-height: 520px;
+        padding-top: 0;
     }
 }
 
@@ -726,13 +730,19 @@ html[lang="fa"] .copyright  { direction: rtl; }
         }
 
         .image-preview {
-            max-height: 200px;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 180px;
+            max-height: 480px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .video-preview {
-            max-height: 200px;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 180px;
+            max-height: 480px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -918,12 +928,13 @@ html[lang="fa"] .copyright  { direction: rtl; }
     </button>
 
     <header>
-        <video autoplay muted loop id="bgVideo">
+        <video autoplay muted loop id="bgVideo" poster="/app/assets/mql5expert-banner.png">
+            <source src="/logo-header.mp4" type="video/mp4">
             <source src="/logo.webm" type="video/webm">
             <span data-fa="مرورگر شما از ویدیو پشتیبانی نمی‌کند." data-en="Your browser does not support the video tag.">مرورگر شما از ویدیو پشتیبانی نمی‌کند.</span>
         </video>
-        <h1 data-fa="متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور" data-en="MT5 Forex Trading Robots &amp; Indicators">متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور</h1>
-        <p data-fa="فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی</p>
+        
+        
     </header>
 
     <div class="container" id="products">
