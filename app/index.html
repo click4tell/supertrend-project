@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0D1B3E">
-<meta name="description" content="فروش اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5 — خرید آنلاین با USDT یا کارت بانکی">
+<meta name="description" content="فروشگاه تخصصی اکسپرت و ربات معاملاتی متاتریدر 5 — خرید آنلاین با تتر (USDT) یا کارت بانکی، راهنمای نصب، سوالات متداول">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -12,458 +12,338 @@
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <title>فروشگاه MQL5 Expert</title>
 <style>
-  :root{
-    --bg:#f5f7fb; --surface:#fff; --ink:#10203f; --muted:#68758c;
-    --line:#e5eaf2; --gold:#f5b301; --green:#35c84a; --navy:#0b1735;
-    --shadow:0 12px 35px rgba(16,32,63,.08); --radius:22px;
-  }
+  :root{--bg:#eef2f8;--surface:#fff;--ink:#101f3c;--muted:#68758c;--line:#e3e9f2;--gold:#f5b301;--green:#28c76f;--navy:#08132f;--blue2:#12346a;--shadow:0 12px 34px rgba(16,32,63,.09);--r:20px}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html{scroll-behavior:smooth}
-  body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#eef5ff 0,#f5f7fb 38%,#f7f8fb 100%);color:var(--ink);direction:rtl;padding-bottom:40px;line-height:1.5}
-  button,input{font:inherit}
-  .header{background:linear-gradient(135deg,#08132f 0%,#12346a 58%,#0c1f49 100%);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20;box-shadow:0 8px 24px rgba(8,19,47,.22);backdrop-filter:blur(12px)}
-  .brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-mark{width:42px;height:42px;border-radius:13px;object-fit:cover;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2)}
-  .header .title{font-size:16px;font-weight:800;white-space:nowrap}.header .sub{font-size:10.5px;opacity:.78;margin-top:2px;white-space:nowrap}
-  .btn-site{background:linear-gradient(135deg,#ffd45a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:9px 13px;font-size:11.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 5px 16px rgba(245,179,1,.22)}
-  .container{max-width:980px;margin:auto;padding:16px}
-  .hero{position:relative;overflow:hidden;border-radius:26px;background:#fff;box-shadow:var(--shadow);margin-bottom:16px;border:1px solid rgba(255,255,255,.9)}
-  .hero img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;object-position:center top}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,19,47,.04),transparent 55%,rgba(255,255,255,.1));pointer-events:none}
-  .hero-copy{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px}.hero-copy strong{font-size:15px}.hero-copy span{font-size:11px;color:var(--muted)}
-  .card{background:rgba(255,255,255,.92);border:1px solid rgba(229,234,242,.95);border-radius:var(--radius);padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
-  .section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h2{font-size:15px;color:var(--ink)}.section-head .badge{font-size:10px;padding:5px 8px;border-radius:99px;background:#eef7ef;color:#238b32;font-weight:700}
-  .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .product{border:1px solid var(--line);border-radius:18px;padding:10px;cursor:pointer;transition:.2s ease;background:#fff;display:flex;gap:11px;align-items:center;min-height:108px}.product:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,32,63,.08)}.product.active{border-color:#f5c43c;background:linear-gradient(135deg,#fffdf5,#fff)}
-  .product-thumb{width:82px;height:82px;flex:0 0 82px;border-radius:15px;object-fit:cover;object-position:center top;background:#eef2f8;box-shadow:inset 0 0 0 1px rgba(16,32,63,.05)}
-  .product-info{min-width:0}.product .name{font-size:13px;font-weight:800;color:var(--ink);line-height:1.5}.product .desc{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.65}.product .price{font-size:12px;margin-top:7px;color:var(--ink);font-weight:800}.product .price .toman{color:#8a94a8;font-weight:500;font-size:10.5px}.product-link{margin-top:5px;font-size:10px;color:#1769aa;font-weight:700}
-  .method{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}.method label{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:13px;padding:11px;font-size:11.5px;cursor:pointer;background:#fff;min-height:48px}.method label.selected{border-color:#f4c23b;background:#fffaf0;box-shadow:0 4px 12px rgba(245,179,1,.1)}.method input{accent-color:#f5b301}
-  .wallet-box{background:linear-gradient(135deg,#f4f7fb,#eef2f8);border:1px dashed #b9c4d8;border-radius:14px;padding:13px;text-align:center;margin:10px 0;cursor:pointer;word-break:break-all;font-family:monospace;font-size:12.5px;direction:ltr;color:#233451}.hint{font-size:10.8px;color:var(--muted);margin-bottom:6px}label.field{display:block;font-size:11.5px;color:#33405a;margin:11px 0 5px;font-weight:700}
-  input[type=text],input[type=number],input[type=email],select{width:100%;padding:12px;border:1px solid #d5dce8;border-radius:13px;font-size:13px;background:#fff;direction:rtl;outline:none;transition:.18s}input:focus{border-color:#8fa8ce;box-shadow:0 0 0 4px rgba(42,99,168,.08)}
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.form-grid .full{grid-column:1/-1}
-  .btn-buy{width:100%;background:linear-gradient(135deg,#ffd25a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:900;cursor:pointer;margin-top:14px;box-shadow:0 8px 18px rgba(245,179,1,.24)}.btn-buy:active{transform:scale(.985)}.btn-buy:disabled{opacity:.65;cursor:wait}
-  .result{display:none;margin-top:12px;padding:12px;border-radius:13px;font-size:12.5px;line-height:1.9;background:#eef7ee;border:1px solid #b7dfb7;color:#1d5a1d;white-space:pre-line}.result.error{background:#fdecec;border-color:#f3b9b9;color:#8c1d1d}.result .code{font-weight:900;font-size:16px;color:var(--ink);direction:ltr;display:block;text-align:center}
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.step{padding:10px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;text-align:center}.step b{display:grid;place-items:center;width:27px;height:27px;margin:0 auto 7px;border-radius:50%;background:#eaf1ff;color:#185da8;font-size:11px}.step span{font-size:10.5px;color:#526077;line-height:1.65}
-  .footer{text-align:center;font-size:10.5px;color:#8a94a8;padding:8px 16px 0;line-height:1.8}.toast{position:fixed;bottom:20px;right:50%;transform:translateX(50%);background:#0b1735;color:#fff;padding:10px 18px;border-radius:20px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.18)}.toast.show{opacity:1}.hidden{display:none!important}.loading{color:#f5b301;font-size:12px;padding:15px;text-align:center}
-  @media(max-width:680px){.products-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.step:last-child{grid-column:1/-1}.method{grid-template-columns:1fr}.hero{border-radius:20px}.hero img{aspect-ratio:16/8}.hero-copy{display:block}.hero-copy span{display:block;margin-top:2px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.product-thumb{width:76px;height:76px;flex-basis:76px}}
-  @media(min-width:681px){.buy-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}.buy-layout>.card{margin-bottom:0}.buy-layout .method{grid-template-columns:1fr}.buy-layout .form-grid{grid-template-columns:1fr}.buy-layout .form-grid .full{grid-column:auto}}
+  body{font-family:"Vazirmatn","Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.7;padding-bottom:76px}
+  button,input,select,textarea{font:inherit}
+  img{max-width:100%}
+  .header{background:linear-gradient(135deg,#08132f,#12346a 60%,#0c1f49);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:30;box-shadow:0 6px 20px rgba(8,19,47,.25)}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand img{width:40px;height:40px;border-radius:12px;object-fit:cover;background:#fff}
+  .brand .t{font-size:15px;font-weight:800;white-space:nowrap}
+  .brand .s{font-size:10px;opacity:.75}
+  .btn-site{background:linear-gradient(135deg,#ffd45a,#f5b301);color:#08132f;border:0;border-radius:12px;padding:8px 12px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}
+  .bottom-nav{position:fixed;bottom:0;right:0;left:0;z-index:40;background:#fff;border-top:1px solid var(--line);display:flex;box-shadow:0 -6px 22px rgba(16,32,63,.08)}
+  .bn-item{flex:1;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--muted);cursor:pointer;border:0;background:none}
+  .bn-item .ic{font-size:20px;line-height:1}
+  .bn-item.on{color:#12346a;font-weight:800}
+  .page{display:none;padding:14px;max-width:760px;margin:auto}
+  .page.on{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .card h2{font-size:16px;margin-bottom:6px}
+  .card h3{font-size:14px;margin:12px 0 6px}
+  .muted{color:var(--muted);font-size:12.5px}
+  .hero{border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--line)}
+  .hero img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
+  .hero .cap{padding:12px 14px}
+  .hero .cap h1{font-size:17px;line-height:1.5}
+  .price-box{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:16px;padding:14px 16px;margin-bottom:14px;text-align:center;font-size:15px;font-weight:800;box-shadow:0 6px 18px rgba(118,75,162,.25)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .feature{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center;box-shadow:0 6px 16px rgba(16,32,63,.05)}
+  .feature .ic{font-size:26px}
+  .feature b{display:block;font-size:13px;margin-top:6px}
+  .feature span{font-size:11px;color:var(--muted)}
+  .prod{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+  .prod img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
+  .prod .bd{padding:14px}
+  .prod .bd h3{font-size:15px}
+  .prod .price{font-weight:800;color:#12346a;font-size:15px;margin:8px 0}
+  .row{display:flex;gap:10px;margin-top:10px}
+  .btn{flex:1;border:0;border-radius:12px;padding:11px;font-weight:800;font-size:13px;cursor:pointer;text-align:center}
+  .btn-buy{background:linear-gradient(135deg,#28c76f,#1fa75c);color:#fff}
+  .btn-info{background:#eef2fb;color:#12346a}
+  .btn-navy{background:linear-gradient(135deg,#12346a,#0c1f49);color:#fff}
+  .back{background:none;border:0;color:#12346a;font-weight:800;font-size:13px;cursor:pointer;padding:6px 0;display:inline-flex;align-items:center;gap:6px}
+  ul.tic{list-style:none;margin:8px 0}
+  ul.tic li{padding:5px 26px 5px 0;position:relative;font-size:13.5px;border-bottom:1px dashed var(--line)}
+  ul.tic li:before{content:"✔";position:absolute;right:2px;color:var(--green);font-weight:800}
+  .step{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 4px 12px rgba(16,32,63,.04)}
+  .step .n{flex:0 0 34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#12346a,#0c1f49);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .step b{font-size:13px;display:block}
+  .step span{font-size:12px;color:var(--muted)}
+  .faq{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;overflow:hidden}
+  .faq button{width:100%;background:none;border:0;padding:13px;font-weight:800;font-size:13px;text-align:right;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:var(--ink)}
+  .faq .a{display:none;padding:0 13px 13px;font-size:12.5px;color:#46546b}
+  .faq.open .a{display:block}
+  .faq.open .arr{transform:rotate(180deg)}
+  .arr{transition:.2s}
+  form{display:none}
+  form.on{display:block}
+  input,select,textarea{width:100%;padding:11px;border:1px solid #ccd5e4;border-radius:12px;font-size:14px;margin-bottom:10px;background:#fff}
+  label{font-size:12.5px;font-weight:700;display:block;margin:8px 0 4px}
+  .addr{cursor:pointer;background:#f2f6ff;border:1px dashed #7394d0;border-radius:12px;padding:12px;text-align:center;font-family:monospace;font-size:12px;color:#12346a;margin:6px 0}
+  .radios{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+  .radios label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:12px;margin:0;cursor:pointer}
+  .radios input{width:auto;margin:0}
+  .submit{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(135deg,#28c76f,#1fa75c);color:#fff;font-weight:800;font-size:14px;cursor:pointer}
+  .note{font-size:11px;color:var(--muted);background:#f7f9fc;border-radius:10px;padding:9px;margin:8px 0}
+  .toast{position:fixed;top:14px;right:14px;left:14px;z-index:60;background:#101f3c;color:#fff;border-radius:12px;padding:12px;text-align:center;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(-16px);transition:.3s;pointer-events:none}
+  .toast.show{opacity:1;transform:none}
+  .contact-line{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+  .contact-line .ic{font-size:20px}
+  .contact-line b{display:block;font-size:13px}
+  .contact-line span{font-size:11.5px;color:var(--muted);direction:ltr}
+  .disclaimer{background:#fff8ec;border:1px solid #f3dfb3;border-radius:14px;padding:12px;font-size:11.5px;color:#7a6427}
 </style>
 </head>
 <body>
 
-<header class="header">
+<div class="header">
   <div class="brand">
-    <img class="brand-mark" src="assets/mql5expert-banner.png" alt="MQL5 Expert">
-    <div>
-      <div class="title">فروشگاه MQL5 Expert</div>
-      <div class="sub">اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5</div>
-    </div>
+    <img src="assets/mql5expert-banner.png" alt="MQL5 Expert" onerror="this.style.display='none'">
+    <div><div class="t">فروشگاه MQL5 Expert</div><div class="s">اکسپرت و ربات معاملاتی MT5</div></div>
   </div>
-  <button class="btn-site" onclick="openSite()">🌐 باز کردن سایت</button>
-</header>
+  <button class="btn-site" onclick="openSite()">🌐 سایت</button>
+</div>
 
-<div class="container">
-
-  <section class="hero">
-    <img src="assets/mql5expert-banner.png" alt="MQL5 Expert — اکسپرت‌ها و ربات‌های معاملاتی">
-    <div class="hero-overlay"></div>
-    <div class="hero-copy"><div><strong>ترید هوشمند، انتخاب حرفه‌ای</strong><br><span>اکسپرت‌های متاتریدر 5 با خرید سریع و فعال‌سازی آنلاین</span></div><button class="btn-site" onclick="openSite()">مشاهده سایت</button></div>
-  </section>
-
-  <!-- ═══════ محصولات ═══════ -->
+<!-- خانه -->
+<section class="page on" id="page-home">
+  <div class="hero">
+    <img src="assets/mql5expert-banner.png" alt="MQL5 Expert" onerror="this.src='logo.png'">
+    <div class="cap"><h1>ربات‌ها و اکسپرت‌های حرفه‌ای متاتریدر ۵</h1><p class="muted">خرید آسان با تتر (USDT) یا کارت بانکی + دریافت خودکار کد فعال‌سازی</p></div>
+  </div>
+  <div class="price-box" id="tetherBox">⏳ در حال دریافت قیمت لحظه‌ای تتر...</div>
+  <div class="grid2">
+    <div class="feature"><div class="ic">🤖</div><b>اکسپرت واقعی</b><span>فایل .ex5 آماده نصب در MT5</span></div>
+    <div class="feature"><div class="ic">📈</div><b>بک‌تست مستند</b><span>گزارش‌های عملکرد واقعی</span></div>
+    <div class="feature"><div class="ic">💳</div><b>پرداخت متنوع</b><span>USDT (TRC20/BEP20) یا کارت</span></div>
+    <div class="feature"><div class="ic">🛟</div><b>پشتیبانی کامل</b><span>راهنمای نصب و همراهی خرید</span></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h2>✨ محصولات پرفروش</h2>
+    <div id="homeProds"></div>
+    <button class="btn btn-navy" style="margin-top:10px" onclick="go('products')">مشاهده همه محصولات ←</button>
+  </div>
   <div class="card">
-    <div class="section-head"><h2>🛒 محصولات</h2><span class="badge">انتخاب محصول</span></div>
-    <div id="productsBox" class="products-grid"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
+    <h2>🎓 چرا MQL5 Expert؟</h2>
+    <p class="muted">ما محصولات را پس از تست و بررسی در پلتفرم متاتریدر ۵ عرضه می‌کنیم. هر خرید شامل فایل نصب، راهنمای راه‌اندازی و پشتیبانی است.</p>
   </div>
+</section>
 
-  <div class="buy-layout">
-  <!-- ═══════ خرید ═══════ -->
-  <div class="card" id="buyCard">
-    <div class="section-head"><h2>💳 خرید محصول</h2><span class="badge">پرداخت امن</span></div>
+<!-- محصولات -->
+<section class="page" id="page-products">
+  <div class="card"><h2>🛍 محصولات</h2><p class="muted">قیمت‌ها به‌صورت لحظه‌ای با نرخ تتر محاسبه می‌شود.</p><div id="tetherBox2" class="muted" style="margin-top:6px"></div></div>
+  <div id="prods"></div>
+</section>
 
-    <div class="hint">روش پرداخت را انتخاب کنید:</div>
-    <div class="method" id="methodBox">
-      <label id="m_trc20">
-        <input type="radio" name="method" value="trc20" checked>
-        <span>تتر (USDT) — شبکه TRC20</span>
-      </label>
-      <label id="m_bep20" class="hidden">
-        <input type="radio" name="method" value="bep20">
-        <span>تتر (USDT) — شبکه BEP20</span>
-      </label>
-      <label id="m_card">
-        <input type="radio" name="method" value="card">
-        <span>کارت بانکی (تومان)</span>
-      </label>
-    </div>
+<!-- آموزش نصب -->
+<section class="page" id="page-install">
+  <div class="card"><h2>📘 آموزش نصب اکسپرت در متاتریدر ۵</h2><p class="muted">مرحله‌به‌مرحله — حدود ۵ دقیقه</p></div>
+  <div class="step"><div class="n">۱</div><div><b>دانلود فایل محصول</b><span>فایل .ex5 را از صفحه محصول یا دانلودها دریافت کنید.</span></div></div>
+  <div class="step"><div class="n">۲</div><div><b>باز کردن پوشه MQL5</b><span>در متاتریدر: File → Open Data Folder</span></div></div>
+  <div class="step"><div class="n">۳</div><div><b>کپی در پوشه Experts</b><span>فایل .ex5 را در MQL5\Experts قرار دهید.</span></div></div>
+  <div class="step"><div class="n">۴</div><div><b>Refresh</b><span>در Navigator روی Expert Advisors راست‌کلیک → Refresh.</span></div></div>
+  <div class="step"><div class="n">۵</div><div><b>افزودن به چارت</b><span>اکسپرت را روی چارت بکشید و پارامترها را تنظیم کنید.</span></div></div>
+  <div class="step"><div class="n">۶</div><div><b>فعال‌سازی</b><span>کد فعال‌سازی دریافتی را وارد کنید تا معاملات شروع شود.</span></div></div>
+  <div class="card"><h3>💡 نکات مهم</h3><ul class="tic"><li>اجرای خودکار (Algo Trading) را در نوار بالای متاتریدر فعال کنید.</li><li>برای تست، اول در حساب دمو یا Strategy Tester اجرا کنید.</li><li>در صورت نیاز، پشتیبانی همراه شماست.</li></ul></div>
+</section>
 
-    <!-- آدرس کیف پول / کارت -->
-    <div id="walletSection">
-      <div class="hint" id="walletHint">کلیک کنید تا آدرس کپی شود:</div>
-      <div class="wallet-box" id="walletBox" onclick="copyWallet()">⏳ در حال دریافت آدرس...</div>
-    </div>
+<!-- سوالات متداول -->
+<section class="page" id="page-faq">
+  <div class="card"><h2>❓ سوالات متداول</h2></div>
+  <div class="faq open"><button onclick="tog(this)">ربات فارکس چیست؟ <span class="arr">▼</span></button><div class="a">ربات فارکس یا اکسپرت (Expert Advisor) برنامه‌ای است که روی متاتریدر ۵ نصب می‌شود و بر اساس استراتژی تعریف‌شده، به‌صورت خودکار معاملات را باز و بسته می‌کند.</div></div>
+  <div class="faq"><button onclick="tog(this)">فرق اکسپرت و اندیکاتور چیست؟ <span class="arr">▼</span></button><div class="a">اندیکاتور فقط سیگنال و اطلاعات را روی چارت نشان می‌دهد؛ اکسپرت می‌تواند بدون دخالت کاربر به‌صورت خودکار معامله کند.</div></div>
+  <div class="faq"><button onclick="tog(this)">چگونه خرید کنم؟ <span class="arr">▼</span></button><div class="a">محصول را انتخاب کنید، روش پرداخت (تتر TRC20/BEP20 یا کارت بانکی) را برگزینید، مبلغ را واریز کرده و هش تراکنش را ثبت کنید. کد فعال‌سازی به‌صورت خودکار ارسال می‌شود.</div></div>
+  <div class="faq"><button onclick="tog(this)">آیا سود تضمینی وجود دارد؟ <span class="arr">▼</span></button><div class="a">خیر. هیچ رباتی سود تضمینی ندارد؛ مسئولیت سود و زیان معاملات بر عهده کاربر است.</div></div>
+  <div class="faq"><button onclick="tog(this)">کد فعال‌سازی را کجا دریافت کنم؟ <span class="arr">▼</span></button><div class="a">بعد از ثبت موفق تراکنش، کد از طریق همان فرم خرید/ایمیل شما ارسال می‌شود. اگر دریافت نکردید با پشتیبانی تماس بگیرید.</div></div>
+  <div class="faq"><button onclick="tog(this)">آیا اپ بر روی همه گوشی‌ها کار می‌کند؟ <span class="arr">▼</span></button><div class="a">این اپ اندروید ۸ به بالا (API 26) را پشتیبانی می‌کند و برای نمایش به اینترنت نیاز دارد.</div></div>
+</section>
 
-    <div id="cardSection" class="hidden">
-      <div class="hint">کلیک کنید تا شماره کارت کپی شود:</div>
-      <div class="wallet-box" id="cardBox" onclick="copyCard()" style="direction:rtl;font-family:inherit;">⏳ ...</div>
-      <div class="hint" id="cardHolder"></div>
-    </div>
+<!-- درباره/تماس -->
+<section class="page" id="page-about">
+  <div class="card"><h2>🏛 درباره MQL5 Expert</h2><p class="muted">فروشگاه تخصصی اکسپرت و ربات معاملاتی متاتریدر ۵؛ با تمرکز بر محصولات تست‌شده، شفافیت قیمت و پشتیبانی واقعی.</p></div>
+  <div class="contact-line"><span class="ic">✉️</span><div><b>ایمیل</b><span>info@tsgcoltd.ir</span></div></div>
+  <div class="contact-line"><span class="ic">✈️</span><div><b>تلگرام</b><span>@Mq5_EA_bot</span></div></div>
+  <div class="contact-line"><span class="ic">🌐</span><div><b>وب‌سایت</b><span>https://mql5expert.ir</span></div></div>
+  <div class="disclaimer">⚠️ سلب مسئولیت: معامله در فارکس ریسک دارد و مسئولیت سود و زیان بر عهده کاربر است. معرفی بروکرها بی‌طرفانه است.</div>
+</section>
 
-    <!-- فرم -->
-    <div class="form-grid">
-      <div class="full"><label class="field">هش تراکنش (TxHash) بعد از واریز:</label><input type="text" id="txHash" placeholder="مثلاً 6f3a... یا کد پیگیری" autocomplete="off"></div>
-      <div><label class="field">شماره اکانت MT5:</label><input type="number" id="account" placeholder="مثلاً 12345678" inputmode="numeric"></div>
-      <div><label class="field">ایمیل (کد فعال‌سازی به این ایمیل ارسال می‌شود):</label><input type="email" id="email" placeholder="you@example.com" inputmode="email"></div>
-    </div>
-
-    <button class="btn-buy" id="submitBtn" onclick="submitOrder()">✅ پس از پرداخت، ثبت سفارش</button>
-    <div class="result" id="result"></div>
-  </div>
-
-  <!-- ═══════ راهنما ═══════ -->
+<!-- فرم پرداخت -->
+<div class="page" id="page-buy">
   <div class="card">
-    <div class="section-head"><h2>📌 مراحل خرید</h2><span class="badge">ساده و سریع</span></div>
-    <div class="steps">
-      <div class="step"><b>۱</b><span>محصول را انتخاب کنید.</span></div>
-      <div class="step"><b>۲</b><span>مبلغ را با USDT یا کارت واریز کنید.</span></div>
-      <div class="step"><b>۳</b><span>TxHash یا کد پیگیری را وارد کنید.</span></div>
-      <div class="step"><b>۴</b><span>اکانت MT5 و ایمیل را وارد کنید.</span></div>
-      <div class="step"><b>۵</b><span>پس از تأیید، کد فعال‌سازی ایمیل می‌شود.</span></div>
-    </div>
-  </div>
-  </div>
-
-  <div class="footer">
-    © All rights reserved K_M 2025 | info@tsgcoltd.ir<br>
-    مسئولیت سود و زیان ناشی از تصمیمات معاملاتی بر عهده کاربر است.
+    <button class="back" onclick="go('products')">→ بازگشت به محصولات</button>
+    <h2 style="margin-top:6px">💳 تکمیل خرید</h2>
+    <p class="muted">پس از انتخاب محصول، مبلغ را به یکی از روش‌های زیر واریز کنید.</p>
+    <form id="paymentForm" class="on" onsubmit="return false;">
+      <label>محصول</label>
+      <select id="productSelect" onchange="updateAmounts()"></select>
+      <label>روش پرداخت</label>
+      <div class="radios">
+        <label><input type="radio" name="pm" value="trx" checked onchange="pmChange()"> تتر TRC20</label>
+        <label><input type="radio" name="pm" value="bep20" onchange="pmChange()"> تتر BEP20</label>
+        <label><input type="radio" name="pm" value="card" onchange="pmChange()"> کارت بانکی</label>
+      </div>
+      <div id="cryptoBox">
+        <label>آدرس کیف پول (برای کپی لمس کنید)</label>
+        <div class="addr" id="walletAddr" onclick="copyAddr()">TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca</div>
+        <label>مبلغ به تتر (USDT)</label>
+        <input type="number" id="amountUsdt" readonly>
+        <label>هش تراکنش (txHash)</label>
+        <input type="text" id="txHash" placeholder="مثلاً 0x... یا TXID">
+      </div>
+      <div id="cardBox" style="display:none">
+        <label>شماره کارت (برای کپی لمس کنید)</label>
+        <div class="addr" id="cardAddr" onclick="copyCard()">6219861903732864</div>
+        <label>مبلغ به تومان</label>
+        <input type="number" id="amountToman" readonly>
+        <label>شناسه پرداخت / کد پیگیری</label>
+        <input type="text" id="txHashCard" placeholder="شناسه واریز بانکی">
+      </div>
+      <label>شماره اکانت MT5</label>
+      <input type="text" id="account" placeholder="مثلاً 1234567">
+      <label>ایمیل</label>
+      <input type="email" id="email" placeholder="you@example.com">
+      <button class="submit" onclick="submitOrder()">ثبت نهایی سفارش</button>
+      <div class="note">پس از ثبت، نتیجه‌ی پردازش در همین صفحه نمایش داده می‌شود.</div>
+      <div id="result" class="note" style="display:none"></div>
+    </form>
   </div>
 </div>
+
+<nav class="bottom-nav">
+  <button class="bn-item on" data-p="home" onclick="go('home',this)"><span class="ic">🏠</span>خانه</button>
+  <button class="bn-item" data-p="products" onclick="go('products',this)"><span class="ic">🛍</span>محصولات</button>
+  <button class="bn-item" data-p="install" onclick="go('install',this)"><span class="ic">📘</span>آموزش</button>
+  <button class="bn-item" data-p="faq" onclick="go('faq',this)"><span class="ic">❓</span>سوالات</button>
+  <button class="bn-item" data-p="about" onclick="go('about',this)"><span class="ic">🏛</span>درباره</button>
+</nav>
 
 <div class="toast" id="toast"></div>
 
 <script>
-(function () {
-  'use strict';
-
-  var WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
-  var TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
-  var SITE_URL = 'https://mql5expert.ir';
-
-  /* ---------- داده‌های جایگزین (fallback) اگر Worker در دسترس نبود ---------- */
-  var FALLBACK_PRODUCTS = {
-    'EA_EM_PRO':     { name_fa: 'اکسپرت EA&EM-PRO',       desc_fa: 'ربات معاملات دستی و اتوماتیک برای متاتریدر 5', trx: 2 },
-    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA',   desc_fa: 'ربات معاملاتی سوپرترند برای دنبال‌کردن روند',    trx: 2 },
-    'EA_ForexFury':  { name_fa: 'اکسپرت Forex Fury Pro',  desc_fa: 'اکسپرت معاملات اتوماتیک فارکس فیوری پرو',      trx: 2 },
-    'GoldApex_WF':   { name_fa: 'اکسپرت GoldApex_WF',     desc_fa: 'ربات معاملاتی طلا (XAUUSD) با استراتژی گلد آپکس', trx: 10 }
+  var WORKER='https://supertrend-worker-fa.click4tell.workers.dev';
+  var PRICE_URL='https://tetercheng.click4tell.workers.dev/price';
+  var SITE_URL='https://mql5expert.ir';
+  var products={},cardInfo={},wallets={trc20:null,bep20:null},price=0;
+  var PROD_META={
+    'EA_EM_PRO':{name:'EA&EM-PRO',img:'https://mql5expert.ir/app/assets/ea-em-pro.png',video:'https://mql5expert.ir/images/EA&EM-SuperTrend&Footprint.mp4',desc:'ربات معاملات دستی و اتوماتیک با داشبورد روی چارت',feats:['داشبورد معاملات دستی و اتوماتیک','پشتیبانی از چند نماد','مناسب اسکالپ و ترند','آپدیت و پشتیبانی رایگان']},
+    'EA_SuperTrend':{name:'SuperTrend EA',img:'https://mql5expert.ir/app/assets/supertrend-ea.png',video:'https://mql5expert.ir/images/supertrend.mp4',desc:'ربات دنبال‌کننده روند بر پایه اندیکاتور سوپرترند',feats:['دنبال‌کردن هوشمند روند','حد ضرر و سود قابل تنظیم','مناسب فارکس و طلا','بک‌تست مستند']},
+    'EA_ForexFury':{name:'Forex Fury Pro',img:'https://mql5expert.ir/app/assets/forex-fury-pro.png',video:'https://mql5expert.ir/images/ForexFuryPro.mp4',desc:'اکسپرت معاملات اتوماتیک قدرتمند فارکس',feats:['مدیریت ریسک حرفه‌ای','تنظیمات پارامتری کامل','عملکرد بک‌تست مستند','پشتیبانی ۲۴ ساعته']},
+    'GoldApex_WF':{name:'GoldApex_WF',img:'https://mql5expert.ir/app/assets/goldapex-wf.png',video:'https://mql5expert.ir/images/GoldApex_WF.mp4',desc:'ربات تخصصی معاملات طلا (XAUUSD)',feats:['استراتژی اختصاصی گلد اپکس','بهینه برای طلا','گزارش تستر پیوست','آپدیت دوره‌ای']}
   };
-  var FALLBACK_WALLETS = { trc20: 'TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca', bep20: '' };
-  var FALLBACK_CARD = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
-
-  /* ---------- مسیر تصاویر محصولات داخل /app/assets/ ---------- */
-  var PRODUCT_IMAGES = {
-    'EA_EM_PRO':     'assets/ea-em-pro.png',
-    'EA_SuperTrend': 'assets/supertrend-ea.png',
-    'EA_ForexFury':  'assets/forex-fury-pro.png',
-    'GoldApex_WF':   'assets/goldapex-wf.png'
+  var FALLBACK_PRODUCTS={
+    'EA_EM_PRO':{name_fa:'اکسپرت EA&EM-PRO',trx:2},
+    'EA_SuperTrend':{name_fa:'اکسپرت SuperTrend EA',trx:2},
+    'EA_ForexFury':{name_fa:'اکسپرت Forex Fury Pro',trx:2},
+    'GoldApex_WF':{name_fa:'اکسپرت GoldApex_WF',trx:10}
   };
-
-  var PRODUCT_PAGES = {
-    'EA_EM_PRO':     SITE_URL + '/products/ea-em-pro.html',
-    'EA_SuperTrend': SITE_URL + '/products/supertrend-ea.html',
-    'EA_ForexFury':  SITE_URL + '/products/forex-fury-pro.html',
-    'GoldApex_WF':   SITE_URL + '/products/goldapex-wf.html'
-  };
-
-  var state = {
-    products: null,
-    wallets: { trc20: '', bep20: '' },
-    card: null,
-    tetherToman: 0,
-    selectedProduct: null
-  };
-
-  var $ = function (id) { return document.getElementById(id); };
-
-  /* ---------- ابزارها ---------- */
-  function toast(msg) {
-    var t = $('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(function () { t.classList.remove('show'); }, 2500);
+  function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2600)}
+  function go(page,btn){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on')});
+    document.getElementById('page-'+page).classList.add('on');
+    if(btn){document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('on')});btn.classList.add('on')}
+    else{document.querySelectorAll('.bn-item').forEach(function(b){b.classList.toggle('on',b.dataset.p===page)})}
+    if(page==='products')renderProds();
+    window.scrollTo(0,0);
   }
-
-  function copyToClipboard(text) {
-    if (window.AndroidBridge) {
-      try { AndroidBridge.copyText(text); return; } catch (e) { /* ادامه */ }
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { toast('کپی شد ✓'); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); toast('کپی شد ✓'); } catch (e) {}
-      document.body.removeChild(ta);
-    }
+  function tog(el){el.closest('.faq').classList.toggle('open')}
+  function openSite(){
+    if(window.AndroidBridge&&AndroidBridge.openUrl){try{AndroidBridge.openUrl(SITE_URL);return}catch(e){}}
+    if(window.Android&&Android.openSite){try{Android.openSite();return}catch(e){}}
+    window.open(SITE_URL,'_blank');
   }
-
-  function openSite() {
-    if (window.AndroidBridge) { try { AndroidBridge.openUrl(SITE_URL); return; } catch (e) {} }
-    window.open(SITE_URL, '_blank');
+  function copyTextPopup(t){
+    if(window.AndroidBridge&&AndroidBridge.copyText){try{AndroidBridge.copyText(t);return}catch(e){}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){showToast('✅ کپی شد')})}
+    else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('✅ کپی شد')}catch(e){}document.body.removeChild(ta)}
   }
-
-  function openProductPage(key) {
-    var url = PRODUCT_PAGES[key] || SITE_URL;
-    if (window.AndroidBridge) { try { AndroidBridge.openUrl(url); return; } catch (e) {} }
-    window.open(url, '_blank');
+  function fetchTether(){
+    fetch(PRICE_URL+'?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
+      price=d.tether_price_toman||0;
+      var txt=price?('قیمت لحظه‌ای تتر (USDT): '+price.toLocaleString('fa-IR')+' تومان'):'قیمت در دسترس نیست';
+      document.getElementById('tetherBox').textContent='🪙 '+txt;
+      document.getElementById('tetherBox2').textContent=txt;
+    }).catch(function(){document.getElementById('tetherBox').textContent='خطا در دریافت قیمت تتر'});
   }
-
-  /* ---------- دریافت داده از Worker ---------- */
-  function fetchJson(url, timeoutMs) {
-    return new Promise(function (resolve, reject) {
-      var timer = setTimeout(function () { reject(new Error('timeout')); }, timeoutMs || 8000);
-      fetch(url, { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) { clearTimeout(timer); resolve(d); })
-        .catch(function (e) { clearTimeout(timer); reject(e); });
+  function fetchData(){
+    fetchTether();
+    fetch(WORKER+'/wallet-addresses').then(function(r){return r.json()}).then(function(d){wallets=d}).catch(function(){});
+    var p=fetch(WORKER+'/products?lang=fa').then(function(r){return r.json()});
+    var c=fetch(WORKER+'/card-details?lang=fa').then(function(r){return r.json()});
+    Promise.all([p,c]).then(function(a){
+      products=a[0]||{};cardInfo=a[1]||{};
+      renderProds();renderHome();fillSelect();
+    }).catch(function(){
+      products=JSON.parse(JSON.stringify(FALLBACK_PRODUCTS));
+      cardInfo={number:'6219861903732864'};
+      renderProds();renderHome();fillSelect();
     });
   }
-
-  /* جایگزین سازگار برای Promise.allSettled (مرورگرهای قدیمی) */
-  function settle(promises) {
-    return Promise.all(promises.map(function (p) {
-      return p.then(function (v) { return { status: 'fulfilled', value: v }; },
-                     function (e) { return { status: 'rejected', reason: e }; });
-    }));
+  function priceOf(key){var p=products[key];if(!p)return null;var usd=p.trx||p.usdt||0;return {usdt:usd,toman:Math.round(usd*price)}}
+  function prodCard(key){
+    var p=products[key]||{};var meta=PROD_META[key]||{name:key,img:'https://mql5expert.ir/logo.png',desc:'',feats:[]};
+    var pr=priceOf(key);
+    var priceTxt=pr&&pr.usdt?('💵 '+pr.usdt+' USDT ≈ '+pr.toman.toLocaleString('fa-IR')+' تومان'):'⏳ قیمت به‌زودی';
+    var d=document.createElement('div');d.className='prod';
+    d.innerHTML='<img src="'+meta.img+'" alt="'+meta.name+'" onerror="this.src=\'https://mql5expert.ir/logo.png\'"><div class="bd"><h3>'+meta.name+'</h3><p class="muted">'+(p.desc_fa||meta.desc)+'</p><div class="price">'+priceTxt+'</div><div class="row"><button class="btn btn-buy" onclick="buy(\''+key+'\')">خرید</button><button class="btn btn-info" onclick="detail(\''+key+'\')">جزئیات</button></div></div>';
+    return d;
   }
-
-  function loadAll() {
-    fetchJson(TETHER_PRICE_URL + '?t=' + Date.now(), 6000)
-      .then(function (d) { state.tetherToman = Number(d.tether_price_toman) || 0; })
-      .catch(function () { state.tetherToman = 0; });
-
-    settle([
-      fetchJson(WORKER_URL + '/products', 8000),
-      fetchJson(WORKER_URL + '/wallet-addresses', 8000),
-      fetchJson(WORKER_URL + '/card-details', 8000)
-    ]).then(function (results) {
-      /* محصولات */
-      if (results[0].status === 'fulfilled' && results[0].value) {
-        var raw = results[0].value;
-        state.products = {};
-        Object.keys(raw).forEach(function (k) {
-          state.products[k] = {
-            name_fa: raw[k].name_fa || FALLBACK_PRODUCTS[k].name_fa,
-            desc_fa: raw[k].desc_fa || FALLBACK_PRODUCTS[k].desc_fa,
-            trx: Number(raw[k].trx) || FALLBACK_PRODUCTS[k].trx
-          };
-        });
-      } else {
-        state.products = JSON.parse(JSON.stringify(FALLBACK_PRODUCTS));
-      }
-
-      /* کیف پول */
-      if (results[1].status === 'fulfilled' && results[1].value) {
-        state.wallets.trc20 = results[1].value.trc20 || FALLBACK_WALLETS.trc20;
-        state.wallets.bep20 = results[1].value.bep20 || '';
-      } else {
-        state.wallets = { trc20: FALLBACK_WALLETS.trc20, bep20: '' };
-      }
-
-      /* کارت */
-      if (results[2].status === 'fulfilled' && results[2].value) {
-        state.card = results[2].value;
-      } else {
-        state.card = FALLBACK_CARD;
-      }
-
-      renderProducts();
-      renderMethods();
-      selectProduct(Object.keys(state.products)[0]);
-      updatePaymentUI();
+  function renderProds(){
+    var c=document.getElementById('prods');c.innerHTML='';
+    Object.keys(PROD_META).forEach(function(k){c.appendChild(prodCard(k))});
+  }
+  function renderHome(){
+    var c=document.getElementById('homeProds');c.innerHTML='';
+    var keys=Object.keys(PROD_META).slice(0,2);
+    var g=document.createElement('div');g.className='grid2';
+    keys.forEach(function(k){var d=prodCard(k);d.style.marginBottom='0';g.appendChild(d)});
+    c.appendChild(g);
+  }
+  function fillSelect(){
+    var s=document.getElementById('productSelect');s.innerHTML='';
+    Object.keys(PROD_META).forEach(function(k){var p=products[k]||{};var o=document.createElement('option');o.value=k;o.textContent=p.name_fa||PROD_META[k].name;s.appendChild(o)});
+    updateAmounts();
+  }
+  function updateAmounts(){
+    var k=document.getElementById('productSelect').value;var pr=priceOf(k);
+    document.getElementById('amountUsdt').value=pr?pr.usdt:'';
+    document.getElementById('amountToman').value=pr?pr.toman:'';
+  }
+  function pmChange(){
+    var v=document.querySelector('input[name="pm"]:checked').value;
+    document.getElementById('cryptoBox').style.display=(v==='card')?'none':'block';
+    document.getElementById('cardBox').style.display=(v==='card')?'block':'none';
+    if(v==='bep20'&&wallets.bep20)document.getElementById('walletAddr').textContent=wallets.bep20;
+    if(v!=='bep20'&&wallets.trc20)document.getElementById('walletAddr').textContent=wallets.trc20;
+  }
+  function buy(k){
+    var s=document.getElementById('productSelect');if(s.querySelector('option[value="'+k+'"]')){s.value=k;updateAmounts()}
+    go('buy');document.getElementById('page-buy').scrollIntoView({behavior:'smooth'});
+  }
+  function detail(k){
+    var m=PROD_META[k]||{};var p=products[k]||{};var pr=priceOf(k);
+    var priceTxt=pr&&pr.usdt?(pr.usdt+' USDT ≈ '+pr.toman.toLocaleString('fa-IR')+' تومان'):'به‌زودی';
+    var html='<div class="card"><button class="back" onclick="go(\'products\')">→ بازگشت</button><h2 style="margin-top:6px">'+m.name+'</h2><p class="muted">'+(p.desc_fa||m.desc)+'</p>';
+    if(m.video){html+='<video controls playsinline preload="metadata" poster="'+m.img+'" style="width:100%;border-radius:14px;margin:10px 0;background:#000"><source src="'+m.video+'" type="video/mp4"></video>'}else{html+='<img src="'+m.img+'" style="border-radius:14px;margin:10px 0" onerror="this.src=\'https://mql5expert.ir/logo.png\'">'}
+    html+='<div class="price" style="font-size:16px;font-weight:800;color:#12346a">💵 '+priceTxt+'</div>';
+    html+='<ul class="tic">'+(m.feats||[]).map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>';
+    html+='<button class="btn btn-buy" onclick="buy(\''+k+'\')">🛒 خرید این محصول</button></div>';
+    var holder=document.getElementById('prods');holder.innerHTML=html;
+    document.querySelectorAll('.bn-item').forEach(function(b){b.classList.toggle('on',b.dataset.p==='products')});
+    window.scrollTo(0,0);
+  }
+  function copyAddr(){copyTextPopup(document.getElementById('walletAddr').textContent)}
+  function copyCard(){copyTextPopup(document.getElementById('cardAddr').textContent)}
+  function submitOrder(){
+    var pm=document.querySelector('input[name="pm"]:checked').value;
+    var body=new URLSearchParams();
+    body.set('product',document.getElementById('productSelect').value);
+    body.set('account',document.getElementById('account').value);
+    body.set('email',document.getElementById('email').value);
+    body.set('paymentMethod',pm);
+    if(pm==='card'){body.set('txHashCard',document.getElementById('txHashCard').value);body.set('amountToman',document.getElementById('amountToman').value)}
+    else{body.set('txHashTrx',document.getElementById('txHash').value);body.set('amountTeter',document.getElementById('amountUsdt').value)}
+    var r=document.getElementById('result');r.style.display='block';r.textContent='⏳ در حال ارسال سفارش...';
+    fetch(WORKER+(pm==='card'?'/card-process':'/process'),{method:'POST',body:body}).then(function(res){return res.text()}).then(function(t){r.textContent=t;showToast('✅ سفارش ثبت شد')}).catch(function(e){r.textContent='خطا: '+e.message});
+  }
+  fetchData();
+  setInterval(fetchTether,60000);
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('sw.js').catch(function(e){console.warn('SW registration failed:',e)});
     });
   }
-
-  /* ---------- رندر محصولات ---------- */
-  function renderProducts() {
-    var box = $('productsBox');
-    box.innerHTML = '';
-    Object.keys(state.products).forEach(function (key) {
-      var p = state.products[key];
-      var div = document.createElement('div');
-      div.className = 'product';
-      div.dataset.key = key;
-      var toman = Math.round(p.trx * state.tetherToman);
-      div.innerHTML =
-        '<img class="product-thumb" src="' + (PRODUCT_IMAGES[key] || 'assets/mql5expert-banner.png') + '" alt="' + (p.name_fa || key) + '" onerror="this.onerror=null;this.src=\'assets/mql5expert-banner.png\';">' +
-        '<div class="product-info">' +
-        '<div class="name">' + (p.name_fa || key) + '</div>' +
-        '<div class="desc">' + (p.desc_fa || '') + '</div>' +
-        '<div class="price">' + p.trx + ' USDT' +
-        (toman > 0 ? ' <span class="toman">≈ ' + toman.toLocaleString('fa-IR') + ' تومان</span>' : '') +
-        '</div>' +
-        '<div class="product-link">جزئیات و انتخاب ←</div>' +
-        '</div>';
-      div.addEventListener('click', function () {
-        selectProduct(key);
-        openProductPage(key);
-      });
-      box.appendChild(div);
-    });
-  }
-
-  function selectProduct(key) {
-    state.selectedProduct = key;
-    var cards = document.querySelectorAll('.product');
-    cards.forEach(function (c) {
-      c.classList.toggle('active', c.dataset.key === key);
-    });
-  }
-
-  /* ---------- روش پرداخت ---------- */
-  function renderMethods() {
-    var mBep = $('m_bep20');
-    if (state.wallets.bep20) mBep.classList.remove('hidden');
-  }
-
-  function currentMethod() {
-    var radios = document.querySelectorAll('input[name=method]');
-    for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) return radios[i].value;
-    }
-    return 'trc20';
-  }
-
-  function updatePaymentUI() {
-    var method = currentMethod();
-    var isCard = method === 'card';
-    $('walletSection').classList.toggle('hidden', isCard);
-    $('cardSection').classList.toggle('hidden', !isCard);
-
-    document.querySelectorAll('#methodBox label').forEach(function (l) {
-      l.classList.remove('selected');
-    });
-    var activeLabel = $('m_' + method);
-    if (activeLabel) activeLabel.classList.add('selected');
-
-    if (isCard) {
-      var card = state.card || FALLBACK_CARD;
-      $('cardBox').textContent = card.number || '—';
-      $('cardHolder').textContent = (card.name || '') + (card.bank ? ' — ' + card.bank : '');
-      $('txHash').placeholder = 'کد پیگیری یا شماره کارت واریزی';
-    } else {
-      var addr = method === 'bep20' ? state.wallets.bep20 : state.wallets.trc20;
-      $('walletBox').textContent = addr || 'آدرس در دسترس نیست';
-      $('txHash').placeholder = 'مثلاً 6f3a... (هش تراکنش)';
-    }
-  }
-
-  function copyWallet() {
-    var addr = currentMethod() === 'bep20' ? state.wallets.bep20 : state.wallets.trc20;
-    if (addr) copyToClipboard(addr);
-  }
-
-  function copyCard() {
-    var card = state.card || FALLBACK_CARD;
-    if (card.number) copyToClipboard(card.number);
-  }
-
-  /* ---------- ثبت سفارش ---------- */
-  function submitOrder() {
-    var productKey = state.selectedProduct;
-    var method = currentMethod();
-    var txHash = $('txHash').value.trim();
-    var account = $('account').value.trim();
-    var email = $('email').value.trim();
-    var result = $('result');
-
-    if (!productKey) { showResult('لطفاً ابتدا یک محصول انتخاب کنید.', true); return; }
-    if (!txHash) { showResult('لطفاً هش تراکنش (TxHash) را وارد کنید.', true); return; }
-    if (!account) { showResult('لطفاً شماره اکانت MT5 را وارد کنید.', true); return; }
-    if (!email || email.indexOf('@') < 1) { showResult('لطفاً یک ایمیل معتبر وارد کنید.', true); return; }
-
-    var btn = $('submitBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ در حال ارسال...';
-
-    var formData = new FormData();
-    if (method === 'card') {
-      formData.append('txHashCard', txHash);
-    } else {
-      formData.append('txHashTrx', txHash);
-      formData.append('paymentMethod', method);
-    }
-    formData.append('product', productKey);
-    formData.append('account', account);
-    formData.append('email', email);
-
-    var endpoint = WORKER_URL + (method === 'card' ? '/card-process' : '/process');
-
-    fetch(endpoint, { method: 'POST', body: formData })
-      .then(function (res) {
-        return res.text().then(function (text) { return { ok: res.ok, text: text }; });
-      })
-      .then(function (data) {
-        var clean = stripHtml(data.text);
-        if (data.ok) {
-          var code = extractCode(clean);
-          if (code) {
-            showResult(
-              '🎉 پرداخت تأیید شد!\nکد فعال‌سازی شما:\n<span class="code">' + code + '</span>\n' +
-              'کد به ایمیل شما نیز ارسال شد.', false);
-          } else {
-            showResult(clean, false);
-          }
-          toast('سفارش ثبت شد ✓');
-        } else {
-          showResult(clean || 'خطا در ثبت سفارش. لطفاً دوباره تلاش کنید.', true);
-        }
-      })
-      .catch(function (err) {
-        showResult('خطای شبکه: ' + err.message + ' — لطفاً اتصال اینترنت را بررسی کنید.', true);
-      })
-      .finally(function () {
-        btn.disabled = false;
-        btn.textContent = '✅ پس از پرداخت، ثبت سفارش';
-      });
-  }
-
-  function stripHtml(html) {
-    var div = document.createElement('div');
-    div.innerHTML = html;
-    return (div.textContent || div.innerText || '').trim().replace(/\n{3,}/g, '\n\n');
-  }
-
-  function extractCode(text) {
-    var m = text.match(/کد\s*(?:شما|فعال‌سازی)\s*:\s*([A-Za-z0-9+/=]+)/);
-    if (m) return m[1];
-    var m2 = text.match(/code\s*:\s*([A-Za-z0-9+/=]+)/i);
-    return m2 ? m2[1] : null;
-  }
-
-  function showResult(msg, isError) {
-    var result = $('result');
-    result.className = 'result' + (isError ? ' error' : '');
-    result.style.display = 'block';
-    result.innerHTML = msg;
-    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  /* ---------- رویدادها ---------- */
-  document.querySelectorAll('input[name=method]').forEach(function (r) {
-    r.addEventListener('change', updatePaymentUI);
-  });
-
-  /* exposes */ window.openSite=openSite; window.copyWallet=copyWallet; window.copyCard=copyCard; window.submitOrder=submitOrder;
-  document.addEventListener('DOMContentLoaded', loadAll);
-
-  /* ---------- ثبت سرویس‌ورکر (PWA) ---------- */
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function (e) {
-        console.warn('SW registration failed:', e);
-      });
-    });
-  }
-})();
 </script>
 </body>
 </html>
