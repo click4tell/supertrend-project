@@ -376,9 +376,13 @@
         header {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
+            height: 50vh;
             min-height: 180px;
-            max-height: 480px;
+            min-width: 280px;
+            
+            
+            
+            
             overflow: hidden;
             text-align: center;
             padding-top: 0;
@@ -393,6 +397,19 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+
+        header video,
+        header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        .header-media-fallback {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
         }
 
         header h1 {
@@ -643,8 +660,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 @media (min-width: 768px) {
     header {
-        aspect-ratio: 21 / 9;
-        max-height: 520px;
+        height: 30vh;
+        
+        
         padding-top: 0;
     }
 }
@@ -928,6 +946,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
     </button>
 
     <header>
+        <img class="header-media-fallback" src="/app/assets/mql5expert-banner.png" alt="MQL5 Expert">
         <video autoplay muted loop id="bgVideo" poster="/app/assets/mql5expert-banner.png">
             <source src="/logo-header.mp4" type="video/mp4">
             <source src="/logo.webm" type="video/webm">
