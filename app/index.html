@@ -4,477 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0D1B3E">
+<meta name="description" content="فروش اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5 — خرید آنلاین با USDT یا کارت بانکی">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
 <title>فروشگاه MQL5 Expert</title>
 <style>
   :root{
-    --navy:#0D1B3E; --navy2:#16295c; --navy3:#0b1735;
-    --gold:#F5B301; --gold2:#ffd45a;
-    --green:#2ecc71; --red:#e74c3c;
-    --bg:#eef1f7; --surface:#ffffff;
-    --ink:#16223b; --muted:#68758c; --line:#e3e8f1;
-    --radius:18px; --shadow:0 10px 30px rgba(13,27,62,.08);
+    --bg:#f5f7fb; --surface:#fff; --ink:#10203f; --muted:#68758c;
+    --line:#e5eaf2; --gold:#f5b301; --green:#35c84a; --navy:#0b1735;
+    --shadow:0 12px 35px rgba(16,32,63,.08); --radius:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{scroll-behavior:smooth}
-  body{
-    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);
-    direction:rtl;line-height:1.6;
-    padding-bottom:78px;
-  }
-  button,input,select{font:inherit}
-  img{max-width:100%}
-  a{color:#1769aa;text-decoration:none}
-
-  /* ═══════ هدر ═══════ */
-  .app-header{
-    position:sticky;top:0;z-index:50;
-    background:linear-gradient(135deg,#08132f 0%,#12346a 55%,#0c1f49 100%);
-    color:#fff;padding:12px 16px;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    box-shadow:0 8px 22px rgba(8,19,47,.25);
-  }
-  .brand{display:flex;align-items:center;gap:10px;min-width:0}
-  .brand-logo{width:44px;height:44px;border-radius:14px;object-fit:cover;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25);flex:0 0 44px}
-  .brand .t1{font-size:15px;font-weight:800;white-space:nowrap}
-  .brand .t2{font-size:10px;opacity:.78;white-space:nowrap;margin-top:1px}
-  .btn-gold{
-    background:linear-gradient(135deg,#ffd45a,#f5b301);color:#0b1735;
-    border:0;border-radius:13px;padding:8px 13px;
-    font-size:11.5px;font-weight:800;cursor:pointer;white-space:nowrap;
-    box-shadow:0 5px 14px rgba(245,179,1,.25);
-  }
-  .btn-gold:active{transform:scale(.96)}
-
-  /* ═══════ محتوا ═══════ */
-  .page{max-width:980px;margin:auto;padding:14px 14px 20px}
-  .tab{display:none}
-  .tab.active{display:block;animation:fadeIn .3s ease}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-  .hero{
-    position:relative;overflow:hidden;border-radius:24px;margin-bottom:14px;
-    background:linear-gradient(135deg,#0b1d45,#1d3d7a 60%,#f5b30133);
-    box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.55);
-  }
+  body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,#eef5ff 0,#f5f7fb 38%,#f7f8fb 100%);color:var(--ink);direction:rtl;padding-bottom:40px;line-height:1.5}
+  button,input{font:inherit}
+  .header{background:linear-gradient(135deg,#08132f 0%,#12346a 58%,#0c1f49 100%);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20;box-shadow:0 8px 24px rgba(8,19,47,.22);backdrop-filter:blur(12px)}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-mark{width:42px;height:42px;border-radius:13px;object-fit:cover;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .header .title{font-size:16px;font-weight:800;white-space:nowrap}.header .sub{font-size:10.5px;opacity:.78;margin-top:2px;white-space:nowrap}
+  .btn-site{background:linear-gradient(135deg,#ffd45a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:9px 13px;font-size:11.5px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 5px 16px rgba(245,179,1,.22)}
+  .container{max-width:980px;margin:auto;padding:16px}
+  .hero{position:relative;overflow:hidden;border-radius:26px;background:#fff;box-shadow:var(--shadow);margin-bottom:16px;border:1px solid rgba(255,255,255,.9)}
   .hero img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;object-position:center top}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,47,.05),rgba(8,19,47,.28));pointer-events:none}
-  .hero-tag{position:absolute;top:12px;right:12px;background:#fff;color:#0b1735;font-size:10px;font-weight:800;padding:5px 10px;border-radius:99px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
-
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
-  .stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:var(--shadow)}
-  .stat b{display:block;font-size:17px;color:var(--navy)}
-  .stat span{font-size:10px;color:var(--muted)}
-
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
-  .sec-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
-  .sec-head h2{font-size:15.5px;color:var(--navy);display:flex;align-items:center;gap:7px}
-  .sec-head .badge{font-size:10px;padding:4px 9px;border-radius:99px;background:#eef7ef;color:#238b32;font-weight:700;white-space:nowrap}
-
-  /* فیچرها */
-  .feats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .feat{display:flex;gap:10px;align-items:flex-start;background:#f8faff;border:1px solid var(--line);border-radius:15px;padding:12px}
-  .feat .i{width:38px;height:38px;flex:0 0 38px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:linear-gradient(135deg,#eaf1ff,#dbe7ff)}
-  .feat b{font-size:12px;color:var(--navy);display:block}
-  .feat p{font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.6}
-
-  /* محصولات */
-  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .prod{
-    border:1px solid var(--line);border-radius:18px;padding:12px;cursor:pointer;
-    background:#fff;display:flex;flex-direction:column;transition:.2s;
-  }
-  .prod:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(16,32,63,.1)}
-  .prod.active{border-color:var(--gold);background:linear-gradient(180deg,#fffdf3,#fff)}
-  .prod .img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:13px;background:#eef2f8;margin-bottom:10px}
-  .prod .name{font-size:13.5px;font-weight:800;color:var(--ink)}
-  .prod .desc{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.65;flex:1}
-  .prod .price{margin-top:8px;font-size:12.5px;font-weight:800;color:var(--navy)}
-  .prod .price .tom{color:#8a94a8;font-weight:500;font-size:10.5px}
-  .prod .link{font-size:10px;color:#1769aa;font-weight:700;margin-top:4px}
-
-  /* جزئیات محصول */
-  .detail-box{background:linear-gradient(160deg,#f6f9ff,#eef3fc);border:1px solid #d6e0f0;border-radius:16px;padding:14px;margin:12px 0;display:none}
-  .detail-box.show{display:block}
-  .detail-box h3{font-size:14px;color:var(--navy);margin-bottom:8px}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-  .chip{background:#fff;border:1px solid #cdd9ec;color:#33405a;font-size:10px;padding:4px 9px;border-radius:99px}
-  .detail-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:11px 14px;font-size:12px;font-weight:800;cursor:pointer}
-  .btn-buy{flex:1;background:linear-gradient(135deg,#ffd25a,#f5b301);color:#0b1735;box-shadow:0 6px 16px rgba(245,179,1,.3)}
-  .btn-dl{background:#1d4ed8;color:#fff}
-  .btn-site2{background:#fff;color:var(--navy);border:1px solid #cdd6e6}
-
-  /* روش پرداخت */
-  .method{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
-  .method label{
-    display:flex;align-items:center;gap:7px;flex-wrap:wrap;
-    border:1px solid var(--line);border-radius:13px;padding:10px;
-    font-size:11px;cursor:pointer;background:#fff;min-height:52px;
-  }
-  .method label.selected{border-color:var(--gold);background:#fffaf0;box-shadow:0 4px 12px rgba(245,179,1,.12)}
-  .method input{accent-color:var(--gold)}
-  .wallet-box{
-    background:linear-gradient(135deg,#f4f7fb,#eef2f8);border:1px dashed #b9c4d8;
-    border-radius:14px;padding:13px;text-align:center;margin:10px 0;cursor:pointer;
-    word-break:break-all;font-family:monospace;font-size:12.5px;direction:ltr;color:#233451;
-  }
-  .copy-btn{display:block;margin:6px auto 0;background:#e9eff8;border:1px solid #cdd9ec;color:#1f3a63;font-size:10.5px;font-weight:700;padding:6px 12px;border-radius:99px;cursor:pointer}
-  .hint{font-size:10.8px;color:var(--muted);margin-bottom:5px}
-  label.field{display:block;font-size:11.5px;color:#33405a;margin:11px 0 5px;font-weight:700}
-  input[type=text],input[type=number],input[type=email],select{
-    width:100%;padding:12px;border:1px solid #d5dce8;border-radius:13px;
-    font-size:13px;background:#fff;direction:rtl;outline:none;transition:.18s;
-  }
-  input:focus{border-color:#8fa8ce;box-shadow:0 0 0 4px rgba(42,99,168,.08)}
-  .btn-main{width:100%;background:linear-gradient(135deg,#ffd25a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:900;cursor:pointer;margin-top:14px;box-shadow:0 8px 18px rgba(245,179,1,.24)}
-  .btn-main:active{transform:scale(.985)}
-  .btn-main:disabled{opacity:.65;cursor:wait}
-  .result{
-    display:none;margin-top:12px;padding:12px;border-radius:13px;font-size:12.5px;line-height:1.9;
-    background:#eef7ee;border:1px solid #b7dfb7;color:#1d5a1d;white-space:pre-line;
-  }
-  .result.error{background:#fdecec;border-color:#f3b9b9;color:#8c1d1d}
-  .result .code{font-weight:900;font-size:16px;color:var(--ink);direction:ltr;display:block;text-align:center}
-
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-  .step{padding:10px 6px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;text-align:center}
-  .step b{display:grid;place-items:center;width:27px;height:27px;margin:0 auto 7px;border-radius:50%;background:#eaf1ff;color:#185da8;font-size:11px}
-  .step span{font-size:9.5px;color:#526077;line-height:1.6;display:block}
-
-  /* مقالات */
-  .post{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:15px;padding:12px;margin-bottom:10px;background:#fff;cursor:pointer;transition:.15s}
-  .post:active{background:#f6f9ff}
-  .post .ic{width:42px;height:42px;flex:0 0 42px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,#eaf1ff,#d8e6ff)}
-  .post b{font-size:12.5px;color:var(--navy);display:block;line-height:1.5}
-  .post p{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.65}
-  .post .cat{font-size:9px;color:#1769aa;font-weight:700;margin-top:4px;display:inline-block;background:#e8f1fb;padding:2px 8px;border-radius:99px}
-
-  /* ویدیو */
-  .video-item{position:relative;overflow:hidden;border-radius:16px;margin-bottom:12px;background:#08132f;box-shadow:var(--shadow)}
-  .video-item video{display:block;width:100%;max-height:300px;background:#000}
-  .video-item .cap{position:absolute;bottom:0;right:0;left:0;padding:26px 12px 8px;color:#fff;font-size:11px;font-weight:700;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75))}
-
-  /* FAQ */
-  details.faq{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:8px}
-  details.faq summary{font-size:12.5px;font-weight:800;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px}
-  details.faq summary::after{content:"＋";color:var(--gold);font-weight:900}
-  details.faq[open] summary::after{content:"－"}
-  details.faq p{font-size:11.5px;color:#566280;margin-top:8px;line-height:1.9}
-
-  /* تماس */
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .contact a{display:flex;align-items:center;gap:10px;background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:13px;color:var(--ink);font-size:12px;font-weight:700}
-  .contact .i{width:38px;height:38px;flex:0 0 38px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:linear-gradient(135deg,#e8f1fb,#d8e6ff)}
-  .notice{background:#fff8e6;border:1px solid #f3dc9a;border-radius:12px;padding:11px 13px;font-size:11px;color:#7a5c00;line-height:1.8;margin-top:12px}
-
-  /* ناوبری پایین */
-  .bottom-nav{
-    position:fixed;bottom:0;right:0;left:0;z-index:60;
-    background:rgba(255,255,255,.96);backdrop-filter:blur(14px);
-    border-top:1px solid var(--line);
-    display:grid;grid-template-columns:repeat(4,1fr);
-    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
-    box-shadow:0 -6px 24px rgba(13,27,62,.1);
-  }
-  .nav-item{
-    background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;
-    padding:5px 2px;cursor:pointer;color:#8a94a8;font-size:9.5px;font-weight:700;
-    border-radius:12px;transition:.15s;
-  }
-  .nav-item .ni{font-size:20px;line-height:1}
-  .nav-item.active{color:var(--navy);background:#eef3fd}
-  .nav-item.active .ni{transform:scale(1.08)}
-
-  .footer{text-align:center;font-size:10.5px;color:#8a94a8;padding:10px 16px 4px;line-height:1.9}
-
-  .toast{
-    position:fixed;bottom:96px;right:50%;transform:translateX(50%);
-    background:#0b1735;color:#fff;padding:10px 18px;border-radius:20px;font-size:12px;
-    opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;
-    box-shadow:0 8px 24px rgba(0,0,0,.2);white-space:nowrap;
-  }
-  .toast.show{opacity:1}
-  .hidden{display:none!important}
-  .loading{color:var(--gold);font-size:12px;padding:16px;text-align:center}
-  .empty{color:var(--muted);font-size:12px;padding:14px;text-align:center}
-
-  @media(max-width:680px){
-    .prod-grid{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .step:last-child{grid-column:1/-1}
-    .method{grid-template-columns:1fr}
-    .hero img{aspect-ratio:16/8}
-    .feats{grid-template-columns:1fr}
-    .contact{grid-template-columns:1fr}
-    .stats{grid-template-columns:repeat(3,1fr)}
-  }
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,19,47,.04),transparent 55%,rgba(255,255,255,.1));pointer-events:none}
+  .hero-copy{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px}.hero-copy strong{font-size:15px}.hero-copy span{font-size:11px;color:var(--muted)}
+  .card{background:rgba(255,255,255,.92);border:1px solid rgba(229,234,242,.95);border-radius:var(--radius);padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+  .section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.section-head h2{font-size:15px;color:var(--ink)}.section-head .badge{font-size:10px;padding:5px 8px;border-radius:99px;background:#eef7ef;color:#238b32;font-weight:700}
+  .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .product{border:1px solid var(--line);border-radius:18px;padding:10px;cursor:pointer;transition:.2s ease;background:#fff;display:flex;gap:11px;align-items:center;min-height:108px}.product:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,32,63,.08)}.product.active{border-color:#f5c43c;background:linear-gradient(135deg,#fffdf5,#fff)}
+  .product-thumb{width:82px;height:82px;flex:0 0 82px;border-radius:15px;object-fit:cover;object-position:center top;background:#eef2f8;box-shadow:inset 0 0 0 1px rgba(16,32,63,.05)}
+  .product-info{min-width:0}.product .name{font-size:13px;font-weight:800;color:var(--ink);line-height:1.5}.product .desc{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.65}.product .price{font-size:12px;margin-top:7px;color:var(--ink);font-weight:800}.product .price .toman{color:#8a94a8;font-weight:500;font-size:10.5px}.product-link{margin-top:5px;font-size:10px;color:#1769aa;font-weight:700}
+  .method{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}.method label{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:13px;padding:11px;font-size:11.5px;cursor:pointer;background:#fff;min-height:48px}.method label.selected{border-color:#f4c23b;background:#fffaf0;box-shadow:0 4px 12px rgba(245,179,1,.1)}.method input{accent-color:#f5b301}
+  .wallet-box{background:linear-gradient(135deg,#f4f7fb,#eef2f8);border:1px dashed #b9c4d8;border-radius:14px;padding:13px;text-align:center;margin:10px 0;cursor:pointer;word-break:break-all;font-family:monospace;font-size:12.5px;direction:ltr;color:#233451}.hint{font-size:10.8px;color:var(--muted);margin-bottom:6px}label.field{display:block;font-size:11.5px;color:#33405a;margin:11px 0 5px;font-weight:700}
+  input[type=text],input[type=number],input[type=email],select{width:100%;padding:12px;border:1px solid #d5dce8;border-radius:13px;font-size:13px;background:#fff;direction:rtl;outline:none;transition:.18s}input:focus{border-color:#8fa8ce;box-shadow:0 0 0 4px rgba(42,99,168,.08)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.form-grid .full{grid-column:1/-1}
+  .btn-buy{width:100%;background:linear-gradient(135deg,#ffd25a,#f5b301);color:#0b1735;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:900;cursor:pointer;margin-top:14px;box-shadow:0 8px 18px rgba(245,179,1,.24)}.btn-buy:active{transform:scale(.985)}.btn-buy:disabled{opacity:.65;cursor:wait}
+  .result{display:none;margin-top:12px;padding:12px;border-radius:13px;font-size:12.5px;line-height:1.9;background:#eef7ee;border:1px solid #b7dfb7;color:#1d5a1d;white-space:pre-line}.result.error{background:#fdecec;border-color:#f3b9b9;color:#8c1d1d}.result .code{font-weight:900;font-size:16px;color:var(--ink);direction:ltr;display:block;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.step{padding:10px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;text-align:center}.step b{display:grid;place-items:center;width:27px;height:27px;margin:0 auto 7px;border-radius:50%;background:#eaf1ff;color:#185da8;font-size:11px}.step span{font-size:10.5px;color:#526077;line-height:1.65}
+  .footer{text-align:center;font-size:10.5px;color:#8a94a8;padding:8px 16px 0;line-height:1.8}.toast{position:fixed;bottom:20px;right:50%;transform:translateX(50%);background:#0b1735;color:#fff;padding:10px 18px;border-radius:20px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.18)}.toast.show{opacity:1}.hidden{display:none!important}.loading{color:#f5b301;font-size:12px;padding:15px;text-align:center}
+  @media(max-width:680px){.products-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.step:last-child{grid-column:1/-1}.method{grid-template-columns:1fr}.hero{border-radius:20px}.hero img{aspect-ratio:16/8}.hero-copy{display:block}.hero-copy span{display:block;margin-top:2px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}.product-thumb{width:76px;height:76px;flex-basis:76px}}
+  @media(min-width:681px){.buy-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}.buy-layout>.card{margin-bottom:0}.buy-layout .method{grid-template-columns:1fr}.buy-layout .form-grid{grid-template-columns:1fr}.buy-layout .form-grid .full{grid-column:auto}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ هدر ═══════════ -->
-<header class="app-header">
+<header class="header">
   <div class="brand">
-    <img class="brand-logo" src="https://mql5expert.ir/app/icons/icon-192.png" alt="MQL5 Expert" onerror="this.src='https://mql5expert.ir/app/assets/mql5expert-banner.png';">
+    <img class="brand-mark" src="assets/mql5expert-banner.png" alt="MQL5 Expert">
     <div>
-      <div class="t1">فروشگاه MQL5 Expert</div>
-      <div class="t2">اکسپرت‌ها و ربات‌های متاتریدر 5</div>
+      <div class="title">فروشگاه MQL5 Expert</div>
+      <div class="sub">اکسپرت‌ها و ربات‌های معاملاتی متاتریدر 5</div>
     </div>
   </div>
-  <button class="btn-gold" onclick="openSite()">🌐 سایت</button>
+  <button class="btn-site" onclick="openSite()">🌐 باز کردن سایت</button>
 </header>
 
-<div class="page">
+<div class="container">
 
-  <!-- ═══════════ تب خانه ═══════════ -->
-  <section id="tab-home" class="tab active">
-
-    <div class="hero">
-      <img src="https://mql5expert.ir/app/assets/mql5expert-banner.png" alt="فروشگاه اکسپرت و ربات معاملاتی MQL5 Expert">
-      <div class="hero-overlay"></div>
-      <span class="hero-tag">🔥 فروشگاه رسمی اکسپرت MT5</span>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><b>۴+</b><span>اکسپرت حرفه‌ای</span></div>
-      <div class="stat"><b id="statTether">—</b><span>قیمت لحظه‌ای تتر</span></div>
-      <div class="stat"><b>فوری</b><span>فعال‌سازی آنلاین</span></div>
-    </div>
-
-    <div class="card">
-      <div class="sec-head"><h2>⚡ چرا MQL5 Expert؟</h2><span class="badge">مزایا</span></div>
-      <div class="feats">
-        <div class="feat"><div class="i">💎</div><div><b>قیمت لحظه‌ای</b><p>قیمت محصولات به‌صورت زنده از سرور خوانده می‌شود (تتر + تومان).</p></div></div>
-        <div class="feat"><div class="i">🔐</div><div><b>پرداخت امن</b><p>پرداخت با تتر USDT (شبکه TRC20 / BEP20) یا کارت بانکی.</p></div></div>
-        <div class="feat"><div class="i">⚡</div><div><b>فعال‌سازی خودکار</b><p>کد فعال‌سازی بلافاصله پس از تأیید پرداخت به ایمیل شما ارسال می‌شود.</p></div></div>
-        <div class="feat"><div class="i">🎯</div><div><b>اکسپرت‌های واقعی</b><p>ربات‌های معاملاتی متاتریدر 5 با استراتژی‌های تست‌شده.</p></div></div>
-        <div class="feat"><div class="i">📚</div><div><b>آموزش رایگان</b><p>مقالات و راهنماهای نصب و استفاده از اکسپرت‌ها در داخل اپ.</p></div></div>
-        <div class="feat"><div class="i">💬</div><div><b>پشتیبانی تلگرام</b><p>پاسخ‌گویی سریع در تلگرام @Mq5_EA_bot برای سوالات شما.</p></div></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="sec-head"><h2>🛒 محصولات پرفروش</h2><button class="btn-gold" onclick="switchTab('shop')">مشاهده همه ←</button></div>
-      <div id="homeProducts" class="prod-grid"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
-    </div>
-
-    <button class="btn-main" onclick="switchTab('shop')">🛒 رفتن به فروشگاه و خرید</button>
+  <section class="hero">
+    <img src="assets/mql5expert-banner.png" alt="MQL5 Expert — اکسپرت‌ها و ربات‌های معاملاتی">
+    <div class="hero-overlay"></div>
+    <div class="hero-copy"><div><strong>ترید هوشمند، انتخاب حرفه‌ای</strong><br><span>اکسپرت‌های متاتریدر 5 با خرید سریع و فعال‌سازی آنلاین</span></div><button class="btn-site" onclick="openSite()">مشاهده سایت</button></div>
   </section>
 
-  <!-- ═══════════ تب فروشگاه ═══════════ -->
-  <section id="tab-shop" class="tab">
+  <!-- ═══════ محصولات ═══════ -->
+  <div class="card">
+    <div class="section-head"><h2>🛒 محصولات</h2><span class="badge">انتخاب محصول</span></div>
+    <div id="productsBox" class="products-grid"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
+  </div>
 
-    <div class="card">
-      <div class="sec-head"><h2>🛒 محصولات</h2><span class="badge">انتخاب محصول</span></div>
-      <div id="productsBox" class="prod-grid"><div class="loading">⏳ در حال دریافت محصولات...</div></div>
+  <div class="buy-layout">
+  <!-- ═══════ خرید ═══════ -->
+  <div class="card" id="buyCard">
+    <div class="section-head"><h2>💳 خرید محصول</h2><span class="badge">پرداخت امن</span></div>
 
-      <!-- جزئیات محصول -->
-      <div id="detailBox" class="detail-box">
-        <h3 id="detailTitle">—</h3>
-        <p id="detailDesc" style="font-size:11.5px;color:#44506b;"></p>
-        <div id="detailChips" class="chips"></div>
-        <div id="detailPrice" style="font-size:13px;font-weight:800;color:var(--navy);"></div>
-        <div class="detail-row">
-          <button class="btn btn-buy" onclick="selectProduct(currentSelected);goBuy()">🛒 خرید این محصول</button>
-          <button class="btn btn-dl" onclick="downloadProduct(currentSelected)">⬇️ دانلود فایل</button>
-          <button class="btn btn-site2" onclick="openProductPage(currentSelected)">🌐 جزئیات در سایت</button>
-        </div>
-      </div>
+    <div class="hint">روش پرداخت را انتخاب کنید:</div>
+    <div class="method" id="methodBox">
+      <label id="m_trc20">
+        <input type="radio" name="method" value="trc20" checked>
+        <span>تتر (USDT) — شبکه TRC20</span>
+      </label>
+      <label id="m_bep20" class="hidden">
+        <input type="radio" name="method" value="bep20">
+        <span>تتر (USDT) — شبکه BEP20</span>
+      </label>
+      <label id="m_card">
+        <input type="radio" name="method" value="card">
+        <span>کارت بانکی (تومان)</span>
+      </label>
     </div>
 
-    <!-- ═══════ خرید ═══════ -->
-    <div class="card" id="buyCard">
-      <div class="sec-head"><h2>💳 خرید محصول</h2><span class="badge">پرداخت امن</span></div>
-
-      <div class="hint">محصول انتخابی: <b id="buyProductName" style="color:#0b1735;">—</b></div>
-
-      <div class="hint">روش پرداخت را انتخاب کنید:</div>
-      <div class="method" id="methodBox">
-        <label id="m_trc20">
-          <input type="radio" name="method" value="trc20" checked>
-          <span>تتر (USDT) — TRC20</span>
-        </label>
-        <label id="m_bep20" class="hidden">
-          <input type="radio" name="method" value="bep20">
-          <span>تتر (USDT) — BEP20</span>
-        </label>
-        <label id="m_card">
-          <input type="radio" name="method" value="card">
-          <span>کارت بانکی (تومان)</span>
-        </label>
-      </div>
-
-      <div id="walletSection">
-        <div class="hint" id="walletHint">کلیک کنید تا آدرس کپی شود:</div>
-        <div class="wallet-box" id="walletBox" onclick="copyWallet()">⏳ در حال دریافت آدرس...</div>
-        <button class="copy-btn" onclick="copyWallet()">📋 کپی آدرس</button>
-      </div>
-
-      <div id="cardSection" class="hidden">
-        <div class="hint">کلیک کنید تا شماره کارت کپی شود:</div>
-        <div class="wallet-box" id="cardBox" onclick="copyCard()" style="direction:rtl;font-family:inherit;">⏳ ...</div>
-        <div class="hint" id="cardHolder" style="text-align:center;"></div>
-        <button class="copy-btn" onclick="copyCard()">📋 کپی شماره کارت</button>
-      </div>
-
-      <label class="field">هش تراکنش (TxHash) بعد از واریز:</label>
-      <input type="text" id="txHash" placeholder="مثلاً 6f3a... یا کد پیگیری" autocomplete="off">
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px;">
-        <div>
-          <label class="field">شماره اکانت MT5:</label>
-          <input type="number" id="account" placeholder="مثلاً 12345678" inputmode="numeric">
-        </div>
-        <div>
-          <label class="field">ایمیل (دریافت کد فعال‌سازی):</label>
-          <input type="email" id="email" placeholder="you@example.com" inputmode="email">
-        </div>
-      </div>
-
-      <button class="btn-main" id="submitBtn" onclick="submitOrder()">✅ پس از پرداخت، ثبت سفارش</button>
-      <div class="result" id="result"></div>
+    <!-- آدرس کیف پول / کارت -->
+    <div id="walletSection">
+      <div class="hint" id="walletHint">کلیک کنید تا آدرس کپی شود:</div>
+      <div class="wallet-box" id="walletBox" onclick="copyWallet()">⏳ در حال دریافت آدرس...</div>
     </div>
 
-    <!-- ═══════ مراحل خرید ═══════ -->
-    <div class="card">
-      <div class="sec-head"><h2>📌 مراحل خرید</h2><span class="badge">ساده و سریع</span></div>
-      <div class="steps">
-        <div class="step"><b>۱</b><span>محصول را انتخاب کنید</span></div>
-        <div class="step"><b>۲</b><span>مبلغ را با USDT یا کارت واریز کنید</span></div>
-        <div class="step"><b>۳</b><span>TxHash یا کد پیگیری را وارد کنید</span></div>
-        <div class="step"><b>۴</b><span>اکانت MT5 و ایمیل را وارد کنید</span></div>
-        <div class="step"><b>۵</b><span>کد فعال‌سازی ایمیل می‌شود</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ تب آموزش ═══════════ -->
-  <section id="tab-learn" class="tab">
-
-    <div class="card">
-      <div class="sec-head"><h2>📚 مقالات و آموزش‌ها</h2><span class="badge">وبلاگ MQL5 Expert</span></div>
-      <div id="articlesBox"><div class="loading">⏳ در حال بارگذاری...</div></div>
+    <div id="cardSection" class="hidden">
+      <div class="hint">کلیک کنید تا شماره کارت کپی شود:</div>
+      <div class="wallet-box" id="cardBox" onclick="copyCard()" style="direction:rtl;font-family:inherit;">⏳ ...</div>
+      <div class="hint" id="cardHolder"></div>
     </div>
 
-    <div class="card">
-      <div class="sec-head"><h2>🎬 ویدیوهای معرفی محصول</h2><span class="badge">دمو</span></div>
-
-      <div class="video-item">
-        <video controls preload="none" poster="https://mql5expert.ir/app/assets/ea-em-pro.png">
-          <source src="https://mql5expert.ir/EA&EM-SuperTrend&Footprint.webm" type="video/webm">
-        </video>
-        <div class="cap">EA&amp;EM SuperTrend &amp; Footprint — ویدیوی معرفی</div>
-      </div>
-
-      <div class="video-item">
-        <video controls preload="none" poster="https://mql5expert.ir/app/assets/forex-fury-pro.png">
-          <source src="https://mql5expert.ir/ForexFuryPro.webm" type="video/webm">
-        </video>
-        <div class="cap">Forex Fury Pro — ویدیوی معرفی</div>
-      </div>
-
-      <div class="video-item">
-        <video controls preload="none" poster="https://mql5expert.ir/app/assets/goldapex-wf.png">
-          <source src="https://mql5expert.ir/GoldApex_WF.webm" type="video/webm">
-        </video>
-        <div class="cap">GoldApex_WF — ربات معاملاتی طلا</div>
-      </div>
-
-      <div class="video-item">
-        <video controls preload="none" poster="https://mql5expert.ir/app/assets/supertrend-ea.png">
-          <source src="https://mql5expert.ir/supertrend_EA.webm" type="video/webm">
-        </video>
-        <div class="cap">SuperTrend EA — ربات دنبال‌کننده روند</div>
-      </div>
+    <!-- فرم -->
+    <div class="form-grid">
+      <div class="full"><label class="field">هش تراکنش (TxHash) بعد از واریز:</label><input type="text" id="txHash" placeholder="مثلاً 6f3a... یا کد پیگیری" autocomplete="off"></div>
+      <div><label class="field">شماره اکانت MT5:</label><input type="number" id="account" placeholder="مثلاً 12345678" inputmode="numeric"></div>
+      <div><label class="field">ایمیل (کد فعال‌سازی به این ایمیل ارسال می‌شود):</label><input type="email" id="email" placeholder="you@example.com" inputmode="email"></div>
     </div>
 
-    <div class="card">
-      <div class="sec-head"><h2>📄 مستندات و گزارش‌ها</h2><span class="badge">مرجع</span></div>
-      <div id="docsBox"></div>
+    <button class="btn-buy" id="submitBtn" onclick="submitOrder()">✅ پس از پرداخت، ثبت سفارش</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <!-- ═══════ راهنما ═══════ -->
+  <div class="card">
+    <div class="section-head"><h2>📌 مراحل خرید</h2><span class="badge">ساده و سریع</span></div>
+    <div class="steps">
+      <div class="step"><b>۱</b><span>محصول را انتخاب کنید.</span></div>
+      <div class="step"><b>۲</b><span>مبلغ را با USDT یا کارت واریز کنید.</span></div>
+      <div class="step"><b>۳</b><span>TxHash یا کد پیگیری را وارد کنید.</span></div>
+      <div class="step"><b>۴</b><span>اکانت MT5 و ایمیل را وارد کنید.</span></div>
+      <div class="step"><b>۵</b><span>پس از تأیید، کد فعال‌سازی ایمیل می‌شود.</span></div>
     </div>
-
-    <div class="card">
-      <div class="sec-head"><h2>📥 دانلود فایل‌ها</h2><span class="badge">رایگان</span></div>
-      <div id="downloadsBox"></div>
-    </div>
-  </section>
-
-  <!-- ═══════════ تب پشتیبانی ═══════════ -->
-  <section id="tab-support" class="tab">
-
-    <div class="card">
-      <div class="sec-head"><h2>❓ سوالات متداول</h2><span class="badge">FAQ</span></div>
-
-      <details class="faq" open>
-        <summary>چطور از اپ خرید کنم؟</summary>
-        <p>محصول را انتخاب کنید، مبلغ را به آدرس تتر (TRC20/BEP20) یا شماره کارت بانکی واریز کنید، سپس هش تراکنش (TxHash) یا کد پیگیری، شماره اکانت MT5 و ایمیل خود را در فرم ثبت سفارش وارد کنید. پس از تأیید، کد فعال‌سازی به ایمیل شما ارسال می‌شود.</p>
-      </details>
-      <details class="faq">
-        <summary>آیا اپ به گوگل‌پلی نیاز دارد؟</summary>
-        <p>خیر. اپ از طریق دانلود مستقیم، کافه‌بازار یا مایکت نصب می‌شود و نیازی به گوگل‌پلی ندارد.</p>
-      </details>
-      <details class="faq">
-        <summary>کد فعال‌سازی چطور دریافت می‌شود؟</summary>
-        <p>بلافاصله پس از تأیید پرداخت توسط سیستم (Worker)، کد فعال‌سازی به‌صورت خودکار در همان صفحه نمایش داده می‌شود و به ایمیل شما نیز ارسال می‌گردد.</p>
-      </details>
-      <details class="faq">
-        <summary>چه گوشی‌هایی پشتیبانی می‌شوند؟</summary>
-        <p>اندروید ۸ (API 26) به بالا — تقریباً همه گوشی‌های ۲۰۱۷ به بعد.</p>
-      </details>
-      <details class="faq">
-        <summary>آیا اکسپرت‌ها را می‌توانم قبل از خرید تست کنم؟</summary>
-        <p>بله؛ در استراتژی تستر (Strategy Tester) متاتریدر 5 با داده‌های دمو، عملکرد اکسپرت را بررسی کنید. همچنین گزارش‌های بک‌تست در بخش مستندات اپ در دسترس است.</p>
-      </details>
-      <details class="faq">
-        <summary>چطور اکسپرت را در MT5 نصب کنم؟</summary>
-        <p>فایل ex5 را در پوشه <code>MQL5/Experts</code> کپی کنید، متاتریدر را ری‌استارت کنید و اکسپرت را روی چارت بکشید. سپس AutoTrading را فعال کنید. راهنمای کامل در بخش مقالات اپ موجود است.</p>
-      </details>
-      <details class="faq">
-        <summary>آیا پشتیبانی دارید؟</summary>
-        <p>بله؛ از طریق تلگرام <b>@Mq5_EA_bot</b> یا ایمیل <b>info@tsgcoltd.ir</b> با ما در ارتباط باشید.</p>
-      </details>
-    </div>
-
-    <div class="card">
-      <div class="sec-head"><h2>📞 تماس با ما</h2><span class="badge">پشتیبانی</span></div>
-      <div class="contact">
-        <a href="https://t.me/Mq5_EA_bot" onclick="openExternal(this.href);return false;">
-          <span class="i">✈️</span>
-          <span>تلگرام پشتیبانی<br><small style="font-weight:400;color:#8a94a8;">@Mq5_EA_bot</small></span>
-        </a>
-        <a href="mailto:info@tsgcoltd.ir" onclick="openExternal(this.href);return false;">
-          <span class="i">📧</span>
-          <span>ایمیل<br><small style="font-weight:400;color:#8a94a8;">info@tsgcoltd.ir</small></span>
-        </a>
-        <a href="https://mql5expert.ir" onclick="openExternal(this.href);return false;">
-          <span class="i">🌐</span>
-          <span>وب‌سایت<br><small style="font-weight:400;color:#8a94a8;">mql5expert.ir</small></span>
-        </a>
-        <a href="https://mql5expert.ir/blog/" onclick="openExternal(this.href);return false;">
-          <span class="i">📚</span>
-          <span>مقالات و آموزش‌ها<br><small style="font-weight:400;color:#8a94a8;">mql5expert.ir/blog</small></span>
-        </a>
-      </div>
-      <div class="notice">
-        ⚠️ <b>سلب مسئولیت:</b> مسئولیت سود و زیان ناشی از تصمیمات معاملاتی کاملاً بر عهده کاربر است. معامله در بازارهای مالی با ریسک همراه است.
-      </div>
-    </div>
-  </section>
+  </div>
+  </div>
 
   <div class="footer">
     © All rights reserved K_M 2025 | info@tsgcoltd.ir<br>
     مسئولیت سود و زیان ناشی از تصمیمات معاملاتی بر عهده کاربر است.
   </div>
 </div>
-
-<!-- ═══════════ ناوبری پایین ═══════════ -->
-<nav class="bottom-nav">
-  <button class="nav-item active" data-tab="home" onclick="switchTab('home')"><span class="ni">🏠</span>خانه</button>
-  <button class="nav-item" data-tab="shop" onclick="switchTab('shop')"><span class="ni">🛒</span>فروشگاه</button>
-  <button class="nav-item" data-tab="learn" onclick="switchTab('learn')"><span class="ni">📚</span>آموزش</button>
-  <button class="nav-item" data-tab="support" onclick="switchTab('support')"><span class="ni">💬</span>پشتیبانی</button>
-</nav>
 
 <div class="toast" id="toast"></div>
 
@@ -485,43 +147,23 @@
   var WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
   var TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
   var SITE_URL = 'https://mql5expert.ir';
-  var ASSET = SITE_URL + '/app/assets';
 
   /* ---------- داده‌های جایگزین (fallback) اگر Worker در دسترس نبود ---------- */
   var FALLBACK_PRODUCTS = {
-    'EA_EM_PRO':     { name_fa: 'اکسپرت EA&EM-PRO',       desc_fa: 'سیستم معاملات دستی و اتوماتیک — سوپرترند + فوت‌پرینت', trx: 2 },
-    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA',   desc_fa: 'ربات دنبال‌کننده روند (سوپرترند) برای متاتریدر 5', trx: 2 },
-    'EA_ForexFury':  { name_fa: 'اکسپرت Forex Fury Pro',  desc_fa: 'اکسپرت معاملات اتوماتیک فارکس — فیوری پرو', trx: 2 },
+    'EA_EM_PRO':     { name_fa: 'اکسپرت EA&EM-PRO',       desc_fa: 'ربات معاملات دستی و اتوماتیک برای متاتریدر 5', trx: 2 },
+    'EA_SuperTrend': { name_fa: 'اکسپرت SuperTrend EA',   desc_fa: 'ربات معاملاتی سوپرترند برای دنبال‌کردن روند',    trx: 2 },
+    'EA_ForexFury':  { name_fa: 'اکسپرت Forex Fury Pro',  desc_fa: 'اکسپرت معاملات اتوماتیک فارکس فیوری پرو',      trx: 2 },
     'GoldApex_WF':   { name_fa: 'اکسپرت GoldApex_WF',     desc_fa: 'ربات معاملاتی طلا (XAUUSD) با استراتژی گلد آپکس', trx: 10 }
   };
   var FALLBACK_WALLETS = { trc20: 'TLBTbV3cjeR7GJU7321Q42Bjft4ZUDzVca', bep20: '' };
   var FALLBACK_CARD = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
 
-  /* ---------- تصاویر و جزئیات محصولات ---------- */
+  /* ---------- مسیر تصاویر محصولات داخل /app/assets/ ---------- */
   var PRODUCT_IMAGES = {
-    'EA_EM_PRO':     ASSET + '/ea-em-pro.png',
-    'EA_SuperTrend': ASSET + '/supertrend-ea.png',
-    'EA_ForexFury':  ASSET + '/forex-fury-pro.png',
-    'GoldApex_WF':   ASSET + '/goldapex-wf.png'
-  };
-
-  var PRODUCT_DETAILS = {
-    'EA_EM_PRO': {
-      features: ['سوپرترند + فوت‌پرینت', 'معاملات دستی و اتوماتیک', 'مناسب میان‌مدت', 'فایل ex5 آماده نصب'],
-      download: SITE_URL + '/downloads/EA&EM-PRO.ex5'
-    },
-    'EA_SuperTrend': {
-      features: ['دنبال‌کننده روند', 'مناسب تایم‌فریم‌های مختلف', 'مدیریت ریسک خودکار', 'فایل ex5 آماده نصب'],
-      download: SITE_URL + '/downloads/SuperTrend_EA.ex5'
-    },
-    'EA_ForexFury': {
-      features: ['معاملات اتوماتیک فارکس', 'استراتژی تست‌شده', 'نظارت ۲۴ ساعته بازار', 'فایل ex5 آماده نصب'],
-      download: SITE_URL + '/downloads/ForexFuryPro.ex5'
-    },
-    'GoldApex_WF': {
-      features: ['ویژه طلا XAUUSD', 'استراتژی گلد آپکس', 'گزارش بک‌تست موجود', 'فایل ex5 آماده نصب'],
-      download: SITE_URL + '/downloads/GoldApex_WF.zip'
-    }
+    'EA_EM_PRO':     'assets/ea-em-pro.png',
+    'EA_SuperTrend': 'assets/supertrend-ea.png',
+    'EA_ForexFury':  'assets/forex-fury-pro.png',
+    'GoldApex_WF':   'assets/goldapex-wf.png'
   };
 
   var PRODUCT_PAGES = {
@@ -531,47 +173,22 @@
     'GoldApex_WF':   SITE_URL + '/products/goldapex-wf.html'
   };
 
-  /* ---------- مقالات ---------- */
-  var ARTICLES = [
-    { title: 'ربات فارکس چیست و چگونه کار می‌کند؟', desc: 'تعریف کامل اکسپرت، طرز کار، تفاوت با اندیکاتور و آموزش نصب در متاتریدر 5.', cat: 'آموزش', url: SITE_URL + '/blog/what-is-forex-robot.html' },
-    { title: 'آموزش نصب اکسپرت در متاتریدر 5', desc: 'راهنمای کامل نصب ربات: کپی فایل ex5، فعال‌سازی AutoTrading، تست دمو و حل مشکلات رایج.', cat: 'آموزش', url: SITE_URL + '/blog/how-to-install-expert-in-metatrader5.html' },
-    { title: 'اکسپرت سوپرترند چیست و چگونه کار می‌کند؟', desc: 'آشنایی با ربات سوپرترند، استراتژی دنبال‌کردن روند، مزایا و تنظیمات پیشنهادی.', cat: 'محصولات', url: SITE_URL + '/blog/supertrend-expert-advisor.html' },
-    { title: 'بهترین ربات معاملاتی فارکس 2026', desc: 'مقایسه ربات‌های برتر: سوپرترند، فارکس فیوری، گلد آپکس و EA&EM-PRO با راهنمای انتخاب.', cat: 'بررسی', url: SITE_URL + '/blog/best-forex-trading-robots-2026.html' },
-    { title: 'فرق اکسپرت و اندیکاتور در MT5', desc: 'تفاوت ربات معاملاتی و اندیکاتور با جدول مقایسه و راهنمای انتخاب.', cat: 'آموزش', url: SITE_URL + '/blog/expert-vs-indicator-mt5.html' },
-    { title: 'بررسی ربات فارکس فیوری (Forex Fury)', desc: 'نقد و تحلیل کامل فارکس فیوری: عملکرد، بک‌تست، مزایا، معایب و مقایسه با سوپرترند.', cat: 'بررسی', url: SITE_URL + '/blog/forex-fury-review.html' },
-    { title: 'استراتژی اسکالپر ترکیبی طلا (تریدینگ ویو)', desc: 'استراتژی رایگان Pine Script برای طلا: دو سیستم کراس SMA و اسکالپر هیبرید با SL/TP مبتنی بر ATR.', cat: 'رایگان', url: SITE_URL + '/blog/xauusd-hybrid-scalper-tradingview.html' }
-  ];
-
-  var DOCS = [
-    { title: 'مشخصات سوپرترند', url: SITE_URL + '/docs/supertrend-specs.html' },
-    { title: 'مشخصات فارکس فیوری', url: SITE_URL + '/docs/forexfury-specs.html' },
-    { title: 'گزارش بک‌تست گلد آپکس', url: SITE_URL + '/docs/reporttester-goldapex.html' },
-    { title: 'تحلیل EA&EM-SuperTrend&Footprint', url: SITE_URL + '/docs/eaem-analysis.html' },
-    { title: 'تحلیل گلد آپکس', url: SITE_URL + '/docs/goldapex-analysis.html' }
-  ];
-
-  var DOWNLOADS = [
-    { title: 'ربات EA&EM-PRO', url: SITE_URL + '/downloads/EA&EM-PRO.ex5' },
-    { title: 'ربات سوپرترند', url: SITE_URL + '/downloads/SuperTrend_EA.ex5' },
-    { title: 'ربات فارکس فیوری', url: SITE_URL + '/downloads/ForexFuryPro.ex5' },
-    { title: 'ربات گلد آپکس', url: SITE_URL + '/downloads/GoldApex_WF.zip' },
-    { title: 'استراتژی اسکالپر طلا (تریدینگ ویو)', url: SITE_URL + '/downloads/XAUUSD_Hybrid_Scalper_v2_alerts.pine' }
-  ];
-
   var state = {
-    products: null, wallets: { trc20: '', bep20: '' }, card: null,
-    tetherToman: 0, selectedProduct: null
+    products: null,
+    wallets: { trc20: '', bep20: '' },
+    card: null,
+    tetherToman: 0,
+    selectedProduct: null
   };
 
   var $ = function (id) { return document.getElementById(id); };
-  var currentSelected = 'EA_EM_PRO';
 
   /* ---------- ابزارها ---------- */
   function toast(msg) {
     var t = $('toast');
     t.textContent = msg;
     t.classList.add('show');
-    setTimeout(function () { t.classList.remove('show'); }, 2600);
+    setTimeout(function () { t.classList.remove('show'); }, 2500);
   }
 
   function copyToClipboard(text) {
@@ -588,32 +205,15 @@
     }
   }
 
-  function openExternal(url) {
+  function openSite() {
+    if (window.AndroidBridge) { try { AndroidBridge.openUrl(SITE_URL); return; } catch (e) {} }
+    window.open(SITE_URL, '_blank');
+  }
+
+  function openProductPage(key) {
+    var url = PRODUCT_PAGES[key] || SITE_URL;
     if (window.AndroidBridge) { try { AndroidBridge.openUrl(url); return; } catch (e) {} }
     window.open(url, '_blank');
-  }
-
-  function openSite() { openExternal(SITE_URL); }
-  function openProductPage(key) { openExternal(PRODUCT_PAGES[key] || SITE_URL); }
-  function downloadProduct(key) {
-    var dl = (PRODUCT_DETAILS[key] && PRODUCT_DETAILS[key].download) || SITE_URL;
-    openExternal(dl);
-  }
-
-  /* ---------- ناوبری تب‌ها ---------- */
-  function switchTab(name) {
-    document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
-    document.querySelectorAll('.nav-item').forEach(function (b) { b.classList.remove('active'); });
-    var tab = $('tab-' + name);
-    if (tab) tab.classList.add('active');
-    var btn = document.querySelector('.nav-item[data-tab="' + name + '"]');
-    if (btn) btn.classList.add('active');
-    window.scrollTo(0, 0);
-  }
-
-  function goBuy() {
-    var buy = $('buyCard');
-    if (buy) buy.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   /* ---------- دریافت داده از Worker ---------- */
@@ -627,6 +227,7 @@
     });
   }
 
+  /* جایگزین سازگار برای Promise.allSettled (مرورگرهای قدیمی) */
   function settle(promises) {
     return Promise.all(promises.map(function (p) {
       return p.then(function (v) { return { status: 'fulfilled', value: v }; },
@@ -636,11 +237,7 @@
 
   function loadAll() {
     fetchJson(TETHER_PRICE_URL + '?t=' + Date.now(), 6000)
-      .then(function (d) {
-        state.tetherToman = Number(d.tether_price_toman) || 0;
-        var st = $('statTether');
-        if (st) st.textContent = state.tetherToman ? state.tetherToman.toLocaleString('fa-IR') + ' تومان' : '—';
-      })
+      .then(function (d) { state.tetherToman = Number(d.tether_price_toman) || 0; })
       .catch(function () { state.tetherToman = 0; });
 
     settle([
@@ -648,6 +245,7 @@
       fetchJson(WORKER_URL + '/wallet-addresses', 8000),
       fetchJson(WORKER_URL + '/card-details', 8000)
     ]).then(function (results) {
+      /* محصولات */
       if (results[0].status === 'fulfilled' && results[0].value) {
         var raw = results[0].value;
         state.products = {};
@@ -662,6 +260,7 @@
         state.products = JSON.parse(JSON.stringify(FALLBACK_PRODUCTS));
       }
 
+      /* کیف پول */
       if (results[1].status === 'fulfilled' && results[1].value) {
         state.wallets.trc20 = results[1].value.trc20 || FALLBACK_WALLETS.trc20;
         state.wallets.bep20 = results[1].value.bep20 || '';
@@ -669,6 +268,7 @@
         state.wallets = { trc20: FALLBACK_WALLETS.trc20, bep20: '' };
       }
 
+      /* کارت */
       if (results[2].status === 'fulfilled' && results[2].value) {
         state.card = results[2].value;
       } else {
@@ -676,10 +276,6 @@
       }
 
       renderProducts();
-      renderHomeProducts();
-      renderArticles();
-      renderDocs();
-      renderDownloads();
       renderMethods();
       selectProduct(Object.keys(state.products)[0]);
       updatePaymentUI();
@@ -687,120 +283,45 @@
   }
 
   /* ---------- رندر محصولات ---------- */
-  function productHTML(key, p) {
-    var toman = Math.round(p.trx * state.tetherToman);
-    var img = PRODUCT_IMAGES[key] || ASSET + '/mql5expert-banner.png';
-    return '<img class="img" src="' + img + '" alt="' + (p.name_fa || key) + '" onerror="this.onerror=null;this.src=\'' + ASSET + '/mql5expert-banner.png\';" loading="lazy">' +
-      '<div class="name">' + (p.name_fa || key) + '</div>' +
-      '<div class="desc">' + (p.desc_fa || '') + '</div>' +
-      '<div class="price">' + p.trx + ' USDT' +
-      (toman > 0 ? ' <span class="tom">≈ ' + toman.toLocaleString('fa-IR') + ' تومان</span>' : '') + '</div>' +
-      '<div class="link">جزئیات و انتخاب ←</div>';
-  }
-
   function renderProducts() {
     var box = $('productsBox');
     box.innerHTML = '';
     Object.keys(state.products).forEach(function (key) {
       var p = state.products[key];
       var div = document.createElement('div');
-      div.className = 'prod';
+      div.className = 'product';
       div.dataset.key = key;
-      div.innerHTML = productHTML(key, p);
-      div.addEventListener('click', function () { selectProduct(key); showDetail(key); });
-      box.appendChild(div);
-    });
-  }
-
-  function renderHomeProducts() {
-    var box = $('homeProducts');
-    if (!box) return;
-    box.innerHTML = '';
-    Object.keys(state.products).forEach(function (key) {
-      var p = state.products[key];
-      var div = document.createElement('div');
-      div.className = 'prod';
-      div.innerHTML = productHTML(key, p);
-      div.addEventListener('click', function () { switchTab('shop'); selectProduct(key); showDetail(key); });
+      var toman = Math.round(p.trx * state.tetherToman);
+      div.innerHTML =
+        '<img class="product-thumb" src="' + (PRODUCT_IMAGES[key] || 'assets/mql5expert-banner.png') + '" alt="' + (p.name_fa || key) + '" onerror="this.onerror=null;this.src=\'assets/mql5expert-banner.png\';">' +
+        '<div class="product-info">' +
+        '<div class="name">' + (p.name_fa || key) + '</div>' +
+        '<div class="desc">' + (p.desc_fa || '') + '</div>' +
+        '<div class="price">' + p.trx + ' USDT' +
+        (toman > 0 ? ' <span class="toman">≈ ' + toman.toLocaleString('fa-IR') + ' تومان</span>' : '') +
+        '</div>' +
+        '<div class="product-link">جزئیات و انتخاب ←</div>' +
+        '</div>';
+      div.addEventListener('click', function () {
+        selectProduct(key);
+        openProductPage(key);
+      });
       box.appendChild(div);
     });
   }
 
   function selectProduct(key) {
     state.selectedProduct = key;
-    currentSelected = key;
-    window.currentSelected = key;
-    document.querySelectorAll('.prod').forEach(function (c) {
+    var cards = document.querySelectorAll('.product');
+    cards.forEach(function (c) {
       c.classList.toggle('active', c.dataset.key === key);
-    });
-    var name = state.products[key] ? state.products[key].name_fa : key;
-    var buyName = $('buyProductName');
-    if (buyName) buyName.textContent = name + ' — ' + (state.products[key] ? state.products[key].trx + ' USDT' : '');
-  }
-
-  function showDetail(key) {
-    var det = $('detailBox');
-    if (!det || !state.products[key]) return;
-    det.classList.add('show');
-    $('detailTitle').textContent = state.products[key].name_fa;
-    $('detailDesc').textContent = state.products[key].desc_fa;
-    var chips = $('detailChips');
-    chips.innerHTML = '';
-    (PRODUCT_DETAILS[key] ? PRODUCT_DETAILS[key].features : []).forEach(function (f) {
-      var c = document.createElement('span');
-      c.className = 'chip';
-      c.textContent = '✓ ' + f;
-      chips.appendChild(c);
-    });
-    var toman = Math.round(state.products[key].trx * state.tetherToman);
-    $('detailPrice').innerHTML = 'قیمت: <b>' + state.products[key].trx + ' USDT</b>' +
-      (toman > 0 ? ' <span style="color:#8a94a8;font-weight:500;">≈ ' + toman.toLocaleString('fa-IR') + ' تومان</span>' : '');
-  }
-
-  /* ---------- رندر مقالات / مستندات / دانلودها ---------- */
-  function renderArticles() {
-    var box = $('articlesBox');
-    if (!box) return;
-    box.innerHTML = '';
-    ARTICLES.forEach(function (a) {
-      var div = document.createElement('div');
-      div.className = 'post';
-      div.innerHTML = '<div class="ic">📄</div><div style="flex:1;min-width:0;"><b>' + a.title + '</b><p>' + a.desc + '</p><span class="cat">' + a.cat + '</span></div>';
-      div.addEventListener('click', function () { openExternal(a.url); });
-      box.appendChild(div);
-    });
-  }
-
-  function listHTML(items, fmt) {
-    var html = '';
-    items.forEach(function (it) {
-      html += '<div class="post"><div class="ic">' + (fmt === 'dl' ? '📥' : '📄') + '</div><div style="flex:1;min-width:0;"><b>' + it.title + '</b><p>مشاهده در سایت ←</p></div></div>';
-    });
-    return html;
-  }
-
-  function renderDocs() {
-    var box = $('docsBox');
-    if (!box) return;
-    box.innerHTML = listHTML(DOCS, 'doc');
-    box.querySelectorAll('.post').forEach(function (el, i) {
-      el.addEventListener('click', function () { openExternal(DOCS[i].url); });
-    });
-  }
-
-  function renderDownloads() {
-    var box = $('downloadsBox');
-    if (!box) return;
-    box.innerHTML = listHTML(DOWNLOADS, 'dl');
-    box.querySelectorAll('.post').forEach(function (el, i) {
-      el.addEventListener('click', function () { openExternal(DOWNLOADS[i].url); });
     });
   }
 
   /* ---------- روش پرداخت ---------- */
   function renderMethods() {
     var mBep = $('m_bep20');
-    if (mBep && state.wallets.bep20) mBep.classList.remove('hidden');
+    if (state.wallets.bep20) mBep.classList.remove('hidden');
   }
 
   function currentMethod() {
@@ -837,12 +358,12 @@
 
   function copyWallet() {
     var addr = currentMethod() === 'bep20' ? state.wallets.bep20 : state.wallets.trc20;
-    if (addr) copyToClipboard(addr); else toast('آدرس در دسترس نیست');
+    if (addr) copyToClipboard(addr);
   }
 
   function copyCard() {
     var card = state.card || FALLBACK_CARD;
-    if (card.number) copyToClipboard(card.number); else toast('کارت در دسترس نیست');
+    if (card.number) copyToClipboard(card.number);
   }
 
   /* ---------- ثبت سفارش ---------- */
@@ -931,20 +452,17 @@
     r.addEventListener('change', updatePaymentUI);
   });
 
-  /* exposes */ 
-  window.openSite = openSite;
-  window.openProductPage = openProductPage;
-  window.downloadProduct = downloadProduct;
-  window.openExternal = openExternal;
-  window.copyWallet = copyWallet;
-  window.copyCard = copyCard;
-  window.submitOrder = submitOrder;
-  window.switchTab = switchTab;
-  window.goBuy = goBuy;
-  window.selectProduct = selectProduct;
-  window.currentSelected = currentSelected;
-
+  /* exposes */ window.openSite=openSite; window.copyWallet=copyWallet; window.copyCard=copyCard; window.submitOrder=submitOrder;
   document.addEventListener('DOMContentLoaded', loadAll);
+
+  /* ---------- ثبت سرویس‌ورکر (PWA) ---------- */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function (e) {
+        console.warn('SW registration failed:', e);
+      });
+    });
+  }
 })();
 </script>
 </body>
