@@ -87,8 +87,8 @@ structured data نوع `Product` در `index.html` (و `head.html`) **ناقص**
 ### قیمت زنده از ورکر (هم تتر هم تومان)
 - قیمت از ورکر Cloudflare (`/products`) بهصورت زنده گرفته میشود
 - هر دو واحد **تتر (USDT TRC20)** و **معادل تومان** نمایش داده میشود
-- قیمت تومان با ضرب قیمت تتر در قیمت لحظهای تتر (از `tetercheng.click4tell.workers.dev/price`) محاسبه میشود
-- هر ۶۰ ثانیه قیمت تتر بهروزرسانی میشود
+- قیمت تومان از منبع مرکزی MQL5EXPERT (`https://mqlshop.site/api/market`) دریافت میشود و از `USDT.priceToman` استفاده میکند
+- هر ۵ دقیقه قیمت تتر در مرورگر بهروزرسانی میشود
 - قیمتهای فعلی از ورکر (مهم): EA&EM-PRO = ۲، SuperTrend = ۲، ForexFury = ۲، GoldApex_WF = ۱۰
 
 ### فایل مشترک
