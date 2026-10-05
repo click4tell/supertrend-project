@@ -213,7 +213,7 @@
 
 <script>
   var WORKER='https://supertrend-worker-fa.click4tell.workers.dev';
-  var PRICE_URL='https://tetercheng.click4tell.workers.dev/price';
+  var PRICE_URL='https://mqlshop.site/api/market';
   var SITE_URL='https://mql5expert.ir';
   var products={},cardInfo={},wallets={trc20:null,bep20:null},price=0;
   var PROD_META={
@@ -250,7 +250,8 @@
   }
   function fetchTether(){
     fetch(PRICE_URL+'?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
-      price=d.tether_price_toman||0;
+      var usdt = Array.isArray(d.assets) ? d.assets.find(function(asset){return asset.symbol==='USDT'}) : null;
+      price=usdt && usdt.priceToman ? usdt.priceToman : 0;
       var txt=price?('قیمت لحظه‌ای تتر (USDT): '+price.toLocaleString('fa-IR')+' تومان'):'قیمت در دسترس نیست';
       document.getElementById('tetherBox').textContent='🪙 '+txt;
       document.getElementById('tetherBox2').textContent=txt;
@@ -338,7 +339,7 @@
     fetch(WORKER+(pm==='card'?'/card-process':'/process'),{method:'POST',body:body}).then(function(res){return res.text()}).then(function(t){r.textContent=t;showToast('✅ سفارش ثبت شد')}).catch(function(e){r.textContent='خطا: '+e.message});
   }
   fetchData();
-  setInterval(fetchTether,60000);
+  setInterval(fetchTether,300000);
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('sw.js').catch(function(e){console.warn('SW registration failed:',e)});
