@@ -16,8 +16,9 @@
   var DOWNLOAD_URL = window.DOWNLOAD_URL || '/downloads/EA&EM-PRO.ex5';
   var PRODUCT_LINKS = window.PRODUCT_LINKS || { fa: '#', en: '#' };
 
-  var WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
-  var TETHER_PRICE_URL = 'https://mqlshop.site/api/market';
+  var WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev'; // legacy payment/activation only
+  var MQL5EXPERT_API = 'https://mqlshop.site';
+  var TETHER_PRICE_URL = MQL5EXPERT_API + '/api/market';
 
   var currentLang = localStorage.getItem('lang') || 'fa';
   var tetherPriceInToman = 0;
@@ -97,7 +98,7 @@
 
   /* ---------- قیمت تتر ---------- */
   function fetchTetherPrice() {
-    return fetch(TETHER_PRICE_URL + '?t=' + Date.now())
+    return fetch(TETHER_PRICE_URL)
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var usdt = Array.isArray(data.assets) ? data.assets.find(function (asset) { return asset.symbol === 'USDT'; }) : null;
@@ -111,15 +112,22 @@
 
   /* ---------- قیمت محصول از ورکر ---------- */
   function fetchProductPrice() {
-    return fetch(WORKER_URL + '/products?lang=' + currentLang)
+    var slugByKey = {
+      'EA_EM_PRO': 'market-pulse',
+      'EA_SuperTrend': 'super-trend-ea',
+      'EA_ForexFury': 'forex-fury-pro',
+      'GoldApex_WF': 'gold-apex-pro'
+    };
+    return fetch(MQL5EXPERT_API + '/api/products')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var fallback = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
-        if (data && data[PRODUCT_KEY]) {
-          var p = data[PRODUCT_KEY];
-          priceTether = Number(p.trx) || fallback;
-          if (p.desc_fa && currentLang === 'fa' && el('prdDesc')) el('prdDesc').textContent = p.desc_fa;
-          if (p.desc_en && currentLang === 'en' && el('prdDesc')) el('prdDesc').textContent = p.desc_en;
+        var list = data && Array.isArray(data.products) ? data.products : [];
+        var p = list.find(function (item) { return item.slug === slugByKey[PRODUCT_KEY]; });
+        if (p) {
+          priceTether = Number(p.price) || fallback;
+          var desc = p.description && p.description[currentLang];
+          if (desc && el('prdDesc')) el('prdDesc').textContent = desc;
         } else {
           priceTether = fallback;
         }
@@ -128,6 +136,7 @@
       })
       .catch(function () {
         priceTether = FALLBACK_TETHER_PRICE[PRODUCT_KEY] || 0;
+        loaded = true;
         return priceTether;
       });
   }
