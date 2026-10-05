@@ -261,8 +261,12 @@
   function fetchData(){
     fetchTether();
     fetch(MQL5EXPERT_API+'/api/payment-settings').then(function(r){return r.json()}).then(function(d){var s=d&&d.settings?d.settings:{};wallets={trc20:s.usdtTrc20Wallet||s.usdtWallet||null,bep20:s.usdtBep20Wallet||s.usdtWallet||null};}).catch(function(){});
-    var p=fetch(MQL5EXPERT_API+'/api/products').then(function(r){return r.json()});
-    var c=fetch(WORKER+'/card-details?lang=fa').then(function(r){return r.json()});
+    var p=fetch(MQL5EXPERT_API+'/api/products').then(function(r){return r.json()}).then(function(d){
+      var list=Array.isArray(d.products)?d.products:[], map={'market-pulse':'EA_EM_PRO','super-trend-ea':'EA_SuperTrend','forex-fury-pro':'EA_ForexFury','gold-apex-pro':'GoldApex_WF'}, out={};
+      list.forEach(function(x){var k=map[x.slug];if(k)out[k]={name_fa:x.name,name_en:x.name,desc_fa:x.description&&x.description.fa,desc_en:x.description&&x.description.en,trx:Number(x.price)||0};});
+      return out;
+    });
+    var c=fetch(MQL5EXPERT_API+'/api/payment-settings').then(function(r){return r.json()}).then(function(d){var s=d&&d.settings?d.settings:{};return {number:s.cardNumber||null};});
     Promise.all([p,c]).then(function(a){
       products=a[0]||{};cardInfo=a[1]||{};
       renderProds();renderHome();fillSelect();
