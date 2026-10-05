@@ -1132,8 +1132,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <script>
         /* زبان پیش‌فرض سایت: فارسی (برای سئو و کاربران ایرانی) */
         let currentLang = localStorage.getItem('lang') || 'fa';
-        let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
-        let TETHER_PRICE_URL = 'https://mqlshop.site/api/market';
+        let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev'; // legacy payment/activation only
+        let MQL5EXPERT_API = 'https://mqlshop.site';
+        let TETHER_PRICE_URL = MQL5EXPERT_API + '/api/market';
         let tetherPriceInToman = 0;
 
         let products = {};
@@ -1142,7 +1143,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         async function fetchTetherPrice() {
             try {
-                const res = await fetch(TETHER_PRICE_URL + '?t=' + Date.now());
+                const res = await fetch(TETHER_PRICE_URL);
                 if (!res.ok) throw new Error('Network error');
                 const data = await res.json();
                 const usdt = Array.isArray(data.assets) ? data.assets.find(asset => asset.symbol === 'USDT') : null;
@@ -1165,22 +1166,38 @@ html[lang="fa"] .copyright  { direction: rtl; }
             await fetchTetherPrice();
 
             try {
-                const response = await fetch(WORKER_URL + '/products?lang=' + currentLang);
-                const rawProducts = await response.json();
+                const [productsResponse, settingsResponse] = await Promise.all([
+                    fetch(MQL5EXPERT_API + '/api/products'),
+                    fetch(MQL5EXPERT_API + '/api/payment-settings')
+                ]);
+                const productsData = await productsResponse.json();
+                const settingsData = await settingsResponse.json();
+                const list = Array.isArray(productsData.products) ? productsData.products : [];
+                const keyBySlug = {
+                    'market-pulse': 'EA_EM_PRO',
+                    'super-trend-ea': 'EA_SuperTrend',
+                    'forex-fury-pro': 'EA_ForexFury',
+                    'gold-apex-pro': 'GoldApex_WF'
+                };
 
                 products = {};
-                Object.keys(rawProducts).forEach(key => {
-                    const p = rawProducts[key];
-                    const tomanPrice = Math.round(p.trx * tetherPriceInToman);
+                list.forEach(function (p) {
+                    var key = keyBySlug[p.slug];
+                    if (!key) return;
+                    var usdt = Number(p.price) || 0;
                     products[key] = {
-                        ...p,
-                        usdt: p.trx,
-                        toman: tomanPrice
+                        name_fa: p.name,
+                        name_en: p.name,
+                        desc_fa: p.description && p.description.fa,
+                        desc_en: p.description && p.description.en,
+                        usdt: usdt,
+                        toman: Math.round(usdt * tetherPriceInToman)
                     };
                 });
 
-                const cardResponse = await fetch(WORKER_URL + '/card-details?lang=' + currentLang);
-                cardDetails = await cardResponse.json();
+                cardDetails = {
+                    number: settingsData && settingsData.settings ? settingsData.settings.cardNumber : null
+                };
 
                 populateProducts();
                 populateProductSelect();
@@ -1354,12 +1371,23 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         async function fetchWalletAddresses() {
             try {
-                const res = await fetch(WORKER_URL + '/wallet-addresses');
-                if (res.ok) walletAddresses = await res.json();
+                const res = await fetch(MQL5EXPERT_API + '/api/payment-settings');
+                if (res.ok) {
+                    const data = await res.json();
+                    const settings = data && data.settings ? data.settings : {};
+                    walletAddresses = {
+                        trc20: settings.usdtTrc20Wallet || settings.usdtWallet || null,
+                        bep20: settings.usdtBep20Wallet || settings.usdtWallet || null
+                    };
+                    cardDetails = {
+                        number: settings.cardNumber || null
+                    };
+                }
             } catch (err) {
-                console.error('Error loading wallet addresses:', err);
+                console.error('Error loading payment settings:', err);
             }
             syncWalletDisplay();
+            updateCardDisplay();
         }
 
         function syncWalletDisplay() {
