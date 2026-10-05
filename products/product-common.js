@@ -198,7 +198,7 @@
     // به‌روزرسانی هر ۶۰ ثانیه قیمت
     setInterval(function () {
       fetchTetherPrice().then(function () { renderPrice(); });
-    }, 300000);
+    }, 600000);
 
     // اگر بعد از ۸ ثانیه قیمت واقعی لود نشد، همچنان «هنوز بروز نیست» نمایش داده می‌شود
     setTimeout(function () {
