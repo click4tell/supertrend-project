@@ -1133,7 +1133,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
         /* زبان پیش‌فرض سایت: فارسی (برای سئو و کاربران ایرانی) */
         let currentLang = localStorage.getItem('lang') || 'fa';
         let WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
-        let TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
+        let TETHER_PRICE_URL = 'https://mqlshop.site/api/market';
         let tetherPriceInToman = 0;
 
         let products = {};
@@ -1145,7 +1145,8 @@ html[lang="fa"] .copyright  { direction: rtl; }
                 const res = await fetch(TETHER_PRICE_URL + '?t=' + Date.now());
                 if (!res.ok) throw new Error('Network error');
                 const data = await res.json();
-                tetherPriceInToman = data.tether_price_toman || 0;
+                const usdt = Array.isArray(data.assets) ? data.assets.find(asset => asset.symbol === 'USDT') : null;
+                tetherPriceInToman = usdt && usdt.priceToman ? usdt.priceToman : 0;
 
                 const box = document.getElementById('tetherPriceBox');
                 if (currentLang === 'fa') {
@@ -1488,7 +1489,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
             }
         };
 
-        setInterval(fetchTetherPrice, 60000);
+        setInterval(fetchTetherPrice, 300000);
 
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();

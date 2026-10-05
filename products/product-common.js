@@ -17,7 +17,7 @@
   var PRODUCT_LINKS = window.PRODUCT_LINKS || { fa: '#', en: '#' };
 
   var WORKER_URL = 'https://supertrend-worker-fa.click4tell.workers.dev';
-  var TETHER_PRICE_URL = 'https://tetercheng.click4tell.workers.dev/price';
+  var TETHER_PRICE_URL = 'https://mqlshop.site/api/market';
 
   var currentLang = localStorage.getItem('lang') || 'fa';
   var tetherPriceInToman = 0;
@@ -100,7 +100,8 @@
     return fetch(TETHER_PRICE_URL + '?t=' + Date.now())
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        tetherPriceInToman = data.tether_price_toman || 0;
+        var usdt = Array.isArray(data.assets) ? data.assets.find(function (asset) { return asset.symbol === 'USDT'; }) : null;
+        tetherPriceInToman = usdt && usdt.priceToman ? usdt.priceToman : 0;
         return tetherPriceInToman;
       })
       .catch(function () {
@@ -188,7 +189,7 @@
     // به‌روزرسانی هر ۶۰ ثانیه قیمت
     setInterval(function () {
       fetchTetherPrice().then(function () { renderPrice(); });
-    }, 60000);
+    }, 300000);
 
     // اگر بعد از ۸ ثانیه قیمت واقعی لود نشد، همچنان «هنوز بروز نیست» نمایش داده می‌شود
     setTimeout(function () {
