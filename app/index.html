@@ -212,8 +212,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  var WORKER='https://supertrend-worker-fa.click4tell.workers.dev';
-  var PRICE_URL='https://mqlshop.site/api/market';
+  var WORKER='https://supertrend-worker-fa.click4tell.workers.dev'; // legacy payment/activation only
+  var MQL5EXPERT_API='https://mqlshop.site';
+  var PRICE_URL=MQL5EXPERT_API+'/api/market';
   var SITE_URL='https://mql5expert.ir';
   var products={},cardInfo={},wallets={trc20:null,bep20:null},price=0;
   var PROD_META={
@@ -249,7 +250,7 @@
     else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('✅ کپی شد')}catch(e){}document.body.removeChild(ta)}
   }
   function fetchTether(){
-    fetch(PRICE_URL+'?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
+    fetch(PRICE_URL).then(function(r){return r.json()}).then(function(d){
       var usdt = Array.isArray(d.assets) ? d.assets.find(function(asset){return asset.symbol==='USDT'}) : null;
       price=usdt && usdt.priceToman ? usdt.priceToman : 0;
       var txt=price?('قیمت لحظه‌ای تتر (USDT): '+price.toLocaleString('fa-IR')+' تومان'):'قیمت در دسترس نیست';
@@ -259,9 +260,14 @@
   }
   function fetchData(){
     fetchTether();
-    fetch(WORKER+'/wallet-addresses').then(function(r){return r.json()}).then(function(d){wallets=d}).catch(function(){});
-    var p=fetch(WORKER+'/products?lang=fa').then(function(r){return r.json()});
-    var c=fetch(WORKER+'/card-details?lang=fa').then(function(r){return r.json()});
+    var settingsPromise=fetch(MQL5EXPERT_API+'/api/payment-settings').then(function(r){return r.json()}).then(function(d){return d&&d.settings?d.settings:{};});
+    settingsPromise.then(function(s){wallets={trc20:s.usdtTrc20Wallet||s.usdtWallet||null,bep20:s.usdtBep20Wallet||s.usdtWallet||null};}).catch(function(){});
+    var p=fetch(MQL5EXPERT_API+'/api/products').then(function(r){return r.json()}).then(function(d){
+      var list=Array.isArray(d.products)?d.products:[], map={'market-pulse':'EA_EM_PRO','super-trend-ea':'EA_SuperTrend','forex-fury-pro':'EA_ForexFury','gold-apex-pro':'GoldApex_WF'}, out={};
+      list.forEach(function(x){var k=map[x.slug];if(k)out[k]={name_fa:x.name,name_en:x.name,desc_fa:x.description&&x.description.fa,desc_en:x.description&&x.description.en,trx:Number(x.price)||0};});
+      return out;
+    });
+    var c=settingsPromise.then(function(s){return {number:s.cardNumber||null};});
     Promise.all([p,c]).then(function(a){
       products=a[0]||{};cardInfo=a[1]||{};
       renderProds();renderHome();fillSelect();
@@ -339,7 +345,7 @@
     fetch(WORKER+(pm==='card'?'/card-process':'/process'),{method:'POST',body:body}).then(function(res){return res.text()}).then(function(t){r.textContent=t;showToast('✅ سفارش ثبت شد')}).catch(function(e){r.textContent='خطا: '+e.message});
   }
   fetchData();
-  setInterval(fetchTether,300000);
+  setInterval(fetchTether,600000);
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('sw.js').catch(function(e){console.warn('SW registration failed:',e)});
