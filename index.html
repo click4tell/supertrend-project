@@ -28,7 +28,7 @@
     <meta property="og:site_name" content="MQL5 Expert">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:image" content="https://mql5expert.ir/logo.ico">
+    <meta property="og:image" content="https://mql5expert.ir/images/logo.ico">
 
     <!-- ═══ Twitter Card ═══ -->
     <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <meta name="twitter:description" content="فروش اکسپرت و ربات معاملاتی فارکس برای MT5 با پشتیبانی کامل">
 
     <!-- ═══ فاوآیکون ═══ -->
-    <link rel="icon" type="image/x-icon" href="/logo.ico">
+    <link rel="icon" type="image/x-icon" href="/images/logo.ico">
     <link rel="stylesheet" href="/products.css">
 
     <!-- ═══ Structured Data: وب‌سایت ═══ -->
@@ -375,10 +375,17 @@
 
         header {
             position: relative;
-            height: 200px;
+            width: 100%;
+            height: 50vh;
+            min-height: 180px;
+            min-width: 280px;
+            
+            
+            
+            
             overflow: hidden;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 0;
             color: #fff;
         }
 
@@ -390,6 +397,19 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+
+        header video,
+        header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        .header-media-fallback {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
         }
 
         header h1 {
@@ -640,8 +660,10 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
 @media (min-width: 768px) {
     header {
-        height: 300px;
-        padding-top: 120px;
+        height: 30vh;
+        
+        
+        padding-top: 0;
     }
 }
 
@@ -726,13 +748,19 @@ html[lang="fa"] .copyright  { direction: rtl; }
         }
 
         .image-preview {
-            max-height: 200px;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 180px;
+            max-height: 480px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .video-preview {
-            max-height: 200px;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 180px;
+            max-height: 480px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -912,18 +940,20 @@ html[lang="fa"] .copyright  { direction: rtl; }
     </nav>
 
     <button class="lang-switcher" onclick="toggleLanguage()">
-        <img src="/ir.svg" alt="English" id="flag-gb">
-        <img src="/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
+        <img src="/images/ir.svg" alt="English" id="flag-gb">
+        <img src="/images/gb.svg" alt="فارسی" id="flag-ir" style="display:none;">
         <span id="lang-text">فارسی</span>
     </button>
 
     <header>
-        <video autoplay muted loop id="bgVideo">
-            <source src="/logo.webm" type="video/webm">
+        <img class="header-media-fallback" src="/app/assets/mql5expert-banner.png" alt="MQL5 Expert">
+        <video autoplay muted loop id="bgVideo" poster="/app/assets/mql5expert-banner.png">
+            <source src="/images/logo-header.mp4" type="video/mp4">
+            <source src="/videos/logo.webm" type="video/webm">
             <span data-fa="مرورگر شما از ویدیو پشتیبانی نمی‌کند." data-en="Your browser does not support the video tag.">مرورگر شما از ویدیو پشتیبانی نمی‌کند.</span>
         </video>
-        <h1 data-fa="متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور" data-en="MT5 Forex Trading Robots &amp; Indicators">متاتریدر 5 و ربات اتوماتیک معاملات فارکس و اندیکاتور</h1>
-        <p data-fa="فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی" data-en="Selling Expert and Indicator Products for MT5 Forex with High Profit">فروش محصولات اکسپرت و اندیکاتور متاتریدر فارکس با سود عالی</p>
+        
+        
     </header>
 
     <div class="container" id="products">
@@ -939,7 +969,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <div class="products-grid" id="productContainer">
         <div class="product-card">
             <div class="product-media">
-                <video src="/EA&EM-SuperTrend&Footprint.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/EA&EM-SuperTrend&Footprint.webm', 'video')"></video>
+                <video src="/images/EA&EM-SuperTrend&Footprint.mp4" muted loop autoplay playsinline onclick="openFullScreenModal('/images/EA&EM-SuperTrend&Footprint.mp4', 'video')"></video>
             </div>
             <div class="product-body">
                 <h3><a href="/products/ea-em-pro.html">اکسپرت EA&amp;EM-PRO</a></h3>
@@ -952,7 +982,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         <div class="product-card">
             <div class="product-media">
-                <video src="/supertrend.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/supertrend.webm', 'video')"></video>
+                <video src="/images/supertrend.mp4" muted loop autoplay playsinline onclick="openFullScreenModal('/images/supertrend.mp4', 'video')"></video>
             </div>
             <div class="product-body">
                 <h3><a href="/products/supertrend-ea.html">اکسپرت SuperTrend EA</a></h3>
@@ -965,7 +995,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         <div class="product-card">
             <div class="product-media">
-                <video src="/ForexFuryPro.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/ForexFuryPro.webm', 'video')"></video>
+                <video src="/images/ForexFuryPro.mp4" muted loop autoplay playsinline onclick="openFullScreenModal('/images/ForexFuryPro.mp4', 'video')"></video>
             </div>
             <div class="product-body">
                 <h3><a href="/products/forex-fury-pro.html">اکسپرت Forex Fury Pro</a></h3>
@@ -978,7 +1008,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         <div class="product-card">
             <div class="product-media">
-                <video src="/GoldApex_WF.webm" muted loop autoplay playsinline onclick="openFullScreenModal('/GoldApex_WF.webm', 'video')"></video>
+                <video src="/images/GoldApex_WF.mp4" muted loop autoplay playsinline onclick="openFullScreenModal('/images/GoldApex_WF.mp4', 'video')"></video>
             </div>
             <div class="product-body">
                 <h3><a href="/products/goldapex-wf.html">اکسپرت GoldApex_WF</a></h3>
@@ -1037,11 +1067,11 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
     <div class="images-container">
         <div>
-            <img src="/profit_graph.png" alt="بک‌تست اکسپرت فارکس فیوری در متاتریدر 5" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
+            <img src="/images/profit_graph.png" alt="بک‌تست اکسپرت فارکس فیوری در متاتریدر 5" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
             <p class="caption" data-fa="بک‌تست اکسپرت فارکس فیوری با سه میلیون دلار سود از 100 دلار" data-en="Forex Fury Expert Backtests 100$ to 3,000,000$">بک‌تست اکسپرت فارکس فیوری با سه میلیون دلار سود از 100 دلار</p>
         </div>
         <div>
-            <img src="/indicator_chart.png" alt="داشبورد اندیکاتور سوپرترند در چارت متاتریدر 5" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
+            <img src="/images/indicator_chart.png" alt="داشبورد اندیکاتور سوپرترند در چارت متاتریدر 5" class="preview image-preview" onclick="openFullScreenModal(this.src, 'image')" style="cursor: zoom-in;">
             <p class="caption" data-fa="داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت" data-en="Dashboard for Manual &amp; Automatic Trading in Chart">داشبورد سوپرترند معاملات دستی و اتوماتیک در چارت</p>
         </div>
     </div>
@@ -1050,19 +1080,19 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <h2 data-fa="نمایش ویدیوهای محصولات" data-en="Product Video Demos">نمایش ویدیوهای محصولات</h2>
         <div class="videos-container">
             <div>
-                <video src="/ForexFuryPro.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
+                <video src="/images/ForexFuryPro.mp4" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت معاملات اتوماتیک فارکس فیوری پرو" data-en="Forex Fury Pro Expert">اکسپرت معاملات اتوماتیک فارکس فیوری پرو</p>
             </div>
             <div>
-                <video src="/supertrend.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
+                <video src="/images/supertrend.mp4" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند" data-en="Expert (Robot) SuperTrend Auto Trade">اکسپرت یا ربات معاملاتی اتوماتیک سوپرترند</p>
             </div>
             <div>
-                <video src="/EA&EM-SuperTrend&Footprint.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
+                <video src="/images/EA&EM-SuperTrend&Footprint.mp4" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت اتوماتیک و دستی EA&EM-PRO" data-en="EA&amp;EM-PRO">اکسپرت اتوماتیک و دستی EA&amp;EM-PRO</p>
             </div>
             <div>
-                <video src="/GoldApex_WF.webm" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
+                <video src="/images/GoldApex_WF.mp4" class="preview video-preview" controls autoplay muted loop onclick="openFullScreenModal(this.src, 'video')" style="cursor: zoom-in;"></video>
                 <p class="caption" data-fa="اکسپرت یا ربات معاملاتی گلد آپکس" data-en="Expert (Robot) GoldApex_WF">اکسپرت یا ربات معاملاتی گلد آپکس</p>
             </div>
         </div>
@@ -1092,18 +1122,18 @@ html[lang="fa"] .copyright  { direction: rtl; }
         <!-- ═══ کپی‌رایت ═══ -->
         <p class="copyright" data-fa="© All rights reserved K_M 2025 | info@tsgcoltd.ir" data-en="© All rights reserved K_M 2025 | info@tsgcoltd.ir">
             © All rights reserved K_M 2025 <span class="separator">|</span>
-            <a href="mailto:info@tsgcoltd.ir">info@tsgcoltd.ir</a>
+            <a href="/cdn-cgi/l/email-protection#9df4f3fbf2dde9eefafef2f1e9f9b3f4ef"><span class="__cf_email__" data-cfemail="167f7870795662657175797a6272387f64">[email&#160;protected]</span></a>
         </p>
 
     </div>
 </footer>
 
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         /* زبان پیش‌فرض سایت: فارسی (برای سئو و کاربران ایرانی) */
         let currentLang = localStorage.getItem('lang') || 'fa';
-        let WORKER_URL = 'https://supertrend-worker-fa.14031104.workers.dev';
-        let tetherPriceInToman = 0;
+       let WORKER_URL = 'https://supertrend-worker-fa.14031104.workers.dev'; // legacy payment/activation only
+       let tetherPriceInToman = 0;
 
         let products = {};
         let cardDetails = {};
@@ -1118,9 +1148,9 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
                 const box = document.getElementById('tetherPriceBox');
                 if (currentLang === 'fa') {
-                    box.innerHTML = `قیمت تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
+                    box.innerHTML = `قیمت لحظه‌ای تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
                 } else {
-                    box.innerHTML = `Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
+                    box.innerHTML = `Current Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
                 }
             } catch (err) {
                 console.error('Error loading Tether price:', err);
@@ -1130,42 +1160,86 @@ html[lang="fa"] .copyright  { direction: rtl; }
         }
 
         async function fetchProductsAndCard() {
+            await fetchTetherPrice();
+
             try {
-                const [priceResponse, response] = await Promise.all([
-                    fetch(WORKER_URL + '/tether-price'),
-                    fetch(WORKER_URL + '/products?lang=' + currentLang)
+                const [productsResponse, settingsResponse] = await Promise.all([
+                fetch(WORKER_URL + '/products?lang=' + currentLang),
+                fetch(WORKER_URL + '/card-details?lang=' + currentLang)
                 ]);
-
-                if (!priceResponse.ok || !response.ok) throw new Error('Network error');
-
-                const priceData = await priceResponse.json();
-                tetherPriceInToman = Number(priceData.tether_price_toman) || 0;
-
-                const box = document.getElementById('tetherPriceBox');
-                if (currentLang === 'fa') {
-                    box.innerHTML = `قیمت تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
-                } else {
-                    box.innerHTML = `Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
-                }
-
-                const rawProducts = await response.json();
+                const productsData = await productsResponse.json();
+                const settingsData = await settingsResponse.json();
+                const list = Array.isArray(productsData.products) ? productsData.products : [];
+                const keyBySlug = {
+                    'market-pulse': 'EA_EM_PRO',
+                    'super-trend-ea': 'EA_SuperTrend',
+                    'forex-fury-pro': 'EA_ForexFury',
+                    'gold-apex-pro': 'GoldApex_WF'
+                };
 
                 products = {};
-                Object.keys(rawProducts).forEach(key => {
-                    const p = rawProducts[key];
-                    products[key] = {
-                        ...p,
-                        usdt: p.trx,
-                        toman: Number(p.toman) || 0
-                    };
+                list.forEach(function (p) {
+                    var key = keyBySlug[p.slug];
+                    if (!key) return;
+                products[key] = {
+                name_fa: p.name_fa || p.name,
+                name_en: p.name_en || p.name,
+                desc_fa: p.desc_fa || p.description,
+                desc_en: p.desc_en || p.description,
+                usdt: Number(p.usdt ?? p.trx) || 0,
+                toman: Number(p.toman) || 0
+                };
                 });
+
+                cardDetails = {
+                    number: settingsData && settingsData.settings ? settingsData.settings.cardNumber : null
+                };
+
+                populateProducts();
+                populateProductSelect();
+                updateCardDisplay();
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback با کلیدهای صحیح و هماهنگ با ورکر
+                products = {
+                    'EA_EM_PRO': {
+                        name_fa: 'EA&EM-PRO',
+                        name_en: 'EA&EM-PRO',
+                        usdt: 0,
+                        toman: 0
+                    },
+                    'EA_SuperTrend': {
+                        name_fa: 'اکسپرت SuperTrend EA',
+                        name_en: 'SuperTrend EA',
+                        usdt: 0,
+                        toman: 0
+                    },
+                    'EA_ForexFury': {
+                        name_fa: 'اکسپرت ForexFury EA',
+                        name_en: 'ForexFury EA',
+                        usdt: 0,
+                        toman: 0
+                    },
+                    'GoldApex_WF': {
+                        name_fa: 'اکسپرت GoldApex_WF',
+                        name_en: 'GoldApex_WF',
+                        usdt: 0,
+                        toman: 0
+                    }
+                };
+                cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
+                populateProducts();
+                populateProductSelect();
+                updateCardDisplay();
+            }
+        }
 
         /* ═══ رندر کارت‌های محصولات (گرید با رسانه + دکمه خرید) ═══ */
         const PRODUCT_MEDIA = {
-            'EA_EM_PRO':      { video: '/EA&EM-SuperTrend&Footprint.webm', page: '/products/ea-em-pro.html' },
-            'EA_SuperTrend':  { video: '/supertrend.webm',                 page: '/products/supertrend-ea.html' },
-            'EA_ForexFury':   { video: '/ForexFuryPro.webm',               page: '/products/forex-fury-pro.html' },
-            'GoldApex_WF':    { video: '/GoldApex_WF.webm',                page: '/products/goldapex-wf.html' }
+            'EA_EM_PRO':      { video: '/images/EA&EM-SuperTrend&Footprint.mp4', page: '/products/ea-em-pro.html' },
+            'EA_SuperTrend':  { video: '/images/supertrend.mp4',                 page: '/products/supertrend-ea.html' },
+            'EA_ForexFury':   { video: '/images/ForexFuryPro.mp4',               page: '/products/forex-fury-pro.html' },
+            'GoldApex_WF':    { video: '/images/GoldApex_WF.mp4',                page: '/products/goldapex-wf.html' }
         };
 
         function populateProducts() {
@@ -1193,7 +1267,7 @@ html[lang="fa"] .copyright  { direction: rtl; }
                     mediaDiv.appendChild(vid);
                 } else {
                     const img = document.createElement('img');
-                    img.src = '/logo.ico';
+                    img.src = '/images/logo.ico';
                     img.alt = currentLang === 'fa' ? (prod.name_fa || prod.name_en) : (prod.name_en || prod.name_fa);
                     mediaDiv.appendChild(img);
                 }
@@ -1293,12 +1367,24 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         async function fetchWalletAddresses() {
             try {
+            
                 const res = await fetch(WORKER_URL + '/wallet-addresses');
-                if (res.ok) walletAddresses = await res.json();
+                if (res.ok) {
+                    const data = await res.json();
+                    const settings = data && data.settings ? data.settings : {};
+                    walletAddresses = {
+                        trc20: settings.usdtTrc20Wallet || settings.usdtWallet || null,
+                        bep20: settings.usdtBep20Wallet || settings.usdtWallet || null
+                    };
+                    cardDetails = {
+                        number: settings.cardNumber || null
+                    };
+                }
             } catch (err) {
-                console.error('Error loading wallet addresses:', err);
+                console.error('Error loading payment settings:', err);
             }
             syncWalletDisplay();
+            updateCardDisplay();
         }
 
         function syncWalletDisplay() {
@@ -1376,8 +1462,6 @@ html[lang="fa"] .copyright  { direction: rtl; }
             document.getElementById('lang-text').textContent = lang === 'en' ? 'فارسی' : 'English';
 
             localStorage.setItem('lang', lang);
-            fetchProductsAndCard();
-            fetchWalletAddresses();
         }
 
         function toggleLanguage() {
@@ -1427,6 +1511,8 @@ html[lang="fa"] .copyright  { direction: rtl; }
             }
         };
 
+       
+
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -1443,9 +1529,11 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         window.addEventListener('load', () => {
             updateLanguage(currentLang);
+            
         });
     </script>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"cac3b751fd0348f595bcbdae034902e1","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
