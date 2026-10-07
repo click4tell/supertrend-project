@@ -1102,83 +1102,63 @@ html[lang="fa"] .copyright  { direction: rtl; }
     <script>
         /* زبان پیش‌فرض سایت: فارسی (برای سئو و کاربران ایرانی) */
         let currentLang = localStorage.getItem('lang') || 'fa';
-        let WORKER_URL = '__SUPER_TREND_WORKER_URL__';
+        let WORKER_URL = 'https://supertrend-worker-fa.14031104.workers.dev';
         let tetherPriceInToman = 0;
 
         let products = {};
         let cardDetails = {};
         let walletAddresses = { trc20: null, bep20: null };
 
-        function renderTetherPrice() {
-            const box = document.getElementById('tetherPriceBox');
-            if (!box || !tetherPriceInToman) return;
-            if (currentLang === 'fa') {
-                box.innerHTML = `قیمت روز تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
-            } else {
-                box.innerHTML = `Daily Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
+        async function fetchTetherPrice() {
+            try {
+                const res = await fetch(WORKER_URL + '/tether-price');
+                if (!res.ok) throw new Error('Network error');
+                const data = await res.json();
+                tetherPriceInToman = Number(data.tether_price_toman) || 0;
+
+                const box = document.getElementById('tetherPriceBox');
+                if (currentLang === 'fa') {
+                    box.innerHTML = `قیمت تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
+                } else {
+                    box.innerHTML = `Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
+                }
+            } catch (err) {
+                console.error('Error loading Tether price:', err);
+                const box = document.getElementById('tetherPriceBox');
+                box.innerHTML = currentLang === 'fa' ? 'خطا در بارگذاری قیمت تتر' : 'Failed to load Tether price';
             }
         }
-
 
         async function fetchProductsAndCard() {
             try {
-                const response = await fetch(WORKER_URL + '/products?lang=' + currentLang);
+                const [priceResponse, response] = await Promise.all([
+                    fetch(WORKER_URL + '/tether-price'),
+                    fetch(WORKER_URL + '/products?lang=' + currentLang)
+                ]);
+
+                if (!priceResponse.ok || !response.ok) throw new Error('Network error');
+
+                const priceData = await priceResponse.json();
+                tetherPriceInToman = Number(priceData.tether_price_toman) || 0;
+
+                const box = document.getElementById('tetherPriceBox');
+                if (currentLang === 'fa') {
+                    box.innerHTML = `قیمت تتر (USDT): <strong>${tetherPriceInToman.toLocaleString('fa-IR')} تومان</strong>`;
+                } else {
+                    box.innerHTML = `Tether (USDT) Price: <strong>${tetherPriceInToman.toLocaleString('en-US')} Toman</strong>`;
+                }
+
                 const rawProducts = await response.json();
-                tetherPriceInToman = Number(rawProducts.__tether_price_toman || 0);
-                renderTetherPrice();
 
                 products = {};
                 Object.keys(rawProducts).forEach(key => {
-                    if (key === '__tether_price_toman') return;
                     const p = rawProducts[key];
                     products[key] = {
                         ...p,
-                        usdt: p.usdt ?? p.trx,
-                        toman: p.toman ?? Math.round((p.usdt ?? p.trx) * tetherPriceInToman)
+                        usdt: p.trx,
+                        toman: Number(p.toman) || 0
                     };
                 });
-
-                const cardResponse = await fetch(WORKER_URL + '/card-details?lang=' + currentLang);
-                cardDetails = await cardResponse.json();
-
-                populateProducts();
-                populateProductSelect();
-                updateCardDisplay();
-            } catch (error) {
-                console.error('Error:', error);
-                // Fallback با کلیدهای صحیح و هماهنگ با ورکر
-                products = {
-                    'EA_EM_PRO': {
-                        name_fa: 'EA&EM-PRO',
-                        name_en: 'EA&EM-PRO',
-                        usdt: 0,
-                        toman: 0
-                    },
-                    'EA_SuperTrend': {
-                        name_fa: 'اکسپرت SuperTrend EA',
-                        name_en: 'SuperTrend EA',
-                        usdt: 0,
-                        toman: 0
-                    },
-                    'EA_ForexFury': {
-                        name_fa: 'اکسپرت ForexFury EA',
-                        name_en: 'ForexFury EA',
-                        usdt: 0,
-                        toman: 0
-                    },
-                    'GoldApex_WF': {
-                        name_fa: 'اکسپرت GoldApex_WF',
-                        name_en: 'GoldApex_WF',
-                        usdt: 0,
-                        toman: 0
-                    }
-                };
-                cardDetails = { number: '6219861903732864', name: 'Kamran Mankarsi', bank: 'Saman Bank' };
-                populateProducts();
-                populateProductSelect();
-                updateCardDisplay();
-            }
-        }
 
         /* ═══ رندر کارت‌های محصولات (گرید با رسانه + دکمه خرید) ═══ */
         const PRODUCT_MEDIA = {
@@ -1463,7 +1443,6 @@ html[lang="fa"] .copyright  { direction: rtl; }
 
         window.addEventListener('load', () => {
             updateLanguage(currentLang);
-            fetchWalletAddresses();
         });
     </script>
 
